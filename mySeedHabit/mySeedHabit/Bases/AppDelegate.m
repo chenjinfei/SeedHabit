@@ -47,6 +47,9 @@
     // 设置友盟AppKey
     [UMSocialData setAppKey:AppKeyUmeng];
     
+    
+    // test
+    
     return YES;
 }
 
