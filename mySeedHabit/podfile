@@ -7,4 +7,5 @@ pod 'MJRefresh'
 pod 'Masonry'
 pod 'XRCarouselView'
 pod 'UMengSocialCOM'
+pod 'FLAnimatedImage'
 end
