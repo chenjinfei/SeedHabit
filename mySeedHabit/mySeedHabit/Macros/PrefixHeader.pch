@@ -1,0 +1,25 @@
+//
+//  PrefixHeader.pch
+//  myProject
+//
+//  Created by cjf on 7/29/16.
+//  Copyright © 2016 Jinfei Chen. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#pragma mark 第三方的引用
+#import <AFNetworking.h>
+
+#pragma mark === cjf 宏定义 ===
+#import "CJF_Global.h"
+
+#pragma mark === cjf API ===
+#import "Macros_API.h"
+
+#pragma mark === AppKey ===
+#import "AppKey.h"
+
+
+#endif /* PrefixHeader_pch */

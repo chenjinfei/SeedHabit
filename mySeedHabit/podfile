@@ -1,0 +1,10 @@
+platform:ios, '8.0'
+target 'mySeedHabit' do
+project 'mySeedHabit.xcodeproj'
+pod 'SDWebImage'
+pod 'AFNetworking'
+pod 'MJRefresh'
+pod 'Masonry'
+pod 'XRCarouselView'
+pod 'UMengSocialCOM'
+end
