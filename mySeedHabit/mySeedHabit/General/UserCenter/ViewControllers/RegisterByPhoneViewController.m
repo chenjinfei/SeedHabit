@@ -38,7 +38,7 @@
                 ULog(@"号码已经被注册");
             }else  {
                 RegisterDataViewController *registerVc = [[RegisterDataViewController alloc]init];
-                registerVc.phoneNumber = phoneNumber;
+                registerVc.account = phoneNumber;
                 [self presentViewController:registerVc animated:YES completion:^{
                     
                 }];
@@ -47,6 +47,7 @@
     }];
     
 }
+
 
 
 @end

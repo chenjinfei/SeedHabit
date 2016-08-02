@@ -44,6 +44,20 @@
 		37DB26F61D4F46CC00FA5198 /* time_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26D01D4F46CC00FA5198 /* time_32.png */; };
 		37DB26F71D4F46CC00FA5198 /* user_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26D11D4F46CC00FA5198 /* user_32.png */; };
 		37DB26F81D4F46CC00FA5198 /* weixin_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26D21D4F46CC00FA5198 /* weixin_32.png */; };
+		37DB26FA1D4F7BD900FA5198 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB26F91D4F7BD900FA5198 /* Security.framework */; };
+		37DB26FC1D4F7BE500FA5198 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB26FB1D4F7BE500FA5198 /* libiconv.2.4.0.tbd */; };
+		37DB26FE1D4F7BEF00FA5198 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB26FD1D4F7BEF00FA5198 /* SystemConfiguration.framework */; };
+		37DB27001D4F7BFA00FA5198 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB26FF1D4F7BFA00FA5198 /* CoreGraphics.framework */; };
+		37DB27021D4F7C0500FA5198 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB27011D4F7C0500FA5198 /* libsqlite3.0.tbd */; };
+		37DB27041D4F7C1400FA5198 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB27031D4F7C1400FA5198 /* CoreTelephony.framework */; };
+		37DB27061D4F7C2600FA5198 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB27051D4F7C2600FA5198 /* libstdc++.6.0.9.tbd */; };
+		37DB27081D4F7C3000FA5198 /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB27071D4F7C3000FA5198 /* libz.1.1.3.tbd */; };
+		37DB270A1D4F85E700FA5198 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB27091D4F85E700FA5198 /* ImageIO.framework */; };
+		37DB270C1D4F9B2400FA5198 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB270B1D4F9B2400FA5198 /* QuartzCore.framework */; };
+		37DB270E1D4F9B5700FA5198 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB270D1D4F9B5700FA5198 /* CoreText.framework */; };
+		37DB27101D4F9B6700FA5198 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB270F1D4F9B6700FA5198 /* UIKit.framework */; };
+		37DB27121D4F9B7200FA5198 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB27111D4F9B7200FA5198 /* Foundation.framework */; };
+		37DB27151D50D3AA00FA5198 /* UIColor+CJFColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB27141D50D3AA00FA5198 /* UIColor+CJFColor.m */; };
 		3EAAD7E48128F4953AD5DCAB /* libPods-mySeedHabit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 157AE9DB11DE022A9D155F7F /* libPods-mySeedHabit.a */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +117,22 @@
 		37DB26D01D4F46CC00FA5198 /* time_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_32.png; sourceTree = "<group>"; };
 		37DB26D11D4F46CC00FA5198 /* user_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_32.png; sourceTree = "<group>"; };
 		37DB26D21D4F46CC00FA5198 /* weixin_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weixin_32.png; sourceTree = "<group>"; };
+		37DB26F91D4F7BD900FA5198 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		37DB26FB1D4F7BE500FA5198 /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = usr/lib/libiconv.2.4.0.tbd; sourceTree = SDKROOT; };
+		37DB26FD1D4F7BEF00FA5198 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		37DB26FF1D4F7BFA00FA5198 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		37DB27011D4F7C0500FA5198 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		37DB27031D4F7C1400FA5198 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		37DB27051D4F7C2600FA5198 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		37DB27071D4F7C3000FA5198 /* libz.1.1.3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.1.3.tbd; path = usr/lib/libz.1.1.3.tbd; sourceTree = SDKROOT; };
+		37DB27091D4F85E700FA5198 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		37DB270B1D4F9B2400FA5198 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		37DB270D1D4F9B5700FA5198 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		37DB270F1D4F9B6700FA5198 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		37DB27111D4F9B7200FA5198 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		37DB27131D50D3AA00FA5198 /* UIColor+CJFColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CJFColor.h"; sourceTree = "<group>"; };
+		37DB27141D50D3AA00FA5198 /* UIColor+CJFColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CJFColor.m"; sourceTree = "<group>"; };
+		37DB27161D510F0400FA5198 /* Macros_UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros_UI.h; sourceTree = "<group>"; };
 		43931E7C0E1941F3CC26AF06 /* Pods-mySeedHabit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mySeedHabit.release.xcconfig"; path = "Pods/Target Support Files/Pods-mySeedHabit/Pods-mySeedHabit.release.xcconfig"; sourceTree = "<group>"; };
 		89381EC138B11EBA94FFFB12 /* Pods-mySeedHabit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mySeedHabit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mySeedHabit/Pods-mySeedHabit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +142,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37DB27121D4F9B7200FA5198 /* Foundation.framework in Frameworks */,
+				37DB27101D4F9B6700FA5198 /* UIKit.framework in Frameworks */,
+				37DB270E1D4F9B5700FA5198 /* CoreText.framework in Frameworks */,
+				37DB270C1D4F9B2400FA5198 /* QuartzCore.framework in Frameworks */,
+				37DB270A1D4F85E700FA5198 /* ImageIO.framework in Frameworks */,
+				37DB27081D4F7C3000FA5198 /* libz.1.1.3.tbd in Frameworks */,
+				37DB27061D4F7C2600FA5198 /* libstdc++.6.0.9.tbd in Frameworks */,
+				37DB27041D4F7C1400FA5198 /* CoreTelephony.framework in Frameworks */,
+				37DB27021D4F7C0500FA5198 /* libsqlite3.0.tbd in Frameworks */,
+				37DB27001D4F7BFA00FA5198 /* CoreGraphics.framework in Frameworks */,
+				37DB26FE1D4F7BEF00FA5198 /* SystemConfiguration.framework in Frameworks */,
+				37DB26FC1D4F7BE500FA5198 /* libiconv.2.4.0.tbd in Frameworks */,
+				37DB26FA1D4F7BD900FA5198 /* Security.framework in Frameworks */,
 				3EAAD7E48128F4953AD5DCAB /* libPods-mySeedHabit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,6 +236,8 @@
 		37DB26941D4F46CC00FA5198 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				37DB27131D50D3AA00FA5198 /* UIColor+CJFColor.h */,
+				37DB27141D50D3AA00FA5198 /* UIColor+CJFColor.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -355,6 +400,7 @@
 				37DB26BC1D4F46CC00FA5198 /* CJF_Global.h */,
 				37DB26BD1D4F46CC00FA5198 /* Macros_API.h */,
 				37DB26BE1D4F46CC00FA5198 /* PrefixHeader.pch */,
+				37DB27161D510F0400FA5198 /* Macros_UI.h */,
 			);
 			path = Macros;
 			sourceTree = "<group>";
@@ -432,6 +478,19 @@
 		8FF4F6A08C4C12B24A3D4A3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37DB27111D4F9B7200FA5198 /* Foundation.framework */,
+				37DB270F1D4F9B6700FA5198 /* UIKit.framework */,
+				37DB270D1D4F9B5700FA5198 /* CoreText.framework */,
+				37DB270B1D4F9B2400FA5198 /* QuartzCore.framework */,
+				37DB27091D4F85E700FA5198 /* ImageIO.framework */,
+				37DB27071D4F7C3000FA5198 /* libz.1.1.3.tbd */,
+				37DB27051D4F7C2600FA5198 /* libstdc++.6.0.9.tbd */,
+				37DB27031D4F7C1400FA5198 /* CoreTelephony.framework */,
+				37DB27011D4F7C0500FA5198 /* libsqlite3.0.tbd */,
+				37DB26FF1D4F7BFA00FA5198 /* CoreGraphics.framework */,
+				37DB26FD1D4F7BEF00FA5198 /* SystemConfiguration.framework */,
+				37DB26FB1D4F7BE500FA5198 /* libiconv.2.4.0.tbd */,
+				37DB26F91D4F7BD900FA5198 /* Security.framework */,
 				157AE9DB11DE022A9D155F7F /* libPods-mySeedHabit.a */,
 			);
 			name = Frameworks;
@@ -480,6 +539,7 @@
 				TargetAttributes = {
 					37DB266F1D4F40A600FA5198 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = D3CT3NTD53;
 					};
 				};
 			};
@@ -595,6 +655,7 @@
 				37DB26DC1D4F46CC00FA5198 /* DiscoverViewController.m in Sources */,
 				37DB26D91D4F46CC00FA5198 /* DrawerViewController.m in Sources */,
 				37DB26E61D4F46CC00FA5198 /* RegisterDataViewController.m in Sources */,
+				37DB27151D50D3AA00FA5198 /* UIColor+CJFColor.m in Sources */,
 				37DB26E21D4F46CC00FA5198 /* LoginViewController.m in Sources */,
 				37DB26751D4F40A600FA5198 /* main.m in Sources */,
 				37DB26DB1D4F46CC00FA5198 /* UserManager.m in Sources */,
@@ -705,12 +766,16 @@
 			baseConfigurationReference = 89381EC138B11EBA94FFFB12 /* Pods-mySeedHabit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/mySeedHabit/Macros/PrefixHeader.pch";
 				INFOPLIST_FILE = mySeedHabit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjf.mySeedHabit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -719,12 +784,16 @@
 			baseConfigurationReference = 43931E7C0E1941F3CC26AF06 /* Pods-mySeedHabit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/mySeedHabit/Macros/PrefixHeader.pch";
 				INFOPLIST_FILE = mySeedHabit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjf.mySeedHabit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

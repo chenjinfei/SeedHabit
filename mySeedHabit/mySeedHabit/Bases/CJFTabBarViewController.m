@@ -12,6 +12,8 @@
 #import "DiscoverViewController.h"
 #import "MessageViewController.h"
 
+#import "UIColor+CJFColor.h"
+
 @interface CJFTabBarViewController ()
 
 @end
@@ -46,12 +48,23 @@
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:newVc];
     
+    [nav.navigationBar setTranslucent:NO];
+    // 设置导航栏背景颜色
+    nav.navigationBar.barTintColor = [UIColor colorWithHexString:UIMainColor alpha:1.0];
+    // 设置导航栏字体颜色
+    [nav.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
     newVc.title = title;
+    // 设置图片并不受系统的tintcolor所渲染
     newVc.tabBarItem.image = [[UIImage imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    // first_normalImg = [first_normalImg imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     newVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
+    // 设置字体颜色
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:UIMainColor alpha:1.0], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:UISelectedColor alpha:1.0],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
+    
     return nav;
+    
 }
 
 @end
