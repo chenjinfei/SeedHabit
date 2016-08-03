@@ -9,7 +9,10 @@
 #import "LoginViewController.h"
 
 #import "RegisterByPhoneViewController.h"
+#import "RegisterDataViewController.h"
 #import "UserManager.h"
+
+#import <UMSocial.h>
 
 
 @interface LoginViewController ()
@@ -31,6 +34,7 @@
 
 // 登录
 - (IBAction)loginClick:(UIButton *)sender {
+    
     NSDictionary *parameters = @{
                                  @"account": [NSNumber numberWithInteger:[self.phoneNumber.text integerValue]],
                                  @"password": self.password.text,
@@ -48,10 +52,10 @@
 
 // 注册
 - (IBAction)registerClick:(UIButton *)sender {
+    
     RegisterByPhoneViewController *registerVc = [[RegisterByPhoneViewController alloc]init];
-    [self presentViewController:registerVc animated:YES completion:^{
-        
-    }];
+    [self presentViewController:registerVc animated:YES completion:nil];
+    
 }
 
 
@@ -61,27 +65,63 @@
 
 // QQ帐号登录
 - (IBAction)qqLoginClick:(UIButton *)sender {
+    
+    
+    
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToQQ];
+    
+    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+        
+        //          获取微博用户名、uid、token等
+        
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            
+            NSDictionary *dict = [UMSocialAccountManager socialAccountDictionary];
+            UMSocialAccountEntity *snsAccount = [dict valueForKey:snsPlatform.platformName];
+            
+            NSLog(@"\nusername = %@,\n usid = %@,\n token = %@ iconUrl = %@,\n unionId = %@,\n thirdPlatformUserProfile = %@,\n thirdPlatformResponse = %@ \n, message = %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL, snsAccount.unionId, response.thirdPlatformUserProfile, response.thirdPlatformResponse, response.message);
+            
+        }});
+    
+    
 }
 
 // 微信帐号登录
 - (IBAction)weixinLoginClick:(UIButton *)sender {
+    // TODO: 微信登录
 }
 
 // 微博帐号登录
 - (IBAction)sinaLoginClick:(UIButton *)sender {
-    //    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
-    //    
-    //    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
-    //        
-    //        //          获取微博用户名、uid、token等
-    //        
-    //        if (response.responseCode == UMSResponseCodeSuccess) {
-    //            
-    //            NSDictionary *dict = [UMSocialAccountManager socialAccountDictionary];
-    //            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:snsPlatform.platformName];
-    //            NSLog(@"\nusername = %@,\n usid = %@,\n token = %@ iconUrl = %@,\n unionId = %@,\n thirdPlatformUserProfile = %@,\n thirdPlatformResponse = %@ \n, message = %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL, snsAccount.unionId, response.thirdPlatformUserProfile, response.thirdPlatformResponse, response.message);
-    //            
-    //        }});
+    
+    
+    
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
+    
+    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+        
+        //          获取微博用户名、uid、token等
+        
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            
+            NSDictionary *dict = [UMSocialAccountManager socialAccountDictionary];
+            UMSocialAccountEntity *snsAccount = [dict valueForKey:snsPlatform.platformName];
+            
+            NSLog(@"\nusername = %@,\n usid = %@,\n token = %@ iconUrl = %@,\n unionId = %@,\n thirdPlatformUserProfile = %@,\n thirdPlatformResponse = %@ \n, message = %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL, snsAccount.unionId, response.thirdPlatformUserProfile, response.thirdPlatformResponse, response.message);
+            
+            RegisterDataViewController *registerDataVc = [[RegisterDataViewController alloc]init];
+            registerDataVc.userProfile = response.thirdPlatformUserProfile;
+            [self presentViewController:registerDataVc animated:YES completion:^{
+                
+            }];
+            
+            
+            
+        }});
+    
+    
+    
+    
 }
 
 

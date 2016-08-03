@@ -47,7 +47,7 @@
                         <action selector="genderClick:" destination="-1" eventType="touchUpInside" id="PoK-VY-hkf"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yhK-iQ-Zq4">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="qq_32.png" translatesAutoresizingMaskIntoConstraints="NO" id="yhK-iQ-Zq4">
                     <rect key="frame" x="120" y="28" width="80" height="80"/>
                 </imageView>
             </subviews>
@@ -55,4 +55,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="qq_32.png" width="32" height="32"/>
+    </resources>
 </document>

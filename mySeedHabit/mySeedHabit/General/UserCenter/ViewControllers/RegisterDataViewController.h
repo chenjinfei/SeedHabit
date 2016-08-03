@@ -11,6 +11,8 @@
 @interface RegisterDataViewController : UIViewController
 
 // 手机号码
-@property (nonatomic, strong) NSNumber *phoneNumber;
+@property (nonatomic, strong) NSNumber *account;
+// 第三方平台用户信息
+@property (nonatomic, strong) id userProfile;
 
 @end
