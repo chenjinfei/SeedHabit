@@ -59,14 +59,6 @@
 		37DB27121D4F9B7200FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		37DB27151D50D3AA00FA5198 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3EAAD7E48128F4953AD5DCAB /* libPods-mySeedHabit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 157AE9DB11DE022A9D155F7F /* libPods-mySeedHabit.a */; };
-		3F21C53B1D5178B4000D86D1 /* CommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C5291D5178B4000D86D1 /* CommentsModel.m */; settings = {ASSET_TAGS = (); }; };
-		3F21C53C1D5178B4000D86D1 /* HabitsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C52B1D5178B4000D86D1 /* HabitsModel.m */; settings = {ASSET_TAGS = (); }; };
-		3F21C53D1D5178B4000D86D1 /* NoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C52D1D5178B4000D86D1 /* NoteModel.m */; settings = {ASSET_TAGS = (); }; };
-		3F21C53E1D5178B4000D86D1 /* NotesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C52F1D5178B4000D86D1 /* NotesModel.m */; settings = {ASSET_TAGS = (); }; };
-		3F21C53F1D5178B4000D86D1 /* PropsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C5311D5178B4000D86D1 /* PropsModel.m */; settings = {ASSET_TAGS = (); }; };
-		3F21C5401D5178B4000D86D1 /* UsersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C5331D5178B4000D86D1 /* UsersModel.m */; settings = {ASSET_TAGS = (); }; };
-		3F21C5411D5178B4000D86D1 /* HabitListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C5361D5178B4000D86D1 /* HabitListCell.m */; settings = {ASSET_TAGS = (); }; };
-		3F21C5421D5178B4000D86D1 /* HabitListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F21C5371D5178B4000D86D1 /* HabitListCell.xib */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,21 +117,6 @@
 		37DB26D01D4F46CC00FA5198 /* time_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_32.png; sourceTree = "<group>"; };
 		37DB26D11D4F46CC00FA5198 /* user_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_32.png; sourceTree = "<group>"; };
 		37DB26D21D4F46CC00FA5198 /* weixin_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weixin_32.png; sourceTree = "<group>"; };
-		3F21C5281D5178B4000D86D1 /* CommentsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsModel.h; sourceTree = "<group>"; };
-		3F21C5291D5178B4000D86D1 /* CommentsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsModel.m; sourceTree = "<group>"; };
-		3F21C52A1D5178B4000D86D1 /* HabitsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitsModel.h; sourceTree = "<group>"; };
-		3F21C52B1D5178B4000D86D1 /* HabitsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitsModel.m; sourceTree = "<group>"; };
-		3F21C52C1D5178B4000D86D1 /* NoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteModel.h; sourceTree = "<group>"; };
-		3F21C52D1D5178B4000D86D1 /* NoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteModel.m; sourceTree = "<group>"; };
-		3F21C52E1D5178B4000D86D1 /* NotesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesModel.h; sourceTree = "<group>"; };
-		3F21C52F1D5178B4000D86D1 /* NotesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesModel.m; sourceTree = "<group>"; };
-		3F21C5301D5178B4000D86D1 /* PropsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropsModel.h; sourceTree = "<group>"; };
-		3F21C5311D5178B4000D86D1 /* PropsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropsModel.m; sourceTree = "<group>"; };
-		3F21C5321D5178B4000D86D1 /* UsersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersModel.h; sourceTree = "<group>"; };
-		3F21C5331D5178B4000D86D1 /* UsersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersModel.m; sourceTree = "<group>"; };
-		3F21C5351D5178B4000D86D1 /* HabitListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitListCell.h; sourceTree = "<group>"; };
-		3F21C5361D5178B4000D86D1 /* HabitListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitListCell.m; sourceTree = "<group>"; };
-		3F21C5371D5178B4000D86D1 /* HabitListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitListCell.xib; sourceTree = "<group>"; };
 		43931E7C0E1941F3CC26AF06 /* Pods-mySeedHabit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mySeedHabit.release.xcconfig"; path = "Pods/Target Support Files/Pods-mySeedHabit/Pods-mySeedHabit.release.xcconfig"; sourceTree = "<group>"; };
 		89381EC138B11EBA94FFFB12 /* Pods-mySeedHabit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mySeedHabit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mySeedHabit/Pods-mySeedHabit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -484,18 +461,6 @@
 		3F21C5271D5178B4000D86D1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3F21C5281D5178B4000D86D1 /* CommentsModel.h */,
-				3F21C5291D5178B4000D86D1 /* CommentsModel.m */,
-				3F21C52A1D5178B4000D86D1 /* HabitsModel.h */,
-				3F21C52B1D5178B4000D86D1 /* HabitsModel.m */,
-				3F21C52C1D5178B4000D86D1 /* NoteModel.h */,
-				3F21C52D1D5178B4000D86D1 /* NoteModel.m */,
-				3F21C52E1D5178B4000D86D1 /* NotesModel.h */,
-				3F21C52F1D5178B4000D86D1 /* NotesModel.m */,
-				3F21C5301D5178B4000D86D1 /* PropsModel.h */,
-				3F21C5311D5178B4000D86D1 /* PropsModel.m */,
-				3F21C5321D5178B4000D86D1 /* UsersModel.h */,
-				3F21C5331D5178B4000D86D1 /* UsersModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -503,9 +468,6 @@
 		3F21C5341D5178B4000D86D1 /* Vlews */ = {
 			isa = PBXGroup;
 			children = (
-				3F21C5351D5178B4000D86D1 /* HabitListCell.h */,
-				3F21C5361D5178B4000D86D1 /* HabitListCell.m */,
-				3F21C5371D5178B4000D86D1 /* HabitListCell.xib */,
 			);
 			path = Vlews;
 			sourceTree = "<group>";
@@ -599,7 +561,6 @@
 				37DB26E31D4F46CC00FA5198 /* LoginViewController.xib in Resources */,
 				37DB26EC1D4F46CC00FA5198 /* heard_32.png in Resources */,
 				37DB26DD1D4F46CC00FA5198 /* DiscoverViewController.xib in Resources */,
-				3F21C5421D5178B4000D86D1 /* HabitListCell.xib in Resources */,
 				37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */,
 				37DB26ED1D4F46CC00FA5198 /* message_32.png in Resources */,
 				37DB26F81D4F46CC00FA5198 /* weixin_32.png in Resources */,
@@ -673,11 +634,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				37DB26D71D4F46CC00FA5198 /* AppDelegate.m in Sources */,
-				3F21C5411D5178B4000D86D1 /* HabitListCell.m in Sources */,
-				3F21C53E1D5178B4000D86D1 /* NotesModel.m in Sources */,
-				3F21C5401D5178B4000D86D1 /* UsersModel.m in Sources */,
-				3F21C53F1D5178B4000D86D1 /* PropsModel.m in Sources */,
-				3F21C53D1D5178B4000D86D1 /* NoteModel.m in Sources */,
 				37DB26DA1D4F46CC00FA5198 /* LeftViewController.m in Sources */,
 				37DB26E41D4F46CC00FA5198 /* RegisterByPhoneViewController.m in Sources */,
 				37DB26DC1D4F46CC00FA5198 /* DiscoverViewController.m in Sources */,
@@ -688,8 +644,6 @@
 				37DB26751D4F40A600FA5198 /* main.m in Sources */,
 				37DB26DB1D4F46CC00FA5198 /* UserManager.m in Sources */,
 				37DB26E01D4F46CC00FA5198 /* MessageViewController.m in Sources */,
-				3F21C53C1D5178B4000D86D1 /* HabitsModel.m in Sources */,
-				3F21C53B1D5178B4000D86D1 /* CommentsModel.m in Sources */,
 				37DB26D81D4F46CC00FA5198 /* CJFTabBarViewController.m in Sources */,
 				37DB26DE1D4F46CC00FA5198 /* HabitViewController.m in Sources */,
 			);
