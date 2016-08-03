@@ -59,6 +59,7 @@
 		37DB27121D4F9B7200FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		37DB27151D50D3AA00FA5198 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3EAAD7E48128F4953AD5DCAB /* libPods-mySeedHabit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 157AE9DB11DE022A9D155F7F /* libPods-mySeedHabit.a */; };
+		3FCEDDCD1D517F280033213C /* UIColor+CJFColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCEDDCC1D517F280033213C /* UIColor+CJFColor.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +118,9 @@
 		37DB26D01D4F46CC00FA5198 /* time_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_32.png; sourceTree = "<group>"; };
 		37DB26D11D4F46CC00FA5198 /* user_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_32.png; sourceTree = "<group>"; };
 		37DB26D21D4F46CC00FA5198 /* weixin_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weixin_32.png; sourceTree = "<group>"; };
+		3FCEDDCB1D517F280033213C /* UIColor+CJFColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CJFColor.h"; sourceTree = "<group>"; };
+		3FCEDDCC1D517F280033213C /* UIColor+CJFColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CJFColor.m"; sourceTree = "<group>"; };
+		3FCEDDCE1D517F630033213C /* Macros_UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros_UI.h; sourceTree = "<group>"; };
 		43931E7C0E1941F3CC26AF06 /* Pods-mySeedHabit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mySeedHabit.release.xcconfig"; path = "Pods/Target Support Files/Pods-mySeedHabit/Pods-mySeedHabit.release.xcconfig"; sourceTree = "<group>"; };
 		89381EC138B11EBA94FFFB12 /* Pods-mySeedHabit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mySeedHabit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mySeedHabit/Pods-mySeedHabit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -220,6 +224,8 @@
 		37DB26941D4F46CC00FA5198 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				3FCEDDCB1D517F280033213C /* UIColor+CJFColor.h */,
+				3FCEDDCC1D517F280033213C /* UIColor+CJFColor.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -380,6 +386,7 @@
 		37DB26BA1D4F46CC00FA5198 /* Macros */ = {
 			isa = PBXGroup;
 			children = (
+				3FCEDDCE1D517F630033213C /* Macros_UI.h */,
 				37DB26BB1D4F46CC00FA5198 /* AppKey.h */,
 				37DB26BC1D4F46CC00FA5198 /* CJF_Global.h */,
 				37DB26BD1D4F46CC00FA5198 /* Macros_API.h */,
@@ -638,6 +645,7 @@
 				37DB26E41D4F46CC00FA5198 /* RegisterByPhoneViewController.m in Sources */,
 				37DB26DC1D4F46CC00FA5198 /* DiscoverViewController.m in Sources */,
 				37DB26D91D4F46CC00FA5198 /* DrawerViewController.m in Sources */,
+				3FCEDDCD1D517F280033213C /* UIColor+CJFColor.m in Sources */,
 				37DB26E61D4F46CC00FA5198 /* RegisterDataViewController.m in Sources */,
 				37DB27151D50D3AA00FA5198 /* (null) in Sources */,
 				37DB26E21D4F46CC00FA5198 /* LoginViewController.m in Sources */,
