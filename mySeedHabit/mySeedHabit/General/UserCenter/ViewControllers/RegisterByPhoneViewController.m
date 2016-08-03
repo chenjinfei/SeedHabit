@@ -48,6 +48,10 @@
     
 }
 
+// 退出当前模态控制器
+- (IBAction)back:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 @end

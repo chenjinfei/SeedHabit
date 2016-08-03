@@ -13,6 +13,8 @@
 
 @interface HabitViewController ()
 
+@property (strong, nonatomic) IBOutlet UILabel *username;
+
 @end
 
 @implementation HabitViewController
@@ -20,18 +22,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSString *name = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"userName"]];
+    if (name) {
+        self.username.text = name;
+    }
     
 }
 
 // 退出登录
 - (IBAction)logoutClick:(UIButton *)sender {
     [[UserManager manager] logoutSuccess:^(NSDictionary *responseObject) {
+        
         LoginViewController *loginVc = [[LoginViewController alloc]init];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:loginVc animated:YES completion:^{
             NSLog(@"登出成功");
         }];
+        
     } failure:^(NSError *error) {
+        
         ULog(@"%@", error);
+        
     }];
 }
 

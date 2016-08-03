@@ -56,4 +56,17 @@
  */
 -(void)registerByParameters: (NSDictionary *)parameters success: (void (^)(NSDictionary *responseObject))success failure: (void (^)(NSError *error))failure;
 
+/**
+ *  设置本地登录持久化
+ *
+ *  @param username 用户名
+ *  @param password 用户密码
+ */
+-(void)setUserDefaultsWithUserName: (NSString *)username password: (NSString *)password;
+
+/**
+ *  清除本地登录持久化数据
+ */
+-(void)removeUserDefaults;
+
 @end

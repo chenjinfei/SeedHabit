@@ -10,8 +10,9 @@
 
 #import "RegisterByPhoneViewController.h"
 #import "RegisterDataViewController.h"
-#import "UserManager.h"
+#import "DrawerViewController.h"
 
+#import "UserManager.h"
 #import <UMSocial.h>
 
 
@@ -35,18 +36,35 @@
 // 登录
 - (IBAction)loginClick:(UIButton *)sender {
     
-    NSDictionary *parameters = @{
-                                 @"account": [NSNumber numberWithInteger:[self.phoneNumber.text integerValue]],
-                                 @"password": self.password.text,
-                                 @"account_type": @1
-                                 };
-    [[UserManager manager] loginWithInfo:parameters success:^(NSDictionary *userData) {
-        [self dismissViewControllerAnimated:YES completion:^{
-            NSLog(@"登录成功");
-        }];
-    } failure:^(NSError *error) {
-        NSLog(@"%@", error);
+    // 判断帐号是否已经注册
+    NSNumber *n = [NSNumber numberWithInteger:[self.phoneNumber.text integerValue]];
+    [[UserManager manager] isTelExists:@{@"account" : n} responseBlock:^(id responseObject) {
+        NSLog(@"%@", responseObject);
+        // 已经注册
+        if ([responseObject[@"data"][@"is_register"] boolValue]) {
+            // 执行登录操作
+            NSDictionary *parameters = @{
+                                         @"account": [NSNumber numberWithInteger:[self.phoneNumber.text integerValue]],
+                                         @"password": @"d41d8cd98f00b204e9800998ecf8427e",
+                                         @"account_type": @4
+                                         };
+            [[UserManager manager] loginWithInfo:parameters success:^(NSDictionary *userData) {
+                
+                NSLog(@"%@", userData);
+                
+            } failure:^(NSError *error) {
+                NSLog(@"%@", error);
+            }];
+            
+            
+        }else {
+            // 未注册
+            
+        }
+        
+        
     }];
+    
     
 }
 
@@ -94,8 +112,6 @@
 // 微博帐号登录
 - (IBAction)sinaLoginClick:(UIButton *)sender {
     
-    
-    
     UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
     
     snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
@@ -106,20 +122,39 @@
             
             NSDictionary *dict = [UMSocialAccountManager socialAccountDictionary];
             UMSocialAccountEntity *snsAccount = [dict valueForKey:snsPlatform.platformName];
-            
             NSLog(@"\nusername = %@,\n usid = %@,\n token = %@ iconUrl = %@,\n unionId = %@,\n thirdPlatformUserProfile = %@,\n thirdPlatformResponse = %@ \n, message = %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL, snsAccount.unionId, response.thirdPlatformUserProfile, response.thirdPlatformResponse, response.message);
             
-            RegisterDataViewController *registerDataVc = [[RegisterDataViewController alloc]init];
-            registerDataVc.userProfile = response.thirdPlatformUserProfile;
-            [self presentViewController:registerDataVc animated:YES completion:^{
-                
+            NSDictionary *parameters = @{
+                                         @"account": [NSNumber numberWithInteger:[snsAccount.usid integerValue]],
+                                         //                                         @"password": self.password.text,
+                                         @"account_type": @1
+                                         };
+            
+            [[UserManager manager] loginWithInfo:parameters success:^(NSDictionary *userData) {
+                [self dismissViewControllerAnimated:YES completion:^{
+                    
+                    NSLog(@"info = %@, status = %@", userData[@"info"], userData[@"status"]);
+                    if ([userData[@"data"][@"new_user"] boolValue]) {
+                        
+                        NSLog(@"old");
+                        
+                    }else {
+                        
+                        NSLog(@"new");
+                        
+                    }
+                    
+                    
+                }];
+            } failure:^(NSError *error) {
+                NSLog(@"%@", error);
             }];
             
             
             
+            
+            
         }});
-    
-    
     
     
 }
