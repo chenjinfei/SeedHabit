@@ -44,24 +44,21 @@
 		37DB26F61D4F46CC00FA5198 /* time_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26D01D4F46CC00FA5198 /* time_32.png */; };
 		37DB26F71D4F46CC00FA5198 /* user_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26D11D4F46CC00FA5198 /* user_32.png */; };
 		37DB26F81D4F46CC00FA5198 /* weixin_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26D21D4F46CC00FA5198 /* weixin_32.png */; };
-		37DB26FA1D4F7BD900FA5198 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB26F91D4F7BD900FA5198 /* Security.framework */; };
-		37DB26FC1D4F7BE500FA5198 /* libiconv.2.4.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB26FB1D4F7BE500FA5198 /* libiconv.2.4.0.tbd */; };
-		37DB26FE1D4F7BEF00FA5198 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB26FD1D4F7BEF00FA5198 /* SystemConfiguration.framework */; };
-		37DB27001D4F7BFA00FA5198 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB26FF1D4F7BFA00FA5198 /* CoreGraphics.framework */; };
-		37DB27021D4F7C0500FA5198 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB27011D4F7C0500FA5198 /* libsqlite3.0.tbd */; };
-		37DB27041D4F7C1400FA5198 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB27031D4F7C1400FA5198 /* CoreTelephony.framework */; };
-		37DB27061D4F7C2600FA5198 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB27051D4F7C2600FA5198 /* libstdc++.6.0.9.tbd */; };
-		37DB27081D4F7C3000FA5198 /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB27071D4F7C3000FA5198 /* libz.1.1.3.tbd */; };
-		37DB270A1D4F85E700FA5198 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB27091D4F85E700FA5198 /* ImageIO.framework */; };
-		37DB270C1D4F9B2400FA5198 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB270B1D4F9B2400FA5198 /* QuartzCore.framework */; };
-		37DB270E1D4F9B5700FA5198 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB270D1D4F9B5700FA5198 /* CoreText.framework */; };
-		37DB27101D4F9B6700FA5198 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB270F1D4F9B6700FA5198 /* UIKit.framework */; };
-		37DB27121D4F9B7200FA5198 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37DB27111D4F9B7200FA5198 /* Foundation.framework */; };
-		37DB27151D50D3AA00FA5198 /* UIColor+CJFColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB27141D50D3AA00FA5198 /* UIColor+CJFColor.m */; };
+		37DB26FA1D4F7BD900FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		37DB26FC1D4F7BE500FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		37DB26FE1D4F7BEF00FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		37DB27001D4F7BFA00FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		37DB27021D4F7C0500FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		37DB27041D4F7C1400FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		37DB27061D4F7C2600FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		37DB27081D4F7C3000FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		37DB270A1D4F85E700FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		37DB270C1D4F9B2400FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		37DB270E1D4F9B5700FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		37DB27101D4F9B6700FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		37DB27121D4F9B7200FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		37DB27151D50D3AA00FA5198 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3EAAD7E48128F4953AD5DCAB /* libPods-mySeedHabit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 157AE9DB11DE022A9D155F7F /* libPods-mySeedHabit.a */; };
-		3F21C5381D5178B4000D86D1 /* huo2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F21C5241D5178B4000D86D1 /* huo2.jpg */; settings = {ASSET_TAGS = (); }; };
-		3F21C5391D5178B4000D86D1 /* huo4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F21C5251D5178B4000D86D1 /* huo4.jpg */; settings = {ASSET_TAGS = (); }; };
-		3F21C53A1D5178B4000D86D1 /* huo7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F21C5261D5178B4000D86D1 /* huo7.jpg */; settings = {ASSET_TAGS = (); }; };
 		3F21C53B1D5178B4000D86D1 /* CommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C5291D5178B4000D86D1 /* CommentsModel.m */; settings = {ASSET_TAGS = (); }; };
 		3F21C53C1D5178B4000D86D1 /* HabitsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C52B1D5178B4000D86D1 /* HabitsModel.m */; settings = {ASSET_TAGS = (); }; };
 		3F21C53D1D5178B4000D86D1 /* NoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F21C52D1D5178B4000D86D1 /* NoteModel.m */; settings = {ASSET_TAGS = (); }; };
@@ -128,9 +125,6 @@
 		37DB26D01D4F46CC00FA5198 /* time_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_32.png; sourceTree = "<group>"; };
 		37DB26D11D4F46CC00FA5198 /* user_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_32.png; sourceTree = "<group>"; };
 		37DB26D21D4F46CC00FA5198 /* weixin_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weixin_32.png; sourceTree = "<group>"; };
-		3F21C5241D5178B4000D86D1 /* huo2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = huo2.jpg; sourceTree = "<group>"; };
-		3F21C5251D5178B4000D86D1 /* huo4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = huo4.jpg; sourceTree = "<group>"; };
-		3F21C5261D5178B4000D86D1 /* huo7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = huo7.jpg; sourceTree = "<group>"; };
 		3F21C5281D5178B4000D86D1 /* CommentsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsModel.h; sourceTree = "<group>"; };
 		3F21C5291D5178B4000D86D1 /* CommentsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsModel.m; sourceTree = "<group>"; };
 		3F21C52A1D5178B4000D86D1 /* HabitsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitsModel.h; sourceTree = "<group>"; };
@@ -155,19 +149,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37DB27121D4F9B7200FA5198 /* Foundation.framework in Frameworks */,
-				37DB27101D4F9B6700FA5198 /* UIKit.framework in Frameworks */,
-				37DB270E1D4F9B5700FA5198 /* CoreText.framework in Frameworks */,
-				37DB270C1D4F9B2400FA5198 /* QuartzCore.framework in Frameworks */,
-				37DB270A1D4F85E700FA5198 /* ImageIO.framework in Frameworks */,
-				37DB27081D4F7C3000FA5198 /* libz.1.1.3.tbd in Frameworks */,
-				37DB27061D4F7C2600FA5198 /* libstdc++.6.0.9.tbd in Frameworks */,
-				37DB27041D4F7C1400FA5198 /* CoreTelephony.framework in Frameworks */,
-				37DB27021D4F7C0500FA5198 /* libsqlite3.0.tbd in Frameworks */,
-				37DB27001D4F7BFA00FA5198 /* CoreGraphics.framework in Frameworks */,
-				37DB26FE1D4F7BEF00FA5198 /* SystemConfiguration.framework in Frameworks */,
-				37DB26FC1D4F7BE500FA5198 /* libiconv.2.4.0.tbd in Frameworks */,
-				37DB26FA1D4F7BD900FA5198 /* Security.framework in Frameworks */,
+				37DB27121D4F9B7200FA5198 /* (null) in Frameworks */,
+				37DB27101D4F9B6700FA5198 /* (null) in Frameworks */,
+				37DB270E1D4F9B5700FA5198 /* (null) in Frameworks */,
+				37DB270C1D4F9B2400FA5198 /* (null) in Frameworks */,
+				37DB270A1D4F85E700FA5198 /* (null) in Frameworks */,
+				37DB27081D4F7C3000FA5198 /* (null) in Frameworks */,
+				37DB27061D4F7C2600FA5198 /* (null) in Frameworks */,
+				37DB27041D4F7C1400FA5198 /* (null) in Frameworks */,
+				37DB27021D4F7C0500FA5198 /* (null) in Frameworks */,
+				37DB27001D4F7BFA00FA5198 /* (null) in Frameworks */,
+				37DB26FE1D4F7BEF00FA5198 /* (null) in Frameworks */,
+				37DB26FC1D4F7BE500FA5198 /* (null) in Frameworks */,
+				37DB26FA1D4F7BD900FA5198 /* (null) in Frameworks */,
 				3EAAD7E48128F4953AD5DCAB /* libPods-mySeedHabit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,8 +243,6 @@
 		37DB26941D4F46CC00FA5198 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				37DB27131D50D3AA00FA5198 /* UIColor+CJFColor.h */,
-				37DB27141D50D3AA00FA5198 /* UIColor+CJFColor.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -311,7 +303,6 @@
 		37DB26A01D4F46CC00FA5198 /* Habit */ = {
 			isa = PBXGroup;
 			children = (
-				3F21C5231D5178B4000D86D1 /* lzc_Test */,
 				3F21C5271D5178B4000D86D1 /* Models */,
 				3F21C5341D5178B4000D86D1 /* Vlews */,
 				37DB26A11D4F46CC00FA5198 /* ViewControllers */,
@@ -416,7 +407,6 @@
 				37DB26BC1D4F46CC00FA5198 /* CJF_Global.h */,
 				37DB26BD1D4F46CC00FA5198 /* Macros_API.h */,
 				37DB26BE1D4F46CC00FA5198 /* PrefixHeader.pch */,
-				37DB27161D510F0400FA5198 /* Macros_UI.h */,
 			);
 			path = Macros;
 			sourceTree = "<group>";
@@ -491,16 +481,6 @@
 			path = Ventors;
 			sourceTree = "<group>";
 		};
-		3F21C5231D5178B4000D86D1 /* lzc_Test */ = {
-			isa = PBXGroup;
-			children = (
-				3F21C5241D5178B4000D86D1 /* huo2.jpg */,
-				3F21C5251D5178B4000D86D1 /* huo4.jpg */,
-				3F21C5261D5178B4000D86D1 /* huo7.jpg */,
-			);
-			path = lzc_Test;
-			sourceTree = "<group>";
-		};
 		3F21C5271D5178B4000D86D1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,19 +513,6 @@
 		8FF4F6A08C4C12B24A3D4A3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				37DB27111D4F9B7200FA5198 /* Foundation.framework */,
-				37DB270F1D4F9B6700FA5198 /* UIKit.framework */,
-				37DB270D1D4F9B5700FA5198 /* CoreText.framework */,
-				37DB270B1D4F9B2400FA5198 /* QuartzCore.framework */,
-				37DB27091D4F85E700FA5198 /* ImageIO.framework */,
-				37DB27071D4F7C3000FA5198 /* libz.1.1.3.tbd */,
-				37DB27051D4F7C2600FA5198 /* libstdc++.6.0.9.tbd */,
-				37DB27031D4F7C1400FA5198 /* CoreTelephony.framework */,
-				37DB27011D4F7C0500FA5198 /* libsqlite3.0.tbd */,
-				37DB26FF1D4F7BFA00FA5198 /* CoreGraphics.framework */,
-				37DB26FD1D4F7BEF00FA5198 /* SystemConfiguration.framework */,
-				37DB26FB1D4F7BE500FA5198 /* libiconv.2.4.0.tbd */,
-				37DB26F91D4F7BD900FA5198 /* Security.framework */,
 				157AE9DB11DE022A9D155F7F /* libPods-mySeedHabit.a */,
 			);
 			name = Frameworks;
@@ -631,7 +598,6 @@
 				37DB26F21D4F46CC00FA5198 /* right_32.png in Resources */,
 				37DB26E31D4F46CC00FA5198 /* LoginViewController.xib in Resources */,
 				37DB26EC1D4F46CC00FA5198 /* heard_32.png in Resources */,
-				3F21C53A1D5178B4000D86D1 /* huo7.jpg in Resources */,
 				37DB26DD1D4F46CC00FA5198 /* DiscoverViewController.xib in Resources */,
 				3F21C5421D5178B4000D86D1 /* HabitListCell.xib in Resources */,
 				37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */,
@@ -642,10 +608,8 @@
 				37DB26F01D4F46CC00FA5198 /* msg_32.png in Resources */,
 				37DB26E91D4F46CC00FA5198 /* addContact_32.png in Resources */,
 				37DB26F71D4F46CC00FA5198 /* user_32.png in Resources */,
-				3F21C5381D5178B4000D86D1 /* huo2.jpg in Resources */,
 				37DB26EF1D4F46CC00FA5198 /* msg3_32.png in Resources */,
 				37DB26F11D4F46CC00FA5198 /* qq_32.png in Resources */,
-				3F21C5391D5178B4000D86D1 /* huo4.jpg in Resources */,
 				37DB26DF1D4F46CC00FA5198 /* HabitViewController.xib in Resources */,
 				37DB26EE1D4F46CC00FA5198 /* msg2_32.png in Resources */,
 				37DB26F31D4F46CC00FA5198 /* search_32.png in Resources */,
@@ -719,7 +683,7 @@
 				37DB26DC1D4F46CC00FA5198 /* DiscoverViewController.m in Sources */,
 				37DB26D91D4F46CC00FA5198 /* DrawerViewController.m in Sources */,
 				37DB26E61D4F46CC00FA5198 /* RegisterDataViewController.m in Sources */,
-				37DB27151D50D3AA00FA5198 /* UIColor+CJFColor.m in Sources */,
+				37DB27151D50D3AA00FA5198 /* (null) in Sources */,
 				37DB26E21D4F46CC00FA5198 /* LoginViewController.m in Sources */,
 				37DB26751D4F40A600FA5198 /* main.m in Sources */,
 				37DB26DB1D4F46CC00FA5198 /* UserManager.m in Sources */,
