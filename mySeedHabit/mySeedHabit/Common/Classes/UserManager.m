@@ -71,21 +71,18 @@ static UserManager *instance = nil;
     
     [self.session POST:APILogin parameters:info progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        NSLog(@"%@", responseObject);
-        NSLog(@"%@", responseObject[@"info"]);
-        
         // 本地持久化登录
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        NSNumber *userName = [NSNumber numberWithInteger:[[info valueForKey:@"account"] integerValue]];
+        NSNumber *numName = [NSNumber numberWithInteger:[[info valueForKey:@"account"] integerValue]];
         NSString *password = [info valueForKey:@"password"];
-        [user setValue:userName forKey:@"userName"];
-        [user setValue:password forKey:@"userPassword"];
+        NSString *username = [NSString stringWithFormat:@"%@", numName];
+        [self setUserDefaultsWithUserName:username password:password];
         
         success(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", error);
+        
         failure(error);
+        
     }];
     
 }
@@ -100,10 +97,8 @@ static UserManager *instance = nil;
     
     [self.session POST:APILogout parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        // 清除本地持久化登录数据
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults removeObjectForKey:@"userName"];
-        [userDefaults removeObjectForKey:@"userPassword"];
+        // 清除本地登录持久化数据
+        [self removeUserDefaults];
         
         success(responseObject);
         
@@ -145,6 +140,26 @@ static UserManager *instance = nil;
     }];
 }
 
+/**
+ *  设置本地登录持久化
+ *
+ *  @param username 用户名
+ *  @param password 用户密码
+ */
+-(void)setUserDefaultsWithUserName: (NSString *)username password: (NSString *)password {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:username forKey:@"userName"];
+    [userDefaults setValue:password forKey:@"userPassword"];
+}
+
+/**
+ *  清除本地登录持久化数据
+ */
+-(void)removeUserDefaults {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults removeObjectForKey:@"userName"];
+    [userDefaults removeObjectForKey:@"userPassword"];
+}
 
 
 @end

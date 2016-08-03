@@ -49,10 +49,20 @@
                         <action selector="registerClick:" destination="-1" eventType="touchUpInside" id="hDt-Xo-pvR"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSg-4B-mUM">
+                    <rect key="frame" x="31" y="49" width="32" height="32"/>
+                    <state key="normal" backgroundImage="down32.png"/>
+                    <connections>
+                        <action selector="back:" destination="-1" eventType="touchUpInside" id="p2O-ir-Jrj"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="604.5" y="376.5"/>
+            <point key="canvasLocation" x="481.5" y="467.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="down32.png" width="32" height="32"/>
+    </resources>
 </document>
