@@ -59,7 +59,19 @@
 		37DB27121D4F9B7200FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		37DB27151D50D3AA00FA5198 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3EAAD7E48128F4953AD5DCAB /* libPods-mySeedHabit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 157AE9DB11DE022A9D155F7F /* libPods-mySeedHabit.a */; };
+		3F20D3181D51DCD20012FE0F /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F20D3171D51DCD20012FE0F /* Users.m */; settings = {ASSET_TAGS = (); }; };
+		3F20D31B1D51DD5E0012FE0F /* Habits.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F20D31A1D51DD5E0012FE0F /* Habits.m */; settings = {ASSET_TAGS = (); }; };
+		3F20D31E1D51DDD60012FE0F /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F20D31D1D51DDD60012FE0F /* Note.m */; settings = {ASSET_TAGS = (); }; };
+		3F20D3211D51DE030012FE0F /* Props.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F20D3201D51DE030012FE0F /* Props.m */; settings = {ASSET_TAGS = (); }; };
+		3F20D3241D51DE430012FE0F /* Comments.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F20D3231D51DE430012FE0F /* Comments.m */; settings = {ASSET_TAGS = (); }; };
+		3F20D32A1D51E0360012FE0F /* Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F20D3291D51E0360012FE0F /* Notes.m */; settings = {ASSET_TAGS = (); }; };
+		3F20D32D1D51E11C0012FE0F /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F20D32C1D51E11C0012FE0F /* Data.m */; settings = {ASSET_TAGS = (); }; };
 		3FCEDDCD1D517F280033213C /* UIColor+CJFColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCEDDCC1D517F280033213C /* UIColor+CJFColor.m */; settings = {ASSET_TAGS = (); }; };
+		3FCEDDE41D5180290033213C /* HabitListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCEDDE21D5180290033213C /* HabitListCell.m */; settings = {ASSET_TAGS = (); }; };
+		3FCEDDE51D5180290033213C /* HabitListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FCEDDE31D5180290033213C /* HabitListCell.xib */; settings = {ASSET_TAGS = (); }; };
+		3FCEDDEB1D5184130033213C /* cat.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FCEDDEA1D5184130033213C /* cat.png */; settings = {ASSET_TAGS = (); }; };
+		3FCEDDED1D51841F0033213C /* panda.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FCEDDEC1D51841F0033213C /* panda.png */; settings = {ASSET_TAGS = (); }; };
+		3FCEDDF21D519F2E0033213C /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FCEDDF11D519F2E0033213C /* placeholder.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,9 +130,29 @@
 		37DB26D01D4F46CC00FA5198 /* time_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_32.png; sourceTree = "<group>"; };
 		37DB26D11D4F46CC00FA5198 /* user_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_32.png; sourceTree = "<group>"; };
 		37DB26D21D4F46CC00FA5198 /* weixin_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weixin_32.png; sourceTree = "<group>"; };
+		3F20D3161D51DCD20012FE0F /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
+		3F20D3171D51DCD20012FE0F /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
+		3F20D3191D51DD5E0012FE0F /* Habits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Habits.h; sourceTree = "<group>"; };
+		3F20D31A1D51DD5E0012FE0F /* Habits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Habits.m; sourceTree = "<group>"; };
+		3F20D31C1D51DDD60012FE0F /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		3F20D31D1D51DDD60012FE0F /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		3F20D31F1D51DE030012FE0F /* Props.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Props.h; sourceTree = "<group>"; };
+		3F20D3201D51DE030012FE0F /* Props.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Props.m; sourceTree = "<group>"; };
+		3F20D3221D51DE430012FE0F /* Comments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comments.h; sourceTree = "<group>"; };
+		3F20D3231D51DE430012FE0F /* Comments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comments.m; sourceTree = "<group>"; };
+		3F20D3281D51E0360012FE0F /* Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notes.h; sourceTree = "<group>"; };
+		3F20D3291D51E0360012FE0F /* Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notes.m; sourceTree = "<group>"; };
+		3F20D32B1D51E11C0012FE0F /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
+		3F20D32C1D51E11C0012FE0F /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
 		3FCEDDCB1D517F280033213C /* UIColor+CJFColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CJFColor.h"; sourceTree = "<group>"; };
 		3FCEDDCC1D517F280033213C /* UIColor+CJFColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CJFColor.m"; sourceTree = "<group>"; };
 		3FCEDDCE1D517F630033213C /* Macros_UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros_UI.h; sourceTree = "<group>"; };
+		3FCEDDE11D5180290033213C /* HabitListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitListCell.h; sourceTree = "<group>"; };
+		3FCEDDE21D5180290033213C /* HabitListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitListCell.m; sourceTree = "<group>"; };
+		3FCEDDE31D5180290033213C /* HabitListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitListCell.xib; sourceTree = "<group>"; };
+		3FCEDDEA1D5184130033213C /* cat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat.png; sourceTree = "<group>"; };
+		3FCEDDEC1D51841F0033213C /* panda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = panda.png; sourceTree = "<group>"; };
+		3FCEDDF11D519F2E0033213C /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		43931E7C0E1941F3CC26AF06 /* Pods-mySeedHabit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mySeedHabit.release.xcconfig"; path = "Pods/Target Support Files/Pods-mySeedHabit/Pods-mySeedHabit.release.xcconfig"; sourceTree = "<group>"; };
 		89381EC138B11EBA94FFFB12 /* Pods-mySeedHabit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mySeedHabit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mySeedHabit/Pods-mySeedHabit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -416,6 +448,9 @@
 		37DB26C11D4F46CC00FA5198 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3FCEDDF11D519F2E0033213C /* placeholder.png */,
+				3FCEDDEC1D51841F0033213C /* panda.png */,
+				3FCEDDEA1D5184130033213C /* cat.png */,
 				37DB26C21D4F46CC00FA5198 /* add_32.png */,
 				37DB26C31D4F46CC00FA5198 /* addContact_32.png */,
 				37DB26C41D4F46CC00FA5198 /* discover_32.png */,
@@ -468,6 +503,20 @@
 		3F21C5271D5178B4000D86D1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3F20D3161D51DCD20012FE0F /* Users.h */,
+				3F20D3171D51DCD20012FE0F /* Users.m */,
+				3F20D3191D51DD5E0012FE0F /* Habits.h */,
+				3F20D31A1D51DD5E0012FE0F /* Habits.m */,
+				3F20D31C1D51DDD60012FE0F /* Note.h */,
+				3F20D31D1D51DDD60012FE0F /* Note.m */,
+				3F20D31F1D51DE030012FE0F /* Props.h */,
+				3F20D3201D51DE030012FE0F /* Props.m */,
+				3F20D3221D51DE430012FE0F /* Comments.h */,
+				3F20D3231D51DE430012FE0F /* Comments.m */,
+				3F20D3281D51E0360012FE0F /* Notes.h */,
+				3F20D3291D51E0360012FE0F /* Notes.m */,
+				3F20D32B1D51E11C0012FE0F /* Data.h */,
+				3F20D32C1D51E11C0012FE0F /* Data.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -475,6 +524,9 @@
 		3F21C5341D5178B4000D86D1 /* Vlews */ = {
 			isa = PBXGroup;
 			children = (
+				3FCEDDE11D5180290033213C /* HabitListCell.h */,
+				3FCEDDE21D5180290033213C /* HabitListCell.m */,
+				3FCEDDE31D5180290033213C /* HabitListCell.xib */,
 			);
 			path = Vlews;
 			sourceTree = "<group>";
@@ -558,11 +610,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				37DB26831D4F40A600FA5198 /* LaunchScreen.storyboard in Resources */,
+				3FCEDDF21D519F2E0033213C /* placeholder.png in Resources */,
 				37DB26EA1D4F46CC00FA5198 /* discover_32.png in Resources */,
 				37DB26E81D4F46CC00FA5198 /* add_32.png in Resources */,
 				37DB26F41D4F46CC00FA5198 /* setup_32.png in Resources */,
 				37DB26E11D4F46CC00FA5198 /* MessageViewController.xib in Resources */,
 				37DB26F61D4F46CC00FA5198 /* time_32.png in Resources */,
+				3FCEDDE51D5180290033213C /* HabitListCell.xib in Resources */,
+				3FCEDDED1D51841F0033213C /* panda.png in Resources */,
 				37DB26F51D4F46CC00FA5198 /* sina_32.png in Resources */,
 				37DB26F21D4F46CC00FA5198 /* right_32.png in Resources */,
 				37DB26E31D4F46CC00FA5198 /* LoginViewController.xib in Resources */,
@@ -574,6 +629,7 @@
 				37DB26EB1D4F46CC00FA5198 /* habit_32.png in Resources */,
 				37DB26E71D4F46CC00FA5198 /* RegisterDataViewController.xib in Resources */,
 				37DB26F01D4F46CC00FA5198 /* msg_32.png in Resources */,
+				3FCEDDEB1D5184130033213C /* cat.png in Resources */,
 				37DB26E91D4F46CC00FA5198 /* addContact_32.png in Resources */,
 				37DB26F71D4F46CC00FA5198 /* user_32.png in Resources */,
 				37DB26EF1D4F46CC00FA5198 /* msg3_32.png in Resources */,
@@ -640,16 +696,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F20D31B1D51DD5E0012FE0F /* Habits.m in Sources */,
+				3FCEDDE41D5180290033213C /* HabitListCell.m in Sources */,
 				37DB26D71D4F46CC00FA5198 /* AppDelegate.m in Sources */,
+				3F20D3241D51DE430012FE0F /* Comments.m in Sources */,
 				37DB26DA1D4F46CC00FA5198 /* LeftViewController.m in Sources */,
+				3F20D32D1D51E11C0012FE0F /* Data.m in Sources */,
 				37DB26E41D4F46CC00FA5198 /* RegisterByPhoneViewController.m in Sources */,
+				3F20D3181D51DCD20012FE0F /* Users.m in Sources */,
 				37DB26DC1D4F46CC00FA5198 /* DiscoverViewController.m in Sources */,
 				37DB26D91D4F46CC00FA5198 /* DrawerViewController.m in Sources */,
 				3FCEDDCD1D517F280033213C /* UIColor+CJFColor.m in Sources */,
+				3F20D31E1D51DDD60012FE0F /* Note.m in Sources */,
 				37DB26E61D4F46CC00FA5198 /* RegisterDataViewController.m in Sources */,
+				3F20D32A1D51E0360012FE0F /* Notes.m in Sources */,
 				37DB27151D50D3AA00FA5198 /* (null) in Sources */,
 				37DB26E21D4F46CC00FA5198 /* LoginViewController.m in Sources */,
 				37DB26751D4F40A600FA5198 /* main.m in Sources */,
+				3F20D3211D51DE030012FE0F /* Props.m in Sources */,
 				37DB26DB1D4F46CC00FA5198 /* UserManager.m in Sources */,
 				37DB26E01D4F46CC00FA5198 /* MessageViewController.m in Sources */,
 				37DB26D81D4F46CC00FA5198 /* CJFTabBarViewController.m in Sources */,
@@ -763,7 +827,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/mySeedHabit/Macros/PrefixHeader.pch";
 				INFOPLIST_FILE = mySeedHabit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjf.mySeedHabit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -781,7 +845,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/mySeedHabit/Macros/PrefixHeader.pch";
 				INFOPLIST_FILE = mySeedHabit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjf.mySeedHabit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
