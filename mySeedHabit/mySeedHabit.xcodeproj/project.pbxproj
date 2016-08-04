@@ -232,6 +232,8 @@
 			children = (
 				37DB268B1D4F46CC00FA5198 /* AppDelegate.h */,
 				37DB268C1D4F46CC00FA5198 /* AppDelegate.m */,
+				3FE9B4781D517CA5005CB6BC /* StartGifView.h */,
+				3FE9B4791D517CA5005CB6BC /* StartGifView.m */,
 				37DB268D1D4F46CC00FA5198 /* CJFTabBarViewController.h */,
 				37DB268E1D4F46CC00FA5198 /* CJFTabBarViewController.m */,
 				37DB268F1D4F46CC00FA5198 /* DrawerViewController.h */,
@@ -387,7 +389,9 @@
 		37DB26AE1D4F46CC00FA5198 /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
+				3F1FA9371D51D8D200BFF97C /* Models */,
 				37DB26AF1D4F46CC00FA5198 /* ViewControllers */,
+				3F1FA9381D51D8EB00BFF97C /* Views */,
 			);
 			path = UserCenter;
 			sourceTree = "<group>";
@@ -404,6 +408,10 @@
 				37DB26B61D4F46CC00FA5198 /* RegisterDataViewController.h */,
 				37DB26B71D4F46CC00FA5198 /* RegisterDataViewController.m */,
 				37DB26B81D4F46CC00FA5198 /* RegisterDataViewController.xib */,
+				3F1FA9511D520CC200BFF97C /* EditPersonalTableViewController.h */,
+				3F1FA9521D520CC200BFF97C /* EditPersonalTableViewController.m */,
+				3F1FA9541D520CE000BFF97C /* MyConcernTableViewController.h */,
+				3F1FA9551D520CE000BFF97C /* MyConcernTableViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -468,6 +476,8 @@
 				37DB26D01D4F46CC00FA5198 /* time_32.png */,
 				37DB26D11D4F46CC00FA5198 /* user_32.png */,
 				37DB26D21D4F46CC00FA5198 /* weixin_32.png */,
+				3FE9B47B1D5184F8005CB6BC /* start.gif */,
+				3F1FA9451D51EDAD00BFF97C /* headerImage.jpg */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -622,9 +632,11 @@
 				37DB26F21D4F46CC00FA5198 /* right_32.png in Resources */,
 				37DB26E31D4F46CC00FA5198 /* LoginViewController.xib in Resources */,
 				37DB26EC1D4F46CC00FA5198 /* heard_32.png in Resources */,
+				3F1FA9461D51EDAD00BFF97C /* headerImage.jpg in Resources */,
 				37DB26DD1D4F46CC00FA5198 /* DiscoverViewController.xib in Resources */,
 				37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */,
 				37DB26ED1D4F46CC00FA5198 /* message_32.png in Resources */,
+				3FE9B47C1D5184F8005CB6BC /* start.gif in Resources */,
 				37DB26F81D4F46CC00FA5198 /* weixin_32.png in Resources */,
 				37DB26EB1D4F46CC00FA5198 /* habit_32.png in Resources */,
 				37DB26E71D4F46CC00FA5198 /* RegisterDataViewController.xib in Resources */,
@@ -632,6 +644,7 @@
 				3FCEDDEB1D5184130033213C /* cat.png in Resources */,
 				37DB26E91D4F46CC00FA5198 /* addContact_32.png in Resources */,
 				37DB26F71D4F46CC00FA5198 /* user_32.png in Resources */,
+				3F1FA93D1D51D96F00BFF97C /* EditPersonalTableViewCell.xib in Resources */,
 				37DB26EF1D4F46CC00FA5198 /* msg3_32.png in Resources */,
 				37DB26F11D4F46CC00FA5198 /* qq_32.png in Resources */,
 				37DB26DF1D4F46CC00FA5198 /* HabitViewController.xib in Resources */,

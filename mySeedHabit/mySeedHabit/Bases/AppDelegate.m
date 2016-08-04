@@ -11,6 +11,7 @@
 #import "CJFTabBarViewController.h"
 #import "DrawerViewController.h"
 #import "LeftViewController.h"
+#import "StartGifView.h"
 
 #import "LoginViewController.h"
 #import "UserManager.h"
@@ -44,12 +45,26 @@
     // 显示
     [self.window makeKeyAndVisible];
     
-    // 检查是否已经登录
-    [self checkLogin];
+    // 如果是app第一次启动就加载启动页,如果不是,则直接进入首页
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+        
+    }
+    else{
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
+        
+        // 检查是否已经登录
+        [self checkLogin];
+    }
+    // 判断是否第一次
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]) {
+        StartGifView *startGifView = [[StartGifView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [self.drawerVc.view addSubview:startGifView];
+    }
     
     // 设置友盟AppKey
     [UMSocialData setAppKey:AppKeyUmeng];
-    
     //设置微信AppId、appSecret，分享url
     [UMSocialWechatHandler setWXAppId:WeixinAppId appSecret:WeixinAppSecret url:AppShareUrlUmeng];
     //设置手机QQ 的AppId，Appkey，和分享URL，需要#import "UMSocialQQHandler.h"
@@ -58,7 +73,6 @@
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:WeiboAppKey
                                               secret:WeiboAppSecret
                                          RedirectURL:WeiboRedirectUrl];
-    
     return YES;
 }
 
