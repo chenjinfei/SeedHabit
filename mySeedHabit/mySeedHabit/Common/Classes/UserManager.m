@@ -8,9 +8,12 @@
 
 #import "UserManager.h"
 
+//#import "SeedUser.h"
+
 @interface UserManager ()
 
 @property (nonatomic, strong) AFHTTPSessionManager *session;
+@property (nonatomic, strong) SeedUser *currentUser;
 
 @end
 
@@ -53,7 +56,7 @@ static UserManager *instance = nil;
  */
 -(BOOL)checkLogin {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if ([userDefaults valueForKey:@"userName"] && [userDefaults valueForKey:@"userPassword"]) {
+    if ([userDefaults valueForKey:@"userName"]) {
         return YES;
     }else {
         return NO;
@@ -72,10 +75,11 @@ static UserManager *instance = nil;
     [self.session POST:APILogin parameters:info progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         // 本地持久化登录
-        NSNumber *numName = [NSNumber numberWithInteger:[[info valueForKey:@"account"] integerValue]];
-        NSString *password = [info valueForKey:@"password"];
-        NSString *username = [NSString stringWithFormat:@"%@", numName];
-        [self setUserDefaultsWithUserName:username password:password];
+        //        NSNumber *numName = [NSNumber numberWithInteger:[[info valueForKey:@"account"] integerValue]];
+        //        NSString *password = [info valueForKey:@"password"];
+        //        NSString *username = [NSString stringWithFormat:@"%@", numName];
+        //        [self setUserDefaultsWithUserName:username password:password];
+        self.currentUser = responseObject[@"data"][@"user"];
         
         success(responseObject);
         
@@ -148,8 +152,12 @@ static UserManager *instance = nil;
  */
 -(void)setUserDefaultsWithUserName: (NSString *)username password: (NSString *)password {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setValue:username forKey:@"userName"];
-    [userDefaults setValue:password forKey:@"userPassword"];
+    if (username) {
+        [userDefaults setValue:username forKey:@"userName"];
+    }
+    if (password) {
+        [userDefaults setValue:password forKey:@"userPassword"];
+    }
 }
 
 /**

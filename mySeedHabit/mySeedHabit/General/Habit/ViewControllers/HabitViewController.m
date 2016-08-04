@@ -9,6 +9,7 @@
 #import "HabitViewController.h"
 
 #import "UserManager.h"
+//#import "SeedUser.h"
 #import "LoginViewController.h"
 
 @interface HabitViewController ()
@@ -22,13 +23,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *name = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"userName"]];
-    if (name) {
-        self.username.text = name;
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mytest:) name:@"UPDATEUSERINFO"object:nil];
     
 }
 
+-(void)mytest: (NSNotification *)notification {
+    self.username.text = [notification object];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    // ==== 测试 可删除 ======
+    NSString *name = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"userName"]];
+    
+    if (name) {
+        self.username.text = name;
+    }
+    // ======================
+    
+}
+
+// ==== 测试 可删除 ======
 // 退出登录
 - (IBAction)logoutClick:(UIButton *)sender {
     [[UserManager manager] logoutSuccess:^(NSDictionary *responseObject) {
@@ -44,5 +59,6 @@
         
     }];
 }
+// ========================
 
 @end

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		370C30991D518B8C00C9C8D9 /* down32.png in Resources */ = {isa = PBXBuildFile; fileRef = 370C30981D518B8C00C9C8D9 /* down32.png */; };
+		370C309C1D52052000C9C8D9 /* NSString+CJFString.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C309B1D52052000C9C8D9 /* NSString+CJFString.m */; };
 		37DB26751D4F40A600FA5198 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB26741D4F40A600FA5198 /* main.m */; };
 		37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37DB267F1D4F40A600FA5198 /* Assets.xcassets */; };
 		37DB26831D4F40A600FA5198 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26811D4F40A600FA5198 /* LaunchScreen.storyboard */; };
@@ -65,6 +66,8 @@
 /* Begin PBXFileReference section */
 		157AE9DB11DE022A9D155F7F /* libPods-mySeedHabit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mySeedHabit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		370C30981D518B8C00C9C8D9 /* down32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down32.png; sourceTree = "<group>"; };
+		370C309A1D52052000C9C8D9 /* NSString+CJFString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CJFString.h"; sourceTree = "<group>"; };
+		370C309B1D52052000C9C8D9 /* NSString+CJFString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CJFString.m"; sourceTree = "<group>"; };
 		37DB26701D4F40A600FA5198 /* mySeedHabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mySeedHabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DB26741D4F40A600FA5198 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		37DB267F1D4F40A600FA5198 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -240,6 +243,8 @@
 			children = (
 				37DB27131D50D3AA00FA5198 /* UIColor+CJFColor.h */,
 				37DB27141D50D3AA00FA5198 /* UIColor+CJFColor.m */,
+				370C309A1D52052000C9C8D9 /* NSString+CJFString.h */,
+				370C309B1D52052000C9C8D9 /* NSString+CJFString.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -655,6 +660,7 @@
 			files = (
 				37DB26D71D4F46CC00FA5198 /* AppDelegate.m in Sources */,
 				37DB26DA1D4F46CC00FA5198 /* LeftViewController.m in Sources */,
+				370C309C1D52052000C9C8D9 /* NSString+CJFString.m in Sources */,
 				37DB26E41D4F46CC00FA5198 /* RegisterByPhoneViewController.m in Sources */,
 				37DB26DC1D4F46CC00FA5198 /* DiscoverViewController.m in Sources */,
 				37DB26D91D4F46CC00FA5198 /* DrawerViewController.m in Sources */,

@@ -14,6 +14,7 @@
 
 #import "LoginViewController.h"
 #import "UserManager.h"
+#import "NSString+CJFString.h"
 
 #import "UMSocial.h"
 #import "UMSocialSinaSSOHandler.h"
@@ -64,10 +65,27 @@
 
 
 -(void)checkLogin {
+    // 未登录
     if (![[UserManager manager] checkLogin]) {
         LoginViewController *loginVc = [[LoginViewController alloc]init];
         loginVc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [[DrawerViewController shareDrawer] presentViewController:loginVc animated:NO completion:nil];
+    }else{ // 本地有持久化登录数据
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSDictionary *parameters = @{
+                                     @"account": [defaults valueForKey:@"userName"],
+                                     @"account_type": @1
+                                     };
+        
+        [[UserManager manager] loginWithInfo:parameters success:^(NSDictionary *userData) {
+            //            [self dismissViewControllerAnimated:YES completion:^{
+            //                
+            NSLog(@"%@", userData);
+            
+            //            }];
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
     }
 }
 
