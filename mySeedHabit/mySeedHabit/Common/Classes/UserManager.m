@@ -8,7 +8,8 @@
 
 #import "UserManager.h"
 
-//#import "SeedUser.h"
+#import "SeedUser.h"
+#import <MJExtension.h>
 
 @interface UserManager ()
 
@@ -74,13 +75,10 @@ static UserManager *instance = nil;
     
     [self.session POST:APILogin parameters:info progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        // 本地持久化登录
-        //        NSNumber *numName = [NSNumber numberWithInteger:[[info valueForKey:@"account"] integerValue]];
-        //        NSString *password = [info valueForKey:@"password"];
-        //        NSString *username = [NSString stringWithFormat:@"%@", numName];
-        //        [self setUserDefaultsWithUserName:username password:password];
-        self.currentUser = responseObject[@"data"][@"user"];
-        
+        // 成功登录，保存当前登录的用户信息
+        if ([responseObject[@"status"] intValue] == 0) {
+            self.currentUser = [SeedUser mj_objectWithKeyValues:responseObject[@"data"][@"user"]];
+        }
         success(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

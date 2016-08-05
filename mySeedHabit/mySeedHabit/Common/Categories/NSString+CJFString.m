@@ -73,5 +73,120 @@
     return resultStr;
 }
 
+/**
+ *  是否为空验证
+ *
+ *  @param string 输入的内容
+ *
+ *  @return YES or NO
+ */
++(BOOL)isValidateEmpty: (NSString *)string {
+    return string.length == 0;
+}
+
+
+/**
+ *  网址验证
+ *
+ *  @param url 网址
+ *
+ *  @return YES or NO
+ */
+-(BOOL)isValidateUrl: (NSString *)url {
+    NSString *      regex = @"http(s)?:\\/\\/([\\w-]+\\.)+[\\w-]+(\\/[\\w- .\\/?%&=]*)?";
+    NSPredicate *   pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [pred evaluateWithObject:self];
+}
+
+
+/**
+ *  邮箱验证
+ *
+ *  @param email 邮箱地址
+ *
+ *  @return YES or NO
+ */
++(BOOL)isValidateEmail: (NSString *)email {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailPredicate evaluateWithObject:email];
+}
+
+/**
+ *  手机号码验证
+ *
+ *  @param phoneNumber 手机号码
+ *
+ *  @return YES or NO
+ */
++(BOOL)isValidatePhoneNumber: (NSString *)phoneNumber {
+    /**
+     * 手机号码
+     * 移动：134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188
+     * 联通：130,131,132,152,155,156,185,186
+     * 电信：133,1349,153,180,189,181(增加)
+     */
+    NSString * MOBIL = @"^1(3[0-9]|5[0-35-9]|8[025-9])\\d{8}$";
+    /**
+     * 中国移动：China Mobile
+     * 134[0-8],135,136,137,138,139,150,151,157,158,159,182,187,188
+     */
+    NSString * CM = @"^1(34[0-8]|(3[5-9]|5[017-9]|8[2378])\\d)\\d{7}$";
+    /**
+     * 中国联通：China Unicom
+     * 130,131,132,152,155,156,185,186
+     */
+    NSString * CU = @"^1(3[0-2]|5[256]|8[56])\\d{8}$";
+    /**
+     * 中国电信：China Telecom
+     * 133,1349,153,180,189,181(增加)
+     */
+    NSString * CT = @"^1((33|53|8[019])[0-9]|349)\\d{7}$";
+    
+    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBIL];
+    NSPredicate *regextestcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM];
+    NSPredicate *regextestcu = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CU];
+    NSPredicate *regextestct = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CT];
+    
+    if (([regextestmobile evaluateWithObject:phoneNumber]
+         || [regextestcm evaluateWithObject:phoneNumber]
+         || [regextestct evaluateWithObject:phoneNumber]
+         || [regextestcu evaluateWithObject:phoneNumber])) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+/**
+ *  身份证号码验证
+ *
+ *  @param identityCard 身份证号码
+ *
+ *  @return YES or NO
+ */
++(BOOL)isValidateIdentityCard: (NSString *)identityCard {
+    if (identityCard.length <= 0) {
+        return NO;
+    }
+    NSString *regex = @"^(\\d{14}|\\d{17})(\\d|[xX])$";
+    NSPredicate *identityCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    return [identityCardPredicate evaluateWithObject:identityCard];
+}
+
+
+/**
+ *  输入正则表达式 匹配 字符串
+ *
+ *  @param regExp 正则表达式
+ *  @param string 字符串
+ *
+ *  @return YES or NO
+ */
++(BOOL)validateWithRegExp: (NSString *)regExpx string: (NSString *)string {
+    NSPredicate * predicate = [NSPredicate predicateWithFormat: @"SELF MATCHES %@", regExpx];
+    return [predicate evaluateWithObject: string];
+}
+
 
 @end

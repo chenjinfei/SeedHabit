@@ -18,7 +18,6 @@
 #import <SCLAlertView.h>
 #import <WeiboUser.h>
 #import <MJExtension.h>
-//#import "SeedUser.h"
 
 
 @interface LoginViewController ()
@@ -56,6 +55,12 @@
         // 已经注册
         if ([responseObject[@"data"][@"is_register"] boolValue]) {
             
+            // 验证密码输入是否为空
+            if ([NSString isValidateEmpty: self.password.text]) {
+                [self.alert showWarning:self title:@"唉哟~" subTitle:@"能不能像我一样成熟点？\n输个密码好不？" closeButtonTitle:@"好的" duration:0.0f];
+                return ;
+            }
+            
             // 执行登录操作
             NSDictionary *parameters = @{
                                          @"account": [NSNumber numberWithInteger:[self.phoneNumber.text integerValue]],
@@ -76,7 +81,7 @@
                     [self dismissViewControllerAnimated:YES completion:nil];
                     
                 }else if ([userData[@"status"] intValue] == 2003) {
-                    [self.alert showWarning:self title:@"唉哟~" subTitle:@"宝宝输入错密码啦！重来。。。" closeButtonTitle:@"好的" duration:0.0f];
+                    [self.alert showWarning:self title:@"唉哟~" subTitle:@"宝宝输错密码啦！重来。。。" closeButtonTitle:@"好的" duration:0.0f];
                 }
                 
                 
@@ -168,8 +173,6 @@
             NSDictionary *dict = [UMSocialAccountManager socialAccountDictionary];
             UMSocialAccountEntity *snsAccount = [dict valueForKey:snsPlatform.platformName];
             //            NSLog(@"\nusername = %@,\n usid = %@,\n token = %@ iconUrl = %@,\n unionId = %@,\n thirdPlatformUserProfile = %@,\n thirdPlatformResponse = %@ \n, message = %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL, snsAccount.unionId, response.thirdPlatformUserProfile, response.thirdPlatformResponse, response.message);
-            //            WeiboUser *user = response.thirdPlatformUserProfile;
-            //            NSLog(@"%@", user.mj_keyValues);
             
             NSDictionary *parameters = @{
                                          @"account": [NSString md5WithString:snsAccount.usid],

@@ -72,17 +72,27 @@
         [[DrawerViewController shareDrawer] presentViewController:loginVc animated:NO completion:nil];
     }else{ // 本地有持久化登录数据
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSDictionary *parameters = @{
-                                     @"account": [defaults valueForKey:@"userName"],
-                                     @"account_type": @1
-                                     };
+        NSDictionary *parameters = nil;
+        NSNumber *account_type = nil;
+        if ([defaults valueForKey:@"userName"] && [defaults valueForKey:@"userPassword"]) {
+            account_type = [NSNumber numberWithInt:4];
+            parameters = @{
+                           @"account": [defaults valueForKey:@"userName"],
+                           @"password": [defaults valueForKey:@"userPassword"],
+                           @"account_type": account_type
+                           };
+        }else {
+            account_type = [NSNumber numberWithInt:1];
+            parameters = @{
+                           @"account": [defaults valueForKey:@"userName"],
+                           @"account_type": account_type
+                           };
+        }
         
         [[UserManager manager] loginWithInfo:parameters success:^(NSDictionary *userData) {
-            //            [self dismissViewControllerAnimated:YES completion:^{
-            //                
+            
             NSLog(@"%@", userData);
             
-            //            }];
         } failure:^(NSError *error) {
             NSLog(@"%@", error);
         }];

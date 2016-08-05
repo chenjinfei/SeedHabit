@@ -8,4 +8,7 @@ pod 'Masonry'
 pod 'XRCarouselView'
 pod 'UMengSocialCOM'
 pod 'FLAnimatedImage'
+pod 'SCLAlertView-Objective-C'
+pod 'MJExtension'
 end
+
