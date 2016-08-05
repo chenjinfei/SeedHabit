@@ -8,7 +8,7 @@
 
 #import "MessageViewController.h"
 
-#import <EMSDK.h>
+#import "ContactsViewController.h"
 
 @interface MessageViewController ()
 
@@ -18,39 +18,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (IBAction)click:(id)sender {
     
-    EMError *error = [[EMClient sharedClient] registerWithUsername:@"18617304711" password:@"1234567890"];
-    if (error==nil) {
-        NSLog(@"注册成功");
-    }else {
-        NSLog(@"%@", error);
-    }
     
-    error = [[EMClient sharedClient] loginWithUsername:@"18617304711" password:@"1234567890"];
-    if (!error) {
-        NSLog(@"登录成功");
-    }else {
-        NSLog(@"登录失败：%@", error);
-    }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewWillAppear:(BOOL)animated {
+    // 创建控制器视图
+    [self buildView];
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+
+// 创建控制器视图
+-(void)buildView {
+    // 创建导航右按钮
+    UIButton *addContactBtnView = [UIButton buttonWithType:UIButtonTypeCustom];
+    [addContactBtnView setImage:IMAGE(@"contacts_32.png") forState:UIControlStateNormal];
+    [addContactBtnView setImage:IMAGE(@"contacts_32.png") forState:UIControlStateHighlighted];
+    [addContactBtnView addTarget:self action:@selector(showContacts:) forControlEvents:UIControlEventTouchUpInside];
+    addContactBtnView.frame = CGRectMake(0, 0, 25, 25);
+    UIBarButtonItem *addContactBtn = [[UIBarButtonItem alloc]initWithCustomView:addContactBtnView];
+    self.navigationItem.rightBarButtonItems = @[addContactBtn];
+    
+}
+
+// 导航右按钮响应方法
+-(void)showContacts: (UIButton *)sender {
+    ContactsViewController *conVc = [[ContactsViewController alloc]init];
+    [self.navigationController pushViewController:conVc animated:YES];
+}
+
+
 
 @end

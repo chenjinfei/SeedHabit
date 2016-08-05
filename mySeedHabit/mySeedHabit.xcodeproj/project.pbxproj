@@ -15,6 +15,9 @@
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
 		379B01181D54AB3500D75383 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01171D54AB3500D75383 /* MobileCoreServices.framework */; };
 		379B011A1D54AB5E00D75383 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01191D54AB5E00D75383 /* libc++.tbd */; };
+		379B011C1D54CC8500D75383 /* contacts_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 379B011B1D54CC8500D75383 /* contacts_32.png */; };
+		379B011F1D54CEFC00D75383 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 379B011E1D54CEFC00D75383 /* ContactsViewController.m */; };
+		379B01251D54D80900D75383 /* SContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 379B01241D54D80900D75383 /* SContactsViewController.m */; };
 		37DB26751D4F40A600FA5198 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB26741D4F40A600FA5198 /* main.m */; };
 		37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37DB267F1D4F40A600FA5198 /* Assets.xcassets */; };
 		37DB26831D4F40A600FA5198 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26811D4F40A600FA5198 /* LaunchScreen.storyboard */; };
@@ -80,6 +83,11 @@
 		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		379B01171D54AB3500D75383 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		379B01191D54AB5E00D75383 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		379B011B1D54CC8500D75383 /* contacts_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contacts_32.png; sourceTree = "<group>"; };
+		379B011D1D54CEFC00D75383 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		379B011E1D54CEFC00D75383 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
+		379B01231D54D80900D75383 /* SContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SContactsViewController.h; sourceTree = "<group>"; };
+		379B01241D54D80900D75383 /* SContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SContactsViewController.m; sourceTree = "<group>"; };
 		37DB26701D4F40A600FA5198 /* mySeedHabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mySeedHabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DB26741D4F40A600FA5198 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		37DB267F1D4F40A600FA5198 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -392,6 +400,10 @@
 				37DB26AB1D4F46CC00FA5198 /* MessageViewController.h */,
 				37DB26AC1D4F46CC00FA5198 /* MessageViewController.m */,
 				37DB26AD1D4F46CC00FA5198 /* MessageViewController.xib */,
+				379B011D1D54CEFC00D75383 /* ContactsViewController.h */,
+				379B011E1D54CEFC00D75383 /* ContactsViewController.m */,
+				379B01231D54D80900D75383 /* SContactsViewController.h */,
+				379B01241D54D80900D75383 /* SContactsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -461,6 +473,7 @@
 		37DB26C11D4F46CC00FA5198 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				379B011B1D54CC8500D75383 /* contacts_32.png */,
 				370C30981D518B8C00C9C8D9 /* down32.png */,
 				37DB26C21D4F46CC00FA5198 /* add_32.png */,
 				37DB26C31D4F46CC00FA5198 /* addContact_32.png */,
@@ -630,6 +643,7 @@
 				37DB26EF1D4F46CC00FA5198 /* msg3_32.png in Resources */,
 				37DB26F11D4F46CC00FA5198 /* qq_32.png in Resources */,
 				37DB26DF1D4F46CC00FA5198 /* HabitViewController.xib in Resources */,
+				379B011C1D54CC8500D75383 /* contacts_32.png in Resources */,
 				37DB26EE1D4F46CC00FA5198 /* msg2_32.png in Resources */,
 				37DB26F31D4F46CC00FA5198 /* search_32.png in Resources */,
 				37DB26E51D4F46CC00FA5198 /* RegisterByPhoneViewController.xib in Resources */,
@@ -692,11 +706,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				37DB26D71D4F46CC00FA5198 /* AppDelegate.m in Sources */,
+				379B011F1D54CEFC00D75383 /* ContactsViewController.m in Sources */,
 				37DB26DA1D4F46CC00FA5198 /* LeftViewController.m in Sources */,
 				370C309C1D52052000C9C8D9 /* NSString+CJFString.m in Sources */,
 				37DB26E41D4F46CC00FA5198 /* RegisterByPhoneViewController.m in Sources */,
 				37DB26DC1D4F46CC00FA5198 /* DiscoverViewController.m in Sources */,
 				37DB26D91D4F46CC00FA5198 /* DrawerViewController.m in Sources */,
+				379B01251D54D80900D75383 /* SContactsViewController.m in Sources */,
 				37DB26E61D4F46CC00FA5198 /* RegisterDataViewController.m in Sources */,
 				37DB27151D50D3AA00FA5198 /* UIColor+CJFColor.m in Sources */,
 				37DB26E21D4F46CC00FA5198 /* LoginViewController.m in Sources */,
