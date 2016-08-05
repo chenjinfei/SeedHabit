@@ -21,6 +21,8 @@
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
 
+#import <EMSDK.h>
+
 @interface AppDelegate ()
 
 @property (nonatomic, strong) DrawerViewController *drawerVc;
@@ -60,6 +62,12 @@
                                               secret:WeiboAppSecret
                                          RedirectURL:WeiboRedirectUrl];
     
+    //AppKey:注册的AppKey
+    //apnsCertName:推送证书名（不需要加后缀）
+    EMOptions *options = [EMOptions optionsWithAppkey:AppKeyEM];
+    options.apnsCertName = AppApnsCertName;
+    [[EMClient sharedClient] initializeSDKWithOptions:options];
+    
     return YES;
 }
 
@@ -91,7 +99,7 @@
         
         [[UserManager manager] loginWithInfo:parameters success:^(NSDictionary *userData) {
             
-            NSLog(@"%@", userData);
+            NSLog(@"登录成功");
             
         } failure:^(NSError *error) {
             NSLog(@"%@", error);
@@ -121,13 +129,14 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
+// APP进入后台
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[EMClient sharedClient] applicationDidEnterBackground:application];
 }
 
+// APP将要从后台返回
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[EMClient sharedClient] applicationWillEnterForeground:application];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

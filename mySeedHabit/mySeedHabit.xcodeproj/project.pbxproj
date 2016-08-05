@@ -10,6 +10,11 @@
 		370C30991D518B8C00C9C8D9 /* down32.png in Resources */ = {isa = PBXBuildFile; fileRef = 370C30981D518B8C00C9C8D9 /* down32.png */; };
 		370C309C1D52052000C9C8D9 /* NSString+CJFString.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C309B1D52052000C9C8D9 /* NSString+CJFString.m */; };
 		379B01101D5477C300D75383 /* SeedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 379B010F1D5477C300D75383 /* SeedUser.m */; };
+		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
+		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
+		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
+		379B01181D54AB3500D75383 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01171D54AB3500D75383 /* MobileCoreServices.framework */; };
+		379B011A1D54AB5E00D75383 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01191D54AB5E00D75383 /* libc++.tbd */; };
 		37DB26751D4F40A600FA5198 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB26741D4F40A600FA5198 /* main.m */; };
 		37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37DB267F1D4F40A600FA5198 /* Assets.xcassets */; };
 		37DB26831D4F40A600FA5198 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26811D4F40A600FA5198 /* LaunchScreen.storyboard */; };
@@ -70,6 +75,11 @@
 		370C309B1D52052000C9C8D9 /* NSString+CJFString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CJFString.m"; sourceTree = "<group>"; };
 		379B010E1D5477C300D75383 /* SeedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeedUser.h; sourceTree = "<group>"; };
 		379B010F1D5477C300D75383 /* SeedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeedUser.m; sourceTree = "<group>"; };
+		379B01111D54AB1500D75383 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		379B01131D54AB2200D75383 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		379B01171D54AB3500D75383 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		379B01191D54AB5E00D75383 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		37DB26701D4F40A600FA5198 /* mySeedHabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mySeedHabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DB26741D4F40A600FA5198 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		37DB267F1D4F40A600FA5198 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -150,11 +160,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				379B011A1D54AB5E00D75383 /* libc++.tbd in Frameworks */,
+				37DB270A1D4F85E700FA5198 /* ImageIO.framework in Frameworks */,
+				379B01181D54AB3500D75383 /* MobileCoreServices.framework in Frameworks */,
+				379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */,
+				379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */,
+				379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */,
 				37DB27121D4F9B7200FA5198 /* Foundation.framework in Frameworks */,
 				37DB27101D4F9B6700FA5198 /* UIKit.framework in Frameworks */,
 				37DB270E1D4F9B5700FA5198 /* CoreText.framework in Frameworks */,
 				37DB270C1D4F9B2400FA5198 /* QuartzCore.framework in Frameworks */,
-				37DB270A1D4F85E700FA5198 /* ImageIO.framework in Frameworks */,
 				37DB27081D4F7C3000FA5198 /* libz.1.1.3.tbd in Frameworks */,
 				37DB27061D4F7C2600FA5198 /* libstdc++.6.0.9.tbd in Frameworks */,
 				37DB27041D4F7C1400FA5198 /* CoreTelephony.framework in Frameworks */,
@@ -508,6 +523,11 @@
 		8FF4F6A08C4C12B24A3D4A3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				379B01191D54AB5E00D75383 /* libc++.tbd */,
+				379B01171D54AB3500D75383 /* MobileCoreServices.framework */,
+				379B01151D54AB2900D75383 /* AVFoundation.framework */,
+				379B01131D54AB2200D75383 /* AudioToolbox.framework */,
+				379B01111D54AB1500D75383 /* CoreMedia.framework */,
 				37DB27111D4F9B7200FA5198 /* Foundation.framework */,
 				37DB270F1D4F9B6700FA5198 /* UIKit.framework */,
 				37DB270D1D4F9B5700FA5198 /* CoreText.framework */,

@@ -51,7 +51,7 @@
     // 判断帐号是否已经注册
     NSNumber *n = [NSNumber numberWithInteger:[self.phoneNumber.text integerValue]];
     [[UserManager manager] isTelExists:@{@"account" : n} responseBlock:^(id responseObject) {
-        NSLog(@"%@", responseObject);
+        
         // 已经注册
         if ([responseObject[@"data"][@"is_register"] boolValue]) {
             
@@ -69,7 +69,7 @@
                                          };
             
             [[UserManager manager] loginWithInfo:parameters success:^(NSDictionary *userData) {
-                NSLog(@"%@", userData);
+                
                 if ([userData[@"status"] intValue] == 0) { // 用户信息匹配成功
                     
                     // 本地持久化登录
