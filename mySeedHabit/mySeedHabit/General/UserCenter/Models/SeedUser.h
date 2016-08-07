@@ -11,7 +11,7 @@
 @interface SeedUser : NSObject
 
 
-@property (nonatomic, assign) NSInteger uId;
+@property (nonatomic, assign) NSNumber *uId;
 
 @property (nonatomic, assign) NSInteger status;
 

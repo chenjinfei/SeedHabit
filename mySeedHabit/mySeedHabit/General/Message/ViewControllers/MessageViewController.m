@@ -10,7 +10,9 @@
 
 #import "ContactsViewController.h"
 
-@interface MessageViewController ()
+#import <EMSDK.h>
+
+@interface MessageViewController ()<EMChatManagerDelegate>
 
 @end
 
@@ -19,7 +21,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 注册消息回调
+    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     
+}
+
+/*!
+ @method
+ @brief 接收到一条及以上非cmd消息
+ */
+- (void)didReceiveMessages:(NSArray *)aMessages {
+    NSLog(@"接收到信息：%@", aMessages);
 }
 
 -(void)viewWillAppear:(BOOL)animated {

@@ -12,7 +12,7 @@
 @interface UserManager : NSObject
 
 // 当前登录用户的信息
-//@property (nonatomic, strong) SeedUser *currentUser;
+@property (nonatomic, strong) SeedUser *currentUser;
 
 /**
  *  单例

@@ -19,7 +19,6 @@
 @interface UserManager ()<EMClientDelegate>
 
 @property (nonatomic, strong) AFHTTPSessionManager *session;
-@property (nonatomic, strong) SeedUser *currentUser;
 
 @end
 
@@ -122,7 +121,9 @@ static UserManager *instance = nil;
         
         // 成功登录，保存当前登录的用户信息
         if ([responseObject[@"status"] intValue] == 0) {
-            self.currentUser = [SeedUser mj_objectWithKeyValues:responseObject[@"data"][@"user"]];
+            SeedUser *model = [[SeedUser alloc]init];
+            [model setValuesForKeysWithDictionary:responseObject[@"data"][@"user"]];
+            self.currentUser = model;
         }
         // 当为新用户是为用户进行环信的帐号注册
         // 否则再执行用户在环信的登录

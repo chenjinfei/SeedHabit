@@ -86,5 +86,14 @@
  */
 +(BOOL)validateWithRegExp: (NSString *)regExpx string: (NSString *)string;
 
+/**
+ *  通过图片data数据的第一个字节来获取图片的扩展名
+ *
+ *  @param data 图片data数据
+ *
+ *  @return NSString格式的图片扩展名
+ */
++(NSString *)contentTypeForImageData: (NSData *)data;
+
 
 @end

@@ -189,4 +189,49 @@
 }
 
 
+/**
+ *  通过图片data数据的第一个字节来获取图片的扩展名
+ *
+ *  @param data 图片data数据
+ *
+ *  @return NSString格式的图片扩展名
+ */
++(NSString *)contentTypeForImageData: (NSData *)data {
+    uint8_t c;
+    [data getBytes:&c length:1];
+    switch (c) {
+        case 0xFF:
+            return @"jpeg";
+            break;
+        case 0x89:
+            return @"png";
+            break;
+        case 0x47:
+            return @"gif";
+            break;
+        case 0x4D:
+        case 0x49:
+            return @"tiff";
+            break;
+        case 0x52:
+            if ([data length] < 12) {
+                return nil;
+            }else {
+                NSString *testString = [[NSString alloc]initWithData:[data subdataWithRange:NSMakeRange(0, 12)] encoding:NSASCIIStringEncoding];
+                if ([testString hasPrefix:@"RIFF"] && [testString hasSuffix:@"WEBP"]) {
+                    return @"webp";
+                }else {
+                    return nil;
+                }
+            }
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+    return nil;
+}
+
+
 @end
