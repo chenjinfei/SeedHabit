@@ -9,7 +9,7 @@
 #import "HabitViewController.h"
 
 #import "UserManager.h"
-//#import "SeedUser.h"
+#import "SeedUser.h"
 #import "LoginViewController.h"
 
 @interface HabitViewController ()
@@ -34,11 +34,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     
     // ==== 测试 可删除 ======
-    NSString *name = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"userName"]];
-    
-    if (name) {
-        self.username.text = name;
-    }
+    self.username.text = [UserManager manager].currentUser.nickname;
     // ======================
     
 }

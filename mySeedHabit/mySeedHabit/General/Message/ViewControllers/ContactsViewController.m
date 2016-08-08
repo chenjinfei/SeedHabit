@@ -139,29 +139,48 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    SeedUser *user = [[SeedUser alloc]init];
+    
     if (self.searchController.active) {
         
         NSString *searchText = [self.searchController.searchBar text];
         if ([NSString isValidateEmpty:searchText]) {
             NSLog(@"===== %@ ====", self.dataList[indexPath.row]);
             
-            SeedUser *user = self.dataList[indexPath.row];
-            EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:@"要发送的消息"];
-            NSString *from = [[EMClient sharedClient] currentUsername];
-            
-            //生成Message
-            EMMessage *message = [[EMMessage alloc] initWithConversationID:@"6001" from:from to:@"6001" body:body ext:nil];
-            message.chatType = EMChatTypeChat;// 设置为单聊消息
-            [[EMClient sharedClient].chatManager asyncSendMessage:message progress:nil completion:^(EMMessage *aMessage, EMError *aError) {}];
+            user = self.dataList[indexPath.row];
             
         }else {
             NSLog(@"===== %@ ====", self.searchList[indexPath.row]);
+            
+            user = self.searchList[indexPath.row];
+            
         }
         
     }else {
         
         NSLog(@"===== %@ ====", self.dataList[indexPath.row]);
+        user = self.dataList[indexPath.row];
     }
+    
+    EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:@"要发送的消息"];
+    NSString *from = [[EMClient sharedClient] currentUsername];
+    
+    // 构建会话ID
+    NSString *conversationId = [NSString stringWithFormat:@"%@%@", from, user.account];
+    EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:conversationId type:EMConversationTypeChat createIfNotExist:YES];
+    
+    //生成Message
+    EMMessage *message = [[EMMessage alloc] initWithConversationID:conversation.conversationId from:from to:user.account body:body ext:nil];
+    message.chatType = EMChatTypeChat;// 设置为单聊消息
+    [[EMClient sharedClient].chatManager asyncSendMessage:message progress:nil completion:^(EMMessage *aMessage, EMError *aError) {
+        if (!aError) {
+            NSLog(@"msgBody=%@, msgStatus=%d, conversationId=%@", aMessage.body, aMessage.status, aMessage.conversationId);
+        }else {
+            NSLog(@"%@", aError);
+        }
+        ULog(@"status=%d, to=%@, from=%@", aMessage.status, aMessage.to, aMessage.from);
+    }];
     
 }
 
@@ -197,11 +216,11 @@
     CGFloat keyboardHeight = [KeyboardObserved manager].keyboardFrame.size.height;
     if ([[KeyboardObserved manager] keyboardIsVisible]) {
         [UIView animateWithDuration:0.25 animations:^{
-            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height-keyboardHeight);
+            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, SCREEN_HEIGHT-40-64-keyboardHeight);
         }];
     }else {
         [UIView animateWithDuration:0.25 animations:^{
-            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height+keyboardHeight);
+            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, SCREEN_HEIGHT-40-64+keyboardHeight);
         }];
     };
 }
