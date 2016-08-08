@@ -58,17 +58,10 @@
 
     if (_note != note) {
         _note = note;
-//        
-//        if ([note valueForKey:@"mind_pic_small"] == nil) {
-////            self.mind_pic_small = nil;
-//            self.mind_pic_small.hidden = YES;
-//            self.isH = 0;
-//        }else {
 //            [self.mind_pic_small sd_setImageWithURL:[NSURL URLWithString:[note valueForKey:@"mind_pic_small"]] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
         [self.mind_pic_small sd_setImageWithURL:[NSURL URLWithString:[note valueForKey:@"mind_pic_small"]]];
             self.mind_pic_small.contentMode = UIViewContentModeScaleAspectFill;
             [self.mind_pic_small setClipsToBounds:YES];
-//        }
     
         // 时间戳转换
         // 用户发表时间
