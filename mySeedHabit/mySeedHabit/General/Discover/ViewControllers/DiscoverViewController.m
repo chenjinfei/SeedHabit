@@ -215,33 +215,31 @@ static BOOL newestFlag = 0;
     return _keepNotesArr;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //    self.view.backgroundColor = RGB(245, 245, 245);
-    
     self.mReadStr = [[NSMutableString alloc] init];
     
+    // 加载数据
     [self hotLoadData];
-    
-    [NSThread detachNewThreadSelector:@selector(loadData) toTarget:self withObject:nil];
-    
-    // 轮播
-    [self createXRCarousel];
+    [NSThread detachNewThreadSelector:@selector(keepLoadData) toTarget:self withObject:nil];
+//    [NSThread detachNewThreadSelector:@selector(NewLoadData) toTarget:self withObject:nil];
 
-    [self createTableView];
-    
     // 头部滑动
     [self createHeadList];
     
+    // 刷新
     [self Refresh];
 }
 - (void)loadData {
 
     [self keepLoadData];
-//    [self NewestLoadData];
     
+}
+- (void)NewLoadData {
+    
+    [self NewestLoadData];
+
 }
 
 #pragma mark 刷新
@@ -289,6 +287,9 @@ static BOOL newestFlag = 0;
 
 #pragma mark 创建 头部列表
 - (void)createHeadList {
+    
+    // 创建tableView
+    [self createTableView];
 
     self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor colorWithRed:0/255.0 green:180/255.0 blue:150/255.0 alpha:1];
@@ -313,6 +314,9 @@ static BOOL newestFlag = 0;
 
 #pragma mark 创建 Tableview
 - (void)createTableView {
+    
+    // 轮播
+    [self createXRCarousel];
     
     hotTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
 //    [self.view addSubview:hotTabelView];
@@ -574,13 +578,7 @@ static BOOL newestFlag = 0;
         Note *note = notes.note;
         
         CGFloat height = [DiscoverHotCell heightWithNoteStr:[note valueForKey:@"mind_note"] commentStr:self.commentStr mind_pic_small:[note valueForKey:@"mind_pic_small"]];
-        
-//        if ([note valueForKey:@"mind_pic_small"] != nil) {
-//            // 607 = 649 - 自适应
-//            return height + 607;
-//        }
-//        else
-//            return height + 607 - 350;
+
         return height + 257;
         
     }
@@ -589,24 +587,16 @@ static BOOL newestFlag = 0;
         Note *note = notes.note;
         
         CGFloat height = [DiscoverHotCell heightWithNoteStr:[note valueForKey:@"mind_note"] commentStr:self.keepCommentStr mind_pic_small:[note valueForKey:@"mind_pic_small"]];
-        
-//        if ([note valueForKey:@"mind_pic_small"] != nil) {
-            // 607 = 649 - 自适应
-//            return height + 607;
-//        }
-//        else
-//            return height + 607 - 350;
+
         return height + 257;
     }
     else if ([tableView isEqual:newestTableView]){
-//        Notes *notes = self.NewNotesArr[indexPath.row];
-//        Note *note = notes.note;
-//        
-//        CGFloat height = [DiscoverHotCell heightWithNoteStr:[note valueForKey:@"mind_note"] commentStr:self.NewCommentStr];
-//        
-//        // 607 = 649 - 自适应
-//        return height + 607;
-        return 100;
+        Notes *notes = self.NewNotesArr[indexPath.row];
+        Note *note = notes.note;
+        
+        CGFloat height = [DiscoverHotCell heightWithNoteStr:[note valueForKey:@"mind_note"] commentStr:self.NewCommentStr mind_pic_small:[note valueForKey:@"mind_pic_small"]];
+        
+        return height + 257;
     }
     return 0;
 }
@@ -713,17 +703,17 @@ static BOOL newestFlag = 0;
 //    NSString *readStr = self.mReadStr;
     
     NSDictionary *parameters = @{
+                                 // 默认十条数据
                                  @"detail":@1,
                                  @"flag":flag,
-//                                 @"prop_num":@10,
-//                                 @"next_id":@,
+                                 @"next_id":@18503190,
                                  @"user_id":@1850869,
-//                                 @"user_id":@1850878,
-                                 
-//                                  获取关注的好友的习惯
+                                
 //                                 http://api.idothing.com/zhongzi/v2.php/MindNote/listAllNotesByFriend
-//                                 detail=1&flag=0&user_id=1850878
-//                                 detail=1&flag=1&next_id=17626859&user_id=1850878
+//                                 detail=1&flag=0&user_id=1850869
+//                                 detail=1&flag=1&next_id=18503190&user_id=1850869
+//                                 detail=1&flag=1&next_id=18421893&user_id=1850869
+//                                 detail=1&flag=1&next_id=18372514&user_id=1850869
                                  
                                  };
     [session POST:APIAllNotesByFriend parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -860,17 +850,13 @@ static BOOL newestFlag = 0;
             [notesArr addObject:notes];
             [self.NewNotesArr addObjectsFromArray:notesArr];
         }
-        //        NSLog(@"%@", self.mReadStr);
         
         NSMutableArray *usersArr = [[NSMutableArray alloc] init];
         for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
             Users *users = [[Users alloc] init];
             [users setValuesForKeysWithDictionary:dict];
-            //            [self.usersArr addObject:users];
             [usersArr addObject:users];
-            
         }
-        
         [self.NewUsersArr addObjectsFromArray:usersArr];
         
         NSMutableArray *habitsArr = [[NSMutableArray alloc] init];
@@ -887,6 +873,7 @@ static BOOL newestFlag = 0;
             // 数据加载完毕之后，结束更新
             [newestTableView.mj_footer endRefreshing];
             [newestTableView.mj_header endRefreshing];
+            // 刷新tableView
             [newestTableView reloadData];
         });
         
@@ -894,7 +881,6 @@ static BOOL newestFlag = 0;
         NSLog(@"%@", error);
     }];
 
-    
 }
 
 #pragma mark 热门轮播图
