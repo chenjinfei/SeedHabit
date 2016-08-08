@@ -63,6 +63,8 @@
 @property (nonatomic, strong) NSMutableArray *keepNotesArr;
 // 存储评论
 @property (nonatomic, strong) NSMutableString *keepCommentStr;
+// 存储loadData参数的数据
+@property (nonatomic, strong) NSString *keepNextId;
 
 // 最新
 @property (nonatomic, strong) NSMutableArray *NewUsersArr;
@@ -73,6 +75,8 @@
 @property (nonatomic, strong) NSMutableArray *NewNotesArr;
 // 存储评论
 @property (nonatomic, strong) NSMutableString *NewCommentStr;
+// 存储loadData参数的数据
+@property (nonatomic, strong) NSString *NewNextId;
 
 @end
 
@@ -222,7 +226,10 @@ static BOOL newestFlag = 0;
     
     // 加载数据
     [self hotLoadData];
-    [NSThread detachNewThreadSelector:@selector(keepLoadData) toTarget:self withObject:nil];
+//    [self NewestLoadData];
+    [self keepLoadData];
+    
+//    [NSThread detachNewThreadSelector:@selector(keepLoadData) toTarget:self withObject:nil];
 //    [NSThread detachNewThreadSelector:@selector(NewLoadData) toTarget:self withObject:nil];
 
     // 头部滑动
@@ -614,6 +621,7 @@ static BOOL newestFlag = 0;
                                  @"flag":flag,
                                  @"prop_num":@10,
                                  @"read_ids":readStr,
+                                 // 拼接之前用户iD
 //                                 @"read_ids":@"18451873|18453274|18452611|18453227|18450703|18450867|18451082|18449541|18451039|18450507|18451345|18450871|18450265|18450865",
                                  @"user_id":@1850869
                                  };
@@ -700,21 +708,27 @@ static BOOL newestFlag = 0;
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
     NSNumber *flag = [NSNumber numberWithBool:keepFlag];
-//    NSString *readStr = self.mReadStr;
+    NSInteger next_id;
+    if (keepFlag == 1) {
+        next_id = [self.keepNextId integerValue];
+        next_id--;
+    }
     
     NSDictionary *parameters = @{
                                  // 默认十条数据
                                  @"detail":@1,
                                  @"flag":flag,
-                                 @"next_id":@18503190,
+                                 @"next_id":@(next_id),
+//                                 @"flag":@0,
+//                                 @"next_id":@18503725,
                                  @"user_id":@1850869,
                                 
+                                 // 刷新数据 获取 最后一个用户id - 1 = next_id
 //                                 http://api.idothing.com/zhongzi/v2.php/MindNote/listAllNotesByFriend
 //                                 detail=1&flag=0&user_id=1850869
-//                                 detail=1&flag=1&next_id=18503190&user_id=1850869
+//                                 detail=1&flag=1&next_id=18503725&user_id=1850869
 //                                 detail=1&flag=1&next_id=18421893&user_id=1850869
 //                                 detail=1&flag=1&next_id=18372514&user_id=1850869
-                                 
                                  };
     [session POST:APIAllNotesByFriend parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"ok === %@", responseObject);
@@ -728,7 +742,6 @@ static BOOL newestFlag = 0;
             for (NSDictionary *commentsDict in dict[@"comments"]) {
                 Comments *comments = [[Comments alloc] init];
                 [comments setValuesForKeysWithDictionary:commentsDict];
-                //                [self.commentsArr addObject:comments];
                 [commentsArr addObject:comments];
             }
             [self.keepCommentsArr addObjectsFromArray:commentsArr];
@@ -737,7 +750,6 @@ static BOOL newestFlag = 0;
             for (NSDictionary *propsDict in dict[@"props"]) {
                 Props *props = [[Props alloc] init];
                 [props setValuesForKeysWithDictionary:propsDict];
-                //                [self.propsArr addObject:props];
                 [propsArr addObject:props];
             }
             [self.keepPropsArr addObjectsFromArray:propsArr];
@@ -746,29 +758,22 @@ static BOOL newestFlag = 0;
             noteArr = dict[@"note"];
             [self.keepNoteArr addObjectsFromArray:noteArr];
             
-//            Note *note = dict[@"note"];
-//            for (NSString *s in noteArr) {
-//                // 拼接刷新的参数
-//                [self.mReadStr appendFormat:@"%@|", [note valueForKey:s]];
-//            }
-//             为什么不行？？？
-//                        NSLog(@"%@", [note valueForKey:@"idx"]);
+            // 存储刷新ID
+            Note *note = dict[@"note"];
+            self.keepNextId =[note valueForKey:@"id"];
+//            NSLog(@"%@", self.keepNextId);
             
             NSMutableArray *notesArr = [[NSMutableArray alloc] init];
             [notesArr addObject:notes];
             [self.keepNotesArr addObjectsFromArray:notesArr];
         }
-        //        NSLog(@"%@", self.mReadStr);
         
         NSMutableArray *usersArr = [[NSMutableArray alloc] init];
         for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
             Users *users = [[Users alloc] init];
             [users setValuesForKeysWithDictionary:dict];
-            //            [self.usersArr addObject:users];
             [usersArr addObject:users];
-            
         }
-        
         [self.keepUsersArr addObjectsFromArray:usersArr];
         
         NSMutableArray *habitsArr = [[NSMutableArray alloc] init];
@@ -783,8 +788,8 @@ static BOOL newestFlag = 0;
         dispatch_async(dispatch_get_main_queue(), ^{
             
             // 数据加载完毕之后，结束更新
-//            [keepTableView.mj_footer endRefreshing];
-//            [keepTableView.mj_header endRefreshing];
+            [keepTableView.mj_footer endRefreshing];
+            [keepTableView.mj_header endRefreshing];
             [keepTableView reloadData];
         });
         
@@ -799,14 +804,19 @@ static BOOL newestFlag = 0;
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
     NSNumber *flag = [NSNumber numberWithBool:newestFlag];
-//    NSString *readStr = self.mReadStr;
+    NSInteger next_id;
+    if (newestFlag == 1) {
+        next_id = [self.NewNextId integerValue];
+        next_id--;
+    }
     
     NSDictionary *parameters = @{
                                  @"detail":@1,
                                  @"flag":flag,
-//                                 @"prop_num":@10,
+                                 @"next_id":@(next_id),
                                  @"user_id":@1850869
                                  //detail=1&flag=0&user_id=1850869
+//                                 detail=1&flag=1&next_id=18162615&user_id=1850878
                                  };
     [session POST:APIAllNotesByTime parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"ok === %@", responseObject);
@@ -838,13 +848,10 @@ static BOOL newestFlag = 0;
             noteArr = dict[@"note"];
             [self.NewNoteArr addObjectsFromArray:noteArr];
             
-//            Note *note = dict[@"note"];
-//            for (NSString *s in noteArr) {
-//                // 拼接刷新的参数
-//                [self.mReadStr appendFormat:@"%@|", [note valueForKey:s]];
-//            }
-//             为什么不行？？？
-//                        NSLog(@"%@", [note valueForKey:@"idx"]);
+            // 存储刷新ID
+            Note *note = dict[@"note"];
+            self.NewNextId =[note valueForKey:@"id"];
+            //            NSLog(@"%@", self.keepNextId);
             
             NSMutableArray *notesArr = [[NSMutableArray alloc] init];
             [notesArr addObject:notes];

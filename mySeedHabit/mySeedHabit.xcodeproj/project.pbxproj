@@ -71,6 +71,7 @@
 		3F5C83141D5868E20034D93C /* Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C830B1D5868E20034D93C /* Notes.m */; settings = {ASSET_TAGS = (); }; };
 		3F5C83151D5868E20034D93C /* Props.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C830D1D5868E20034D93C /* Props.m */; settings = {ASSET_TAGS = (); }; };
 		3F5C83161D5868E20034D93C /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C830F1D5868E20034D93C /* Users.m */; settings = {ASSET_TAGS = (); }; };
+		3F5C83181D5871B30034D93C /* seeds_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C83171D5871B30034D93C /* seeds_32.png */; settings = {ASSET_TAGS = (); }; };
 		3F6850751D5332D70004C1BC /* heart_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F6850711D5332D70004C1BC /* heart_32.png */; settings = {ASSET_TAGS = (); }; };
 		3F9634881D558136005432CC /* AppTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9634841D558136005432CC /* AppTools.m */; settings = {ASSET_TAGS = (); }; };
 		3F9634891D558136005432CC /* DiscoverHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9634861D558136005432CC /* DiscoverHotCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -161,6 +162,7 @@
 		3F5C830D1D5868E20034D93C /* Props.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Props.m; sourceTree = "<group>"; };
 		3F5C830E1D5868E20034D93C /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
 		3F5C830F1D5868E20034D93C /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
+		3F5C83171D5871B30034D93C /* seeds_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeds_32.png; sourceTree = "<group>"; };
 		3F6850711D5332D70004C1BC /* heart_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_32.png; sourceTree = "<group>"; };
 		3F9634831D558136005432CC /* AppTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTools.h; sourceTree = "<group>"; };
 		3F9634841D558136005432CC /* AppTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTools.m; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 		37DB26C11D4F46CC00FA5198 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3F5C83171D5871B30034D93C /* seeds_32.png */,
 				3F5C82F51D58686B0034D93C /* comment_32.png */,
 				3F5C82F61D58686B0034D93C /* heard_32.png */,
 				3F5C82F71D58686B0034D93C /* heart2_32.png */,
@@ -688,6 +691,7 @@
 				37DB26E31D4F46CC00FA5198 /* LoginViewController.xib in Resources */,
 				37DB26DD1D4F46CC00FA5198 /* DiscoverViewController.xib in Resources */,
 				37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */,
+				3F5C83181D5871B30034D93C /* seeds_32.png in Resources */,
 				37DB26ED1D4F46CC00FA5198 /* message_32.png in Resources */,
 				37DB26F81D4F46CC00FA5198 /* weixin_32.png in Resources */,
 				37DB26EB1D4F46CC00FA5198 /* habit_32.png in Resources */,
