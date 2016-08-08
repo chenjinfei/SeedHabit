@@ -1,14 +1,14 @@
 //
-//  EditPersonalTableViewCell.m
+//  LogoutTableViewCell.m
 //  mySeedHabit
 //
 //  Created by lanou on 16/8/4.
 //  Copyright © 2016年 Jinfei Chen. All rights reserved.
 //
 
-#import "EditPersonalTableViewCell.h"
+#import "LogoutTableViewCell.h"
 
-@implementation EditPersonalTableViewCell
+@implementation LogoutTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code

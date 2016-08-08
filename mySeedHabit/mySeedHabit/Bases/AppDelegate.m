@@ -49,11 +49,9 @@
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
-        
     }
     else{
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
-        
         // 检查是否已经登录
         [self checkLogin];
     }

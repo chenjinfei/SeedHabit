@@ -1,14 +1,14 @@
 //
-//  EditPersonalTableViewCell.m
+//  HabitChecklnCell.m
 //  mySeedHabit
 //
-//  Created by lanou on 16/8/4.
+//  Created by lanou on 16/8/6.
 //  Copyright © 2016年 Jinfei Chen. All rights reserved.
 //
 
-#import "EditPersonalTableViewCell.h"
+#import "HabitChecklnCell.h"
 
-@implementation EditPersonalTableViewCell
+@implementation HabitChecklnCell
 
 - (void)awakeFromNib {
     // Initialization code

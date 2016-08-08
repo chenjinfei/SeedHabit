@@ -9,8 +9,10 @@
 #import "LeftViewController.h"
 #import "AppDelegate.h"
 #import "DrawerViewController.h"
-#import "EditPersonalTableViewController.h"
+#import "MyPersonalTableViewController.h"
 #import "MyConcernTableViewController.h"
+#import "LogoutTableViewCell.h"
+#import "HeaderView.h"
 
 
 @interface LeftViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -22,59 +24,54 @@
 
 @implementation LeftViewController
 
-- (NSMutableArray *)dataArray
-{
-    if (_dataArray == nil) {
-        _dataArray = [NSMutableArray arrayWithObjects:@"我的关注",@"我的收藏",@"帮助中心",@"消息提醒设置",@"关于种子习惯", nil];
-    }
-    // 编辑个人资料
-    return _dataArray;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createTableView];
     [self buildHeaderView];
 }
 
+#pragma mark 创建tableView
 - (void)createTableView
 {
-    self.view.backgroundColor = RGB(0, 176, 137);
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, SCREEN_HEIGHT-100) style:0];
+    NSMutableArray *dataArray1 = [[NSMutableArray alloc]initWithObjects:@"我的资料",@"我的关注",@"我的收藏", nil];
+    NSMutableArray *dataArray2 = [[NSMutableArray alloc]initWithObjects:@"帮助中心",@"消息提醒设置", nil];
+    NSMutableArray *dataArray3 = [[NSMutableArray alloc]initWithObjects:@"关于种子习惯", nil];
+    NSMutableArray *dataArray4 = [[NSMutableArray alloc]initWithObjects:@"退出登录", nil];
+    self.dataArray = [[NSMutableArray alloc]initWithObjects:dataArray1,dataArray2,dataArray3,dataArray4, nil];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:0];
+    self.tableView.backgroundColor = RGB(245, 245, 245);
     self.tableView.separatorStyle = NO;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
+    UINib *nib = [UINib nibWithNibName:@"LogoutTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"logout"];
 }
 
 #pragma mark 创建tableView头视图
 - (void)buildHeaderView
 {
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 80)];
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, 15, 120, 40)];
-    label.font = [UIFont systemFontOfSize:18];
-    label.text = @"编辑个人资料";
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2, 10, 60, 60)];
-    imageView.image = [UIImage imageNamed:@"headerImage.jpg"];
-    [headerView addSubview:label];
-    [headerView addSubview:imageView];
-    imageView.layer.cornerRadius = 30;
-    imageView.layer.masksToBounds = YES;
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
+    HeaderView *header = [[HeaderView alloc]init];
+    [header setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
+    [headerView addSubview:header];
     self.tableView.tableHeaderView = headerView;
     self.tableView.tableHeaderView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGeture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
-    [self.tableView.tableHeaderView addGestureRecognizer:tapGeture];
 }
 
-- (void)tapAction
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    EditPersonalTableViewController *EditPersonalVC = [[EditPersonalTableViewController alloc]init];
-    [[DrawerViewController shareDrawer] turnToViewController:EditPersonalVC];
+    return self.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArray.count;
+    return [[self.dataArray objectAtIndex:section] count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,23 +79,44 @@
     return 40;
 }
 
+#pragma mark 返回cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuse"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:0 reuseIdentifier:@"reuse"];
+    if (indexPath.section == 3) {
+        LogoutTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"logout"];
+        // 设置选中cell颜色
+        cell.selectedBackgroundView = [[UIView alloc]initWithFrame:cell.frame];
+        cell.selectedBackgroundView.backgroundColor = RGB(245, 245, 245);
+        return cell;
+    }else{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuse"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc]initWithStyle:0 reuseIdentifier:@"reuse"];
+        }
+        [[cell textLabel] setText:[[self.dataArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]];
+        // 设置选中cell颜色
+        cell.selectedBackgroundView = [[UIView alloc]initWithFrame:cell.frame];
+        cell.selectedBackgroundView.backgroundColor = RGB(245, 245, 245);
+        return cell;
     }
-    cell.textLabel.text = self.dataArray[indexPath.row];
-    return cell;
 }
 
+#pragma mark 点击cell响应方法
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.row) {
+    switch (indexPath.section) {
         case 0:{
-            MyConcernTableViewController *MyConcernVC = [[MyConcernTableViewController alloc]init];
-            MyConcernVC.titleStr = self.dataArray[indexPath.row];
-            [[DrawerViewController shareDrawer]turnToViewController:MyConcernVC];
+            if (indexPath.row == 0) {
+                MyPersonalTableViewController *MyPersonalVC = [[MyPersonalTableViewController alloc]init];
+                MyPersonalVC.titleStr = [[self.dataArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+                [[DrawerViewController shareDrawer]turnToViewController:MyPersonalVC];
+            }else if (indexPath.row == 1){
+                MyConcernTableViewController *MyConcernVC = [[MyConcernTableViewController alloc]init];
+                MyConcernVC.titleStr = [[self.dataArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+                [[DrawerViewController shareDrawer]turnToViewController:MyConcernVC];
+            }else{
+                
+            }
             break;
         }
         case 1:{
@@ -121,6 +139,8 @@
         default:
             break;
     }
+    // 取消选中状态,取消cell选中颜色
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 

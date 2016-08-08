@@ -43,6 +43,7 @@
     return self;
 }
 
+#pragma mark 动画移除引导页
 - (void)nextAction
 {
     // 移除界面

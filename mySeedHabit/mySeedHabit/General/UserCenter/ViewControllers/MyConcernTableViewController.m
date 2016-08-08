@@ -7,6 +7,7 @@
 //
 
 #import "MyConcernTableViewController.h"
+#import "UIColor+CJFColor.h"
 
 @interface MyConcernTableViewController ()
 
@@ -17,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.titleStr;
+    // 设置导航栏背景颜色
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithHexString:UIMainColor alpha:1.0];
+    // 设置导航栏字体颜色
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,12 +32,10 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
     return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     return 0;
 }
 

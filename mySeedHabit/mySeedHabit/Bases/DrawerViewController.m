@@ -205,7 +205,6 @@
     [self.mainVc addChildViewController:nav];
     
     [self closeLeftVc];
-    
 }
 
 /**

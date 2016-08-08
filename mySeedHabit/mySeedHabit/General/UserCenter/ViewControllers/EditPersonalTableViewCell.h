@@ -2,7 +2,7 @@
 //  EditPersonalTableViewCell.h
 //  mySeedHabit
 //
-//  Created by lanou on 16/8/3.
+//  Created by lanou on 16/8/4.
 //  Copyright © 2016年 Jinfei Chen. All rights reserved.
 //
 
@@ -10,8 +10,9 @@
 
 @interface EditPersonalTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *titleL;
 
-@property (strong, nonatomic) IBOutlet UILabel *descLabel;
+@property (strong, nonatomic) IBOutlet UITextField *descTF;
+
 
 @end
