@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class SeedUser;
 @interface UserManager : NSObject
+
+// 当前登录用户的信息
+@property (nonatomic, strong) SeedUser *currentUser;
 
 /**
  *  单例
@@ -55,5 +59,18 @@
  *  @param failure     注册失败的回调方法
  */
 -(void)registerByParameters: (NSDictionary *)parameters success: (void (^)(NSDictionary *responseObject))success failure: (void (^)(NSError *error))failure;
+
+/**
+ *  设置本地登录持久化
+ *
+ *  @param username 用户名
+ *  @param password 用户密码
+ */
+-(void)setUserDefaultsWithUserName: (NSString *)username password: (NSString *)password;
+
+/**
+ *  清除本地登录持久化数据
+ */
+-(void)removeUserDefaults;
 
 @end

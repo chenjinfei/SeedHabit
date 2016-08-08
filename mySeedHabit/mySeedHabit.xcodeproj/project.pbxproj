@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370C30991D518B8C00C9C8D9 /* down32.png in Resources */ = {isa = PBXBuildFile; fileRef = 370C30981D518B8C00C9C8D9 /* down32.png */; };
+		370C309C1D52052000C9C8D9 /* NSString+CJFString.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C309B1D52052000C9C8D9 /* NSString+CJFString.m */; };
+		373F5BB41D581EA6009F8556 /* placeHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 373F5BB31D581EA6009F8556 /* placeHolder.png */; };
+		37941ED21D551AB700BDC1A7 /* KeyboardObserved.m in Sources */ = {isa = PBXBuildFile; fileRef = 37941ED11D551AB700BDC1A7 /* KeyboardObserved.m */; };
+		37941ED81D56F98C00BDC1A7 /* UIImage+CJFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 37941ED71D56F98C00BDC1A7 /* UIImage+CJFImage.m */; };
+		379B01101D5477C300D75383 /* SeedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 379B010F1D5477C300D75383 /* SeedUser.m */; };
+		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
+		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
+		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
+		379B01181D54AB3500D75383 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01171D54AB3500D75383 /* MobileCoreServices.framework */; };
+		379B011A1D54AB5E00D75383 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01191D54AB5E00D75383 /* libc++.tbd */; };
+		379B011C1D54CC8500D75383 /* contacts_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 379B011B1D54CC8500D75383 /* contacts_32.png */; };
+		379B011F1D54CEFC00D75383 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 379B011E1D54CEFC00D75383 /* ContactsViewController.m */; };
 		37DB26751D4F40A600FA5198 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB26741D4F40A600FA5198 /* main.m */; };
 		37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37DB267F1D4F40A600FA5198 /* Assets.xcassets */; };
 		37DB26831D4F40A600FA5198 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26811D4F40A600FA5198 /* LaunchScreen.storyboard */; };
@@ -81,7 +94,24 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		157AE9DB11DE022A9D155F7F /* libPods-mySeedHabit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mySeedHabit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		370C30981D518B8C00C9C8D9 /* down32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down32.png; sourceTree = "<group>"; };
+		370C309A1D52052000C9C8D9 /* NSString+CJFString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CJFString.h"; sourceTree = "<group>"; };
+		370C309B1D52052000C9C8D9 /* NSString+CJFString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CJFString.m"; sourceTree = "<group>"; };
+		373F5BB31D581EA6009F8556 /* placeHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeHolder.png; sourceTree = "<group>"; };
+		37941ED01D551AB700BDC1A7 /* KeyboardObserved.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardObserved.h; sourceTree = "<group>"; };
+		37941ED11D551AB700BDC1A7 /* KeyboardObserved.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardObserved.m; sourceTree = "<group>"; };
+		37941ED61D56F98C00BDC1A7 /* UIImage+CJFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CJFImage.h"; sourceTree = "<group>"; };
+		37941ED71D56F98C00BDC1A7 /* UIImage+CJFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CJFImage.m"; sourceTree = "<group>"; };
+		379B010E1D5477C300D75383 /* SeedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeedUser.h; sourceTree = "<group>"; };
+		379B010F1D5477C300D75383 /* SeedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeedUser.m; sourceTree = "<group>"; };
+		379B01111D54AB1500D75383 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		379B01131D54AB2200D75383 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		379B01171D54AB3500D75383 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		379B01191D54AB5E00D75383 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		379B011B1D54CC8500D75383 /* contacts_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contacts_32.png; sourceTree = "<group>"; };
+		379B011D1D54CEFC00D75383 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		379B011E1D54CEFC00D75383 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 		37DB26701D4F40A600FA5198 /* mySeedHabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mySeedHabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DB26741D4F40A600FA5198 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		37DB267F1D4F40A600FA5198 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -200,13 +230,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		379B010D1D5477B000D75383 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				379B010E1D5477C300D75383 /* SeedUser.h */,
+				379B010F1D5477C300D75383 /* SeedUser.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		37DB26671D4F40A600FA5198 = {
 			isa = PBXGroup;
 			children = (
 				37DB26721D4F40A600FA5198 /* mySeedHabit */,
 				37DB26711D4F40A600FA5198 /* Products */,
-				F65322FC92A6ABC9011F1F29 /* Pods */,
 				8FF4F6A08C4C12B24A3D4A3B /* Frameworks */,
+				442F7C60993C11E504FD3DEE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -287,6 +326,8 @@
 			children = (
 				37DB26961D4F46CC00FA5198 /* UserManager.h */,
 				37DB26971D4F46CC00FA5198 /* UserManager.m */,
+				37941ED01D551AB700BDC1A7 /* KeyboardObserved.h */,
+				37941ED11D551AB700BDC1A7 /* KeyboardObserved.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -402,6 +443,8 @@
 				37DB26AB1D4F46CC00FA5198 /* MessageViewController.h */,
 				37DB26AC1D4F46CC00FA5198 /* MessageViewController.m */,
 				37DB26AD1D4F46CC00FA5198 /* MessageViewController.xib */,
+				379B011D1D54CEFC00D75383 /* ContactsViewController.h */,
+				379B011E1D54CEFC00D75383 /* ContactsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -409,6 +452,7 @@
 		37DB26AE1D4F46CC00FA5198 /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
+				379B010D1D5477B000D75383 /* Models */,
 				37DB26AF1D4F46CC00FA5198 /* ViewControllers */,
 			);
 			path = UserCenter;
@@ -585,15 +629,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F65322FC92A6ABC9011F1F29 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				89381EC138B11EBA94FFFB12 /* Pods-mySeedHabit.debug.xcconfig */,
-				43931E7C0E1941F3CC26AF06 /* Pods-mySeedHabit.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -601,7 +636,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37DB26871D4F40A600FA5198 /* Build configuration list for PBXNativeTarget "mySeedHabit" */;
 			buildPhases = (
-				788E5547CF95D2DBA87C7749 /* [CP] Check Pods Manifest.lock */,
+				97844822039B0D246570A304 /* [CP] Check Pods Manifest.lock */,
 				37DB266C1D4F40A600FA5198 /* Sources */,
 				37DB266D1D4F40A600FA5198 /* Frameworks */,
 				37DB266E1D4F40A600FA5198 /* Resources */,
@@ -662,6 +697,8 @@
 				3F6850751D5332D70004C1BC /* heart_32.png in Resources */,
 				37DB26E11D4F46CC00FA5198 /* MessageViewController.xib in Resources */,
 				37DB26F61D4F46CC00FA5198 /* time_32.png in Resources */,
+				370C30991D518B8C00C9C8D9 /* down32.png in Resources */,
+				373F5BB41D581EA6009F8556 /* placeHolder.png in Resources */,
 				37DB26F51D4F46CC00FA5198 /* sina_32.png in Resources */,
 				37DB26F21D4F46CC00FA5198 /* right_32.png in Resources */,
 				37DB26E31D4F46CC00FA5198 /* LoginViewController.xib in Resources */,
@@ -705,7 +742,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mySeedHabit/Pods-mySeedHabit-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		788E5547CF95D2DBA87C7749 /* [CP] Check Pods Manifest.lock */ = {
+		97844822039B0D246570A304 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -745,7 +782,11 @@
 				3FD2B3831D53788100CFF9DC /* Habits.m in Sources */,
 				3FD2B3871D53788100CFF9DC /* Users.m in Sources */,
 				37DB26D71D4F46CC00FA5198 /* AppDelegate.m in Sources */,
+				37941ED81D56F98C00BDC1A7 /* UIImage+CJFImage.m in Sources */,
+				379B011F1D54CEFC00D75383 /* ContactsViewController.m in Sources */,
 				37DB26DA1D4F46CC00FA5198 /* LeftViewController.m in Sources */,
+				370C309C1D52052000C9C8D9 /* NSString+CJFString.m in Sources */,
+				37941ED21D551AB700BDC1A7 /* KeyboardObserved.m in Sources */,
 				37DB26E41D4F46CC00FA5198 /* RegisterByPhoneViewController.m in Sources */,
 				37DB26DC1D4F46CC00FA5198 /* DiscoverViewController.m in Sources */,
 				3FD2B3811D53788100CFF9DC /* Comments.m in Sources */,
@@ -767,6 +808,7 @@
 				3F9634961D558A08005432CC /* YHJTabPageScrollView.m in Sources */,
 				37DB26E01D4F46CC00FA5198 /* MessageViewController.m in Sources */,
 				37DB26D81D4F46CC00FA5198 /* CJFTabBarViewController.m in Sources */,
+				379B01101D5477C300D75383 /* SeedUser.m in Sources */,
 				37DB26DE1D4F46CC00FA5198 /* HabitViewController.m in Sources */,
 				3FFBED931D52EA6E0088D84D /* EditPersonalTableViewController.m in Sources */,
 				3FD2B3841D53788100CFF9DC /* Note.m in Sources */,
@@ -824,7 +866,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -862,7 +904,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -871,7 +913,7 @@
 		};
 		37DB26881D4F40A600FA5198 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89381EC138B11EBA94FFFB12 /* Pods-mySeedHabit.debug.xcconfig */;
+			baseConfigurationReference = A6C2500CC93EEC9D1017731A /* Pods-mySeedHabit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -889,7 +931,7 @@
 		};
 		37DB26891D4F40A600FA5198 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43931E7C0E1941F3CC26AF06 /* Pods-mySeedHabit.release.xcconfig */;
+			baseConfigurationReference = EE8D3A9DE0240A846FED70AA /* Pods-mySeedHabit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -915,7 +957,7 @@
 				37DB26861D4F40A600FA5198 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		37DB26871D4F40A600FA5198 /* Build configuration list for PBXNativeTarget "mySeedHabit" */ = {
 			isa = XCConfigurationList;
@@ -924,7 +966,7 @@
 				37DB26891D4F40A600FA5198 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

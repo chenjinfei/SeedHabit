@@ -15,11 +15,14 @@
 
 #import "LoginViewController.h"
 #import "UserManager.h"
+#import "NSString+CJFString.h"
 
 #import "UMSocial.h"
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
+
+#import <EMSDK.h>
 
 @interface AppDelegate ()
 
@@ -78,10 +81,37 @@
 
 
 -(void)checkLogin {
+    // 未登录
     if (![[UserManager manager] checkLogin]) {
         LoginViewController *loginVc = [[LoginViewController alloc]init];
         loginVc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [[DrawerViewController shareDrawer] presentViewController:loginVc animated:NO completion:nil];
+    }else{ // 本地有持久化登录数据
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSDictionary *parameters = nil;
+        NSNumber *account_type = nil;
+        if ([defaults valueForKey:@"userName"] && [defaults valueForKey:@"userPassword"]) {
+            account_type = [NSNumber numberWithInt:4];
+            parameters = @{
+                           @"account": [defaults valueForKey:@"userName"],
+                           @"password": [defaults valueForKey:@"userPassword"],
+                           @"account_type": account_type
+                           };
+        }else {
+            account_type = [NSNumber numberWithInt:1];
+            parameters = @{
+                           @"account": [defaults valueForKey:@"userName"],
+                           @"account_type": account_type
+                           };
+        }
+        
+        [[UserManager manager] loginWithInfo:parameters success:^(NSDictionary *userData) {
+            
+            NSLog(@"登录成功 : %@", userData);
+            
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
     }
 }
 
@@ -107,13 +137,14 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
+// APP进入后台
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[EMClient sharedClient] applicationDidEnterBackground:application];
 }
 
+// APP将要从后台返回
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[EMClient sharedClient] applicationWillEnterForeground:application];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
