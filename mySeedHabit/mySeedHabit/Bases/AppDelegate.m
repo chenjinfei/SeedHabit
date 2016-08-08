@@ -9,9 +9,6 @@
 #import "AppDelegate.h"
 
 #import "CJFTabBarViewController.h"
-#import "DrawerViewController.h"
-#import "LeftViewController.h"
-#import "StartGifView.h"
 
 #import "LoginViewController.h"
 #import "UserManager.h"
@@ -26,9 +23,7 @@
 
 @interface AppDelegate ()
 
-@property (nonatomic, strong) DrawerViewController *drawerVc;
 @property (nonatomic, strong) UIViewController *mainVc;
-@property (nonatomic, strong) LeftViewController *leftVc;
 
 @end
 
@@ -39,12 +34,8 @@
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     // 主视图控制器
     self.mainVc = [[CJFTabBarViewController alloc]init];
-    // 左视图控制器
-    self.leftVc = [[LeftViewController alloc]init];
-    // 创建抽屉视图作为根视图控制器
-    self.drawerVc = [DrawerViewController drawerWithMainVc:self.mainVc leftVc:self.leftVc leftWidth:SCREEN_WIDTH-80];
     // 设置根视图
-    self.window.rootViewController = self.drawerVc;
+    self.window.rootViewController = self.mainVc;
     // 显示
     [self.window makeKeyAndVisible];
     
@@ -62,8 +53,8 @@
     }
     // 判断是否第一次
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]) {
-        StartGifView *startGifView = [[StartGifView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        [self.drawerVc.view addSubview:startGifView];
+        //        StartGifView *startGifView = [[StartGifView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        //        [self.drawerVc.view addSubview:startGifView];
     }
     
     // 设置友盟AppKey
@@ -85,7 +76,7 @@
     if (![[UserManager manager] checkLogin]) {
         LoginViewController *loginVc = [[LoginViewController alloc]init];
         loginVc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [[DrawerViewController shareDrawer] presentViewController:loginVc animated:NO completion:nil];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:loginVc animated:NO completion:nil];
     }else{ // 本地有持久化登录数据
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSDictionary *parameters = nil;

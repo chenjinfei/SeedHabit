@@ -10,7 +10,6 @@
 
 #import "RegisterByPhoneViewController.h"
 #import "RegisterDataViewController.h"
-#import "DrawerViewController.h"
 
 #import "UserManager.h"
 #import <UMSocial.h>
