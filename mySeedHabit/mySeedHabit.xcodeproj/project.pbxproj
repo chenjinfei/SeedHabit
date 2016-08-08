@@ -10,6 +10,11 @@
 		370C30991D518B8C00C9C8D9 /* down32.png in Resources */ = {isa = PBXBuildFile; fileRef = 370C30981D518B8C00C9C8D9 /* down32.png */; };
 		370C309C1D52052000C9C8D9 /* NSString+CJFString.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C309B1D52052000C9C8D9 /* NSString+CJFString.m */; };
 		373F5BB41D581EA6009F8556 /* placeHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 373F5BB31D581EA6009F8556 /* placeHolder.png */; };
+		378A15C51D58EEED004B86EC /* UIImageView+CJFUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 378A15C41D58EEED004B86EC /* UIImageView+CJFUIImageView.m */; };
+		378A15CA1D58F43D004B86EC /* UserHaBitList_TBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 378A15C81D58F43D004B86EC /* UserHaBitList_TBCell.m */; };
+		378A15CB1D58F43D004B86EC /* UserHaBitList_TBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 378A15C91D58F43D004B86EC /* UserHaBitList_TBCell.xib */; };
+		378A15CD1D58F473004B86EC /* UserInfo_TBHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 378A15CC1D58F473004B86EC /* UserInfo_TBHeaderView.xib */; };
+		378A15D01D58F489004B86EC /* UserInfo_TBHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 378A15CF1D58F489004B86EC /* UserInfo_TBHeaderView.m */; };
 		37941ED21D551AB700BDC1A7 /* KeyboardObserved.m in Sources */ = {isa = PBXBuildFile; fileRef = 37941ED11D551AB700BDC1A7 /* KeyboardObserved.m */; };
 		37941ED81D56F98C00BDC1A7 /* UIImage+CJFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 37941ED71D56F98C00BDC1A7 /* UIImage+CJFImage.m */; };
 		379B01101D5477C300D75383 /* SeedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 379B010F1D5477C300D75383 /* SeedUser.m */; };
@@ -88,6 +93,14 @@
 		370C309A1D52052000C9C8D9 /* NSString+CJFString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CJFString.h"; sourceTree = "<group>"; };
 		370C309B1D52052000C9C8D9 /* NSString+CJFString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CJFString.m"; sourceTree = "<group>"; };
 		373F5BB31D581EA6009F8556 /* placeHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeHolder.png; sourceTree = "<group>"; };
+		378A15C31D58EEED004B86EC /* UIImageView+CJFUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CJFUIImageView.h"; sourceTree = "<group>"; };
+		378A15C41D58EEED004B86EC /* UIImageView+CJFUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CJFUIImageView.m"; sourceTree = "<group>"; };
+		378A15C71D58F43D004B86EC /* UserHaBitList_TBCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHaBitList_TBCell.h; sourceTree = "<group>"; };
+		378A15C81D58F43D004B86EC /* UserHaBitList_TBCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHaBitList_TBCell.m; sourceTree = "<group>"; };
+		378A15C91D58F43D004B86EC /* UserHaBitList_TBCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHaBitList_TBCell.xib; sourceTree = "<group>"; };
+		378A15CC1D58F473004B86EC /* UserInfo_TBHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfo_TBHeaderView.xib; sourceTree = "<group>"; };
+		378A15CE1D58F489004B86EC /* UserInfo_TBHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo_TBHeaderView.h; sourceTree = "<group>"; };
+		378A15CF1D58F489004B86EC /* UserInfo_TBHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo_TBHeaderView.m; sourceTree = "<group>"; };
 		37941ED01D551AB700BDC1A7 /* KeyboardObserved.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardObserved.h; sourceTree = "<group>"; };
 		37941ED11D551AB700BDC1A7 /* KeyboardObserved.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardObserved.m; sourceTree = "<group>"; };
 		37941ED61D56F98C00BDC1A7 /* UIImage+CJFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CJFImage.h"; sourceTree = "<group>"; };
@@ -224,6 +237,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		378A15C61D58F3CE004B86EC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				378A15C71D58F43D004B86EC /* UserHaBitList_TBCell.h */,
+				378A15C81D58F43D004B86EC /* UserHaBitList_TBCell.m */,
+				378A15C91D58F43D004B86EC /* UserHaBitList_TBCell.xib */,
+				378A15CE1D58F489004B86EC /* UserInfo_TBHeaderView.h */,
+				378A15CF1D58F489004B86EC /* UserInfo_TBHeaderView.m */,
+				378A15CC1D58F473004B86EC /* UserInfo_TBHeaderView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		379B010D1D5477B000D75383 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +335,8 @@
 				370C309B1D52052000C9C8D9 /* NSString+CJFString.m */,
 				37941ED61D56F98C00BDC1A7 /* UIImage+CJFImage.h */,
 				37941ED71D56F98C00BDC1A7 /* UIImage+CJFImage.m */,
+				378A15C31D58EEED004B86EC /* UIImageView+CJFUIImageView.h */,
+				378A15C41D58EEED004B86EC /* UIImageView+CJFUIImageView.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -443,6 +471,7 @@
 		37DB26AE1D4F46CC00FA5198 /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
+				378A15C61D58F3CE004B86EC /* Views */,
 				379B010D1D5477B000D75383 /* Models */,
 				37DB26AF1D4F46CC00FA5198 /* ViewControllers */,
 			);
@@ -719,7 +748,9 @@
 				37DB26EF1D4F46CC00FA5198 /* msg3_32.png in Resources */,
 				37DB26F11D4F46CC00FA5198 /* qq_32.png in Resources */,
 				37DB26DF1D4F46CC00FA5198 /* HabitViewController.xib in Resources */,
+				378A15CB1D58F43D004B86EC /* UserHaBitList_TBCell.xib in Resources */,
 				379B011C1D54CC8500D75383 /* contacts_32.png in Resources */,
+				378A15CD1D58F473004B86EC /* UserInfo_TBHeaderView.xib in Resources */,
 				37DB26EE1D4F46CC00FA5198 /* msg2_32.png in Resources */,
 				37DB26F31D4F46CC00FA5198 /* search_32.png in Resources */,
 				37DB26E51D4F46CC00FA5198 /* RegisterByPhoneViewController.xib in Resources */,
@@ -784,11 +815,14 @@
 				37A93C5C1D5870E300DC8050 /* Habits.m in Sources */,
 				37A93C601D5870E300DC8050 /* Users.m in Sources */,
 				37DB26D71D4F46CC00FA5198 /* AppDelegate.m in Sources */,
+				378A15CA1D58F43D004B86EC /* UserHaBitList_TBCell.m in Sources */,
 				37941ED81D56F98C00BDC1A7 /* UIImage+CJFImage.m in Sources */,
 				379B011F1D54CEFC00D75383 /* ContactsViewController.m in Sources */,
+				378A15C51D58EEED004B86EC /* UIImageView+CJFUIImageView.m in Sources */,
 				37A93C5A1D5870E300DC8050 /* Comments.m in Sources */,
 				37A93C5F1D5870E300DC8050 /* Props.m in Sources */,
 				37A93C5E1D5870E300DC8050 /* Notes.m in Sources */,
+				378A15D01D58F489004B86EC /* UserInfo_TBHeaderView.m in Sources */,
 				370C309C1D52052000C9C8D9 /* NSString+CJFString.m in Sources */,
 				37941ED21D551AB700BDC1A7 /* KeyboardObserved.m in Sources */,
 				37DB26E41D4F46CC00FA5198 /* RegisterByPhoneViewController.m in Sources */,

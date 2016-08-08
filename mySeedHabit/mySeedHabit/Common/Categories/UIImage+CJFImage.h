@@ -20,4 +20,16 @@
  */
 -(UIImage *)circleImage;
 
+
+/**
+ *  创建一个圆角图片
+ *
+ *  @param image 原始图片对象
+ *  @param size  图片的size
+ *  @param r     圆角半径
+ *
+ *  @return 图片对象
+ */
++ (id)createRoundedRectImage:(UIImage*)image size:(CGSize)size radius:(NSInteger)r;
+
 @end
