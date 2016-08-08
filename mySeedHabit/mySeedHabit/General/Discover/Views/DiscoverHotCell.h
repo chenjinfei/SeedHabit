@@ -50,6 +50,6 @@
 @property (nonatomic, strong) Comments *comments;
 @property (nonatomic, strong) Props *props;
 //返回model对应的cell高度
-+ (CGFloat)heightWithNoteStr:(NSString *)noteStr commentStr:(NSString *)commentStr;
++ (CGFloat)heightWithNoteStr:(NSString *)noteStr commentStr:(NSString *)commentStr mind_pic_small:(NSString *)mind_pic_small;
 
 @end

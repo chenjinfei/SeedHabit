@@ -9,6 +9,7 @@
 #import "DiscoverHotCell.h"
 #import <UIImageView+WebCache.h>
 #import "AppTools.h"
+#import <Masonry.h>
 
 @implementation DiscoverHotCell
 
@@ -57,11 +58,18 @@
 
     if (_note != note) {
         _note = note;
-        
-        [self.mind_pic_small sd_setImageWithURL:[NSURL URLWithString:[note valueForKey:@"mind_pic_small"]] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-        self.mind_pic_small.contentMode = UIViewContentModeScaleAspectFill;
-        [self.mind_pic_small setClipsToBounds:YES];
-        
+//        
+//        if ([note valueForKey:@"mind_pic_small"] == nil) {
+////            self.mind_pic_small = nil;
+//            self.mind_pic_small.hidden = YES;
+//            self.isH = 0;
+//        }else {
+//            [self.mind_pic_small sd_setImageWithURL:[NSURL URLWithString:[note valueForKey:@"mind_pic_small"]] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+        [self.mind_pic_small sd_setImageWithURL:[NSURL URLWithString:[note valueForKey:@"mind_pic_small"]]];
+            self.mind_pic_small.contentMode = UIViewContentModeScaleAspectFill;
+            [self.mind_pic_small setClipsToBounds:YES];
+//        }
+    
         // 时间戳转换
         // 用户发表时间
         NSString *timeS = [NSString stringWithFormat:@"%@", [note valueForKey:@"add_time"]];
@@ -117,7 +125,7 @@
 }
 
 #pragma mark cell 自适应高度
-+ (CGFloat)heightWithNoteStr:(NSString *)noteStr commentStr:(NSString *)commentStr{
++ (CGFloat)heightWithNoteStr:(NSString *)noteStr commentStr:(NSString *)commentStr mind_pic_small:(NSString *)mind_pic_small{
 
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     
@@ -127,21 +135,38 @@
     UIFont *commentFont = [UIFont systemFontOfSize:17];
     CGFloat commentHeight = [AppTools heightWithString:commentStr width:width font:commentFont];
     
-    return noteHeight + 10 + commentHeight;
+    CGFloat imageHeight;
+    
+    if (mind_pic_small == NULL) {
+        imageHeight = 0;
+    }
+    else
+        imageHeight = 350;
+    
+    return noteHeight + 10 + commentHeight + imageHeight;
 }
 
 // 视图改变的时候调用
-- (void)layoutSubviews {
+//- (void)layoutSubviews {
+//
+//    if (self.note != nil) {
+//        CGFloat width = self.frame.size.width;
+//        
+//        // 设置文本详情的frame
+//        CGFloat noteHeight = 0.0;
+//        noteHeight = [AppTools heightWithString:[self.note valueForKey:@"mind_note"] width:width font:self.mind_note.font];
+//        self.mind_note.frame = CGRectMake(0, 450, width, noteHeight);
+//    }
+//
+//}
 
-    if (self.note != nil) {
-        CGFloat width = self.frame.size.width;
-        
-        // 设置文本详情的frame
-        CGFloat noteHeight = 0.0;
-        noteHeight = [AppTools heightWithString:[self.note valueForKey:@"mind_note"] width:width font:self.mind_note.font];
-        self.mind_note.frame = CGRectMake(0, 450, width, noteHeight);
-    }
+//- (float)getAutoCellHeight {
+//
+//    [self layoutIfNeeded];
+//    
+//    return self.mind_note.frame.origin.y + self.mind_note.frame.size.height + 10;
+//    
+//}
 
-}
 
 @end
