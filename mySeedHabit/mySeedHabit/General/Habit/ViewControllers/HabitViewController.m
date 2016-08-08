@@ -43,7 +43,7 @@
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
     NSDictionary *parameters = @{
-                                 @"user_id":@1850878
+                                 @"user_id":@1850869
                                  };
     [session POST:APIHabitList parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         for (NSDictionary *dic in responseObject[@"data"][@"habits"]) {
@@ -111,6 +111,9 @@
     HabitDetailsViewController *habitDetailsVC = [[HabitDetailsViewController alloc]init];
     HabitsModel *habits = self.habiesArray[indexPath.row];
     habitDetailsVC.titleStr = habits.name;
+    // 不能用点语法  把习惯id跟标题一起传过去
+    habitDetailsVC.habit_idStr = [habits valueForKey:@"idx"];
+    NSLog(@"%@", [habits valueForKey:@"idx"]);
     [self.navigationController pushViewController:habitDetailsVC animated:YES];
 }
 

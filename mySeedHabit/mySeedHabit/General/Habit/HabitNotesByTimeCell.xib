@@ -70,15 +70,6 @@
                                     <constraint firstAttribute="height" constant="300" id="sxf-nR-NzE"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mind_note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljA-gW-xPI">
-                                <rect key="frame" x="10" y="405" width="406" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="bnf-bx-Ot7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03F-Ni-ex4">
                                 <rect key="frame" x="20" y="445" width="20" height="20"/>
                                 <constraints>
@@ -186,6 +177,15 @@
                                 <rect key="frame" x="10" y="485" width="406" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="bJA-Rw-xfQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mind_note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljA-gW-xPI">
+                                <rect key="frame" x="10" y="405" width="406" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="bnf-bx-Ot7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

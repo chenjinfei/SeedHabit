@@ -98,7 +98,7 @@
     UINib *nib = [UINib nibWithNibName:@"HabitNotesByTimeCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"habit"];
     
-    // 自定义返回按钮 详情
+    // 自定义返回按钮
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 0, 30, 30);
     [backBtn setImage:[UIImage imageNamed:@"left_32.png"] forState:UIControlStateNormal];
@@ -119,10 +119,13 @@
 - (void)getData
 {
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    // 此处post所需的参数习惯id从上一个页面通过属性传值获取,获取到的是字符串类型,相应的要转换为NSNumber类型
+    NSInteger num = [self.habit_idStr integerValue];
+    NSLog(@"%ld", num);
     NSDictionary *parameters = @{
                                  @"detail":@1,
                                  @"flag":@0,
-                                 @"habit_id":@376,
+                                 @"habit_id":@(num),
                                  @"user_id":@1850869
                                  };
     [session POST:APIHabitNotesByTime parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -196,7 +199,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.usersArr.count;
+    return self.notesArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -220,14 +223,57 @@
     // 添加内容
     cell.mind_note.text = [note valueForKey:@"mind_note"];
     NSLog(@"666666666666666666666%@",cell.mind_note.text);
+    
+    // 通过id来获取个人信息
+    // 个人头像
+    NSMutableArray *user_idArr = [[NSMutableArray alloc]init];
+    for (int i = 0; i < 10; i++) {
+        NSString *user_idStr = [note valueForKey:@"user_id"];
+        [user_idArr addObject:user_idStr];
+    }
+    NSLog(@"%@",user_idArr);
+//    for (NSString *userIdStr in user_idArr) {
+//        HabitUsersModel *users = [[HabitUsersModel alloc]init];
+//    }
+    
+//    for (int i = 0; i < 10; i++) {
+//        if (user_idArr[i]) {
+//            <#statements#>
+//        }
+//    }
+    
+    
+//    HabitUsersModel *users = self.usersArr[indexPath.row];
+//    [cell.avatar_small sd_setImageWithURL:[NSURL URLWithString:users.avatar_small]];
+//    // 个人姓名
+//    cell.nickname.text = users.nickname;
+    
+    // 坚持标题
+//    HabitHabitsModel *habits = self.habitsArr[indexPath.row];
+//    cell.habits = habits;
+    
+//    NSString *check_nameStr = [NSString stringWithFormat:@"坚持"];
+//    cell.mind_note.text = [check_nameStr stringByAppendingString:@"#%@#",[habits valueForKey:@"name"]];
+    
+//    cell.check_name.text = habits.name;
+//    NSString *str = [NSString stringWithFormat:@"坚持"];
+//    self.mind_note.text = [str stringByAppendingFormat:@"#%@#",habits.name];
+    
+    
 //    [cell.mind_pic_small sd_setImageWithURL:[NSURL URLWithString:[note valueForKey:@"mind_pic_small"]]];
-    cell.mind_pic_small.image = [UIImage imageNamed:@"placehold.png"];
+//    NSLog(@"+++++++++------%@",[note valueForKey:@"mind_pic_small"]);
+//    cell.mind_pic_small.image = [UIImage imageNamed:@"placehold.png"];
+    
+//    [cell.avatar_small sd_setImageWithURL:[NSURL URLWithString:[note valueForKey:@"mind_pic_small"]]];
+//    NSLog(@"++++++++*******%@",[note valueForKey:@"mind_pic_small"]);
+    
+    
     
     // 添加的照片
 //    NSURL *url = [NSURL URLWithString:[note valueForKey:@"mind_pic_small"]];
 //    [cell.mind_pic_small sd_setImageWithURL:url placeholderImage:[UIImage imageNamed: @"placehold.png"]];
-    cell.mind_pic_small.contentMode = UIViewContentModeScaleAspectFill;
-    [cell.mind_pic_small setClipsToBounds:YES];
+//    cell.mind_pic_small.contentMode = UIViewContentModeScaleAspectFill;
+//    [cell.mind_pic_small setClipsToBounds:YES];
 //    NSLog(@"666666666666666666666%@",url);
 
     return cell;

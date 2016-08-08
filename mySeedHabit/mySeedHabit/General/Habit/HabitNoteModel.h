@@ -28,4 +28,8 @@
 
 @property (nonatomic, assign) NSInteger add_time;
 
+@property (nonatomic, copy) NSString *mind_pic_small;
+
+@property (nonatomic, copy) NSString *mind_pic_big;
+
 @end
