@@ -16,7 +16,6 @@
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
 		379B01181D54AB3500D75383 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01171D54AB3500D75383 /* MobileCoreServices.framework */; };
 		379B011A1D54AB5E00D75383 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01191D54AB5E00D75383 /* libc++.tbd */; };
-		379B011C1D54CC8500D75383 /* contacts_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 379B011B1D54CC8500D75383 /* contacts_32.png */; };
 		379B011F1D54CEFC00D75383 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 379B011E1D54CEFC00D75383 /* ContactsViewController.m */; };
 		37A93C5A1D5870E300DC8050 /* Comments.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A93C4D1D5870E300DC8050 /* Comments.m */; };
 		37A93C5B1D5870E300DC8050 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A93C4F1D5870E300DC8050 /* Data.m */; };
@@ -711,7 +710,6 @@
 				37DB26EF1D4F46CC00FA5198 /* msg3_32.png in Resources */,
 				37DB26F11D4F46CC00FA5198 /* qq_32.png in Resources */,
 				37DB26DF1D4F46CC00FA5198 /* HabitViewController.xib in Resources */,
-				379B011C1D54CC8500D75383 /* contacts_32.png in Resources */,
 				37DB26EE1D4F46CC00FA5198 /* msg2_32.png in Resources */,
 				37DB26F31D4F46CC00FA5198 /* search_32.png in Resources */,
 				37DB26E51D4F46CC00FA5198 /* RegisterByPhoneViewController.xib in Resources */,
