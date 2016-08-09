@@ -45,4 +45,6 @@
 @property (nonatomic, copy) NSString *avatar_small;
 
 
+@property (nonatomic, assign) NSInteger user_type;
+
 @end

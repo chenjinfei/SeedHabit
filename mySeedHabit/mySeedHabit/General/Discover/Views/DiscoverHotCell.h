@@ -15,8 +15,18 @@
 #import "Comments.h"
 #import "Props.h"
 
-//@interface HabitListCell : UITableViewCell
+@protocol pushDelegate <NSObject>
+
+- (void)propsListPush;
+- (void)treeInfoPush;
+
+@end
+
 @interface DiscoverHotCell : UITableViewCell
+
+@property (nonatomic, assign) id<pushDelegate> delegate;
+@property (strong, nonatomic) IBOutlet UIButton *propListBtn;
+@property (strong, nonatomic) IBOutlet UIButton *treeInfo;
 
 @property (strong, nonatomic) IBOutlet UIView *backgroundV;
 // 用户头像

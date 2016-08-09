@@ -14,6 +14,7 @@
 @property (nonatomic, copy) NSString *habit_id;
 
 @property (nonatomic, copy) NSString *idx;
+//@property (nonatomic, assign) NSInteger idx;
 
 @property (nonatomic, assign) NSInteger status;
 
