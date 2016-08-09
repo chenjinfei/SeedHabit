@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		370C30991D518B8C00C9C8D9 /* down32.png in Resources */ = {isa = PBXBuildFile; fileRef = 370C30981D518B8C00C9C8D9 /* down32.png */; };
 		370C309C1D52052000C9C8D9 /* NSString+CJFString.m in Sources */ = {isa = PBXBuildFile; fileRef = 370C309B1D52052000C9C8D9 /* NSString+CJFString.m */; };
 		37941ED21D551AB700BDC1A7 /* KeyboardObserved.m in Sources */ = {isa = PBXBuildFile; fileRef = 37941ED11D551AB700BDC1A7 /* KeyboardObserved.m */; };
 		37941ED81D56F98C00BDC1A7 /* UIImage+CJFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 37941ED71D56F98C00BDC1A7 /* UIImage+CJFImage.m */; };
@@ -83,7 +82,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		370C30981D518B8C00C9C8D9 /* down32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down32.png; sourceTree = "<group>"; };
 		370C309A1D52052000C9C8D9 /* NSString+CJFString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CJFString.h"; sourceTree = "<group>"; };
 		370C309B1D52052000C9C8D9 /* NSString+CJFString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CJFString.m"; sourceTree = "<group>"; };
 		37941ED01D551AB700BDC1A7 /* KeyboardObserved.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardObserved.h; sourceTree = "<group>"; };
@@ -505,7 +503,6 @@
 			isa = PBXGroup;
 			children = (
 				379B011B1D54CC8500D75383 /* contacts_32.png */,
-				370C30981D518B8C00C9C8D9 /* down32.png */,
 				37DB26C21D4F46CC00FA5198 /* add_32.png */,
 				37DB26C31D4F46CC00FA5198 /* addContact_32.png */,
 				37DB26C41D4F46CC00FA5198 /* discover_32.png */,
@@ -698,7 +695,6 @@
 				37DB26F41D4F46CC00FA5198 /* setup_32.png in Resources */,
 				37DB26E11D4F46CC00FA5198 /* MessageViewController.xib in Resources */,
 				37DB26F61D4F46CC00FA5198 /* time_32.png in Resources */,
-				370C30991D518B8C00C9C8D9 /* down32.png in Resources */,
 				37DB26F51D4F46CC00FA5198 /* sina_32.png in Resources */,
 				37DB26F21D4F46CC00FA5198 /* right_32.png in Resources */,
 				37A93C6A1D5870FE00DC8050 /* DiscoverHotCell.xib in Resources */,
