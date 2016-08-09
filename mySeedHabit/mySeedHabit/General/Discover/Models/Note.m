@@ -16,7 +16,7 @@
 - (void)setValue:(id)value forKey:(NSString *)key{
     [super setValue:value forKey:key];
     if ([key isEqualToString:@"id"]) {
-        self.idx = (NSInteger)[NSString stringWithFormat:@"%@", value];
+        self.idx = [NSString stringWithFormat:@"%@", value];
     }
 }
 

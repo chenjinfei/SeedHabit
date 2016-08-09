@@ -58,6 +58,15 @@
 		37DB27121D4F9B7200FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		37DB27151D50D3AA00FA5198 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		3EAAD7E48128F4953AD5DCAB /* libPods-mySeedHabit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 157AE9DB11DE022A9D155F7F /* libPods-mySeedHabit.a */; };
+		3F37F9801D59D58A00228F34 /* TreeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F37F97F1D59D58A00228F34 /* TreeInfo.m */; settings = {ASSET_TAGS = (); }; };
+		3F37F9841D59D69F00228F34 /* TreeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F37F9821D59D69F00228F34 /* TreeInfoViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3F37F9851D59D69F00228F34 /* TreeInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F37F9831D59D69F00228F34 /* TreeInfoViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		3F4112191D59891500FA3A57 /* PropsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4112171D59891500FA3A57 /* PropsListViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3F41121A1D59891500FA3A57 /* PropsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F4112181D59891500FA3A57 /* PropsListViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		3F41121E1D59899200FA3A57 /* PropsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F41121C1D59899200FA3A57 /* PropsListTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		3F41121F1D59899200FA3A57 /* PropsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F41121D1D59899200FA3A57 /* PropsListTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		3F4112221D598CEB00FA3A57 /* 同好关注@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F4112201D598CEB00FA3A57 /* 同好关注@2x.png */; settings = {ASSET_TAGS = (); }; };
+		3F4112231D598CEB00FA3A57 /* 同好取消关注@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F4112211D598CEB00FA3A57 /* 同好取消关注@2x.png */; settings = {ASSET_TAGS = (); }; };
 		3F5C82FB1D58686B0034D93C /* comment_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C82F51D58686B0034D93C /* comment_32.png */; settings = {ASSET_TAGS = (); }; };
 		3F5C82FC1D58686B0034D93C /* heard_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C82F61D58686B0034D93C /* heard_32.png */; settings = {ASSET_TAGS = (); }; };
 		3F5C82FD1D58686B0034D93C /* heart2_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C82F71D58686B0034D93C /* heart2_32.png */; settings = {ASSET_TAGS = (); }; };
@@ -72,6 +81,7 @@
 		3F5C83151D5868E20034D93C /* Props.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C830D1D5868E20034D93C /* Props.m */; settings = {ASSET_TAGS = (); }; };
 		3F5C83161D5868E20034D93C /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C830F1D5868E20034D93C /* Users.m */; settings = {ASSET_TAGS = (); }; };
 		3F5C83181D5871B30034D93C /* seeds_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C83171D5871B30034D93C /* seeds_32.png */; settings = {ASSET_TAGS = (); }; };
+		3F5C831D1D58B3480034D93C /* 搜索@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C831C1D58B3480034D93C /* 搜索@2x.png */; settings = {ASSET_TAGS = (); }; };
 		3F6850751D5332D70004C1BC /* heart_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F6850711D5332D70004C1BC /* heart_32.png */; settings = {ASSET_TAGS = (); }; };
 		3F9634881D558136005432CC /* AppTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9634841D558136005432CC /* AppTools.m */; settings = {ASSET_TAGS = (); }; };
 		3F9634891D558136005432CC /* DiscoverHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9634861D558136005432CC /* DiscoverHotCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -142,6 +152,19 @@
 		37DB26D01D4F46CC00FA5198 /* time_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_32.png; sourceTree = "<group>"; };
 		37DB26D11D4F46CC00FA5198 /* user_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_32.png; sourceTree = "<group>"; };
 		37DB26D21D4F46CC00FA5198 /* weixin_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weixin_32.png; sourceTree = "<group>"; };
+		3F37F97E1D59D58A00228F34 /* TreeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeInfo.h; sourceTree = "<group>"; };
+		3F37F97F1D59D58A00228F34 /* TreeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeInfo.m; sourceTree = "<group>"; };
+		3F37F9811D59D69F00228F34 /* TreeInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeInfoViewController.h; sourceTree = "<group>"; };
+		3F37F9821D59D69F00228F34 /* TreeInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeInfoViewController.m; sourceTree = "<group>"; };
+		3F37F9831D59D69F00228F34 /* TreeInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TreeInfoViewController.xib; sourceTree = "<group>"; };
+		3F4112161D59891500FA3A57 /* PropsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropsListViewController.h; sourceTree = "<group>"; };
+		3F4112171D59891500FA3A57 /* PropsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropsListViewController.m; sourceTree = "<group>"; };
+		3F4112181D59891500FA3A57 /* PropsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropsListViewController.xib; sourceTree = "<group>"; };
+		3F41121B1D59899200FA3A57 /* PropsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropsListTableViewCell.h; sourceTree = "<group>"; };
+		3F41121C1D59899200FA3A57 /* PropsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropsListTableViewCell.m; sourceTree = "<group>"; };
+		3F41121D1D59899200FA3A57 /* PropsListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PropsListTableViewCell.xib; sourceTree = "<group>"; };
+		3F4112201D598CEB00FA3A57 /* 同好关注@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "同好关注@2x.png"; sourceTree = "<group>"; };
+		3F4112211D598CEB00FA3A57 /* 同好取消关注@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "同好取消关注@2x.png"; sourceTree = "<group>"; };
 		3F5C82F51D58686B0034D93C /* comment_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment_32.png; sourceTree = "<group>"; };
 		3F5C82F61D58686B0034D93C /* heard_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heard_32.png; sourceTree = "<group>"; };
 		3F5C82F71D58686B0034D93C /* heart2_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart2_32.png; sourceTree = "<group>"; };
@@ -163,6 +186,7 @@
 		3F5C830E1D5868E20034D93C /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
 		3F5C830F1D5868E20034D93C /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
 		3F5C83171D5871B30034D93C /* seeds_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeds_32.png; sourceTree = "<group>"; };
+		3F5C831C1D58B3480034D93C /* 搜索@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索@2x.png"; sourceTree = "<group>"; };
 		3F6850711D5332D70004C1BC /* heart_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_32.png; sourceTree = "<group>"; };
 		3F9634831D558136005432CC /* AppTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTools.h; sourceTree = "<group>"; };
 		3F9634841D558136005432CC /* AppTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTools.m; sourceTree = "<group>"; };
@@ -347,6 +371,12 @@
 				37DB269D1D4F46CC00FA5198 /* DiscoverViewController.h */,
 				37DB269E1D4F46CC00FA5198 /* DiscoverViewController.m */,
 				37DB269F1D4F46CC00FA5198 /* DiscoverViewController.xib */,
+				3F4112161D59891500FA3A57 /* PropsListViewController.h */,
+				3F4112171D59891500FA3A57 /* PropsListViewController.m */,
+				3F4112181D59891500FA3A57 /* PropsListViewController.xib */,
+				3F37F9811D59D69F00228F34 /* TreeInfoViewController.h */,
+				3F37F9821D59D69F00228F34 /* TreeInfoViewController.m */,
+				3F37F9831D59D69F00228F34 /* TreeInfoViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -491,6 +521,9 @@
 		37DB26C11D4F46CC00FA5198 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3F4112201D598CEB00FA3A57 /* 同好关注@2x.png */,
+				3F4112211D598CEB00FA3A57 /* 同好取消关注@2x.png */,
+				3F5C831C1D58B3480034D93C /* 搜索@2x.png */,
 				3F5C83171D5871B30034D93C /* seeds_32.png */,
 				3F5C82F51D58686B0034D93C /* comment_32.png */,
 				3F5C82F61D58686B0034D93C /* heard_32.png */,
@@ -580,6 +613,8 @@
 				3F5C830D1D5868E20034D93C /* Props.m */,
 				3F5C830E1D5868E20034D93C /* Users.h */,
 				3F5C830F1D5868E20034D93C /* Users.m */,
+				3F37F97E1D59D58A00228F34 /* TreeInfo.h */,
+				3F37F97F1D59D58A00228F34 /* TreeInfo.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -594,6 +629,9 @@
 				3F9634851D558136005432CC /* DiscoverHotCell.h */,
 				3F9634861D558136005432CC /* DiscoverHotCell.m */,
 				3F9634871D558136005432CC /* DiscoverHotCell.xib */,
+				3F41121B1D59899200FA3A57 /* PropsListTableViewCell.h */,
+				3F41121C1D59899200FA3A57 /* PropsListTableViewCell.m */,
+				3F41121D1D59899200FA3A57 /* PropsListTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -677,6 +715,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37DB26831D4F40A600FA5198 /* LaunchScreen.storyboard in Resources */,
+				3F4112231D598CEB00FA3A57 /* 同好取消关注@2x.png in Resources */,
 				37DB26EA1D4F46CC00FA5198 /* discover_32.png in Resources */,
 				37DB26E81D4F46CC00FA5198 /* add_32.png in Resources */,
 				37DB26F41D4F46CC00FA5198 /* setup_32.png in Resources */,
@@ -685,6 +724,7 @@
 				3F5C82FB1D58686B0034D93C /* comment_32.png in Resources */,
 				37DB26F61D4F46CC00FA5198 /* time_32.png in Resources */,
 				37DB26F51D4F46CC00FA5198 /* sina_32.png in Resources */,
+				3F41121F1D59899200FA3A57 /* PropsListTableViewCell.xib in Resources */,
 				37DB26F21D4F46CC00FA5198 /* right_32.png in Resources */,
 				3F5C82FD1D58686B0034D93C /* heart2_32.png in Resources */,
 				3F5C82FC1D58686B0034D93C /* heard_32.png in Resources */,
@@ -692,15 +732,19 @@
 				37DB26DD1D4F46CC00FA5198 /* DiscoverViewController.xib in Resources */,
 				37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */,
 				3F5C83181D5871B30034D93C /* seeds_32.png in Resources */,
+				3F5C831D1D58B3480034D93C /* 搜索@2x.png in Resources */,
 				37DB26ED1D4F46CC00FA5198 /* message_32.png in Resources */,
 				37DB26F81D4F46CC00FA5198 /* weixin_32.png in Resources */,
 				37DB26EB1D4F46CC00FA5198 /* habit_32.png in Resources */,
 				3F5C83001D58686B0034D93C /* placeholder.png in Resources */,
 				3FFBED9A1D52EBD50088D84D /* headerImage.jpg in Resources */,
 				37DB26E71D4F46CC00FA5198 /* RegisterDataViewController.xib in Resources */,
+				3F41121A1D59891500FA3A57 /* PropsListViewController.xib in Resources */,
 				37DB26F01D4F46CC00FA5198 /* msg_32.png in Resources */,
 				37DB26E91D4F46CC00FA5198 /* addContact_32.png in Resources */,
+				3F37F9851D59D69F00228F34 /* TreeInfoViewController.xib in Resources */,
 				37DB26F71D4F46CC00FA5198 /* user_32.png in Resources */,
+				3F4112221D598CEB00FA3A57 /* 同好关注@2x.png in Resources */,
 				37DB26EF1D4F46CC00FA5198 /* msg3_32.png in Resources */,
 				37DB26F11D4F46CC00FA5198 /* qq_32.png in Resources */,
 				37DB26DF1D4F46CC00FA5198 /* HabitViewController.xib in Resources */,
@@ -781,16 +825,20 @@
 				3F5C83121D5868E20034D93C /* Habits.m in Sources */,
 				37DB26E61D4F46CC00FA5198 /* RegisterDataViewController.m in Sources */,
 				3F5C83101D5868E20034D93C /* Comments.m in Sources */,
+				3F4112191D59891500FA3A57 /* PropsListViewController.m in Sources */,
 				37DB27151D50D3AA00FA5198 /* (null) in Sources */,
 				37DB26E21D4F46CC00FA5198 /* LoginViewController.m in Sources */,
+				3F37F9841D59D69F00228F34 /* TreeInfoViewController.m in Sources */,
 				37DB26751D4F40A600FA5198 /* main.m in Sources */,
 				3F9634881D558136005432CC /* AppTools.m in Sources */,
+				3F41121E1D59899200FA3A57 /* PropsListTableViewCell.m in Sources */,
 				3F5C83151D5868E20034D93C /* Props.m in Sources */,
 				3FFBED971D52EA900088D84D /* StartGifView.m in Sources */,
 				3F9634891D558136005432CC /* DiscoverHotCell.m in Sources */,
 				37DB26DB1D4F46CC00FA5198 /* UserManager.m in Sources */,
 				3FFBED941D52EA6E0088D84D /* MyConcernTableViewController.m in Sources */,
 				3FFBED911D52EA6E0088D84D /* EditPersonalTableViewCell.m in Sources */,
+				3F37F9801D59D58A00228F34 /* TreeInfo.m in Sources */,
 				3F5C83111D5868E20034D93C /* Data.m in Sources */,
 				3F9634961D558A08005432CC /* YHJTabPageScrollView.m in Sources */,
 				37DB26E01D4F46CC00FA5198 /* MessageViewController.m in Sources */,
