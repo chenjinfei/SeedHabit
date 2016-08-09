@@ -11,7 +11,6 @@
 #import <UIImageView+WebCache.h>
 
 #import "UserManager.h"
-#import "DrawerViewController.h"
 
 #import <WeiboUser.h>
 

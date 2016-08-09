@@ -14,6 +14,11 @@
 // 友盟分享url
 #define AppShareUrlUmeng @"http://www.umeng.com/social"
 
+// 环信AppKey
+#define AppKeyEM @"lanoucjf#seedhabit"
+// 环信开发证书名称
+#define AppApnsCertName @"seedHabitCertificate"
+
 // 微信AppId
 #define WeixinAppId @"wxd930ea5d5a258f4f"
 // 微信AppSecret

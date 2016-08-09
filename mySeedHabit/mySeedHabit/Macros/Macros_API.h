@@ -31,7 +31,7 @@
 #define APILogout                   [APIUser stringByAppendingString:@"logout"]
 // 用户信息更新
 #define APIUserUpdate                  [APIUser stringByAppendingString:@"update"]
-// 我的联系人、关注我的人
+// 我的联系人、互相关注的好友列表
 #define APIFollowedList                [APIUser stringByAppendingString:@"getFollowedList"]
 // 搜索用户
 #define APIUserSearch                  [APIUser stringByAppendingString:@"searchUser"]

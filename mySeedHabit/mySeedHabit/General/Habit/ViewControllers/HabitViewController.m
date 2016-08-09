@@ -10,6 +10,8 @@
 
 @interface HabitViewController ()
 
+@property (strong, nonatomic) IBOutlet UILabel *username;
+
 @end
 
 @implementation HabitViewController
