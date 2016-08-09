@@ -50,7 +50,7 @@
         }
     }
     else {
-        [self sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:placeHolderStr] completed:nil];
+        [self sd_setImageWithURL:url placeholderImage:[[UIImage imageNamed:placeHolderStr] circleImage] completed:nil];
     }
 }
 

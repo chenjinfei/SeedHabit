@@ -37,6 +37,20 @@
 		37A93C6A1D5870FE00DC8050 /* DiscoverHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37A93C651D5870FE00DC8050 /* DiscoverHotCell.xib */; };
 		37A93C6B1D5870FE00DC8050 /* YHJTabPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A93C671D5870FE00DC8050 /* YHJTabPageScrollView.m */; };
 		37A93C6E1D5886EF00DC8050 /* UserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A93C6D1D5886EF00DC8050 /* UserCenterViewController.m */; };
+		37D799B61D59709F00019B51 /* setup_white_32_cjf.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D799B51D59709F00019B51 /* setup_white_32_cjf.png */; };
+		37D799B81D59727700019B51 /* addContact_white_32_cjf.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D799B71D59727700019B51 /* addContact_white_32_cjf.png */; };
+		37D799BB1D59760300019B51 /* lady_orange_32_cjf.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D799B91D59760300019B51 /* lady_orange_32_cjf.png */; };
+		37D799BC1D59760300019B51 /* man_orange_32_cjf.png in Resources */ = {isa = PBXBuildFile; fileRef = 37D799BA1D59760300019B51 /* man_orange_32_cjf.png */; };
+		37D799C01D5978D900019B51 /* UserSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D799BE1D5978D900019B51 /* UserSetupViewController.m */; };
+		37D799C11D5978D900019B51 /* UserSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37D799BF1D5978D900019B51 /* UserSetupViewController.xib */; };
+		37D799C81D597E1700019B51 /* UserInfo_LabelImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37D799C71D597E1700019B51 /* UserInfo_LabelImage.xib */; };
+		37D799CB1D597E2B00019B51 /* UserInfo_LabelImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D799CA1D597E2B00019B51 /* UserInfo_LabelImage.m */; };
+		37D799D21D59869F00019B51 /* HabitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D799D11D59869F00019B51 /* HabitModel.m */; };
+		37D799D51D59897900019B51 /* CJFTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D799D41D59897900019B51 /* CJFTools.m */; };
+		37D799DA1D59AB7000019B51 /* AddFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D799D81D59AB7000019B51 /* AddFriendsViewController.m */; };
+		37D799DB1D59AB7000019B51 /* AddFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37D799D91D59AB7000019B51 /* AddFriendsViewController.xib */; };
+		37D799DF1D59FDD900019B51 /* UserSearchList_TBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D799DD1D59FDD900019B51 /* UserSearchList_TBCell.m */; };
+		37D799E01D59FDD900019B51 /* UserSearchList_TBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37D799DE1D59FDD900019B51 /* UserSearchList_TBCell.xib */; };
 		37DB26751D4F40A600FA5198 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB26741D4F40A600FA5198 /* main.m */; };
 		37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37DB267F1D4F40A600FA5198 /* Assets.xcassets */; };
 		37DB26831D4F40A600FA5198 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26811D4F40A600FA5198 /* LaunchScreen.storyboard */; };
@@ -138,6 +152,27 @@
 		37A93C671D5870FE00DC8050 /* YHJTabPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHJTabPageScrollView.m; sourceTree = "<group>"; };
 		37A93C6C1D5886EF00DC8050 /* UserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCenterViewController.h; sourceTree = "<group>"; };
 		37A93C6D1D5886EF00DC8050 /* UserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterViewController.m; sourceTree = "<group>"; };
+		37D799B51D59709F00019B51 /* setup_white_32_cjf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setup_white_32_cjf.png; sourceTree = "<group>"; };
+		37D799B71D59727700019B51 /* addContact_white_32_cjf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addContact_white_32_cjf.png; sourceTree = "<group>"; };
+		37D799B91D59760300019B51 /* lady_orange_32_cjf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lady_orange_32_cjf.png; sourceTree = "<group>"; };
+		37D799BA1D59760300019B51 /* man_orange_32_cjf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man_orange_32_cjf.png; sourceTree = "<group>"; };
+		37D799BD1D5978D900019B51 /* UserSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSetupViewController.h; sourceTree = "<group>"; };
+		37D799BE1D5978D900019B51 /* UserSetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSetupViewController.m; sourceTree = "<group>"; };
+		37D799BF1D5978D900019B51 /* UserSetupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSetupViewController.xib; sourceTree = "<group>"; };
+		37D799C71D597E1700019B51 /* UserInfo_LabelImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfo_LabelImage.xib; sourceTree = "<group>"; };
+		37D799C91D597E2B00019B51 /* UserInfo_LabelImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo_LabelImage.h; sourceTree = "<group>"; };
+		37D799CA1D597E2B00019B51 /* UserInfo_LabelImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo_LabelImage.m; sourceTree = "<group>"; };
+		37D799D01D59869F00019B51 /* HabitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitModel.h; sourceTree = "<group>"; };
+		37D799D11D59869F00019B51 /* HabitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitModel.m; sourceTree = "<group>"; };
+		37D799D31D59897900019B51 /* CJFTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CJFTools.h; path = mySeedHabit/General/Habit/Models/CJFTools.h; sourceTree = SOURCE_ROOT; };
+		37D799D41D59897900019B51 /* CJFTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CJFTools.m; path = mySeedHabit/General/Habit/Models/CJFTools.m; sourceTree = SOURCE_ROOT; };
+		37D799D61D59A13000019B51 /* Macros_UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros_UI.h; sourceTree = "<group>"; };
+		37D799D71D59AB7000019B51 /* AddFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendsViewController.h; sourceTree = "<group>"; };
+		37D799D81D59AB7000019B51 /* AddFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendsViewController.m; sourceTree = "<group>"; };
+		37D799D91D59AB7000019B51 /* AddFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendsViewController.xib; sourceTree = "<group>"; };
+		37D799DC1D59FDD900019B51 /* UserSearchList_TBCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSearchList_TBCell.h; sourceTree = "<group>"; };
+		37D799DD1D59FDD900019B51 /* UserSearchList_TBCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSearchList_TBCell.m; sourceTree = "<group>"; };
+		37D799DE1D59FDD900019B51 /* UserSearchList_TBCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSearchList_TBCell.xib; sourceTree = "<group>"; };
 		37DB26701D4F40A600FA5198 /* mySeedHabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mySeedHabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DB26741D4F40A600FA5198 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		37DB267F1D4F40A600FA5198 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -246,6 +281,12 @@
 				378A15CE1D58F489004B86EC /* UserInfo_TBHeaderView.h */,
 				378A15CF1D58F489004B86EC /* UserInfo_TBHeaderView.m */,
 				378A15CC1D58F473004B86EC /* UserInfo_TBHeaderView.xib */,
+				37D799C91D597E2B00019B51 /* UserInfo_LabelImage.h */,
+				37D799CA1D597E2B00019B51 /* UserInfo_LabelImage.m */,
+				37D799C71D597E1700019B51 /* UserInfo_LabelImage.xib */,
+				37D799DC1D59FDD900019B51 /* UserSearchList_TBCell.h */,
+				37D799DD1D59FDD900019B51 /* UserSearchList_TBCell.m */,
+				37D799DE1D59FDD900019B51 /* UserSearchList_TBCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -255,6 +296,15 @@
 			children = (
 				379B010E1D5477C300D75383 /* SeedUser.h */,
 				379B010F1D5477C300D75383 /* SeedUser.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		37D799CF1D59869F00019B51 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				37D799D01D59869F00019B51 /* HabitModel.h */,
+				37D799D11D59869F00019B51 /* HabitModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -401,6 +451,7 @@
 		37DB26A01D4F46CC00FA5198 /* Habit */ = {
 			isa = PBXGroup;
 			children = (
+				37D799CF1D59869F00019B51 /* Models */,
 				3F21C5341D5178B4000D86D1 /* Vlews */,
 				37DB26A11D4F46CC00FA5198 /* ViewControllers */,
 			);
@@ -492,6 +543,12 @@
 				37DB26B81D4F46CC00FA5198 /* RegisterDataViewController.xib */,
 				37A93C6C1D5886EF00DC8050 /* UserCenterViewController.h */,
 				37A93C6D1D5886EF00DC8050 /* UserCenterViewController.m */,
+				37D799BD1D5978D900019B51 /* UserSetupViewController.h */,
+				37D799BE1D5978D900019B51 /* UserSetupViewController.m */,
+				37D799BF1D5978D900019B51 /* UserSetupViewController.xib */,
+				37D799D71D59AB7000019B51 /* AddFriendsViewController.h */,
+				37D799D81D59AB7000019B51 /* AddFriendsViewController.m */,
+				37D799D91D59AB7000019B51 /* AddFriendsViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -499,6 +556,8 @@
 		37DB26B91D4F46CC00FA5198 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				37D799D31D59897900019B51 /* CJFTools.h */,
+				37D799D41D59897900019B51 /* CJFTools.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -506,6 +565,7 @@
 		37DB26BA1D4F46CC00FA5198 /* Macros */ = {
 			isa = PBXGroup;
 			children = (
+				37D799D61D59A13000019B51 /* Macros_UI.h */,
 				37DB26BB1D4F46CC00FA5198 /* AppKey.h */,
 				37DB26BC1D4F46CC00FA5198 /* CJF_Global.h */,
 				37DB26BD1D4F46CC00FA5198 /* Macros_API.h */,
@@ -535,6 +595,10 @@
 		37DB26C11D4F46CC00FA5198 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				37D799B91D59760300019B51 /* lady_orange_32_cjf.png */,
+				37D799BA1D59760300019B51 /* man_orange_32_cjf.png */,
+				37D799B71D59727700019B51 /* addContact_white_32_cjf.png */,
+				37D799B51D59709F00019B51 /* setup_white_32_cjf.png */,
 				373F5BB31D581EA6009F8556 /* placeHolder.png */,
 				379B011B1D54CC8500D75383 /* contacts_32.png */,
 				370C30981D518B8C00C9C8D9 /* down32.png */,
@@ -728,8 +792,11 @@
 				37DB26EA1D4F46CC00FA5198 /* discover_32.png in Resources */,
 				37DB26E81D4F46CC00FA5198 /* add_32.png in Resources */,
 				37DB26F41D4F46CC00FA5198 /* setup_32.png in Resources */,
+				37D799DB1D59AB7000019B51 /* AddFriendsViewController.xib in Resources */,
+				37D799B61D59709F00019B51 /* setup_white_32_cjf.png in Resources */,
 				37DB26E11D4F46CC00FA5198 /* MessageViewController.xib in Resources */,
 				37DB26F61D4F46CC00FA5198 /* time_32.png in Resources */,
+				37D799C81D597E1700019B51 /* UserInfo_LabelImage.xib in Resources */,
 				370C30991D518B8C00C9C8D9 /* down32.png in Resources */,
 				373F5BB41D581EA6009F8556 /* placeHolder.png in Resources */,
 				37DB26F51D4F46CC00FA5198 /* sina_32.png in Resources */,
@@ -742,14 +809,19 @@
 				37DB26F81D4F46CC00FA5198 /* weixin_32.png in Resources */,
 				37DB26EB1D4F46CC00FA5198 /* habit_32.png in Resources */,
 				37DB26E71D4F46CC00FA5198 /* RegisterDataViewController.xib in Resources */,
+				37D799BC1D59760300019B51 /* man_orange_32_cjf.png in Resources */,
 				37DB26F01D4F46CC00FA5198 /* msg_32.png in Resources */,
 				37DB26E91D4F46CC00FA5198 /* addContact_32.png in Resources */,
 				37DB26F71D4F46CC00FA5198 /* user_32.png in Resources */,
 				37DB26EF1D4F46CC00FA5198 /* msg3_32.png in Resources */,
 				37DB26F11D4F46CC00FA5198 /* qq_32.png in Resources */,
+				37D799BB1D59760300019B51 /* lady_orange_32_cjf.png in Resources */,
 				37DB26DF1D4F46CC00FA5198 /* HabitViewController.xib in Resources */,
+				37D799B81D59727700019B51 /* addContact_white_32_cjf.png in Resources */,
 				378A15CB1D58F43D004B86EC /* UserHaBitList_TBCell.xib in Resources */,
 				379B011C1D54CC8500D75383 /* contacts_32.png in Resources */,
+				37D799E01D59FDD900019B51 /* UserSearchList_TBCell.xib in Resources */,
+				37D799C11D5978D900019B51 /* UserSetupViewController.xib in Resources */,
 				378A15CD1D58F473004B86EC /* UserInfo_TBHeaderView.xib in Resources */,
 				37DB26EE1D4F46CC00FA5198 /* msg2_32.png in Resources */,
 				37DB26F31D4F46CC00FA5198 /* search_32.png in Resources */,
@@ -813,6 +885,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37A93C5C1D5870E300DC8050 /* Habits.m in Sources */,
+				37D799D51D59897900019B51 /* CJFTools.m in Sources */,
 				37A93C601D5870E300DC8050 /* Users.m in Sources */,
 				37DB26D71D4F46CC00FA5198 /* AppDelegate.m in Sources */,
 				378A15CA1D58F43D004B86EC /* UserHaBitList_TBCell.m in Sources */,
@@ -821,9 +894,12 @@
 				378A15C51D58EEED004B86EC /* UIImageView+CJFUIImageView.m in Sources */,
 				37A93C5A1D5870E300DC8050 /* Comments.m in Sources */,
 				37A93C5F1D5870E300DC8050 /* Props.m in Sources */,
+				37D799D21D59869F00019B51 /* HabitModel.m in Sources */,
+				37D799C01D5978D900019B51 /* UserSetupViewController.m in Sources */,
 				37A93C5E1D5870E300DC8050 /* Notes.m in Sources */,
 				378A15D01D58F489004B86EC /* UserInfo_TBHeaderView.m in Sources */,
 				370C309C1D52052000C9C8D9 /* NSString+CJFString.m in Sources */,
+				37D799DA1D59AB7000019B51 /* AddFriendsViewController.m in Sources */,
 				37941ED21D551AB700BDC1A7 /* KeyboardObserved.m in Sources */,
 				37DB26E41D4F46CC00FA5198 /* RegisterByPhoneViewController.m in Sources */,
 				37DB26DC1D4F46CC00FA5198 /* DiscoverViewController.m in Sources */,
@@ -833,12 +909,14 @@
 				37A93C691D5870FE00DC8050 /* DiscoverHotCell.m in Sources */,
 				37DB26E21D4F46CC00FA5198 /* LoginViewController.m in Sources */,
 				37DB26751D4F40A600FA5198 /* main.m in Sources */,
+				37D799CB1D597E2B00019B51 /* UserInfo_LabelImage.m in Sources */,
 				37DB26DB1D4F46CC00FA5198 /* UserManager.m in Sources */,
 				37A93C6E1D5886EF00DC8050 /* UserCenterViewController.m in Sources */,
 				37A93C5B1D5870E300DC8050 /* Data.m in Sources */,
 				37A93C6B1D5870FE00DC8050 /* YHJTabPageScrollView.m in Sources */,
 				37DB26E01D4F46CC00FA5198 /* MessageViewController.m in Sources */,
 				37DB26D81D4F46CC00FA5198 /* CJFTabBarViewController.m in Sources */,
+				37D799DF1D59FDD900019B51 /* UserSearchList_TBCell.m in Sources */,
 				379B01101D5477C300D75383 /* SeedUser.m in Sources */,
 				37DB26DE1D4F46CC00FA5198 /* HabitViewController.m in Sources */,
 				37A93C5D1D5870E300DC8050 /* Note.m in Sources */,

@@ -11,45 +11,45 @@
 @interface SeedUser : NSObject
 
 
-@property (nonatomic, assign) NSNumber *uId;
+@property (nonatomic, strong) NSNumber *uId;
 
 @property (nonatomic, assign) NSInteger status;
 
-@property (nonatomic, copy) NSString *account;
+@property (nonatomic, strong) NSString *account;
 
 @property (nonatomic, assign) NSInteger isHx;
 
 @property (nonatomic, assign) NSInteger account_type;
 
-@property (nonatomic, copy) NSString *friends_count;
+@property (nonatomic, strong) NSString *friends_count;
 
-@property (nonatomic, copy) NSString *avatar_big;
+@property (nonatomic, strong) NSString *avatar_big;
 
-@property (nonatomic, copy) NSString *tel_account;
+@property (nonatomic, strong) NSString *tel_account;
 
-@property (nonatomic, copy) NSString *fans_count;
+@property (nonatomic, strong) NSString *fans_count;
 
 @property (nonatomic, assign) NSInteger relation_with_me;
 
 @property (nonatomic, assign) NSInteger register_time;
 
-@property (nonatomic, copy) NSString *signature;
+@property (nonatomic, strong) NSString *signature;
 
 @property (nonatomic, assign) NSInteger birthday;
 
-@property (nonatomic, copy) NSString *nickname;
+@property (nonatomic, strong) NSString *nickname;
 
-@property (nonatomic, copy) NSString *tel_password;
+@property (nonatomic, strong) NSString *tel_password;
 
 @property (nonatomic, assign) NSInteger gender;
 
-@property (nonatomic, copy) NSString *avatar_small;
+@property (nonatomic, strong) NSString *avatar_small;
 
-@property (nonatomic, copy) NSString *device;
+@property (nonatomic, strong) NSString *device;
 
-@property (nonatomic, copy) NSString *expose_diary;
+@property (nonatomic, strong) NSString *expose_diary;
 
-@property (nonatomic, copy) NSString *qq_account;
+@property (nonatomic, strong) NSString *qq_account;
 
 
 

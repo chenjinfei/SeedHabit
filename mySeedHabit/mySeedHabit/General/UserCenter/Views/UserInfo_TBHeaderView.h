@@ -10,10 +10,17 @@
 
 @interface UserInfo_TBHeaderView : UIView
 
+// 头像
 @property (strong, nonatomic) IBOutlet UIImageView *avatarView;
+// 性别图片
+@property (strong, nonatomic) IBOutlet UIImageView *genderImgView;
+// 习惯数
 @property (strong, nonatomic) IBOutlet UILabel *habitCountView;
+// 关注数
 @property (strong, nonatomic) IBOutlet UILabel *followCountView;
+// 粉丝数
 @property (strong, nonatomic) IBOutlet UILabel *followerCountView;
+// 签名
 @property (strong, nonatomic) IBOutlet UILabel *signatureView;
 
 
