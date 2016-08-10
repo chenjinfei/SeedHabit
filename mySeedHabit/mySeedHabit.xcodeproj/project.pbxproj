@@ -329,6 +329,8 @@
 		3F61A9841D5AD4BA00641AA9 /* UserSetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UserSetupViewController.xib; path = mySeedHabit/General/UserCenter/ViewControllers/UserSetupViewController.xib; sourceTree = "<group>"; };
 		3F851D771D5AD74B00376DAC /* NSString+CJFString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CJFString.m"; sourceTree = "<group>"; };
 		3F851D781D5AD74B00376DAC /* NSString+CJFString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CJFString.h"; sourceTree = "<group>"; };
+		3F851D7B1D5AD93900376DAC /* UserInfo_TBHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UserInfo_TBHeaderView.xib; path = mySeedHabit/General/UserCenter/Views/UserInfo_TBHeaderView.xib; sourceTree = "<group>"; };
+		3F851D7C1D5AD93900376DAC /* UserSearchList_TBCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UserSearchList_TBCell.xib; path = mySeedHabit/General/UserCenter/Views/UserSearchList_TBCell.xib; sourceTree = "<group>"; };
 		3FE238861D54D1E6009D5824 /* left_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_32.png; sourceTree = "<group>"; };
 		3FE238881D54D6D4009D5824 /* into_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = into_32.png; sourceTree = "<group>"; };
 		3FE2388F1D557A8D009D5824 /* tool_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tool_32.png; sourceTree = "<group>"; };
@@ -404,6 +406,8 @@
 		37DB26671D4F40A600FA5198 = {
 			isa = PBXGroup;
 			children = (
+				3F851D7B1D5AD93900376DAC /* UserInfo_TBHeaderView.xib */,
+				3F851D7C1D5AD93900376DAC /* UserSearchList_TBCell.xib */,
 				3F61A9841D5AD4BA00641AA9 /* UserSetupViewController.xib */,
 				3F61A9831D5AD47B00641AA9 /* AddFriendsViewController.xib */,
 				3F61A96E1D5AD3A800641AA9 /* PropsListViewController.m */,
@@ -941,6 +945,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37D799C81D597E1700019B51 /* UserInfo_LabelImage.xib in Resources */,
+				378A15CD1D58F473004B86EC /* UserInfo_TBHeaderView.xib in Resources */,
+				37D799E01D59FDD900019B51 /* UserSearchList_TBCell.xib in Resources */,
 				3F61A9601D5AD23A00641AA9 /* UserSetupViewController.xib in Resources */,
 				3F61A9531D5AD23A00641AA9 /* AddFriendsViewController.xib in Resources */,
 				3F61A9821D5AD3FE00641AA9 /* setup_white_32_cjf.png in Resources */,
@@ -957,7 +964,6 @@
 				3FE238AE1D55C2D8009D5824 /* comment_32.png in Resources */,
 				3F61A97D1D5AD3D000641AA9 /* contacts_32.png in Resources */,
 				37DB26F61D4F46CC00FA5198 /* time_32.png in Resources */,
-				37D799C81D597E1700019B51 /* UserInfo_LabelImage.xib in Resources */,
 				37DB26F51D4F46CC00FA5198 /* sina_32.png in Resources */,
 				37DB26F21D4F46CC00FA5198 /* right_32.png in Resources */,
 				3F61A9801D5AD3D000641AA9 /* man_orange_32_cjf.png in Resources */,
@@ -996,9 +1002,7 @@
 				3F61A97A1D5AD3D000641AA9 /* 同好关注@2x.png in Resources */,
 				3F61A97B1D5AD3D000641AA9 /* 同好取消关注@2x.png in Resources */,
 				378A15CB1D58F43D004B86EC /* UserHaBitList_TBCell.xib in Resources */,
-				37D799E01D59FDD900019B51 /* UserSearchList_TBCell.xib in Resources */,
 				3F61A9571D5AD23A00641AA9 /* LoginViewController.xib in Resources */,
-				378A15CD1D58F473004B86EC /* UserInfo_TBHeaderView.xib in Resources */,
 				37DB26EE1D4F46CC00FA5198 /* msg2_32.png in Resources */,
 				3F61A95D1D5AD23A00641AA9 /* RegisterDataViewController.xib in Resources */,
 				37DB26F31D4F46CC00FA5198 /* search_32.png in Resources */,
