@@ -362,9 +362,10 @@ static BOOL isNewRefresh = 0;
 
     PropsListViewController *propsListVC = [[PropsListViewController alloc] init];
     
+    // 当前用户
     self.user_id = @"1850869";
+    // 发表的用户
     propsListVC.user_id = self.user_id;
-    NSLog(@"%@", self.mind_note_id);
     propsListVC.mind_note_id = self.mind_note_id;
     
     [self.navigationController pushViewController:propsListVC animated:YES];
@@ -390,13 +391,14 @@ static BOOL isNewRefresh = 0;
         }
     }
     
-
     TreeInfoViewController *treeInfoVC = [[TreeInfoViewController alloc] init];
     
+    // 发表的用户
     treeInfoVC.user_id = self.user_id;
+    // 发表的用户的习惯
     treeInfoVC.habit_id = self.habit_id;
+    // 发表的用户的坚持
     treeInfoVC.treeTitle = self.treeTitle;
-    NSLog(@"%@, %@, %@", self.treeTitle, self.habit_id, self.user_id);
     
     [self.navigationController pushViewController:treeInfoVC animated:YES];
 }

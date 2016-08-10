@@ -118,7 +118,6 @@ static UserManager *instance = nil;
 -(void)loginWithInfo:(NSDictionary *)info success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure {
     
     [self.session POST:APILogin parameters:info progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
         // 成功登录，保存当前登录的用户信息
         if ([responseObject[@"status"] intValue] == 0) {
             SeedUser *model = [[SeedUser alloc]init];
@@ -161,6 +160,7 @@ static UserManager *instance = nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         failure(error);
+//        NSLog(@"%@", error);
         
     }];
     
