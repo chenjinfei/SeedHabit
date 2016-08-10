@@ -2,25 +2,24 @@
 //  HabitDetailsViewController.m
 //  mySeedHabit
 //
-//  Created by lanou on 16/8/6.
+//  Created by lanou on 16/8/8.
 //  Copyright © 2016年 Jinfei Chen. All rights reserved.
 //
 
 #import "HabitDetailsViewController.h"
-#import "HabitViewController.h"
 
 #import "HabitNoteModel.h"
 #import "HabitNotesModel.h"
 #import "HabitPropsModel.h"
 #import "HabitCommentsModel.h"
-#import "HabitCheckModel.h"
 #import "HabitUsersModel.h"
+#import "HabitHabitsModel.h"
 #import "HabitNotesByTimeCell.h"
 
+// SDWebImage可以设置为button加背景照片
 #import <UIImageView+WebCache.h>
-
-
-
+#import <UIButton+WebCache.h>
+#import "MJRefresh.h"
 
 @interface HabitDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -32,7 +31,16 @@
 @property (nonatomic,strong)NSMutableArray *usersArr;
 @property (nonatomic,strong)NSMutableArray *habitsArr;
 
+// 是否下拉刷新
+@property (nonatomic,assign)BOOL isRefresh;
+
 @end
+
+// 刷新需要的另外参数
+static BOOL flag = 0;
+
+// 上拉加载需要另外的一个数据
+static NSString *nextStr = nil;
 
 @implementation HabitDetailsViewController
 
@@ -83,6 +91,26 @@
     [super viewDidLoad];
     [self createTableView];
     [self getData];
+    [self TableViewRefresh];
+}
+
+#pragma mark 刷新加载控件
+- (void)TableViewRefresh
+{
+    // 弱引用,可以在里面更改self
+    __weak typeof(self) weakSelf = self;
+    // 默认block方法:设置下拉刷新
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        flag = 0;
+        nextStr = nil;
+        [weakSelf getData];
+    }];
+    
+    // 默认block方法:设置上拉加载
+    self.tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+        flag = 1;
+        [weakSelf getData];
+    }];
 }
 
 #pragma mark 创建tableView
@@ -101,7 +129,7 @@
     // 自定义返回按钮
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 0, 30, 30);
-    [backBtn setImage:[UIImage imageNamed:@"left_32.png"] forState:UIControlStateNormal];
+    [backBtn setImage:[UIImage imageNamed:@"YQNleft_32.png"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem = backItem;
@@ -109,7 +137,7 @@
     // 自定义工具按钮
     UIButton *toolBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     toolBtn.frame = CGRectMake(0, 0, 30, 30);
-    [toolBtn setImage:[UIImage imageNamed:@"tool_32.png"] forState:UIControlStateNormal];
+    [toolBtn setImage:[UIImage imageNamed:@"YQNtool_32.png"] forState:UIControlStateNormal];
     [toolBtn addTarget:self action:@selector(toolAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *toolItem = [[UIBarButtonItem alloc]initWithCustomView:toolBtn];
     self.navigationItem.rightBarButtonItem = toolItem;
@@ -122,14 +150,31 @@
     // 此处post所需的参数习惯id从上一个页面通过属性传值获取,获取到的是字符串类型,相应的要转换为NSNumber类型
     NSInteger num = [self.habit_idStr integerValue];
     NSLog(@"%ld", num);
+    // 刷新状态不同时参数flag的值不一样
+    NSNumber *Flag = [NSNumber numberWithBool:flag];
+    
+    // 设置next_id参数
+    NSInteger next;
+    if (flag == 1) {
+        next = [nextStr integerValue];
+        next--;
+    }
     NSDictionary *parameters = @{
                                  @"detail":@1,
-                                 @"flag":@0,
+                                 @"flag":Flag,
                                  @"habit_id":@(num),
-                                 @"user_id":@1850869
+                                 @"user_id":@1850869,
+                                 @"next_id":@(next)
                                  };
     [session POST:APIHabitNotesByTime parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
+//        NSMutableArray *habitsArray = [[NSMutableArray alloc]initWithArray:self.habitsArr];
+//        NSMutableArray *usersArray = [[NSMutableArray alloc]initWithArray:self.usersArr];
+//        NSMutableArray *notesArray = [[NSMutableArray alloc]initWithArray:self.notesArr];
+//        NSMutableArray *commentsArray = [[NSMutableArray alloc]initWithArray:self.commentsArr];
+//        NSMutableArray *propsArray = [[NSMutableArray alloc]initWithArray:self.propsArr];
+//        NSMutableArray *noteArray = [[NSMutableArray alloc]initWithArray:self.noteArr];
+
         for (NSDictionary *dic in responseObject[@"data"][@"habits"]) {
             HabitHabitsModel *habits = [[HabitHabitsModel alloc]init];
             [habits setValuesForKeysWithDictionary:dic];
@@ -141,18 +186,20 @@
             [users setValuesForKeysWithDictionary:dic1];
             [self.usersArr addObject:users];
         }
-        
         for (NSDictionary *dic2 in responseObject[@"data"][@"notes"]) {
             HabitNotesModel *notes = [[HabitNotesModel alloc]init];
             [notes setValuesForKeysWithDictionary:dic2];
             [self.notesArr addObject:notes];
+            
+            // 评论和点赞是放在数组
             NSArray *arr = [[NSArray alloc]init];
-            arr = [dic2 objectForKey:@"comments"];
+            arr = dic2[@"coments"];
             for (NSDictionary *dic3 in arr) {
                 HabitCommentsModel *comments = [[HabitCommentsModel alloc]init];
                 [comments setValuesForKeysWithDictionary:dic3];
                 [self.commentsArr addObject:comments];
             }
+            
             NSArray *arr1 = [[NSArray alloc]init];
             arr1 = dic2[@"props"];
             for (NSDictionary *dic4 in arr1) {
@@ -160,22 +207,34 @@
                 [props setValuesForKeysWithDictionary:dic4];
                 [self.propsArr addObject:props];
             }
-            NSArray *arr2 = [[NSArray alloc]init];
+            HabitNoteModel *note = [[HabitNoteModel alloc]init];
+            [note setValuesForKeysWithDictionary:dic2[@"note"]];
+            [self.noteArr addObject:note];
             
-            for (NSDictionary *dic5 in arr2) {
-                HabitNoteModel *note = [[HabitNoteModel alloc]init];
-                [note setValuesForKeysWithDictionary:dic5];
-                [self.noteArr addObject:note];
+            // 获取note中最后一个id值,用于在上拉加载参数
+            for (HabitNoteModel *note in self.noteArr) {
+                nextStr = note.idx;
+                NSLog(@"333333333333333%@",nextStr);
             }
+//            [self.habitsArr addObjectsFromArray:habitsArray];
+//            [self.usersArr addObjectsFromArray:usersArray];
+//            [self.notesArr addObjectsFromArray:notesArray];
+//            [self.noteArr addObjectsFromArray:noteArray];
+//            [self.propsArr addObjectsFromArray:propsArray];
+//            [self.commentsArr addObjectsFromArray:commentsArray];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+            // 结束刷新
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
             NSLog(@"----------------------%@",self.usersArr);
             NSLog(@"//////////////////////%@",self.habitsArr);
             NSLog(@"----------------------%@",self.notesArr);
-            NSLog(@"----------------------%@",self.noteArr);
+            NSLog(@"11111111111111111111111%@",self.noteArr);
             NSLog(@"----------------------%@",self.commentsArr);
             NSLog(@"----------------------%@",self.propsArr);
+            NSLog(@"2222222222222222222222%@",nextStr);
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"+++++++++%@",error);
@@ -224,61 +283,163 @@
     cell.mind_note.text = [note valueForKey:@"mind_note"];
     NSLog(@"666666666666666666666%@",cell.mind_note.text);
     
-    // 通过id来获取个人信息
-    // 个人头像
-    NSMutableArray *user_idArr = [[NSMutableArray alloc]init];
-    for (int i = 0; i < 10; i++) {
-        NSString *user_idStr = [note valueForKey:@"user_id"];
-        [user_idArr addObject:user_idStr];
+    // 内容照片
+    [cell.mind_pic_small sd_setImageWithURL:[NSURL URLWithString:[note valueForKey:@"mind_pic_small"]]];
+    
+    for (HabitUsersModel *model in self.usersArr) {
+//        NSLog(@"%@",model);
+        if ([note valueForKey:@"user_id"] == [model valueForKey:@"idx"]) {
+            cell.users = model;
+        }
     }
-    NSLog(@"%@",user_idArr);
-//    for (NSString *userIdStr in user_idArr) {
-//        HabitUsersModel *users = [[HabitUsersModel alloc]init];
+    
+    // 坚持标题 
+    NSLog(@"11111111%@",self.habitsArr);
+    for (HabitHabitsModel *habits in self.habitsArr) {
+        if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
+            cell.habits = habits;
+            NSLog(@"22222%@",cell.habits);
+        }
+    }
+    
+    // 点赞,点赞到底在那一个cell不能由self.propsArr[indexPath.row]决定,而是由notes.props决定,每一行的点赞最多显示6个
+    
+    NSArray *propsArr = [[NSArray alloc]init];
+    propsArr = notes.props;
+    int a = (int)[note valueForKey:@"prop_count"];
+//    switch (a) {
+//            case 1:
+//            for (<#type *object#> in <#collection#>) {
+//                <#statements#>
+//            }
+//            break;
+//            
+//            case 2:
+//            
+//            break;
+//
+//            case 3:
+//            
+//            break;
+//
+//            case 4:
+//            
+//            break;
+//
+//            case 5:
+//            
+//            break;
+//
+//            case 6:
+//            
+//            break;
+//            
+//        default:
+//            break;
 //    }
     
-//    for (int i = 0; i < 10; i++) {
-//        if (user_idArr[i]) {
-//            <#statements#>
+//    NSArray *propsArr = [[NSArray alloc]init];
+//    NSArray *prop_countArr = [NSArray array];
+//    propsArr = notes.props;
+//    prop_countArr = [note valueForKey:@"prop_count"];
+//    NSLog(@"%@,%@",propsArr,prop_countArr);
+//    if (propsArr.count != 0) {
+//        for (int i = 0; i < propsArr.count; i++) {
+//            HabitPropsModel *props = propsArr[i];
+//            for (HabitUsersModel *users in self.usersArr) {
+//                if ([props valueForKey:@"user_id"] == [users valueForKey:@"idx"] && i == 0) {
+//                    [cell.propUser1 sd_setBackgroundImageWithURL:[NSURL URLWithString:[users valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//                }else if ([props valueForKey:@"user_id"] == [users valueForKey:@"idx"] && i == 1){
+//                    [cell.propUser2 sd_setBackgroundImageWithURL:[NSURL URLWithString:[users valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//                }else if ([props valueForKey:@"user_id"] == [users valueForKey:@"idx"] && i == 2){
+//                    [cell.propUser3 sd_setBackgroundImageWithURL:[NSURL URLWithString:[users valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//                }else if ([props valueForKey:@"user_id"] == [users valueForKey:@"idx"] && i == 3){
+//                    [cell.propUser4 sd_setBackgroundImageWithURL:[NSURL URLWithString:[users valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//                }else if ([props valueForKey:@"user_id"] == [users valueForKey:@"idx"] && i == 4){
+//                    [cell.propUser5 sd_setBackgroundImageWithURL:[NSURL URLWithString:[users valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//                }else if ([props valueForKey:@"user_id"] == [users valueForKey:@"idx"] && i == 5){
+//                    [cell.propUser6 sd_setBackgroundImageWithURL:[NSURL URLWithString:[users valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//                }
+//            }
 //        }
 //    }
     
     
-//    HabitUsersModel *users = self.usersArr[indexPath.row];
-//    [cell.avatar_small sd_setImageWithURL:[NSURL URLWithString:users.avatar_small]];
-//    // 个人姓名
-//    cell.nickname.text = users.nickname;
+    
+    
+            
+    
+    
+    
+    
+    
+    
+            
+            
+            
+//            {
+//                [cell.propUser1 sd_setBackgroundImageWithURL:[NSURL URLWithString:[users valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//            }else if ([props valueForKey:@"user_id"] == [users valueForKey:@"idx"] && i == 1){
+//                [cell.propUser2 sd_setBackgroundImageWithURL:[NSURL URLWithString:[users valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//            }else if ([props valueForKey:@"user_id"] == [users valueForKey:@"idx"] && i == 2){
+//                [cell.propUser3 sd_setBackgroundImageWithURL:[NSURL URLWithString:[users valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//            }else if ([props valueForKey:@"user_id"] == [users valueForKey:@"idx"] && i == 3){
+//                [cell.propUser4 sd_setBackgroundImageWithURL:[NSURL URLWithString:[users valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//            }else if ([props valueForKey:@"user_id"] == [users valueForKey:@"idx"] && i == 4){
+//                [cell.propUser5 sd_setBackgroundImageWithURL:[NSURL URLWithString:[users valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//            }else if ([props valueForKey:@"user_id"] == [users valueForKey:@"idx"] && i == 5){
+//                [cell.propUser6 sd_setBackgroundImageWithURL:[NSURL URLWithString:[users valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//            }
+//        }
+//    }
+//}
+
+    
+    
+    // 评论
+    //    HabitUsersModel *users = self.usersArr[indexPath.row];
+    //    [cell.avatar_small sd_setImageWithURL:[NSURL URLWithString:users.avatar_small]];
+    //    // 个人姓名
+    //    cell.nickname.text = users.nickname;
     
     // 坚持标题
-//    HabitHabitsModel *habits = self.habitsArr[indexPath.row];
-//    cell.habits = habits;
+    //    HabitHabitsModel *habits = self.habitsArr[indexPath.row];
+    //    cell.habits = habits;
     
-//    NSString *check_nameStr = [NSString stringWithFormat:@"坚持"];
-//    cell.mind_note.text = [check_nameStr stringByAppendingString:@"#%@#",[habits valueForKey:@"name"]];
+    //    NSString *check_nameStr = [NSString stringWithFormat:@"坚持"];
+    //    cell.mind_note.text = [check_nameStr stringByAppendingString:@"#%@#",[habits valueForKey:@"name"]];
     
-//    cell.check_name.text = habits.name;
-//    NSString *str = [NSString stringWithFormat:@"坚持"];
-//    self.mind_note.text = [str stringByAppendingFormat:@"#%@#",habits.name];
-    
-    
-//    [cell.mind_pic_small sd_setImageWithURL:[NSURL URLWithString:[note valueForKey:@"mind_pic_small"]]];
-//    NSLog(@"+++++++++------%@",[note valueForKey:@"mind_pic_small"]);
-//    cell.mind_pic_small.image = [UIImage imageNamed:@"placehold.png"];
-    
-//    [cell.avatar_small sd_setImageWithURL:[NSURL URLWithString:[note valueForKey:@"mind_pic_small"]]];
-//    NSLog(@"++++++++*******%@",[note valueForKey:@"mind_pic_small"]);
+    //    cell.check_name.text = habits.name;
+    //    NSString *str = [NSString stringWithFormat:@"坚持"];
+    //    self.mind_note.text = [str stringByAppendingFormat:@"#%@#",habits.name];
     
     
+    //    [cell.mind_pic_small sd_setImageWithURL:[NSURL URLWithString:[note valueForKey:@"mind_pic_small"]]];
+    //    NSLog(@"+++++++++------%@",[note valueForKey:@"mind_pic_small"]);
+    //    cell.mind_pic_small.image = [UIImage imageNamed:@"placehold.png"];
+    
+    //    [cell.avatar_small sd_setImageWithURL:[NSURL URLWithString:[note valueForKey:@"mind_pic_small"]]];
+    //    NSLog(@"++++++++*******%@",[note valueForKey:@"mind_pic_small"]);
     
     // 添加的照片
-//    NSURL *url = [NSURL URLWithString:[note valueForKey:@"mind_pic_small"]];
-//    [cell.mind_pic_small sd_setImageWithURL:url placeholderImage:[UIImage imageNamed: @"placehold.png"]];
-//    cell.mind_pic_small.contentMode = UIViewContentModeScaleAspectFill;
-//    [cell.mind_pic_small setClipsToBounds:YES];
-//    NSLog(@"666666666666666666666%@",url);
-
+    //    NSURL *url = [NSURL URLWithString:[note valueForKey:@"mind_pic_small"]];
+    //    [cell.mind_pic_small sd_setImageWithURL:url placeholderImage:[UIImage imageNamed: @"placehold.png"]];
+    //    cell.mind_pic_small.contentMode = UIViewContentModeScaleAspectFill;
+    //    [cell.mind_pic_small setClipsToBounds:YES];
+    //    NSLog(@"666666666666666666666%@",url);
+    
     return cell;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.tabBarController.tabBar.hidden = YES;
+}
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.tabBarController.tabBar.hidden = NO;
+}
 
 @end

@@ -10,7 +10,7 @@
 #import "UserManager.h"
 #import "LoginViewController.h"
 #import "HabitTableViewCell.h"
-#import "HabitsModel.h"
+#import "HabitListModel.h"
 #import "HabitClassifyViewController.h"
 #import "HabitDetailsViewController.h"
 
@@ -47,7 +47,7 @@
                                  };
     [session POST:APIHabitList parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         for (NSDictionary *dic in responseObject[@"data"][@"habits"]) {
-            HabitsModel *habits = [[HabitsModel alloc]init];
+            HabitListModel *habits = [[HabitListModel alloc]init];
             [habits setValuesForKeysWithDictionary:dic];
             [self.habiesArray addObject:habits];
         }
@@ -76,7 +76,7 @@
     // 自定义进入按钮
     UIButton *intoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     intoBtn.frame = CGRectMake(0, 0, 30, 30);
-    [intoBtn setImage:[UIImage imageNamed:@"into_32.png"] forState:UIControlStateNormal];
+    [intoBtn setImage:[UIImage imageNamed:@"YQNinto_32.png"] forState:UIControlStateNormal];
     [intoBtn addTarget:self action:@selector(intoAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *intoItem = [[UIBarButtonItem alloc]initWithCustomView:intoBtn];
     self.navigationItem.rightBarButtonItem = intoItem;
@@ -101,7 +101,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HabitTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"hh"];
-    HabitsModel *habits = self.habiesArray[indexPath.row];
+    HabitListModel *habits = self.habiesArray[indexPath.row];
     cell.habit = habits;
     return cell;
 }
@@ -109,7 +109,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HabitDetailsViewController *habitDetailsVC = [[HabitDetailsViewController alloc]init];
-    HabitsModel *habits = self.habiesArray[indexPath.row];
+    HabitListModel *habits = self.habiesArray[indexPath.row];
     habitDetailsVC.titleStr = habits.name;
     // 不能用点语法  把习惯id跟标题一起传过去
     habitDetailsVC.habit_idStr = [habits valueForKey:@"idx"];

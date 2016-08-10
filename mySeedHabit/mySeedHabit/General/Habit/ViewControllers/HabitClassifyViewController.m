@@ -2,7 +2,7 @@
 //  HabitClassifyViewController.m
 //  mySeedHabit
 //
-//  Created by lanou on 16/8/5.
+//  Created by lanou on 16/8/8.
 //  Copyright © 2016年 Jinfei Chen. All rights reserved.
 //
 
@@ -52,7 +52,7 @@
     // 自定义返回按钮 详情
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     backBtn.frame = CGRectMake(0, 0, 30, 30);
-    [backBtn setImage:[UIImage imageNamed:@"left_32.png"] forState:UIControlStateNormal];
+    [backBtn setImage:[UIImage imageNamed:@"YQNleft_32.png"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem = backItem;

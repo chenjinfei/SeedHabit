@@ -17,8 +17,6 @@
 		37DB26DB1D4F46CC00FA5198 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB26971D4F46CC00FA5198 /* UserManager.m */; };
 		37DB26DC1D4F46CC00FA5198 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB269E1D4F46CC00FA5198 /* DiscoverViewController.m */; };
 		37DB26DD1D4F46CC00FA5198 /* DiscoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37DB269F1D4F46CC00FA5198 /* DiscoverViewController.xib */; };
-		37DB26DE1D4F46CC00FA5198 /* HabitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB26A31D4F46CC00FA5198 /* HabitViewController.m */; };
-		37DB26DF1D4F46CC00FA5198 /* HabitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26A41D4F46CC00FA5198 /* HabitViewController.xib */; };
 		37DB26E01D4F46CC00FA5198 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB26AC1D4F46CC00FA5198 /* MessageViewController.m */; };
 		37DB26E11D4F46CC00FA5198 /* MessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26AD1D4F46CC00FA5198 /* MessageViewController.xib */; };
 		37DB26E21D4F46CC00FA5198 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB26B11D4F46CC00FA5198 /* LoginViewController.m */; };
@@ -66,40 +64,42 @@
 		3F2359BB1D531490004FB340 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2359BA1D531490004FB340 /* HeaderView.m */; settings = {ASSET_TAGS = (); }; };
 		3F2359BD1D5314A9004FB340 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F2359BC1D5314A9004FB340 /* HeaderView.xib */; settings = {ASSET_TAGS = (); }; };
 		3F2359C01D5337E5004FB340 /* MyPersonalTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F2359BF1D5337E5004FB340 /* MyPersonalTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		3F5A1F611D54398700E0DA56 /* HabitsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5A1F601D54398700E0DA56 /* HabitsModel.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8CF1D5ACD8600641AA9 /* HabitCheckModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8AA1D5ACD8600641AA9 /* HabitCheckModel.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8D01D5ACD8600641AA9 /* HabitCommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8AC1D5ACD8600641AA9 /* HabitCommentsModel.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8D11D5ACD8600641AA9 /* HabitHabitsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8AE1D5ACD8600641AA9 /* HabitHabitsModel.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8D21D5ACD8600641AA9 /* HabitListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8B01D5ACD8600641AA9 /* HabitListModel.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8D31D5ACD8600641AA9 /* HabitNoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8B21D5ACD8600641AA9 /* HabitNoteModel.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8D41D5ACD8600641AA9 /* HabitNotesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8B41D5ACD8600641AA9 /* HabitNotesModel.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8D51D5ACD8600641AA9 /* HabitPropsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8B61D5ACD8600641AA9 /* HabitPropsModel.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8D61D5ACD8600641AA9 /* HabitUsersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8B81D5ACD8600641AA9 /* HabitUsersModel.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8D71D5ACD8600641AA9 /* HabitClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8BB1D5ACD8600641AA9 /* HabitClassifyViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8D81D5ACD8600641AA9 /* HabitClassifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F61A8BC1D5ACD8600641AA9 /* HabitClassifyViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		3F61A8D91D5ACD8600641AA9 /* HabitDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8BE1D5ACD8600641AA9 /* HabitDetailsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8DA1D5ACD8600641AA9 /* HabitDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F61A8BF1D5ACD8600641AA9 /* HabitDetailsViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		3F61A8DB1D5ACD8600641AA9 /* HabitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8C11D5ACD8600641AA9 /* HabitViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8DC1D5ACD8600641AA9 /* HabitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F61A8C21D5ACD8600641AA9 /* HabitViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		3F61A8DD1D5ACD8600641AA9 /* HabitCheckInCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8C51D5ACD8600641AA9 /* HabitCheckInCell.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8DE1D5ACD8600641AA9 /* HabitCheckInCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F61A8C61D5ACD8600641AA9 /* HabitCheckInCell.xib */; settings = {ASSET_TAGS = (); }; };
+		3F61A8DF1D5ACD8600641AA9 /* HabitNotesByTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8C81D5ACD8600641AA9 /* HabitNotesByTimeCell.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8E01D5ACD8600641AA9 /* HabitNotesByTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F61A8C91D5ACD8600641AA9 /* HabitNotesByTimeCell.xib */; settings = {ASSET_TAGS = (); }; };
+		3F61A8E11D5ACD8600641AA9 /* HabitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8CB1D5ACD8600641AA9 /* HabitTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		3F61A8E21D5ACD8600641AA9 /* HabitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F61A8CC1D5ACD8600641AA9 /* HabitTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		3F61A8E31D5ACD8600641AA9 /* TabPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F61A8CE1D5ACD8600641AA9 /* TabPageScrollView.m */; settings = {ASSET_TAGS = (); }; };
 		3F7C0DED1D5365D70060AE6F /* EditPersonalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C0DEB1D5365D70060AE6F /* EditPersonalTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		3F7C0DEE1D5365D70060AE6F /* EditPersonalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F7C0DEC1D5365D70060AE6F /* EditPersonalTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		3F7C0DF21D5367C60060AE6F /* SignedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C0DF01D5367C60060AE6F /* SignedTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		3F7C0DF31D5367C60060AE6F /* SignedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F7C0DF11D5367C60060AE6F /* SignedTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		3F7C0DF71D5368020060AE6F /* ChangePasswordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C0DF51D5368020060AE6F /* ChangePasswordTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		3F7C0DF81D5368020060AE6F /* ChangePasswordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F7C0DF61D5368020060AE6F /* ChangePasswordTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
-		3F7C0E391D5427B00060AE6F /* HabitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7C0E371D5427B00060AE6F /* HabitTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		3F7C0E3A1D5427B00060AE6F /* HabitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F7C0E381D5427B00060AE6F /* HabitTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
-		3FE2387E1D549AE7009D5824 /* HabitClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE2387C1D549AE7009D5824 /* HabitClassifyViewController.m */; settings = {ASSET_TAGS = (); }; };
-		3FE2387F1D549AE7009D5824 /* HabitClassifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FE2387D1D549AE7009D5824 /* HabitClassifyViewController.xib */; settings = {ASSET_TAGS = (); }; };
-		3FE238851D54AD3D009D5824 /* TabPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE238841D54AD3D009D5824 /* TabPageScrollView.m */; settings = {ASSET_TAGS = (); }; };
 		3FE238871D54D1E6009D5824 /* left_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE238861D54D1E6009D5824 /* left_32.png */; settings = {ASSET_TAGS = (); }; };
 		3FE238891D54D6D4009D5824 /* into_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE238881D54D6D4009D5824 /* into_32.png */; settings = {ASSET_TAGS = (); }; };
-		3FE2388D1D5570DE009D5824 /* HabitDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE2388B1D5570DE009D5824 /* HabitDetailsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		3FE2388E1D5570DE009D5824 /* HabitDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FE2388C1D5570DE009D5824 /* HabitDetailsViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		3FE238901D557A8D009D5824 /* tool_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE2388F1D557A8D009D5824 /* tool_32.png */; settings = {ASSET_TAGS = (); }; };
-		3FE238A31D55BB0E009D5824 /* HabitChecklnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE238A11D55BB0E009D5824 /* HabitChecklnCell.m */; settings = {ASSET_TAGS = (); }; };
-		3FE238A41D55BB0E009D5824 /* HabitChecklnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FE238A21D55BB0E009D5824 /* HabitChecklnCell.xib */; settings = {ASSET_TAGS = (); }; };
-		3FE238A71D55BD2C009D5824 /* HabitCheckModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE238A61D55BD2C009D5824 /* HabitCheckModel.m */; settings = {ASSET_TAGS = (); }; };
 		3FE238AE1D55C2D8009D5824 /* comment_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE238AD1D55C2D8009D5824 /* comment_32.png */; settings = {ASSET_TAGS = (); }; };
 		3FE238B41D55C328009D5824 /* heart2_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE238AF1D55C328009D5824 /* heart2_32.png */; settings = {ASSET_TAGS = (); }; };
 		3FE238B51D55C328009D5824 /* omit_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE238B01D55C328009D5824 /* omit_32.png */; settings = {ASSET_TAGS = (); }; };
 		3FE238B61D55C328009D5824 /* omit2_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE238B11D55C328009D5824 /* omit2_32.png */; settings = {ASSET_TAGS = (); }; };
 		3FE238B71D55C328009D5824 /* placeholder2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE238B21D55C328009D5824 /* placeholder2.png */; settings = {ASSET_TAGS = (); }; };
 		3FE238B81D55C328009D5824 /* seeds_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE238B31D55C328009D5824 /* seeds_32.png */; settings = {ASSET_TAGS = (); }; };
-		3FE238BC1D55C5E9009D5824 /* HabitNotesByTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE238BA1D55C5E9009D5824 /* HabitNotesByTimeCell.m */; settings = {ASSET_TAGS = (); }; };
-		3FE238BD1D55C5E9009D5824 /* HabitNotesByTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FE238BB1D55C5E9009D5824 /* HabitNotesByTimeCell.xib */; settings = {ASSET_TAGS = (); }; };
-		3FE238C01D55CB5C009D5824 /* HabitNotesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE238BF1D55CB5C009D5824 /* HabitNotesModel.m */; settings = {ASSET_TAGS = (); }; };
-		3FE238C31D55CB74009D5824 /* HabitNoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE238C21D55CB74009D5824 /* HabitNoteModel.m */; settings = {ASSET_TAGS = (); }; };
-		3FE238C61D55CB9D009D5824 /* HabitUsersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE238C51D55CB9D009D5824 /* HabitUsersModel.m */; settings = {ASSET_TAGS = (); }; };
-		3FE238C91D55CBCE009D5824 /* HabitHabitsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE238C81D55CBCE009D5824 /* HabitHabitsModel.m */; settings = {ASSET_TAGS = (); }; };
-		3FE238CC1D55CBEF009D5824 /* HabitCommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE238CB1D55CBEF009D5824 /* HabitCommentsModel.m */; settings = {ASSET_TAGS = (); }; };
-		3FE238CF1D55CC09009D5824 /* HabitPropsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE238CE1D55CC09009D5824 /* HabitPropsModel.m */; settings = {ASSET_TAGS = (); }; };
 		3FE9B47A1D517CA5005CB6BC /* StartGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9B4791D517CA5005CB6BC /* StartGifView.m */; settings = {ASSET_TAGS = (); }; };
 		3FE9B47C1D5184F8005CB6BC /* start.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3FE9B47B1D5184F8005CB6BC /* start.gif */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -124,9 +124,6 @@
 		37DB269D1D4F46CC00FA5198 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		37DB269E1D4F46CC00FA5198 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		37DB269F1D4F46CC00FA5198 /* DiscoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiscoverViewController.xib; sourceTree = "<group>"; };
-		37DB26A21D4F46CC00FA5198 /* HabitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitViewController.h; sourceTree = "<group>"; };
-		37DB26A31D4F46CC00FA5198 /* HabitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitViewController.m; sourceTree = "<group>"; };
-		37DB26A41D4F46CC00FA5198 /* HabitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitViewController.xib; sourceTree = "<group>"; };
 		37DB26AB1D4F46CC00FA5198 /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		37DB26AC1D4F46CC00FA5198 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		37DB26AD1D4F46CC00FA5198 /* MessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageViewController.xib; sourceTree = "<group>"; };
@@ -187,8 +184,42 @@
 		3F2359BC1D5314A9004FB340 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		3F2359BE1D5337E5004FB340 /* MyPersonalTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPersonalTableViewController.h; sourceTree = "<group>"; };
 		3F2359BF1D5337E5004FB340 /* MyPersonalTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPersonalTableViewController.m; sourceTree = "<group>"; };
-		3F5A1F5F1D54398700E0DA56 /* HabitsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitsModel.h; sourceTree = "<group>"; };
-		3F5A1F601D54398700E0DA56 /* HabitsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitsModel.m; sourceTree = "<group>"; };
+		3F61A8A91D5ACD8600641AA9 /* HabitCheckModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitCheckModel.h; sourceTree = "<group>"; };
+		3F61A8AA1D5ACD8600641AA9 /* HabitCheckModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitCheckModel.m; sourceTree = "<group>"; };
+		3F61A8AB1D5ACD8600641AA9 /* HabitCommentsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitCommentsModel.h; sourceTree = "<group>"; };
+		3F61A8AC1D5ACD8600641AA9 /* HabitCommentsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitCommentsModel.m; sourceTree = "<group>"; };
+		3F61A8AD1D5ACD8600641AA9 /* HabitHabitsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitHabitsModel.h; sourceTree = "<group>"; };
+		3F61A8AE1D5ACD8600641AA9 /* HabitHabitsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitHabitsModel.m; sourceTree = "<group>"; };
+		3F61A8AF1D5ACD8600641AA9 /* HabitListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitListModel.h; sourceTree = "<group>"; };
+		3F61A8B01D5ACD8600641AA9 /* HabitListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitListModel.m; sourceTree = "<group>"; };
+		3F61A8B11D5ACD8600641AA9 /* HabitNoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitNoteModel.h; sourceTree = "<group>"; };
+		3F61A8B21D5ACD8600641AA9 /* HabitNoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitNoteModel.m; sourceTree = "<group>"; };
+		3F61A8B31D5ACD8600641AA9 /* HabitNotesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitNotesModel.h; sourceTree = "<group>"; };
+		3F61A8B41D5ACD8600641AA9 /* HabitNotesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitNotesModel.m; sourceTree = "<group>"; };
+		3F61A8B51D5ACD8600641AA9 /* HabitPropsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitPropsModel.h; sourceTree = "<group>"; };
+		3F61A8B61D5ACD8600641AA9 /* HabitPropsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitPropsModel.m; sourceTree = "<group>"; };
+		3F61A8B71D5ACD8600641AA9 /* HabitUsersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitUsersModel.h; sourceTree = "<group>"; };
+		3F61A8B81D5ACD8600641AA9 /* HabitUsersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitUsersModel.m; sourceTree = "<group>"; };
+		3F61A8BA1D5ACD8600641AA9 /* HabitClassifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitClassifyViewController.h; sourceTree = "<group>"; };
+		3F61A8BB1D5ACD8600641AA9 /* HabitClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitClassifyViewController.m; sourceTree = "<group>"; };
+		3F61A8BC1D5ACD8600641AA9 /* HabitClassifyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitClassifyViewController.xib; sourceTree = "<group>"; };
+		3F61A8BD1D5ACD8600641AA9 /* HabitDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitDetailsViewController.h; sourceTree = "<group>"; };
+		3F61A8BE1D5ACD8600641AA9 /* HabitDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitDetailsViewController.m; sourceTree = "<group>"; };
+		3F61A8BF1D5ACD8600641AA9 /* HabitDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitDetailsViewController.xib; sourceTree = "<group>"; };
+		3F61A8C01D5ACD8600641AA9 /* HabitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitViewController.h; sourceTree = "<group>"; };
+		3F61A8C11D5ACD8600641AA9 /* HabitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitViewController.m; sourceTree = "<group>"; };
+		3F61A8C21D5ACD8600641AA9 /* HabitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitViewController.xib; sourceTree = "<group>"; };
+		3F61A8C41D5ACD8600641AA9 /* HabitCheckInCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitCheckInCell.h; sourceTree = "<group>"; };
+		3F61A8C51D5ACD8600641AA9 /* HabitCheckInCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitCheckInCell.m; sourceTree = "<group>"; };
+		3F61A8C61D5ACD8600641AA9 /* HabitCheckInCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitCheckInCell.xib; sourceTree = "<group>"; };
+		3F61A8C71D5ACD8600641AA9 /* HabitNotesByTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitNotesByTimeCell.h; sourceTree = "<group>"; };
+		3F61A8C81D5ACD8600641AA9 /* HabitNotesByTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitNotesByTimeCell.m; sourceTree = "<group>"; };
+		3F61A8C91D5ACD8600641AA9 /* HabitNotesByTimeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitNotesByTimeCell.xib; sourceTree = "<group>"; };
+		3F61A8CA1D5ACD8600641AA9 /* HabitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitTableViewCell.h; sourceTree = "<group>"; };
+		3F61A8CB1D5ACD8600641AA9 /* HabitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitTableViewCell.m; sourceTree = "<group>"; };
+		3F61A8CC1D5ACD8600641AA9 /* HabitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitTableViewCell.xib; sourceTree = "<group>"; };
+		3F61A8CD1D5ACD8600641AA9 /* TabPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabPageScrollView.h; sourceTree = "<group>"; };
+		3F61A8CE1D5ACD8600641AA9 /* TabPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabPageScrollView.m; sourceTree = "<group>"; };
 		3F7C0DEA1D5365D70060AE6F /* EditPersonalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPersonalTableViewCell.h; sourceTree = "<group>"; };
 		3F7C0DEB1D5365D70060AE6F /* EditPersonalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPersonalTableViewCell.m; sourceTree = "<group>"; };
 		3F7C0DEC1D5365D70060AE6F /* EditPersonalTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditPersonalTableViewCell.xib; sourceTree = "<group>"; };
@@ -198,46 +229,15 @@
 		3F7C0DF41D5368020060AE6F /* ChangePasswordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordTableViewCell.h; sourceTree = "<group>"; };
 		3F7C0DF51D5368020060AE6F /* ChangePasswordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordTableViewCell.m; sourceTree = "<group>"; };
 		3F7C0DF61D5368020060AE6F /* ChangePasswordTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangePasswordTableViewCell.xib; sourceTree = "<group>"; };
-		3F7C0E361D5427B00060AE6F /* HabitTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitTableViewCell.h; sourceTree = "<group>"; };
-		3F7C0E371D5427B00060AE6F /* HabitTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitTableViewCell.m; sourceTree = "<group>"; };
-		3F7C0E381D5427B00060AE6F /* HabitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitTableViewCell.xib; sourceTree = "<group>"; };
-		3FE2387B1D549AE7009D5824 /* HabitClassifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitClassifyViewController.h; sourceTree = "<group>"; };
-		3FE2387C1D549AE7009D5824 /* HabitClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitClassifyViewController.m; sourceTree = "<group>"; };
-		3FE2387D1D549AE7009D5824 /* HabitClassifyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitClassifyViewController.xib; sourceTree = "<group>"; };
-		3FE238831D54AD3D009D5824 /* TabPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabPageScrollView.h; path = mySeedHabit/Common/Classes/TabPageScrollView.h; sourceTree = SOURCE_ROOT; };
-		3FE238841D54AD3D009D5824 /* TabPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabPageScrollView.m; path = mySeedHabit/Common/Classes/TabPageScrollView.m; sourceTree = SOURCE_ROOT; };
 		3FE238861D54D1E6009D5824 /* left_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_32.png; sourceTree = "<group>"; };
 		3FE238881D54D6D4009D5824 /* into_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = into_32.png; sourceTree = "<group>"; };
-		3FE2388A1D5570DE009D5824 /* HabitDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitDetailsViewController.h; sourceTree = "<group>"; };
-		3FE2388B1D5570DE009D5824 /* HabitDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitDetailsViewController.m; sourceTree = "<group>"; };
-		3FE2388C1D5570DE009D5824 /* HabitDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitDetailsViewController.xib; sourceTree = "<group>"; };
 		3FE2388F1D557A8D009D5824 /* tool_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tool_32.png; sourceTree = "<group>"; };
-		3FE238A01D55BB0E009D5824 /* HabitChecklnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitChecklnCell.h; sourceTree = "<group>"; };
-		3FE238A11D55BB0E009D5824 /* HabitChecklnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitChecklnCell.m; sourceTree = "<group>"; };
-		3FE238A21D55BB0E009D5824 /* HabitChecklnCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitChecklnCell.xib; sourceTree = "<group>"; };
-		3FE238A51D55BD2C009D5824 /* HabitCheckModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitCheckModel.h; sourceTree = "<group>"; };
-		3FE238A61D55BD2C009D5824 /* HabitCheckModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitCheckModel.m; sourceTree = "<group>"; };
 		3FE238AD1D55C2D8009D5824 /* comment_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment_32.png; sourceTree = "<group>"; };
 		3FE238AF1D55C328009D5824 /* heart2_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart2_32.png; sourceTree = "<group>"; };
 		3FE238B01D55C328009D5824 /* omit_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = omit_32.png; sourceTree = "<group>"; };
 		3FE238B11D55C328009D5824 /* omit2_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = omit2_32.png; sourceTree = "<group>"; };
 		3FE238B21D55C328009D5824 /* placeholder2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder2.png; sourceTree = "<group>"; };
 		3FE238B31D55C328009D5824 /* seeds_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeds_32.png; sourceTree = "<group>"; };
-		3FE238B91D55C5E9009D5824 /* HabitNotesByTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitNotesByTimeCell.h; sourceTree = "<group>"; };
-		3FE238BA1D55C5E9009D5824 /* HabitNotesByTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitNotesByTimeCell.m; sourceTree = "<group>"; };
-		3FE238BB1D55C5E9009D5824 /* HabitNotesByTimeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitNotesByTimeCell.xib; sourceTree = "<group>"; };
-		3FE238BE1D55CB5C009D5824 /* HabitNotesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitNotesModel.h; sourceTree = "<group>"; };
-		3FE238BF1D55CB5C009D5824 /* HabitNotesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitNotesModel.m; sourceTree = "<group>"; };
-		3FE238C11D55CB74009D5824 /* HabitNoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitNoteModel.h; sourceTree = "<group>"; };
-		3FE238C21D55CB74009D5824 /* HabitNoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitNoteModel.m; sourceTree = "<group>"; };
-		3FE238C41D55CB9D009D5824 /* HabitUsersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitUsersModel.h; sourceTree = "<group>"; };
-		3FE238C51D55CB9D009D5824 /* HabitUsersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitUsersModel.m; sourceTree = "<group>"; };
-		3FE238C71D55CBCE009D5824 /* HabitHabitsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitHabitsModel.h; sourceTree = "<group>"; };
-		3FE238C81D55CBCE009D5824 /* HabitHabitsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitHabitsModel.m; sourceTree = "<group>"; };
-		3FE238CA1D55CBEF009D5824 /* HabitCommentsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitCommentsModel.h; sourceTree = "<group>"; };
-		3FE238CB1D55CBEF009D5824 /* HabitCommentsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitCommentsModel.m; sourceTree = "<group>"; };
-		3FE238CD1D55CC09009D5824 /* HabitPropsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitPropsModel.h; sourceTree = "<group>"; };
-		3FE238CE1D55CC09009D5824 /* HabitPropsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitPropsModel.m; sourceTree = "<group>"; };
 		3FE9B4781D517CA5005CB6BC /* StartGifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGifView.h; sourceTree = "<group>"; };
 		3FE9B4791D517CA5005CB6BC /* StartGifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGifView.m; sourceTree = "<group>"; };
 		3FE9B47B1D5184F8005CB6BC /* start.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = start.gif; sourceTree = "<group>"; };
@@ -408,27 +408,11 @@
 		37DB26A01D4F46CC00FA5198 /* Habit */ = {
 			isa = PBXGroup;
 			children = (
-				3F7C0E341D5424AE0060AE6F /* Models */,
-				37DB26A11D4F46CC00FA5198 /* ViewControllers */,
-				3F7C0E351D5424C80060AE6F /* Views */,
+				3F61A8A81D5ACD8600641AA9 /* Models */,
+				3F61A8B91D5ACD8600641AA9 /* ViewControllers */,
+				3F61A8C31D5ACD8600641AA9 /* Views */,
 			);
 			path = Habit;
-			sourceTree = "<group>";
-		};
-		37DB26A11D4F46CC00FA5198 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				37DB26A21D4F46CC00FA5198 /* HabitViewController.h */,
-				37DB26A31D4F46CC00FA5198 /* HabitViewController.m */,
-				37DB26A41D4F46CC00FA5198 /* HabitViewController.xib */,
-				3FE2388A1D5570DE009D5824 /* HabitDetailsViewController.h */,
-				3FE2388B1D5570DE009D5824 /* HabitDetailsViewController.m */,
-				3FE2388C1D5570DE009D5824 /* HabitDetailsViewController.xib */,
-				3FE2387B1D549AE7009D5824 /* HabitClassifyViewController.h */,
-				3FE2387C1D549AE7009D5824 /* HabitClassifyViewController.m */,
-				3FE2387D1D549AE7009D5824 /* HabitClassifyViewController.xib */,
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		37DB26A51D4F46CC00FA5198 /* LaunchGuide */ = {
@@ -640,45 +624,61 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		3F7C0E341D5424AE0060AE6F /* Models */ = {
+		3F61A8A81D5ACD8600641AA9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3F5A1F5F1D54398700E0DA56 /* HabitsModel.h */,
-				3F5A1F601D54398700E0DA56 /* HabitsModel.m */,
-				3FE238A51D55BD2C009D5824 /* HabitCheckModel.h */,
-				3FE238A61D55BD2C009D5824 /* HabitCheckModel.m */,
-				3FE238BE1D55CB5C009D5824 /* HabitNotesModel.h */,
-				3FE238BF1D55CB5C009D5824 /* HabitNotesModel.m */,
-				3FE238C11D55CB74009D5824 /* HabitNoteModel.h */,
-				3FE238C21D55CB74009D5824 /* HabitNoteModel.m */,
-				3FE238C41D55CB9D009D5824 /* HabitUsersModel.h */,
-				3FE238C51D55CB9D009D5824 /* HabitUsersModel.m */,
-				3FE238C71D55CBCE009D5824 /* HabitHabitsModel.h */,
-				3FE238C81D55CBCE009D5824 /* HabitHabitsModel.m */,
-				3FE238CA1D55CBEF009D5824 /* HabitCommentsModel.h */,
-				3FE238CB1D55CBEF009D5824 /* HabitCommentsModel.m */,
-				3FE238CD1D55CC09009D5824 /* HabitPropsModel.h */,
-				3FE238CE1D55CC09009D5824 /* HabitPropsModel.m */,
+				3F61A8A91D5ACD8600641AA9 /* HabitCheckModel.h */,
+				3F61A8AA1D5ACD8600641AA9 /* HabitCheckModel.m */,
+				3F61A8AB1D5ACD8600641AA9 /* HabitCommentsModel.h */,
+				3F61A8AC1D5ACD8600641AA9 /* HabitCommentsModel.m */,
+				3F61A8AD1D5ACD8600641AA9 /* HabitHabitsModel.h */,
+				3F61A8AE1D5ACD8600641AA9 /* HabitHabitsModel.m */,
+				3F61A8AF1D5ACD8600641AA9 /* HabitListModel.h */,
+				3F61A8B01D5ACD8600641AA9 /* HabitListModel.m */,
+				3F61A8B11D5ACD8600641AA9 /* HabitNoteModel.h */,
+				3F61A8B21D5ACD8600641AA9 /* HabitNoteModel.m */,
+				3F61A8B31D5ACD8600641AA9 /* HabitNotesModel.h */,
+				3F61A8B41D5ACD8600641AA9 /* HabitNotesModel.m */,
+				3F61A8B51D5ACD8600641AA9 /* HabitPropsModel.h */,
+				3F61A8B61D5ACD8600641AA9 /* HabitPropsModel.m */,
+				3F61A8B71D5ACD8600641AA9 /* HabitUsersModel.h */,
+				3F61A8B81D5ACD8600641AA9 /* HabitUsersModel.m */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		3F7C0E351D5424C80060AE6F /* Views */ = {
+		3F61A8B91D5ACD8600641AA9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3F7C0E361D5427B00060AE6F /* HabitTableViewCell.h */,
-				3F7C0E371D5427B00060AE6F /* HabitTableViewCell.m */,
-				3F7C0E381D5427B00060AE6F /* HabitTableViewCell.xib */,
-				3FE238A01D55BB0E009D5824 /* HabitChecklnCell.h */,
-				3FE238A11D55BB0E009D5824 /* HabitChecklnCell.m */,
-				3FE238A21D55BB0E009D5824 /* HabitChecklnCell.xib */,
-				3FE238B91D55C5E9009D5824 /* HabitNotesByTimeCell.h */,
-				3FE238BA1D55C5E9009D5824 /* HabitNotesByTimeCell.m */,
-				3FE238BB1D55C5E9009D5824 /* HabitNotesByTimeCell.xib */,
-				3FE238831D54AD3D009D5824 /* TabPageScrollView.h */,
-				3FE238841D54AD3D009D5824 /* TabPageScrollView.m */,
+				3F61A8BA1D5ACD8600641AA9 /* HabitClassifyViewController.h */,
+				3F61A8BB1D5ACD8600641AA9 /* HabitClassifyViewController.m */,
+				3F61A8BC1D5ACD8600641AA9 /* HabitClassifyViewController.xib */,
+				3F61A8BD1D5ACD8600641AA9 /* HabitDetailsViewController.h */,
+				3F61A8BE1D5ACD8600641AA9 /* HabitDetailsViewController.m */,
+				3F61A8BF1D5ACD8600641AA9 /* HabitDetailsViewController.xib */,
+				3F61A8C01D5ACD8600641AA9 /* HabitViewController.h */,
+				3F61A8C11D5ACD8600641AA9 /* HabitViewController.m */,
+				3F61A8C21D5ACD8600641AA9 /* HabitViewController.xib */,
 			);
-			name = Views;
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3F61A8C31D5ACD8600641AA9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3F61A8C41D5ACD8600641AA9 /* HabitCheckInCell.h */,
+				3F61A8C51D5ACD8600641AA9 /* HabitCheckInCell.m */,
+				3F61A8C61D5ACD8600641AA9 /* HabitCheckInCell.xib */,
+				3F61A8C71D5ACD8600641AA9 /* HabitNotesByTimeCell.h */,
+				3F61A8C81D5ACD8600641AA9 /* HabitNotesByTimeCell.m */,
+				3F61A8C91D5ACD8600641AA9 /* HabitNotesByTimeCell.xib */,
+				3F61A8CA1D5ACD8600641AA9 /* HabitTableViewCell.h */,
+				3F61A8CB1D5ACD8600641AA9 /* HabitTableViewCell.m */,
+				3F61A8CC1D5ACD8600641AA9 /* HabitTableViewCell.xib */,
+				3F61A8CD1D5ACD8600641AA9 /* TabPageScrollView.h */,
+				3F61A8CE1D5ACD8600641AA9 /* TabPageScrollView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8FF4F6A08C4C12B24A3D4A3B /* Frameworks */ = {
@@ -777,21 +777,21 @@
 				37DB26EA1D4F46CC00FA5198 /* discover_32.png in Resources */,
 				3FE238B81D55C328009D5824 /* seeds_32.png in Resources */,
 				37DB26E81D4F46CC00FA5198 /* add_32.png in Resources */,
+				3F61A8DC1D5ACD8600641AA9 /* HabitViewController.xib in Resources */,
 				37DB26F41D4F46CC00FA5198 /* setup_32.png in Resources */,
 				37DB26E11D4F46CC00FA5198 /* MessageViewController.xib in Resources */,
 				3FE238AE1D55C2D8009D5824 /* comment_32.png in Resources */,
 				37DB26F61D4F46CC00FA5198 /* time_32.png in Resources */,
-				3FE2388E1D5570DE009D5824 /* HabitDetailsViewController.xib in Resources */,
 				37DB26F51D4F46CC00FA5198 /* sina_32.png in Resources */,
 				3F7C0DF31D5367C60060AE6F /* SignedTableViewCell.xib in Resources */,
 				3F7C0DEE1D5365D70060AE6F /* EditPersonalTableViewCell.xib in Resources */,
-				3FE238BD1D55C5E9009D5824 /* HabitNotesByTimeCell.xib in Resources */,
 				37DB26F21D4F46CC00FA5198 /* right_32.png in Resources */,
 				3FE238B71D55C328009D5824 /* placeholder2.png in Resources */,
+				3F61A8DA1D5ACD8600641AA9 /* HabitDetailsViewController.xib in Resources */,
 				37DB26E31D4F46CC00FA5198 /* LoginViewController.xib in Resources */,
 				37DB26EC1D4F46CC00FA5198 /* heard_32.png in Resources */,
 				3F7C0DF81D5368020060AE6F /* ChangePasswordTableViewCell.xib in Resources */,
-				3FE238A41D55BB0E009D5824 /* HabitChecklnCell.xib in Resources */,
+				3F61A8D81D5ACD8600641AA9 /* HabitClassifyViewController.xib in Resources */,
 				3F1FA9461D51EDAD00BFF97C /* headerImage.jpg in Resources */,
 				3FE238901D557A8D009D5824 /* tool_32.png in Resources */,
 				37DB26DD1D4F46CC00FA5198 /* DiscoverViewController.xib in Resources */,
@@ -799,22 +799,22 @@
 				37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */,
 				37DB26ED1D4F46CC00FA5198 /* message_32.png in Resources */,
 				3FE238B51D55C328009D5824 /* omit_32.png in Resources */,
-				3FE2387F1D549AE7009D5824 /* HabitClassifyViewController.xib in Resources */,
 				3FE9B47C1D5184F8005CB6BC /* start.gif in Resources */,
 				37DB26F81D4F46CC00FA5198 /* weixin_32.png in Resources */,
 				3FE238B41D55C328009D5824 /* heart2_32.png in Resources */,
+				3F61A8DE1D5ACD8600641AA9 /* HabitCheckInCell.xib in Resources */,
 				3F2359B81D52FF99004FB340 /* LogoutTableViewCell.xib in Resources */,
+				3F61A8E21D5ACD8600641AA9 /* HabitTableViewCell.xib in Resources */,
 				37DB26EB1D4F46CC00FA5198 /* habit_32.png in Resources */,
 				37DB26E71D4F46CC00FA5198 /* RegisterDataViewController.xib in Resources */,
 				37DB26F01D4F46CC00FA5198 /* msg_32.png in Resources */,
+				3F61A8E01D5ACD8600641AA9 /* HabitNotesByTimeCell.xib in Resources */,
 				37DB26E91D4F46CC00FA5198 /* addContact_32.png in Resources */,
 				3FE238B61D55C328009D5824 /* omit2_32.png in Resources */,
 				3F2359BD1D5314A9004FB340 /* HeaderView.xib in Resources */,
 				37DB26F71D4F46CC00FA5198 /* user_32.png in Resources */,
 				37DB26EF1D4F46CC00FA5198 /* msg3_32.png in Resources */,
-				3F7C0E3A1D5427B00060AE6F /* HabitTableViewCell.xib in Resources */,
 				37DB26F11D4F46CC00FA5198 /* qq_32.png in Resources */,
-				37DB26DF1D4F46CC00FA5198 /* HabitViewController.xib in Resources */,
 				37DB26EE1D4F46CC00FA5198 /* msg2_32.png in Resources */,
 				37DB26F31D4F46CC00FA5198 /* search_32.png in Resources */,
 				37DB26E51D4F46CC00FA5198 /* RegisterByPhoneViewController.xib in Resources */,
@@ -876,41 +876,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FE238C01D55CB5C009D5824 /* HabitNotesModel.m in Sources */,
+				3F61A8D51D5ACD8600641AA9 /* HabitPropsModel.m in Sources */,
+				3F61A8CF1D5ACD8600641AA9 /* HabitCheckModel.m in Sources */,
 				37DB26D71D4F46CC00FA5198 /* AppDelegate.m in Sources */,
 				37DB26DA1D4F46CC00FA5198 /* LeftViewController.m in Sources */,
+				3F61A8E11D5ACD8600641AA9 /* HabitTableViewCell.m in Sources */,
 				3FE9B47A1D517CA5005CB6BC /* StartGifView.m in Sources */,
+				3F61A8E31D5ACD8600641AA9 /* TabPageScrollView.m in Sources */,
+				3F61A8D11D5ACD8600641AA9 /* HabitHabitsModel.m in Sources */,
 				37DB26E41D4F46CC00FA5198 /* RegisterByPhoneViewController.m in Sources */,
 				3F7C0DF71D5368020060AE6F /* ChangePasswordTableViewCell.m in Sources */,
 				37DB26DC1D4F46CC00FA5198 /* DiscoverViewController.m in Sources */,
 				3F2359C01D5337E5004FB340 /* MyPersonalTableViewController.m in Sources */,
-				3FE238A71D55BD2C009D5824 /* HabitCheckModel.m in Sources */,
-				3FE238CF1D55CC09009D5824 /* HabitPropsModel.m in Sources */,
+				3F61A8DD1D5ACD8600641AA9 /* HabitCheckInCell.m in Sources */,
 				37DB26D91D4F46CC00FA5198 /* DrawerViewController.m in Sources */,
-				3F5A1F611D54398700E0DA56 /* HabitsModel.m in Sources */,
 				3F1FA9561D520CE000BFF97C /* MyConcernTableViewController.m in Sources */,
+				3F61A8DF1D5ACD8600641AA9 /* HabitNotesByTimeCell.m in Sources */,
+				3F61A8D01D5ACD8600641AA9 /* HabitCommentsModel.m in Sources */,
 				37DB26E61D4F46CC00FA5198 /* RegisterDataViewController.m in Sources */,
-				3FE238851D54AD3D009D5824 /* TabPageScrollView.m in Sources */,
-				3FE2388D1D5570DE009D5824 /* HabitDetailsViewController.m in Sources */,
+				3F61A8D71D5ACD8600641AA9 /* HabitClassifyViewController.m in Sources */,
 				3F7C0DF21D5367C60060AE6F /* SignedTableViewCell.m in Sources */,
-				3FE238A31D55BB0E009D5824 /* HabitChecklnCell.m in Sources */,
 				37DB27151D50D3AA00FA5198 /* UIColor+CJFColor.m in Sources */,
-				3FE238C91D55CBCE009D5824 /* HabitHabitsModel.m in Sources */,
-				3FE238C61D55CB9D009D5824 /* HabitUsersModel.m in Sources */,
-				3FE2387E1D549AE7009D5824 /* HabitClassifyViewController.m in Sources */,
+				3F61A8DB1D5ACD8600641AA9 /* HabitViewController.m in Sources */,
 				3F2359B71D52FF99004FB340 /* LogoutTableViewCell.m in Sources */,
+				3F61A8D21D5ACD8600641AA9 /* HabitListModel.m in Sources */,
 				37DB26E21D4F46CC00FA5198 /* LoginViewController.m in Sources */,
-				3FE238CC1D55CBEF009D5824 /* HabitCommentsModel.m in Sources */,
+				3F61A8D41D5ACD8600641AA9 /* HabitNotesModel.m in Sources */,
 				3F2359BB1D531490004FB340 /* HeaderView.m in Sources */,
-				3FE238BC1D55C5E9009D5824 /* HabitNotesByTimeCell.m in Sources */,
 				37DB26751D4F40A600FA5198 /* main.m in Sources */,
 				37DB26DB1D4F46CC00FA5198 /* UserManager.m in Sources */,
-				3FE238C31D55CB74009D5824 /* HabitNoteModel.m in Sources */,
+				3F61A8D31D5ACD8600641AA9 /* HabitNoteModel.m in Sources */,
 				3F7C0DED1D5365D70060AE6F /* EditPersonalTableViewCell.m in Sources */,
-				3F7C0E391D5427B00060AE6F /* HabitTableViewCell.m in Sources */,
+				3F61A8D91D5ACD8600641AA9 /* HabitDetailsViewController.m in Sources */,
 				37DB26E01D4F46CC00FA5198 /* MessageViewController.m in Sources */,
 				37DB26D81D4F46CC00FA5198 /* CJFTabBarViewController.m in Sources */,
-				37DB26DE1D4F46CC00FA5198 /* HabitViewController.m in Sources */,
+				3F61A8D61D5ACD8600641AA9 /* HabitUsersModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
