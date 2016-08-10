@@ -39,23 +39,12 @@
     // 显示
     [self.window makeKeyAndVisible];
     
-    // 如果是app第一次启动就加载启动页,如果不是,则直接进入首页
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
-        
-    }
-    else{
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
-        
-        // 检查是否已经登录
-        [self checkLogin];
-    }
-    // 判断是否第一次
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"]) {
-        //        StartGifView *startGifView = [[StartGifView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        //        [self.drawerVc.view addSubview:startGifView];
-    }
+    
+    
+    // 检查是否已经登录
+    [self checkLogin];
+    
+    
     
     // 设置友盟AppKey
     [UMSocialData setAppKey:AppKeyUmeng];

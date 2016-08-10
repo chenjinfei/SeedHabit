@@ -51,7 +51,6 @@
 		37D799DF1D59FDD900019B51 /* UserSearchList_TBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D799DD1D59FDD900019B51 /* UserSearchList_TBCell.m */; };
 		37D799E01D59FDD900019B51 /* UserSearchList_TBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37D799DE1D59FDD900019B51 /* UserSearchList_TBCell.xib */; };
 		37D799E31D5A163600019B51 /* CJFTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D799E21D5A163600019B51 /* CJFTools.m */; };
-		37D799E61D5A169D00019B51 /* StartGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D799E51D5A169D00019B51 /* StartGifView.m */; };
 		37D799EA1D5AB68F00019B51 /* AvatarUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D799E81D5AB68F00019B51 /* AvatarUpdateViewController.m */; };
 		37D799EB1D5AB68F00019B51 /* AvatarUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37D799E91D5AB68F00019B51 /* AvatarUpdateViewController.xib */; };
 		37DB26751D4F40A600FA5198 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB26741D4F40A600FA5198 /* main.m */; };
@@ -176,8 +175,6 @@
 		37D799DE1D59FDD900019B51 /* UserSearchList_TBCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSearchList_TBCell.xib; sourceTree = "<group>"; };
 		37D799E11D5A163600019B51 /* CJFTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFTools.h; sourceTree = "<group>"; };
 		37D799E21D5A163600019B51 /* CJFTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFTools.m; sourceTree = "<group>"; };
-		37D799E41D5A169D00019B51 /* StartGifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGifView.h; sourceTree = "<group>"; };
-		37D799E51D5A169D00019B51 /* StartGifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGifView.m; sourceTree = "<group>"; };
 		37D799E71D5AB68F00019B51 /* AvatarUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarUpdateViewController.h; sourceTree = "<group>"; };
 		37D799E81D5AB68F00019B51 /* AvatarUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarUpdateViewController.m; sourceTree = "<group>"; };
 		37D799E91D5AB68F00019B51 /* AvatarUpdateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvatarUpdateViewController.xib; sourceTree = "<group>"; };
@@ -365,8 +362,6 @@
 		37DB268A1D4F46CC00FA5198 /* Bases */ = {
 			isa = PBXGroup;
 			children = (
-				37D799E41D5A169D00019B51 /* StartGifView.h */,
-				37D799E51D5A169D00019B51 /* StartGifView.m */,
 				37DB268B1D4F46CC00FA5198 /* AppDelegate.h */,
 				37DB268C1D4F46CC00FA5198 /* AppDelegate.m */,
 				37DB268D1D4F46CC00FA5198 /* CJFTabBarViewController.h */,
@@ -904,7 +899,6 @@
 				37A93C601D5870E300DC8050 /* Users.m in Sources */,
 				37DB26D71D4F46CC00FA5198 /* AppDelegate.m in Sources */,
 				378A15CA1D58F43D004B86EC /* UserHaBitList_TBCell.m in Sources */,
-				37D799E61D5A169D00019B51 /* StartGifView.m in Sources */,
 				37941ED81D56F98C00BDC1A7 /* UIImage+CJFImage.m in Sources */,
 				379B011F1D54CEFC00D75383 /* ContactsViewController.m in Sources */,
 				378A15C51D58EEED004B86EC /* UIImageView+CJFUIImageView.m in Sources */,
