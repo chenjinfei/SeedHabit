@@ -90,27 +90,26 @@
         
         // 时间戳转换
         // 用户发表时间
-//        NSString *timeS = [NSString stringWithFormat:@"%@", [tree valueForKey:@"start_time"]];
-//        NSTimeInterval time = [timeS doubleValue];
-//        NSDate *detail = [NSDate dateWithTimeIntervalSince1970:time];
-//         NSLog(@"date:%@", [detail description]);
+        NSString *timeS = [NSString stringWithFormat:@"%@", [tree valueForKey:@"start_time"]];
+        NSTimeInterval time = [timeS doubleValue];
+        NSDate *detail = [NSDate dateWithTimeIntervalSince1970:time];
+        NSLog(@"date:%@", [detail description]);
 //        NSDateFormatter *date = [[NSDateFormatter alloc] init];
-//        //        [date setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//        [date setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 //        [date setDateFormat:@"HH:mm:ss"];
 //        NSString *old = [date stringFromDate:detail];
-//        
-//        NSDate *new = [NSDate dateWithTimeIntervalSinceNow:8*60*60];
-//        
-//        NSTimeInterval interval = [new timeIntervalSinceDate:detail];
-//        
-////        int second = interval % 60;
-////        int minute = interval / 60;
-////        int day = interval
-////        
-////        self.time.text = [NSString stringWithFormat:@"%d : %d : %d : %d", day, hour, minute, second];
-//        
-//        self.time.text = new;
+        NSDate *new = [NSDate dateWithTimeIntervalSinceNow:8*60*60];
+        NSTimeInterval interval = [new timeIntervalSinceDate:detail];
         
+        int second = (int)interval % 60;
+        int minute = (int)interval / 60;
+        int hour = (int)interval / 3600;
+        int day = (int)interval / 3660*24;
+//        
+        self.time.text = [NSString stringWithFormat:@"%d : %d : %d : %d", day, hour, minute, second];
+        
+//        self.time.text = new;
+//        
 //        self.time.text = curr;
         //         NSLog(@"%@", curr);
         // 当前时间
