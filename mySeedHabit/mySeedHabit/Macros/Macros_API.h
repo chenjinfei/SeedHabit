@@ -119,6 +119,8 @@
 // == 习惯动态 ==
 #define APIMindNote          [APIURL stringByAppendingString:@"MindNote/"]
 
+// 点赞列表
+#define APIPropsList         [APIMindNote stringByAppendingString:@"getPropsList"]
 // 所有热门习惯动态
 #define APIAllHotNotes       [APIMindNote stringByAppendingString:@"listAllHotNotes"]
 // 所有的最新习惯动态（通过时间）
@@ -137,6 +139,9 @@
 #define APICancelProp        [APIMindNote stringByAppendingString:@"cancelProp"]
 // 点赞
 #define APIPropNote          [APIMindNote stringByAppendingString:@"propNote"]
+// 种子树信息
+#define APITreeInfo          [APIMindNote stringByAppendingString:@"getTreeInfo"]
+
 
 
 

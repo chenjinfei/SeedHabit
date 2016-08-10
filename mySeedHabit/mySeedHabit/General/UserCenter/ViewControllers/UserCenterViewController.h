@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class SeedUser;
 @interface UserCenterViewController : UIViewController
+
+// 用户
+@property (nonatomic, strong) SeedUser *user;
 
 @end

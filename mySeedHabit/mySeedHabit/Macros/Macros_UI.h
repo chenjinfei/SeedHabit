@@ -10,7 +10,7 @@
 #define Macros_UI_h
 
 // UI主色调
-#define UIMainColor @"#00bb9c"
+#define UIMainColor @"#32B44F"
 
 // 选中状态色调
 #define UISelectedColor @"#00bb99"

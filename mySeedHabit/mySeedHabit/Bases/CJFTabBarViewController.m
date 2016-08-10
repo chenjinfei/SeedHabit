@@ -27,7 +27,16 @@
     UINavigationController *habitNav = [self buildViewControllerWithClassName:@"HabitViewController" title:@"习惯" image:@"habit_32" selectedImage:@"habit_32"];
     UINavigationController *discoverNav = [self buildViewControllerWithClassName:@"DiscoverViewController" title:@"发现" image:@"discover_32" selectedImage:@"discover_32"];
     UINavigationController *messageNav = [self buildViewControllerWithClassName:@"MessageViewController" title:@"信息" image:@"msg3_32" selectedImage:@"msg3_32"];
-    UINavigationController *userNav = [self buildViewControllerWithClassName:@"UserCenterViewController" title:@"我的" image:@"msg3_32" selectedImage:@"msg3_32"];
+    UINavigationController *userNav = [self buildViewControllerWithClassName:@"UserCenterViewController" title:@"我的" image:@"user_32" selectedImage:@"user_32"];
+    
+    // 设置导航按钮风格颜色
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    // 隐藏导航返回按钮的文字
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    
+    // 设置tabbar不透明
+    [UITabBar appearance].translucent = NO;
     
     self.viewControllers = @[habitNav, discoverNav, messageNav, userNav];
     
