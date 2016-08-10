@@ -139,6 +139,9 @@
 #define APICancelProp        [APIMindNote stringByAppendingString:@"cancelProp"]
 // 点赞
 #define APIPropNote          [APIMindNote stringByAppendingString:@"propNote"]
+// 种子树信息
+#define APITreeInfo          [APIMindNote stringByAppendingString:@"getTreeInfo"]
+
 
 
 

@@ -52,6 +52,8 @@
 		37D799E01D59FDD900019B51 /* UserSearchList_TBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37D799DE1D59FDD900019B51 /* UserSearchList_TBCell.xib */; };
 		37D799E31D5A163600019B51 /* CJFTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D799E21D5A163600019B51 /* CJFTools.m */; };
 		37D799E61D5A169D00019B51 /* StartGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D799E51D5A169D00019B51 /* StartGifView.m */; };
+		37D799EA1D5AB68F00019B51 /* AvatarUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37D799E81D5AB68F00019B51 /* AvatarUpdateViewController.m */; };
+		37D799EB1D5AB68F00019B51 /* AvatarUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37D799E91D5AB68F00019B51 /* AvatarUpdateViewController.xib */; };
 		37DB26751D4F40A600FA5198 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37DB26741D4F40A600FA5198 /* main.m */; };
 		37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37DB267F1D4F40A600FA5198 /* Assets.xcassets */; };
 		37DB26831D4F40A600FA5198 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37DB26811D4F40A600FA5198 /* LaunchScreen.storyboard */; };
@@ -176,6 +178,9 @@
 		37D799E21D5A163600019B51 /* CJFTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFTools.m; sourceTree = "<group>"; };
 		37D799E41D5A169D00019B51 /* StartGifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartGifView.h; sourceTree = "<group>"; };
 		37D799E51D5A169D00019B51 /* StartGifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartGifView.m; sourceTree = "<group>"; };
+		37D799E71D5AB68F00019B51 /* AvatarUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarUpdateViewController.h; sourceTree = "<group>"; };
+		37D799E81D5AB68F00019B51 /* AvatarUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarUpdateViewController.m; sourceTree = "<group>"; };
+		37D799E91D5AB68F00019B51 /* AvatarUpdateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvatarUpdateViewController.xib; sourceTree = "<group>"; };
 		37DB26701D4F40A600FA5198 /* mySeedHabit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mySeedHabit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DB26741D4F40A600FA5198 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		37DB267F1D4F40A600FA5198 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -554,6 +559,9 @@
 				37D799D71D59AB7000019B51 /* AddFriendsViewController.h */,
 				37D799D81D59AB7000019B51 /* AddFriendsViewController.m */,
 				37D799D91D59AB7000019B51 /* AddFriendsViewController.xib */,
+				37D799E71D5AB68F00019B51 /* AvatarUpdateViewController.h */,
+				37D799E81D5AB68F00019B51 /* AvatarUpdateViewController.m */,
+				37D799E91D5AB68F00019B51 /* AvatarUpdateViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -808,6 +816,7 @@
 				37DB26F21D4F46CC00FA5198 /* right_32.png in Resources */,
 				37A93C6A1D5870FE00DC8050 /* DiscoverHotCell.xib in Resources */,
 				37DB26E31D4F46CC00FA5198 /* LoginViewController.xib in Resources */,
+				37D799EB1D5AB68F00019B51 /* AvatarUpdateViewController.xib in Resources */,
 				37DB26DD1D4F46CC00FA5198 /* DiscoverViewController.xib in Resources */,
 				37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */,
 				37DB26ED1D4F46CC00FA5198 /* message_32.png in Resources */,
@@ -889,6 +898,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37D799EA1D5AB68F00019B51 /* AvatarUpdateViewController.m in Sources */,
 				37A93C5C1D5870E300DC8050 /* Habits.m in Sources */,
 				37D799E31D5A163600019B51 /* CJFTools.m in Sources */,
 				37A93C601D5870E300DC8050 /* Users.m in Sources */,
