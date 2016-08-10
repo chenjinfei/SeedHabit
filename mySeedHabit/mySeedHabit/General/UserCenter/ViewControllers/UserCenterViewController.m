@@ -11,7 +11,7 @@
 #import "UserManager.h"
 #import "SeedUser.h"
 #import "LoginViewController.h"
-#import "HabitModel.h"
+#import "HabitListModel.h"
 
 #import <UIImageView+WebCache.h>
 #import "UIImage+CJFImage.h"
@@ -235,7 +235,7 @@
         [session POST:APIHabitList parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             
             for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
-                HabitModel *model = [[HabitModel alloc]init];
+                HabitListModel *model = [[HabitListModel alloc]init];
                 [model setValuesForKeysWithDictionary:dict];
                 [self.dataArr addObject:model];
             }
