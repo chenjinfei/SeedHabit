@@ -89,6 +89,24 @@
     
 }
 
+// 退出登录
+- (void)logoutClick:(UIButton *)sender {
+    [[UserManager manager] logoutSuccess:^(NSDictionary *responseObject) {
+        
+        LoginViewController *loginVc = [[LoginViewController alloc]init];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:loginVc animated:YES completion:^{
+            NSLog(@"登出成功");
+        }];
+        
+    } failure:^(NSError *error) {
+        
+        ULog(@"%@", error);
+        
+    }];
+}
+
+#pragma mark tableView代理方法的实现
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.dataArr.count;
 }
@@ -117,24 +135,6 @@
     }
 }
 
-
-// 退出登录
-- (void)logoutClick:(UIButton *)sender {
-    [[UserManager manager] logoutSuccess:^(NSDictionary *responseObject) {
-        
-        LoginViewController *loginVc = [[LoginViewController alloc]init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:loginVc animated:YES completion:^{
-            NSLog(@"登出成功");
-        }];
-        
-    } failure:^(NSError *error) {
-        
-        ULog(@"%@", error);
-        
-    }];
-}
-
-
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10;
 }
@@ -142,6 +142,8 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.01;
 }
+
+
 
 
 

@@ -49,6 +49,8 @@
 #define APIIsTelExist                  [APIUser stringByAppendingString:@"checkTelExist"]
 // 通过手机号码注册
 #define APIRegisterWithTel             [APIUser stringByAppendingString:@"registerWithTel"]
+// 通过ID获取用户信息
+#define APIUserInfoById                [APIUser stringByAppendingString:@"getUserInfoById"]
 
 
 

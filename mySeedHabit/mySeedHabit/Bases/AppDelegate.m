@@ -39,8 +39,6 @@
     // 显示
     [self.window makeKeyAndVisible];
     
-    
-    
     // 检查是否已经登录
     [self checkLogin];
     

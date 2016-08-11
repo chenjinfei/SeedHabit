@@ -29,12 +29,12 @@
     UINavigationController *messageNav = [self buildViewControllerWithClassName:@"MessageViewController" title:@"信息" image:@"msg3_32" selectedImage:@"msg3_32"];
     UINavigationController *userNav = [self buildViewControllerWithClassName:@"UserCenterViewController" title:@"我的" image:@"user_32" selectedImage:@"user_32"];
     
+    // 设置导航背景风格颜色
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithHexString:UIMainColor alpha:1]];
     // 设置导航按钮风格颜色
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    
     // 隐藏导航返回按钮的文字
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
-    
     // 设置tabbar不透明
     [UITabBar appearance].translucent = NO;
     

@@ -22,6 +22,7 @@
 #import "UserHaBitList_TBCell.h"
 #import "UserSetupViewController.h"
 #import "AddFriendsViewController.h"
+#import "AvatarUpdateViewController.h"
 
 @interface UserCenterViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -48,8 +49,6 @@
     // 创建视图控件
     [self buildView];
     
-    // 加载数据
-    [self loadData];
     
     
     
@@ -57,6 +56,8 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
+    // 加载数据
+    [self loadData];
     
 }
 
@@ -234,6 +235,9 @@
                                      };
         [session POST:APIHabitList parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             
+            if (self.dataArr != nil) {
+                [self.dataArr removeAllObjects];
+            }
             for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
                 HabitModel *model = [[HabitModel alloc]init];
                 [model setValuesForKeysWithDictionary:dict];
@@ -250,6 +254,9 @@
         
         
         [self.tableHeaderView.avatarView lhy_loadImageUrlStr:user.avatar_small placeHolderImageName:@"placeHolder.png" radius:self.tableHeaderView.avatarView.frame.size.height/2];
+        self.tableHeaderView.avatarView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *avatarTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changeAvatar:)];
+        [self.tableHeaderView.avatarView addGestureRecognizer:avatarTap];
         
         self.tableHeaderView.followCountView.text = [NSString stringWithFormat:@"%@", user.friends_count];
         self.tableHeaderView.followerCountView.text = [NSString stringWithFormat:@"%@", user.fans_count];
@@ -265,6 +272,20 @@
     }
     
 }
+
+/**
+ *  更换头像按钮点击响应方法
+ *
+ *  @param Ges 手势对象
+ */
+-(void)changeAvatar: (UITapGestureRecognizer *)Ges {
+    
+    AvatarUpdateViewController *avatarUpateVc = [[AvatarUpdateViewController alloc]init];
+    [self presentViewController:avatarUpateVc animated:YES completion:nil];
+    
+}
+
+#pragma mark tableView的代理方法实现
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArr.count;

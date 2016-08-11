@@ -8,6 +8,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AvatarUpdateViewController">
             <connections>
+                <outlet property="avatarView" destination="k3G-QT-8v8" id="xUP-XG-C5Q"/>
+                <outlet property="changeBtn" destination="kIn-bf-Zm0" id="FiW-rP-mVv"/>
+                <outlet property="saveToLocaleBtn" destination="8PJ-6u-l1v" id="NcH-bd-pOe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,30 +19,50 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k3G-QT-8v8">
-                    <rect key="frame" x="0.0" y="194" width="375" height="178"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolder.png" translatesAutoresizingMaskIntoConstraints="NO" id="k3G-QT-8v8">
+                    <rect key="frame" x="0.0" y="100" width="375" height="375"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="k3G-QT-8v8" secondAttribute="height" multiplier="375:178" id="966-Qp-i8R"/>
+                        <constraint firstAttribute="width" secondItem="k3G-QT-8v8" secondAttribute="height" multiplier="1:1" id="aAo-cv-9yH"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8PJ-6u-l1v">
+                    <rect key="frame" x="100" y="590" width="175" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="I90-mo-1Od"/>
+                    </constraints>
+                    <state key="normal" title="保存到本地">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIn-bf-Zm0">
+                    <rect key="frame" x="100" y="530" width="175" height="40"/>
+                    <color key="backgroundColor" red="0.0" green="0.67803044487248332" blue="0.08162218552348996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="vaA-wV-iUb"/>
+                    </constraints>
+                    <state key="normal" title="更换头像">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="k3G-QT-8v8" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="5bM-yH-pEZ"/>
-                <constraint firstItem="k3G-QT-8v8" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="6dU-cS-VIy"/>
-                <constraint firstAttribute="trailing" secondItem="k3G-QT-8v8" secondAttribute="trailing" id="JUa-uL-MP0"/>
-                <constraint firstItem="k3G-QT-8v8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="Qst-3L-097"/>
-                <constraint firstItem="k3G-QT-8v8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YUz-aO-4N9"/>
-                <constraint firstItem="k3G-QT-8v8" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="xz0-xY-WJN"/>
+                <constraint firstItem="k3G-QT-8v8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="0FD-m0-F6Q"/>
+                <constraint firstItem="8PJ-6u-l1v" firstAttribute="top" secondItem="kIn-bf-Zm0" secondAttribute="bottom" constant="20" id="DOC-zw-Efh"/>
+                <constraint firstAttribute="trailing" secondItem="8PJ-6u-l1v" secondAttribute="trailing" constant="100" id="Jis-B2-UIq"/>
+                <constraint firstAttribute="trailing" secondItem="kIn-bf-Zm0" secondAttribute="trailing" constant="100" id="KXS-ZQ-s3G"/>
+                <constraint firstAttribute="trailing" secondItem="k3G-QT-8v8" secondAttribute="trailing" id="O0f-eS-v02"/>
+                <constraint firstItem="k3G-QT-8v8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="g3v-PK-BTs"/>
+                <constraint firstAttribute="bottom" secondItem="8PJ-6u-l1v" secondAttribute="bottom" constant="37" id="qLW-W0-aAT"/>
+                <constraint firstItem="kIn-bf-Zm0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="100" id="xJo-Y5-7jR"/>
+                <constraint firstItem="8PJ-6u-l1v" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="100" id="zfZ-f1-y55"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="5bM-yH-pEZ"/>
-                    <exclude reference="xz0-xY-WJN"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="389.5" y="247.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="placeHolder.png" width="800" height="800"/>
+    </resources>
 </document>
