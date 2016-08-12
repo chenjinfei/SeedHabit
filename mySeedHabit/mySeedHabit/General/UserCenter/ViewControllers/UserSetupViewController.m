@@ -12,6 +12,7 @@
 #import "SeedUser.h"
 #import "UserManager.h"
 #import "LoginViewController.h"
+#import "UserInfoViewController.h"
 
 #import <UIImageView+WebCache.h>
 #import "UIImage+CJFImage.h"
@@ -33,6 +34,10 @@
     
     // 创建视图
     [self buildView];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated {
     
     // 加载数据
     [self loadData];
@@ -87,7 +92,21 @@
     
     self.tableHeaderView.textView.text = @"编辑个人资料";
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(updateUserInfo:)];
+    [self.tableHeaderView addGestureRecognizer:tap];
+    
 }
+
+
+// 用户信息修改
+-(void)updateUserInfo: (UITapGestureRecognizer *)tap {
+    
+    UserInfoViewController *infoVc = [[UserInfoViewController alloc]init];
+    [self.navigationController pushViewController:infoVc animated:YES];
+    
+}
+
+
 
 // 退出登录
 - (void)logoutClick:(UIButton *)sender {
@@ -118,7 +137,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SETUPMENU"];
     cell.textLabel.text = self.dataArr[indexPath.section][indexPath.row];
-    cell.textLabel.textColor = [UIColor grayColor];
+    cell.textLabel.textColor = [UIColor darkGrayColor];
     if (indexPath.section == self.dataArr.count-1) {
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.textLabel.textColor = [UIColor redColor];

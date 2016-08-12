@@ -51,6 +51,8 @@
 #define APIRegisterWithTel             [APIUser stringByAppendingString:@"registerWithTel"]
 // 通过ID获取用户信息
 #define APIUserInfoById                [APIUser stringByAppendingString:@"getUserInfoById"]
+// 修改密码
+#define APIChangePwd               [APIUser stringByAppendingString:@"changePsw"]
 
 
 

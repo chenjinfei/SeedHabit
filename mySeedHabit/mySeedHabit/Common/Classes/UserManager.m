@@ -45,15 +45,20 @@
     if (!_currentUser) {
         _currentUser = [[SeedUser alloc]init];
     }
-    
-    NSDictionary *parameters = @{@"user_id": _userId};
-    [_session POST:APIUserInfo parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [_currentUser setValuesForKeysWithDictionary: responseObject[@"data"][@"user"]];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", error);
-    }];
-    NSLog(@"%@", _currentUser);
-    return _currentUser;
+    if (_userId) {
+        
+        NSDictionary *parameters = @{@"user_id": _userId};
+        [_session POST:APIUserInfo parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [_currentUser setValuesForKeysWithDictionary: responseObject[@"data"][@"user"]];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+        
+        return _currentUser;
+        
+    }else {
+        return nil;
+    }
 }
 
 
@@ -143,7 +148,7 @@ static UserManager *instance = nil;
 -(void)loginWithInfo:(NSDictionary *)info success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure {
     
     [self.session POST:APILogin parameters:info progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+        NSLog(@"%@", responseObject);
         if ([responseObject[@"status"] integerValue] == 0) {
             
             // 成功登录，保存当前登录的用户信息

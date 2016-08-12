@@ -15,7 +15,13 @@
 
 @interface RegisterByPhoneViewController ()
 
+// 电话号码输入框
 @property (strong, nonatomic) IBOutlet UITextField *phoneNumber;
+// 发送验证码按钮
+@property (strong, nonatomic) IBOutlet UIButton *sendValidateBtn;
+// 验证码输入框
+@property (strong, nonatomic) IBOutlet UITextField *validateNumber;
+
 @property (nonatomic, strong) SCLAlertView *alert;
 
 @end
@@ -32,8 +38,20 @@
     return _alert;
 }
 
+/**
+ *  发送验证码
+ *
+ *  @param sender 按钮对象
+ */
+- (IBAction)sendValidateAction:(UIButton *)sender {
+    [self.alert showWaiting:self title:@"锁理咯" subTitle:@"老王说，你不用验证手机就能注册喔..." closeButtonTitle:nil duration:2.0f];
+}
+
 // 注册
 - (IBAction)registerClick:(UIButton *)sender {
+    
+    // 退出键盘
+    [self.phoneNumber resignFirstResponder];
     
     // 手机号码输入验证
     if (![NSString isValidatePhoneNumber:self.phoneNumber.text]) {

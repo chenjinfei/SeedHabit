@@ -15,5 +15,8 @@
 // 选中状态色调
 #define UISelectedColor @"#00bb99"
 
+// 视图控制器背景色
+#define VCBackgroundColor  RGBA(249, 249, 249, 1)
+
 
 #endif /* Macros_UI_h */

@@ -85,7 +85,7 @@
         
         [[UserManager manager] loginWithInfo:parameters success:^(NSDictionary *userData) {
             
-            NSLog(@"登录成功 : %@", userData);
+            NSLog(@"登录成功");
             
         } failure:^(NSError *error) {
             NSLog(@"%@", error);

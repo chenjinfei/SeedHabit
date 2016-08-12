@@ -23,6 +23,10 @@
 // 签名
 @property (strong, nonatomic) IBOutlet UILabel *signatureView;
 
+// 列表方式A
+@property (strong, nonatomic) IBOutlet UIButton *aListBtn;
+// 列表方式B
+@property (strong, nonatomic) IBOutlet UIButton *bListBtn;
 
 
 @end
