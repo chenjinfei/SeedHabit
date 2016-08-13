@@ -38,6 +38,7 @@
 		3767F5071D5EC7AA004E2945 /* mine_selected_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F4FF1D5EC7AA004E2945 /* mine_selected_32.png */; };
 		3767F5081D5EC7AA004E2945 /* msg_normal_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F5001D5EC7AA004E2945 /* msg_normal_32.png */; };
 		3767F5091D5EC7AA004E2945 /* msg_selected_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F5011D5EC7AA004E2945 /* msg_selected_32.png */; };
+		3767F51F1D5F1871004E2945 /* UIButton+CJFUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F51E1D5F1871004E2945 /* UIButton+CJFUIButton.m */; };
 		378A15C51D58EEED004B86EC /* UIImageView+CJFUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 378A15C41D58EEED004B86EC /* UIImageView+CJFUIImageView.m */; };
 		378A15CA1D58F43D004B86EC /* UserHaBitList_TBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 378A15C81D58F43D004B86EC /* UserHaBitList_TBCell.m */; };
 		378A15CB1D58F43D004B86EC /* UserHaBitList_TBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 378A15C91D58F43D004B86EC /* UserHaBitList_TBCell.xib */; };
@@ -176,6 +177,8 @@
 		3767F4FF1D5EC7AA004E2945 /* mine_selected_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mine_selected_32.png; sourceTree = "<group>"; };
 		3767F5001D5EC7AA004E2945 /* msg_normal_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_normal_32.png; sourceTree = "<group>"; };
 		3767F5011D5EC7AA004E2945 /* msg_selected_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_selected_32.png; sourceTree = "<group>"; };
+		3767F51D1D5F1871004E2945 /* UIButton+CJFUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CJFUIButton.h"; sourceTree = "<group>"; };
+		3767F51E1D5F1871004E2945 /* UIButton+CJFUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CJFUIButton.m"; sourceTree = "<group>"; };
 		378A15C31D58EEED004B86EC /* UIImageView+CJFUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CJFUIImageView.h"; sourceTree = "<group>"; };
 		378A15C41D58EEED004B86EC /* UIImageView+CJFUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CJFUIImageView.m"; sourceTree = "<group>"; };
 		378A15C71D58F43D004B86EC /* UserHaBitList_TBCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHaBitList_TBCell.h; sourceTree = "<group>"; };
@@ -493,6 +496,8 @@
 				378A15C41D58EEED004B86EC /* UIImageView+CJFUIImageView.m */,
 				3767F4E71D5DB8EB004E2945 /* UILabel+LeftTopAlign.h */,
 				3767F4E81D5DB8EB004E2945 /* UILabel+LeftTopAlign.m */,
+				3767F51D1D5F1871004E2945 /* UIButton+CJFUIButton.h */,
+				3767F51E1D5F1871004E2945 /* UIButton+CJFUIButton.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1062,6 +1067,7 @@
 				37DB26751D4F40A600FA5198 /* main.m in Sources */,
 				37D799CB1D597E2B00019B51 /* UserInfo_LabelImage.m in Sources */,
 				37DB26DB1D4F46CC00FA5198 /* UserManager.m in Sources */,
+				3767F51F1D5F1871004E2945 /* UIButton+CJFUIButton.m in Sources */,
 				37A93C6E1D5886EF00DC8050 /* UserCenterViewController.m in Sources */,
 				37A93C5B1D5870E300DC8050 /* Data.m in Sources */,
 				37A93C6B1D5870FE00DC8050 /* YHJTabPageScrollView.m in Sources */,
