@@ -55,7 +55,7 @@
     
     // 手机号码输入验证
     if (![NSString isValidatePhoneNumber:self.phoneNumber.text]) {
-        [self.alert showWarning:self title:@"宝宝不开心~" subTitle:@"你输入的不是手机号码。。。" closeButtonTitle:@"再输..." duration:0.0f];
+        [self.alert showWarning:self title:@"宝宝不开心~" subTitle:@"你输入的不是手机号码。。。" closeButtonTitle:@"换个号码试试..." duration:0.0f];
         return;
     }
     
@@ -68,7 +68,7 @@
     [[UserManager manager] isTelExists:parameters responseBlock:^(id responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             if ([responseObject[@"data"][@"is_register"] integerValue]) {
-                [self.alert showWarning:self title:@"玩我呢？" subTitle:@"都注册过了还来？。。。" closeButtonTitle:@"赶紧登录去" duration:0.0f];
+                [self.alert showWarning:self title:@"小朋友" subTitle:@"你的号码已经注册过了喔。。。" closeButtonTitle:@"咱去登录~好吗？" duration:0.0f];
             }else  {
                 RegisterDataViewController *registerVc = [[RegisterDataViewController alloc]init];
                 registerVc.account = phoneNumber;

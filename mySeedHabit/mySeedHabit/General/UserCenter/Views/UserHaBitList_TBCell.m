@@ -41,7 +41,8 @@
         for (int i = 0; i < model.mind_notes.count; i++) {
             
             MindNotesModel *mindNoteModel = model.mind_notes[i];
-            if (mindNoteModel.mind_pic_small) {
+            
+            if (mindNoteModel.mind_pic_small != nil && mindNoteModel.mind_pic_small.length != 0) {
                 
                 HabitPreviewView *habitPreview = [[[NSBundle mainBundle] loadNibNamed:@"HabitPreviewView" owner:self options:nil] lastObject];
                 habitPreview.frame = CGRectMake(10+i*hpWidth+i*8, 0, hpWidth, hpWidth+40);

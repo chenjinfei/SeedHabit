@@ -259,13 +259,18 @@ static UserManager *instance = nil;
  */
 -(void)registerByParameters: (NSDictionary *)parameters success: (void (^)(NSDictionary *responseObject))success failure: (void (^)(NSError *error))failure {
     [self.session POST:APIRegisterWithTel parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        // 注册环信平台帐号
-        NSString *username = [parameters valueForKey:@"account"];
-        NSString *password = [parameters valueForKey:@"password"];
-        EMError *error = [[EMClient sharedClient] registerWithUsername:username password:password];
-        if (error==nil) { // 注册成功
-            success(responseObject);
+        
+        if (responseObject[@"data"] != nil && [responseObject[@"status"] integerValue] == 0) {
+            // 注册环信平台帐号
+            NSString *username = [parameters valueForKey:@"account"];
+            NSString *password = [parameters valueForKey:@"password"];
+            EMError *error = [[EMClient sharedClient] registerWithUsername:username password:password];
+            if (error==nil) { // 注册成功
+                NSLog(@"注册环信平台帐号成功！");
+            }
         }
+        success(responseObject);
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error);
     }];

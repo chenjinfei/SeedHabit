@@ -236,14 +236,14 @@
                                      @"user_id": user.uId
                                      };
         [session POST:APIHabitListPreview parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"%@", responseObject);
+            //            NSLog(@"%@", responseObject);
             if (self.dataArr != nil) {
                 [self.dataArr removeAllObjects];
             }
             for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
                 HabitModel *model = [[HabitModel alloc]init];
                 [model setValuesForKeysWithDictionary:dict];
-                
+                //                NSLog(@"%@", model.mind_notes);
                 if ([model.mind_notes count] > 0) {
                     NSMutableArray *mindNotesArr = [[NSMutableArray alloc]init];
                     for (NSDictionary *mDict in model.mind_notes) {
@@ -264,9 +264,14 @@
         }];
         
         [self.tableHeaderView.avatarView lhy_loadImageUrlStr:user.avatar_small placeHolderImageName:@"placeHolder.png" radius:self.tableHeaderView.avatarView.frame.size.height/2];
-        self.tableHeaderView.avatarView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *avatarTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changeAvatar:)];
-        [self.tableHeaderView.avatarView addGestureRecognizer:avatarTap];
+        
+        if (user == [UserManager manager].currentUser) {
+            
+            self.tableHeaderView.avatarView.userInteractionEnabled = YES;
+            UITapGestureRecognizer *avatarTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changeAvatar:)];
+            [self.tableHeaderView.avatarView addGestureRecognizer:avatarTap];
+            
+        }
         
         self.tableHeaderView.followCountView.text = [NSString stringWithFormat:@"%@", user.friends_count];
         self.tableHeaderView.followerCountView.text = [NSString stringWithFormat:@"%@", user.fans_count];
