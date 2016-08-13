@@ -95,6 +95,8 @@
 #define APIRecommendChoiceHabits   [APIHabit stringByAppendingString:@"recommendChoiceHabits"]
 // 习惯列表预览（无图）
 #define APIHabitListPreview        [APIHabit stringByAppendingString:@"getHabitListPreview"]
+// 排行榜
+#define APIHabitExpertList         [APIHabit stringByAppendingString:@"getExpertList"]
 
 
 
