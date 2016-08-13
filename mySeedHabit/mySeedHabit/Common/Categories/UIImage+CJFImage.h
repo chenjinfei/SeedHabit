@@ -32,4 +32,14 @@
  */
 + (id)createRoundedRectImage:(UIImage*)image size:(CGSize)size radius:(NSInteger)r;
 
+
+/**
+ *  根据图片的二进制数据判断图片的类型（扩展类型）
+ *
+ *  @param data 二进制图片数据
+ *
+ *  @return 字符串：jpeg...
+ */
++ (NSString *)typeForImageData:(NSData *)data;
+
 @end

@@ -13,6 +13,10 @@
 #import <EMSDK.h>
 #import "UIImage+CJFImage.h"
 
+// 测试
+#import "UIButton+CJFUIButton.h"
+#import <UIImageView+WebCache.h>
+
 @interface MessageViewController ()<EMChatManagerDelegate>
 
 @end
@@ -21,6 +25,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    testBtn.frame = CGRectMake(100, 350, 100, 100);
+    
+    NSURL *url = [NSURL URLWithString:@"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1994807006,3190709677&fm=58"];
+    [testBtn setImageWithUrl:url placeHolderImage:IMAGE(@"placeHolder.png") radius:50 forState:UIControlStateNormal];
+    NSURL *url2 = [NSURL URLWithString:@"http://avatar.csdn.net/3/1/7/1_perfect_milk.jpg"];
+    [testBtn setImageWithUrl:url2 placeHolderImage:IMAGE(@"placeHolder.png") radius:50 forState:UIControlStateHighlighted];
+    
+    
+    [self.view addSubview:testBtn];
+    
     
     // 测试圆角处理 == 可删除
     UIImage *image = [[UIImage imageNamed:@"placeHolder.png"] circleImage];

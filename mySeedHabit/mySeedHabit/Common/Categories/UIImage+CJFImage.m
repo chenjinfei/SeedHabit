@@ -106,4 +106,34 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWi
     return img;
 }
 
+
+/**
+ *  根据图片的二进制数据判断图片的类型（扩展类型）
+ *
+ *  @param data 二进制图片数据
+ *
+ *  @return 字符串：jpeg...
+ */
++ (NSString *)typeForImageData:(NSData *)data {
+    
+    uint8_t c;
+    [data getBytes:&c length:1];
+    switch (c) {
+        case 0xFF:
+            return @"image/jpeg";
+            
+        case 0x89:
+            return @"image/png";
+            
+        case 0x47:
+            return @"image/gif";
+            
+        case 0x49:
+        case 0x4D:
+            return @"image/tiff";
+    }
+    return nil;
+    
+}
+
 @end

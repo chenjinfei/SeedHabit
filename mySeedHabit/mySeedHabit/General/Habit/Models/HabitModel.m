@@ -8,6 +8,8 @@
 
 #import "HabitModel.h"
 
+#import "MindNotesModel.h"
+
 @implementation HabitModel
 
 -(void)setValue:(id)value forKey:(NSString *)key {
@@ -18,6 +20,9 @@
     if ([key isEqualToString:@"id"]) {
         _hId = value;
     }
+    if ([key isEqualToString:@"description"]) {
+        _desc = value;
+    }
     
 }
 
@@ -25,4 +30,11 @@
     
 }
 
++ (NSDictionary *)objectClassInArray{
+    return @{@"mind_notes" : [MindNotesModel class]};
+}
+
 @end
+
+
+

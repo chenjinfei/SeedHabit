@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class MindNotesModel;
+
 @interface HabitModel : NSObject
 
 
@@ -53,7 +55,11 @@
 
 @property (nonatomic, assign) NSInteger join_days;
 
-@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *desc;
+
+@property (nonatomic, strong) NSArray<MindNotesModel *> *mind_notes;
 
 
 @end
+
+

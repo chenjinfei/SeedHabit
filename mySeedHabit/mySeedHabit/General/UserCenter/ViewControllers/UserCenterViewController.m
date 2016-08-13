@@ -22,6 +22,8 @@
 #import "UserHaBitList_TBCell.h"
 #import "UserSetupViewController.h"
 #import "AddFriendsViewController.h"
+#import "AvatarUpdateViewController.h"
+#import "MindNotesReviewViewController.h"
 
 @interface UserCenterViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -48,8 +50,6 @@
     // 创建视图控件
     [self buildView];
     
-    // 加载数据
-    [self loadData];
     
     
     
@@ -57,6 +57,8 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
+    // 加载数据
+    [self loadData];
     
 }
 
@@ -121,7 +123,7 @@
     // 去掉分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    self.tableView.backgroundColor = RGBA(249, 249, 249, 1);
+    self.tableView.backgroundColor = RGBA(245, 245, 245, 1);
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -232,11 +234,24 @@
         NSDictionary *parameters = @{
                                      @"user_id": user.uId
                                      };
-        [session POST:APIHabitList parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
+        [session POST:APIHabitListPreview parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            //            NSLog(@"%@", responseObject);
+            if (self.dataArr != nil) {
+                [self.dataArr removeAllObjects];
+            }
             for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
                 HabitListModel *model = [[HabitListModel alloc]init];
                 [model setValuesForKeysWithDictionary:dict];
+                //                NSLog(@"%@", model.mind_notes);
+                if ([model.mind_notes count] > 0) {
+                    NSMutableArray *mindNotesArr = [[NSMutableArray alloc]init];
+                    for (NSDictionary *mDict in model.mind_notes) {
+                        MindNotesModel *mindNotes = [[MindNotesModel alloc]init];
+                        [mindNotes setValuesForKeysWithDictionary:mDict];
+                        [mindNotesArr addObject:mindNotes];
+                    }
+                    model.mind_notes = mindNotesArr;
+                }
                 [self.dataArr addObject:model];
             }
             self.tableHeaderView.habitCountView.text = [NSString stringWithFormat:@"%ld", self.dataArr.count];
@@ -247,9 +262,15 @@
             NSLog(@"%@", error);
         }];
         
-        
-        
         [self.tableHeaderView.avatarView lhy_loadImageUrlStr:user.avatar_small placeHolderImageName:@"placeHolder.png" radius:self.tableHeaderView.avatarView.frame.size.height/2];
+        
+        if (user == [UserManager manager].currentUser) {
+            
+            self.tableHeaderView.avatarView.userInteractionEnabled = YES;
+            UITapGestureRecognizer *avatarTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(changeAvatar:)];
+            [self.tableHeaderView.avatarView addGestureRecognizer:avatarTap];
+            
+        }
         
         self.tableHeaderView.followCountView.text = [NSString stringWithFormat:@"%@", user.friends_count];
         self.tableHeaderView.followerCountView.text = [NSString stringWithFormat:@"%@", user.fans_count];
@@ -266,23 +287,55 @@
     
 }
 
+/**
+ *  更换头像按钮点击响应方法
+ *
+ *  @param Ges 手势对象
+ */
+-(void)changeAvatar: (UITapGestureRecognizer *)Ges {
+    
+    AvatarUpdateViewController *avatarUpateVc = [[AvatarUpdateViewController alloc]init];
+    [self presentViewController:avatarUpateVc animated:YES completion:nil];
+    
+}
+
+#pragma mark tableView的代理方法实现
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArr.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UserHaBitList_TBCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HBLTBCELL"];
+    //删除cell的所有子视图(作用解决因为cell的重用机制导致的内容错乱问题)
+    while ([cell.habitDynamicView.subviews lastObject] != nil)
+    {
+        [(UIView*)[cell.habitDynamicView.subviews lastObject] removeFromSuperview];
+    }
     cell.model = self.dataArr[indexPath.row];
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 63;
+    //    return 63;
+    HabitModel *model = self.dataArr[indexPath.row];
+    if (model.mind_notes.count > 0) {
+        return 10+53+(SCREEN_WIDTH-56)/3+6;
+    }else {
+        return 63;
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // 取消选中状态
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    MindNotesReviewViewController *reviewVc = [[MindNotesReviewViewController alloc]init];
+    HabitModel *habitModel = self.dataArr[indexPath.row];
+    reviewVc.habitModel = habitModel;
+    [self.navigationController pushViewController:reviewVc animated:YES];
+    
 }
 
 

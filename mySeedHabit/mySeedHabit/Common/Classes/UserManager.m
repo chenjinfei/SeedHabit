@@ -32,6 +32,36 @@
     return _session;
 }
 
+-(NSNumber *)userId {
+    if (!_userId) {
+        _userId = [[NSNumber alloc]init];
+    }
+    return _userId;
+}
+
+
+// 获取当前登录用户
+-(SeedUser *)currentUser {
+    if (!_currentUser) {
+        _currentUser = [[SeedUser alloc]init];
+    }
+    if (_userId) {
+        
+        NSDictionary *parameters = @{@"user_id": _userId};
+        [_session POST:APIUserInfo parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [_currentUser setValuesForKeysWithDictionary: responseObject[@"data"][@"user"]];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"获取用户信息失败：%@", error);
+        }];
+        
+        return _currentUser;
+        
+    }else {
+        return nil;
+    }
+}
+
+
 /**
  *  单例
  */
@@ -101,9 +131,14 @@ static UserManager *instance = nil;
  */
 -(BOOL)checkLogin {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if ([userDefaults valueForKey:@"userName"]) {
+    if ([userDefaults valueForKey:USERNAME]) {
+        NSLog(@"有持久化登录记录: \n userName: %@", [userDefaults valueForKey:USERNAME]);
+        if ([userDefaults valueForKey:USERPASSWORD]) {
+            NSLog(@"userPassword: %@", [userDefaults valueForKey:USERPASSWORD]);
+        }
         return YES;
     }else {
+        NSLog(@"未登录， 无持久化登录记录");
         return NO;
     }
 }
@@ -139,23 +174,44 @@ static UserManager *instance = nil;
             if (error==nil) { // 注册成功
                 success(responseObject);
             }
-        }
-        // 判断是否设置了环信的自动登录
-        BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
-        if (!isAutoLogin) {
-            error = [[EMClient sharedClient] loginWithUsername:username password:password];
-            if (!error) {
-                NSLog(@"登录环信成功");
-                // 开启环信自动登录，默认关闭
-                [[EMClient sharedClient].options setIsAutoLogin:YES];
+            NSString *username = [NSString stringWithFormat:@"%@", [info valueForKey:@"account"]];
+            NSString *password = nil;
+            if ([info valueForKey:@"password"]) {
+                password = [info valueForKey:@"password"];
             }else {
-                NSLog(@"登录环信失败：%@", error);
+                password = [NSString md5WithString:@""];
             }
+            // 当为新用户是为用户进行环信的帐号注册
+            // 否则再执行用户在环信的登录
+            EMError *error = nil;
+            if ([responseObject[@"data"][@"new_user"] intValue]) {
+                error = [[EMClient sharedClient] registerWithUsername:username password:password];
+                if (error==nil) { // 注册成功
+                    success(responseObject);
+                }
+            }
+            // 判断是否设置了环信的自动登录
+            BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
+            if (!isAutoLogin) {
+                error = [[EMClient sharedClient] loginWithUsername:username password:password];
+                if (!error) {
+                    NSLog(@"登录环信成功");
+                    // 开启环信自动登录，默认关闭
+                    [[EMClient sharedClient].options setIsAutoLogin:YES];
+                }else {
+                    NSLog(@"登录环信失败：%@", error);
+                }
+            }else {
+                NSLog(@"开启了环信自动登录");
+            }
+            
+            success(responseObject);
+            
         }else {
-            NSLog(@"开启了环信自动登录");
+            NSLog(@"用户登录失败：%@", responseObject[@"info"]);
+            //            [self removeUserDefaults];
+            success(nil);
         }
-        
-        success(responseObject);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -221,13 +277,18 @@ static UserManager *instance = nil;
  */
 -(void)registerByParameters: (NSDictionary *)parameters success: (void (^)(NSDictionary *responseObject))success failure: (void (^)(NSError *error))failure {
     [self.session POST:APIRegisterWithTel parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        // 注册环信平台帐号
-        NSString *username = [parameters valueForKey:@"account"];
-        NSString *password = [parameters valueForKey:@"password"];
-        EMError *error = [[EMClient sharedClient] registerWithUsername:username password:password];
-        if (error==nil) { // 注册成功
-            success(responseObject);
+        
+        if (responseObject[@"data"] != nil && [responseObject[@"status"] integerValue] == 0) {
+            // 注册环信平台帐号
+            NSString *username = [parameters valueForKey:@"account"];
+            NSString *password = [parameters valueForKey:@"password"];
+            EMError *error = [[EMClient sharedClient] registerWithUsername:username password:password];
+            if (error==nil) { // 注册成功
+                NSLog(@"注册环信平台帐号成功！");
+            }
         }
+        success(responseObject);
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error);
     }];
@@ -240,12 +301,15 @@ static UserManager *instance = nil;
  *  @param password 用户密码
  */
 -(void)setUserDefaultsWithUserName: (NSString *)username password: (NSString *)password {
+    
+    [self removeUserDefaults];
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (username) {
-        [userDefaults setValue:username forKey:@"userName"];
+        [userDefaults setValue:username forKey:USERNAME];
     }
     if (password) {
-        [userDefaults setValue:password forKey:@"userPassword"];
+        [userDefaults setValue:password forKey:USERPASSWORD];
     }
 }
 
@@ -254,8 +318,109 @@ static UserManager *instance = nil;
  */
 -(void)removeUserDefaults {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults removeObjectForKey:@"userName"];
-    [userDefaults removeObjectForKey:@"userPassword"];
+    [userDefaults removeObjectForKey:USERNAME];
+    [userDefaults removeObjectForKey:USERPASSWORD];
+    
+    NSDictionary* dict = [userDefaults dictionaryRepresentation];
+    
+    for(id key in dict) {
+        
+        [userDefaults removeObjectForKey:key];
+        
+    }
+    
+    [userDefaults synchronize];
+    
+    
+    NSLog(@"清除本地持久化登录数据：username:%@, password:%@", [userDefaults valueForKey:USERNAME], [userDefaults valueForKey:USERPASSWORD])
+}
+
+
+
+/**
+ *  更换头像
+ *
+ *  @param params 参数：@{@"avatar":<UIImage>, @"id", userId}
+ */
+-(void)avatarUpdateWithParameters:(NSDictionary *)params {
+    
+    NSString *url = APIUserUpdate;
+    
+    //分界线的标识符
+    NSString *TWITTERFON_FORM_BOUNDARY = @"AaB03x";
+    //根据url初始化request
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                           cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                                       timeoutInterval:10];
+    //分界线 --AaB03x
+    NSString *MPboundary=[[NSString alloc]initWithFormat:@"--%@",TWITTERFON_FORM_BOUNDARY];
+    //结束符 AaB03x--
+    NSString *endMPboundary=[[NSString alloc]initWithFormat:@"%@--",MPboundary];
+    //要上传的图片
+    UIImage *image=[params objectForKey:@"avatar"];
+    //得到图片的data
+    //    NSData* data = UIImagePNGRepresentation(image);
+    NSData* data = UIImageJPEGRepresentation(image, 0.7);
+    //http body的字符串
+    NSMutableString *body = [[NSMutableString alloc]init];
+    //参数的集合的所有key的集合
+    NSArray *keys= [params allKeys];
+    
+    //遍历keys
+    for(int i=0;i<[keys count];i++)
+    {
+        //得到当前key
+        NSString *key=[keys objectAtIndex:i];
+        //如果key不是pic，说明value是字符类型，比如name：Boris
+        if(![key isEqualToString:@"avatar"])
+        {
+            //添加分界线，换行
+            [body appendFormat:@"%@\r\n",MPboundary];
+            //添加字段名称，换2行
+            [body appendFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n",key];
+            //添加字段的值
+            [body appendFormat:@"%@\r\n",[params objectForKey:key]];
+        }
+    }
+    
+    ////添加分界线，换行
+    [body appendFormat:@"%@\r\n",MPboundary];
+    //声明pic字段，文件名为boris.png
+    [body appendFormat:@"Content-Disposition: form-data; name=\"avatar\"; filename=\"photo.jpg\"\r\n"];
+    //声明上传文件的格式
+    [body appendFormat:@"Content-Type: image/jpeg\r\n\r\n"];
+    
+    //声明结束符：--AaB03x--
+    NSString *end=[[NSString alloc]initWithFormat:@"\r\n%@",endMPboundary];
+    //声明myRequestData，用来放入http body
+    NSMutableData *myRequestData=[NSMutableData data];
+    //将body字符串转化为UTF8格式的二进制
+    [myRequestData appendData:[body dataUsingEncoding:NSUTF8StringEncoding]];
+    //将image的data加入
+    [myRequestData appendData:data];
+    //加入结束符--AaB03x--
+    [myRequestData appendData:[end dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //设置HTTPHeader中Content-Type的值
+    NSString *content=[[NSString alloc]initWithFormat:@"multipart/form-data; boundary=%@",TWITTERFON_FORM_BOUNDARY];
+    //设置HTTPHeader
+    [request setValue:content forHTTPHeaderField:@"Content-Type"];
+    //设置Content-Length
+    [request setValue:[NSString stringWithFormat:@"%lu", [myRequestData length]] forHTTPHeaderField:@"Content-Length"];
+    //设置http body
+    [request setHTTPBody:myRequestData];
+    //http method
+    [request setHTTPMethod:@"POST"];
+    
+    //建立连接，设置代理
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    //设置接受response的data
+    if (conn) {
+        NSMutableData *mResponseData = [[NSMutableData data] init];
+        NSLog(@"%@", mResponseData);
+    }
+    
 }
 
 
