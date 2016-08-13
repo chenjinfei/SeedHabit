@@ -114,7 +114,6 @@
 		3F1AC4AD1D5ADC9C00F10709 /* discover_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC43C1D5ADC9C00F10709 /* discover_32.png */; };
 		3F1AC4AE1D5ADC9C00F10709 /* habit_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC43D1D5ADC9C00F10709 /* habit_32.png */; };
 		3F1AC4AF1D5ADC9C00F10709 /* headerImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC43E1D5ADC9C00F10709 /* headerImage.jpg */; };
-		3F1AC4B01D5ADC9C00F10709 /* heart2_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC43F1D5ADC9C00F10709 /* heart2_32.png */; };
 		3F1AC4B11D5ADC9C00F10709 /* heart_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC4401D5ADC9C00F10709 /* heart_32.png */; };
 		3F1AC4B21D5ADC9C00F10709 /* into_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC4411D5ADC9C00F10709 /* into_32.png */; };
 		3F1AC4B31D5ADC9C00F10709 /* lady_orange_32_cjf.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC4421D5ADC9C00F10709 /* lady_orange_32_cjf.png */; };
@@ -124,13 +123,10 @@
 		3F1AC4B71D5ADC9C00F10709 /* msg2_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC4461D5ADC9C00F10709 /* msg2_32.png */; };
 		3F1AC4B81D5ADC9C00F10709 /* msg3_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC4471D5ADC9C00F10709 /* msg3_32.png */; };
 		3F1AC4B91D5ADC9C00F10709 /* msg_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC4481D5ADC9C00F10709 /* msg_32.png */; };
-		3F1AC4BA1D5ADC9C00F10709 /* omit2_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC4491D5ADC9C00F10709 /* omit2_32.png */; };
-		3F1AC4BB1D5ADC9C00F10709 /* omit_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC44A1D5ADC9C00F10709 /* omit_32.png */; };
 		3F1AC4BC1D5ADC9C00F10709 /* placeholder2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC44B1D5ADC9C00F10709 /* placeholder2.png */; };
 		3F1AC4BD1D5ADC9C00F10709 /* qq_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC44C1D5ADC9C00F10709 /* qq_32.png */; };
 		3F1AC4BE1D5ADC9C00F10709 /* right_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC44D1D5ADC9C00F10709 /* right_32.png */; };
 		3F1AC4BF1D5ADC9C00F10709 /* search_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC44E1D5ADC9C00F10709 /* search_32.png */; };
-		3F1AC4C01D5ADC9C00F10709 /* seeds_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC44F1D5ADC9C00F10709 /* seeds_32.png */; };
 		3F1AC4C11D5ADC9C00F10709 /* setup_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC4501D5ADC9C00F10709 /* setup_32.png */; };
 		3F1AC4C21D5ADC9C00F10709 /* setup_white_32_cjf.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC4511D5ADC9C00F10709 /* setup_white_32_cjf.png */; };
 		3F1AC4C31D5ADC9C00F10709 /* sina_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC4521D5ADC9C00F10709 /* sina_32.png */; };
@@ -316,7 +312,6 @@
 		3F1AC43C1D5ADC9C00F10709 /* discover_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discover_32.png; sourceTree = "<group>"; };
 		3F1AC43D1D5ADC9C00F10709 /* habit_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = habit_32.png; sourceTree = "<group>"; };
 		3F1AC43E1D5ADC9C00F10709 /* headerImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headerImage.jpg; sourceTree = "<group>"; };
-		3F1AC43F1D5ADC9C00F10709 /* heart2_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart2_32.png; sourceTree = "<group>"; };
 		3F1AC4401D5ADC9C00F10709 /* heart_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_32.png; sourceTree = "<group>"; };
 		3F1AC4411D5ADC9C00F10709 /* into_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = into_32.png; sourceTree = "<group>"; };
 		3F1AC4421D5ADC9C00F10709 /* lady_orange_32_cjf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lady_orange_32_cjf.png; sourceTree = "<group>"; };
@@ -326,13 +321,10 @@
 		3F1AC4461D5ADC9C00F10709 /* msg2_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg2_32.png; sourceTree = "<group>"; };
 		3F1AC4471D5ADC9C00F10709 /* msg3_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg3_32.png; sourceTree = "<group>"; };
 		3F1AC4481D5ADC9C00F10709 /* msg_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_32.png; sourceTree = "<group>"; };
-		3F1AC4491D5ADC9C00F10709 /* omit2_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = omit2_32.png; sourceTree = "<group>"; };
-		3F1AC44A1D5ADC9C00F10709 /* omit_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = omit_32.png; sourceTree = "<group>"; };
 		3F1AC44B1D5ADC9C00F10709 /* placeholder2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder2.png; sourceTree = "<group>"; };
 		3F1AC44C1D5ADC9C00F10709 /* qq_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qq_32.png; sourceTree = "<group>"; };
 		3F1AC44D1D5ADC9C00F10709 /* right_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_32.png; sourceTree = "<group>"; };
 		3F1AC44E1D5ADC9C00F10709 /* search_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_32.png; sourceTree = "<group>"; };
-		3F1AC44F1D5ADC9C00F10709 /* seeds_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeds_32.png; sourceTree = "<group>"; };
 		3F1AC4501D5ADC9C00F10709 /* setup_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setup_32.png; sourceTree = "<group>"; };
 		3F1AC4511D5ADC9C00F10709 /* setup_white_32_cjf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setup_white_32_cjf.png; sourceTree = "<group>"; };
 		3F1AC4521D5ADC9C00F10709 /* sina_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sina_32.png; sourceTree = "<group>"; };
@@ -758,7 +750,6 @@
 				3F1AC43C1D5ADC9C00F10709 /* discover_32.png */,
 				3F1AC43D1D5ADC9C00F10709 /* habit_32.png */,
 				3F1AC43E1D5ADC9C00F10709 /* headerImage.jpg */,
-				3F1AC43F1D5ADC9C00F10709 /* heart2_32.png */,
 				3F1AC4401D5ADC9C00F10709 /* heart_32.png */,
 				3F1AC4411D5ADC9C00F10709 /* into_32.png */,
 				3F1AC4421D5ADC9C00F10709 /* lady_orange_32_cjf.png */,
@@ -768,13 +759,10 @@
 				3F1AC4461D5ADC9C00F10709 /* msg2_32.png */,
 				3F1AC4471D5ADC9C00F10709 /* msg3_32.png */,
 				3F1AC4481D5ADC9C00F10709 /* msg_32.png */,
-				3F1AC4491D5ADC9C00F10709 /* omit2_32.png */,
-				3F1AC44A1D5ADC9C00F10709 /* omit_32.png */,
 				3F1AC44B1D5ADC9C00F10709 /* placeholder2.png */,
 				3F1AC44C1D5ADC9C00F10709 /* qq_32.png */,
 				3F1AC44D1D5ADC9C00F10709 /* right_32.png */,
 				3F1AC44E1D5ADC9C00F10709 /* search_32.png */,
-				3F1AC44F1D5ADC9C00F10709 /* seeds_32.png */,
 				3F1AC4501D5ADC9C00F10709 /* setup_32.png */,
 				3F1AC4511D5ADC9C00F10709 /* setup_white_32_cjf.png */,
 				3F1AC4521D5ADC9C00F10709 /* sina_32.png */,
@@ -880,7 +868,6 @@
 				3F1AC4CA1D5ADC9C00F10709 /* 同好取消关注@2x.png in Resources */,
 				3F1AC4A81D5ADC9C00F10709 /* add_32.png in Resources */,
 				3F1AC4B61D5ADC9C00F10709 /* message_32.png in Resources */,
-				3F1AC4BB1D5ADC9C00F10709 /* omit_32.png in Resources */,
 				3F1AC4C31D5ADC9C00F10709 /* sina_32.png in Resources */,
 				3F1AC4931D5ADC9C00F10709 /* AvatarUpdateViewController.xib in Resources */,
 				3F1AC4721D5ADC9C00F10709 /* DiscoverHotCell.xib in Resources */,
@@ -888,7 +875,6 @@
 				37DB26831D4F40A600FA5198 /* LaunchScreen.storyboard in Resources */,
 				3F1AC4821D5ADC9C00F10709 /* HabitDetailsViewController.xib in Resources */,
 				3F1AC4AC1D5ADC9C00F10709 /* contacts_32.png in Resources */,
-				3F1AC4B01D5ADC9C00F10709 /* heart2_32.png in Resources */,
 				3F1AC4AA1D5ADC9C00F10709 /* addContact_white_32_cjf.png in Resources */,
 				3F1AC46B1D5ADC9C00F10709 /* DiscoverViewController.xib in Resources */,
 				3F1AC4C61D5ADC9C00F10709 /* tool_32.png in Resources */,
@@ -913,14 +899,12 @@
 				3F1AC4A41D5ADC9C00F10709 /* UserInfo_TBHeaderView.xib in Resources */,
 				3F1AC4BD1D5ADC9C00F10709 /* qq_32.png in Resources */,
 				3F1AC4881D5ADC9C00F10709 /* HabitNotesByTimeCell.xib in Resources */,
-				3F1AC4C01D5ADC9C00F10709 /* seeds_32.png in Resources */,
 				3F1AC49B1D5ADC9C00F10709 /* RegisterDataViewController.xib in Resources */,
 				3F1AC4911D5ADC9C00F10709 /* AddFriendsViewController.xib in Resources */,
 				3F1AC4861D5ADC9C00F10709 /* HabitCheckInCell.xib in Resources */,
 				3F1AC49E1D5ADC9C00F10709 /* UserSetupViewController.xib in Resources */,
 				3F1AC4B71D5ADC9C00F10709 /* msg2_32.png in Resources */,
 				3F1AC48E1D5ADC9C00F10709 /* MessageViewController.xib in Resources */,
-				3F1AC4BA1D5ADC9C00F10709 /* omit2_32.png in Resources */,
 				3F1AC4B11D5ADC9C00F10709 /* heart_32.png in Resources */,
 				3F1AC4741D5ADC9C00F10709 /* PropsListTableViewCell.xib in Resources */,
 				3F1AC4B41D5ADC9C00F10709 /* left_32.png in Resources */,
