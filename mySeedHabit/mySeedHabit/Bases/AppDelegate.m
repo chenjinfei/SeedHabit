@@ -58,37 +58,61 @@
 }
 
 
+/**
+ *  弹出登录视图
+ */
+-(void)showLoginVC {
+    
+    LoginViewController *loginVc = [[LoginViewController alloc]init];
+    loginVc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:loginVc animated:NO completion:nil];
+    
+}
+
+/**
+ *  检查登录
+ */
 -(void)checkLogin {
     // 未登录
     if (![[UserManager manager] checkLogin]) {
-        LoginViewController *loginVc = [[LoginViewController alloc]init];
-        loginVc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:loginVc animated:NO completion:nil];
-    }else{ // 本地有持久化登录数据
+        
+        [self showLoginVC];
+        
+    }else{
+        
+        // 获取本地有持久化登录数据
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSDictionary *parameters = nil;
         NSNumber *account_type = nil;
-        if ([defaults valueForKey:@"userName"] && [defaults valueForKey:@"userPassword"]) {
+        if ([defaults valueForKey:USERNAME] && [defaults valueForKey:USERPASSWORD]) {
             account_type = [NSNumber numberWithInt:4];
             parameters = @{
-                           @"account": [defaults valueForKey:@"userName"],
-                           @"password": [defaults valueForKey:@"userPassword"],
+                           @"account": [NSNumber numberWithInteger:[[defaults valueForKey:USERNAME] integerValue]],
+                           @"password": [defaults valueForKey:USERPASSWORD],
                            @"account_type": account_type
                            };
         }else {
             account_type = [NSNumber numberWithInt:1];
             parameters = @{
-                           @"account": [defaults valueForKey:@"userName"],
+                           @"account": [defaults valueForKey:USERNAME],
                            @"account_type": account_type
                            };
         }
         
         [[UserManager manager] loginWithInfo:parameters success:^(NSDictionary *userData) {
-            
-            NSLog(@"登录成功");
+            if (userData) {
+                
+                NSLog(@"登录成功");
+                
+            }else {
+                
+                [self showLoginVC];
+                
+            }
             
         } failure:^(NSError *error) {
             NSLog(@"%@", error);
+            [self showLoginVC];
         }];
     }
 }

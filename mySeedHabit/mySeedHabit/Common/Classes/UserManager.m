@@ -51,7 +51,7 @@
         [_session POST:APIUserInfo parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [_currentUser setValuesForKeysWithDictionary: responseObject[@"data"][@"user"]];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"%@", error);
+            NSLog(@"获取用户信息失败：%@", error);
         }];
         
         return _currentUser;
@@ -131,9 +131,14 @@ static UserManager *instance = nil;
  */
 -(BOOL)checkLogin {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if ([userDefaults valueForKey:@"userName"]) {
+    if ([userDefaults valueForKey:USERNAME]) {
+        NSLog(@"有持久化登录记录: \n userName: %@", [userDefaults valueForKey:USERNAME]);
+        if ([userDefaults valueForKey:USERPASSWORD]) {
+            NSLog(@"userPassword: %@", [userDefaults valueForKey:USERPASSWORD]);
+        }
         return YES;
     }else {
+        NSLog(@"未登录， 无持久化登录记录");
         return NO;
     }
 }
@@ -192,8 +197,9 @@ static UserManager *instance = nil;
             success(responseObject);
             
         }else {
-            NSLog(@"99999999%@", responseObject);
-            [self removeUserDefaults];
+            NSLog(@"用户登录失败：%@", responseObject[@"info"]);
+            //            [self removeUserDefaults];
+            success(nil);
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -283,12 +289,15 @@ static UserManager *instance = nil;
  *  @param password 用户密码
  */
 -(void)setUserDefaultsWithUserName: (NSString *)username password: (NSString *)password {
+    
+    [self removeUserDefaults];
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if (username) {
-        [userDefaults setValue:username forKey:@"userName"];
+        [userDefaults setValue:username forKey:USERNAME];
     }
     if (password) {
-        [userDefaults setValue:password forKey:@"userPassword"];
+        [userDefaults setValue:password forKey:USERPASSWORD];
     }
 }
 
@@ -297,8 +306,21 @@ static UserManager *instance = nil;
  */
 -(void)removeUserDefaults {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults removeObjectForKey:@"userName"];
-    [userDefaults removeObjectForKey:@"userPassword"];
+    [userDefaults removeObjectForKey:USERNAME];
+    [userDefaults removeObjectForKey:USERPASSWORD];
+    
+    NSDictionary* dict = [userDefaults dictionaryRepresentation];
+    
+    for(id key in dict) {
+        
+        [userDefaults removeObjectForKey:key];
+        
+    }
+    
+    [userDefaults synchronize];
+    
+    
+    NSLog(@"清除本地持久化登录数据：username:%@, password:%@", [userDefaults valueForKey:USERNAME], [userDefaults valueForKey:USERPASSWORD])
 }
 
 
