@@ -70,7 +70,6 @@
 		3767F6461D5F4E74004E2945 /* omit2_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6091D5F4E74004E2945 /* omit2_32.png */; };
 		3767F6471D5F4E74004E2945 /* omit_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F60A1D5F4E74004E2945 /* omit_32.png */; };
 		3767F6481D5F4E74004E2945 /* phone_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F60B1D5F4E74004E2945 /* phone_32.png */; };
-		3767F6491D5F4E74004E2945 /* placeholder2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F60C1D5F4E74004E2945 /* placeholder2.png */; };
 		3767F64A1D5F4E74004E2945 /* portrait_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767F60D1D5F4E74004E2945 /* portrait_default.jpg */; };
 		3767F64B1D5F4E74004E2945 /* qq_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F60E1D5F4E74004E2945 /* qq_32.png */; };
 		3767F64C1D5F4E74004E2945 /* radio.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F60F1D5F4E74004E2945 /* radio.png */; };
@@ -156,6 +155,7 @@
 		3767F69E1D614F53004E2945 /* HabitCheckInCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AC3F21D5ADC9C00F10709 /* HabitCheckInCell.m */; };
 		3767F69F1D614F53004E2945 /* HabitNotesByTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AC3F51D5ADC9C00F10709 /* HabitNotesByTimeCell.m */; };
 		3767F6A11D614F53004E2945 /* LogoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AC4121D5ADC9C00F10709 /* LogoutTableViewCell.m */; };
+		3767F6AC1D619389004E2945 /* placeHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6AB1D619389004E2945 /* placeHolder.png */; };
 		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
 		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
@@ -274,7 +274,6 @@
 		3767F6091D5F4E74004E2945 /* omit2_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = omit2_32.png; sourceTree = "<group>"; };
 		3767F60A1D5F4E74004E2945 /* omit_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = omit_32.png; sourceTree = "<group>"; };
 		3767F60B1D5F4E74004E2945 /* phone_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone_32.png; sourceTree = "<group>"; };
-		3767F60C1D5F4E74004E2945 /* placeholder2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder2.png; sourceTree = "<group>"; };
 		3767F60D1D5F4E74004E2945 /* portrait_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = portrait_default.jpg; sourceTree = "<group>"; };
 		3767F60E1D5F4E74004E2945 /* qq_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qq_32.png; sourceTree = "<group>"; };
 		3767F60F1D5F4E74004E2945 /* radio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radio.png; sourceTree = "<group>"; };
@@ -304,6 +303,7 @@
 		3767F6281D5F4E74004E2945 /* 同好关注@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "同好关注@2x.png"; sourceTree = "<group>"; };
 		3767F6291D5F4E74004E2945 /* 同好取消关注@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "同好取消关注@2x.png"; sourceTree = "<group>"; };
 		3767F62A1D5F4E74004E2945 /* 搜索@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索@2x.png"; sourceTree = "<group>"; };
+		3767F6AB1D619389004E2945 /* placeHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeHolder.png; sourceTree = "<group>"; };
 		379B01111D54AB1500D75383 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		379B01131D54AB2200D75383 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -520,6 +520,7 @@
 				3767F5F81D5F4E74004E2945 /* discover_32.png */,
 				3767F5F91D5F4E74004E2945 /* follow_add_32.png */,
 				3767F5FA1D5F4E74004E2945 /* follow_cancel_32.png */,
+				3767F6AB1D619389004E2945 /* placeHolder.png */,
 				3767F5FB1D5F4E74004E2945 /* goldCup.png */,
 				3767F5FC1D5F4E74004E2945 /* habit_32.png */,
 				3767F5FD1D5F4E74004E2945 /* heard_32.png */,
@@ -537,7 +538,6 @@
 				3767F6091D5F4E74004E2945 /* omit2_32.png */,
 				3767F60A1D5F4E74004E2945 /* omit_32.png */,
 				3767F60B1D5F4E74004E2945 /* phone_32.png */,
-				3767F60C1D5F4E74004E2945 /* placeholder2.png */,
 				3767F60D1D5F4E74004E2945 /* portrait_default.jpg */,
 				3767F60E1D5F4E74004E2945 /* qq_32.png */,
 				3767F60F1D5F4E74004E2945 /* radio.png */,
@@ -1027,6 +1027,7 @@
 				3767F6961D614D98004E2945 /* HabitNotesByTimeCell.xib in Resources */,
 				3767F6971D614D98004E2945 /* AddFriendsViewController.xib in Resources */,
 				3767F6981D614D98004E2945 /* LoginViewController.xib in Resources */,
+				3767F6AC1D619389004E2945 /* placeHolder.png in Resources */,
 				3767F6991D614D98004E2945 /* LogoutTableViewCell.xib in Resources */,
 				3767F69A1D614D98004E2945 /* RegisterByPhoneViewController.xib in Resources */,
 				3767F69B1D614D98004E2945 /* RegisterDataViewController.xib in Resources */,
@@ -1081,7 +1082,6 @@
 				3767F5A81D5F4DC5004E2945 /* PropsListViewController.xib in Resources */,
 				3767F6411D5F4E74004E2945 /* man_orange_32_cjf.png in Resources */,
 				3767F6591D5F4E74004E2945 /* habit_selected_32.png in Resources */,
-				3767F6491D5F4E74004E2945 /* placeholder2.png in Resources */,
 				3767F6641D5F4E74004E2945 /* 同好关注@2x.png in Resources */,
 				3767F62C1D5F4E74004E2945 /* addContact_32.png in Resources */,
 				3767F65E1D5F4E74004E2945 /* time_32.png in Resources */,
