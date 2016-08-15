@@ -159,6 +159,7 @@
 		3767F6A51D61667E004E2945 /* hoveringBtnBg_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6A41D61667E004E2945 /* hoveringBtnBg_32.png */; };
 		3767F6A91D61693B004E2945 /* MsgChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F6A71D61693B004E2945 /* MsgChatViewController.m */; };
 		3767F6AA1D61693B004E2945 /* MsgChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6A81D61693B004E2945 /* MsgChatViewController.xib */; };
+		3767F6AE1D61941D004E2945 /* placeHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6AD1D61941D004E2945 /* placeHolder.png */; };
 		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
 		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
@@ -311,6 +312,7 @@
 		3767F6A61D61693B004E2945 /* MsgChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgChatViewController.h; sourceTree = "<group>"; };
 		3767F6A71D61693B004E2945 /* MsgChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgChatViewController.m; sourceTree = "<group>"; };
 		3767F6A81D61693B004E2945 /* MsgChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgChatViewController.xib; sourceTree = "<group>"; };
+		3767F6AD1D61941D004E2945 /* placeHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeHolder.png; sourceTree = "<group>"; };
 		379B01111D54AB1500D75383 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		379B01131D54AB2200D75383 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -514,6 +516,7 @@
 		3767F5ED1D5F4E74004E2945 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3767F6AD1D61941D004E2945 /* placeHolder.png */,
 				3767F6A41D61667E004E2945 /* hoveringBtnBg_32.png */,
 				3767F5EE1D5F4E74004E2945 /* add_32.png */,
 				3767F5EF1D5F4E74004E2945 /* addContact_32.png */,
@@ -1032,6 +1035,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3767F6921D614D98004E2945 /* HabitClassifyViewController.xib in Resources */,
+				3767F6AE1D61941D004E2945 /* placeHolder.png in Resources */,
 				3767F6931D614D98004E2945 /* HabitDetailsViewController.xib in Resources */,
 				3767F6941D614D98004E2945 /* HabitViewController.xib in Resources */,
 				3767F6951D614D98004E2945 /* HabitCheckInCell.xib in Resources */,

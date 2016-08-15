@@ -36,6 +36,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
+    NSLog(@"%@", self.habitModel);
     [self loadData];
     
 }

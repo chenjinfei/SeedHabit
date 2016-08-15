@@ -411,10 +411,19 @@
     // 取消选中状态
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
+    self.hidesBottomBarWhenPushed = YES;
     MindNotesReviewViewController *reviewVc = [[MindNotesReviewViewController alloc]init];
     HabitModel *habitModel = self.dataArr[indexPath.row];
     reviewVc.habitModel = habitModel;
     [self.navigationController pushViewController:reviewVc animated:YES];
+    if (self.user != nil) {
+        self.hidesBottomBarWhenPushed = YES;
+    }else {
+        self.hidesBottomBarWhenPushed = NO;
+    }
+    
+    // 关闭悬浮按钮
+    [self resignHoveringBtnWindow];
     
 }
 
