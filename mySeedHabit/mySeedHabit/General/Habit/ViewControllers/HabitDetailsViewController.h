@@ -16,4 +16,7 @@
 // 属性传值 习惯id
 @property (nonatomic,strong)NSString *habit_idStr;
 
+// 坚持天数
+@property (nonatomic,strong)NSString *check_in_times;
+
 @end

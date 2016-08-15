@@ -48,4 +48,6 @@
 
 @property (nonatomic, copy) NSString *avatar_small;
 
+@property (nonatomic, copy) NSString *check_in_times;
+
 @end

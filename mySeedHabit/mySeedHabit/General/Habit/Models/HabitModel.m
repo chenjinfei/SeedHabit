@@ -18,7 +18,9 @@
     if ([key isEqualToString:@"id"]) {
         _hId = value;
     }
-    
+    if ([key isEqualToString:@"description"]) {
+        self.desc = [NSString stringWithFormat:@"%@",value];
+    }
 }
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key {

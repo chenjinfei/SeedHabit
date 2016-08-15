@@ -10,4 +10,6 @@
 
 @interface HabitClassifyViewController : UIViewController
 
+@property (nonatomic,strong)NSMutableArray *habitArr;
+
 @end

@@ -53,7 +53,7 @@
 
 @property (nonatomic, assign) NSInteger join_days;
 
-@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *desc;
 
 
 @end
