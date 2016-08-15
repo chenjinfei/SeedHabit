@@ -42,7 +42,8 @@
     // 检查是否已经登录
     [self checkLogin];
     
-    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+//    UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true);
     
     // 设置友盟AppKey
     [UMSocialData setAppKey:AppKeyUmeng];

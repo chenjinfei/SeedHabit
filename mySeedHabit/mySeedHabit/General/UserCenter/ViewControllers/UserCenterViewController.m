@@ -11,7 +11,9 @@
 #import "UserManager.h"
 #import "SeedUser.h"
 #import "LoginViewController.h"
+#import "HabitModel.h"
 #import "HabitListModel.h"
+#import "MindNotesModel.h"
 
 #import <UIImageView+WebCache.h>
 #import "UIImage+CJFImage.h"
@@ -240,7 +242,7 @@
                 [self.dataArr removeAllObjects];
             }
             for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
-                HabitListModel *model = [[HabitListModel alloc]init];
+                HabitModel *model = [[HabitModel alloc]init];
                 [model setValuesForKeysWithDictionary:dict];
                 //                NSLog(@"%@", model.mind_notes);
                 if ([model.mind_notes count] > 0) {

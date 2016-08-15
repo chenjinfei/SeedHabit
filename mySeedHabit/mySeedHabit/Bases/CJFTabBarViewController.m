@@ -55,7 +55,11 @@
  */
 -(UINavigationController *)buildViewControllerWithClassName:(NSString *)className title: (NSString *)title image:(NSString*)imageName selectedImage: (NSString *)selectedImageName {
     
-    UIViewController *newVc = [[NSClassFromString(className) alloc]init];
+    Class vcClass = NSClassFromString(className);
+    UIViewController *newVc = nil;
+    if (vcClass) {
+        newVc = (UIViewController *)[[vcClass alloc]init];
+    }
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:newVc];
     

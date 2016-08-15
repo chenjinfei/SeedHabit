@@ -68,7 +68,7 @@
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = RGB(239, 239, 239);
     [self.view addSubview:self.tableView];
-    UINib *nib = [UINib nibWithNibName:@"HabitTableViewCell" bundle:nil];
+    UINib *nib = [UINib nibWithNibName:@"HabitTableViewCell" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"hh"];
     // 编辑按钮
     self.navigationItem.leftBarButtonItem = self.editButtonItem;

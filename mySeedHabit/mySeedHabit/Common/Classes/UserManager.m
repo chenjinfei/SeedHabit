@@ -153,26 +153,15 @@ static UserManager *instance = nil;
 -(void)loginWithInfo:(NSDictionary *)info success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure {
     
     [self.session POST:APILogin parameters:info progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        // 成功登录，保存当前登录的用户信息
-        if ([responseObject[@"status"] intValue] == 0) {
-            SeedUser *model = [[SeedUser alloc]init];
-            [model setValuesForKeysWithDictionary:responseObject[@"data"][@"user"]];
-            self.currentUser = model;
-        }
-        // 当为新用户是为用户进行环信的帐号注册
-        // 否则再执行用户在环信的登录
-        NSString *username = [NSString stringWithFormat:@"%@", [info valueForKey:@"account"]];
-        NSString *password = nil;
-        if ([info valueForKey:@"password"]) {
-            password = [info valueForKey:@"password"];
-        }else {
-            password = [NSString md5WithString:@""];
-        }
-        EMError *error = nil;
-        if ([responseObject[@"data"][@"new_user"] intValue]) {
-            error = [[EMClient sharedClient] registerWithUsername:username password:password];
-            if (error==nil) { // 注册成功
-                success(responseObject);
+        NSLog(@"%@", responseObject);
+        if ([responseObject[@"status"] integerValue] == 0) {
+            
+            // 成功登录，保存当前登录的用户信息
+            if ([responseObject[@"status"] intValue] == 0) {
+                SeedUser *model = [[SeedUser alloc]init];
+                [model setValuesForKeysWithDictionary:responseObject[@"data"][@"user"]];
+                self.currentUser = model;
+                self.userId = model.uId;
             }
             NSString *username = [NSString stringWithFormat:@"%@", [info valueForKey:@"account"]];
             NSString *password = nil;
