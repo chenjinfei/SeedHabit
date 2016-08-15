@@ -54,17 +54,17 @@
     // 建立mind_noteLabel
     self.mind_note = [[UILabel alloc] init];
     [self.contentV addSubview:self.mind_note];
-    self.mind_note.backgroundColor = [UIColor blueColor];
+//    self.mind_note.backgroundColor = [UIColor blueColor];
     
     // 建立 PropV
     self.propV = [[UIView alloc] init];
     [self.contentV addSubview:self.propV];
-    self.propV.backgroundColor = [UIColor lightGrayColor];
+//    self.propV.backgroundColor = [UIColor lightGrayColor];
     
     // 建立 commentV
     self.comment = [[UILabel alloc] init];
     [self.contentV addSubview:self.comment];
-    self.comment.backgroundColor = [UIColor redColor];
+//    self.comment.backgroundColor = [UIColor redColor];
     
 }
 
@@ -98,20 +98,39 @@
         // 心情
         self.mind_note.text = [self.note valueForKey:@"mind_note"];
         
+        
         // 解析评论
         NSArray *commentArr = notes.comments;
+        Note *note = notes.note;
+        NSLog(@"%@", note);
         NSMutableString *text = [[NSMutableString alloc] init];
-        for (Comments *com in commentArr) {
-            NSString *userStr;
-            NSString *comStr;
-            for (Users *users in self.usersArr) {
-                if ([com valueForKey:@"user_id"] == [users valueForKey:@"idx"]) {
-                    userStr = [NSString stringWithFormat:@"%@", users.nickname];
-                    comStr = [NSString stringWithFormat:@"%@", [com valueForKey:@"comment_text_content"]];
-                    [text appendFormat:@"%@:%@\n", userStr, comStr];
+        NSMutableArray *comId = [[NSMutableArray alloc] init];
+        if (commentArr != nil && commentArr.count > 0) {
+            for (Comments *com in commentArr) {
+                [comId addObject:[com valueForKey:@"id"]];
+//                NSLog(@"%@", [com valueForKey:@"mind_note_id"]);
+//                NSLog(@"%@", [note valueForKey:@"id"]);
+//                NSLog(@"%@", comId);
+//                NSLog(@"%@", [com valueForKey:@"be_commented_id"]);
+//                if ([comId containsObject:[com valueForKey:@"be_commented_id"]]) {
+//                    NSLog(@"回复");
+//                }
+                
+                if ([com valueForKey:@"mind_note_id"] == [note valueForKey:@"id"]) {
+                    NSString *userStr;
+                    NSString *comStr;
+                    for (Users *users in self.usersArr) {
+                        if ([com valueForKey:@"user_id"] == [users valueForKey:@"idx"]) {
+                            userStr = [NSString stringWithFormat:@"%@", users.nickname];
+                            comStr = [NSString stringWithFormat:@"%@", [com valueForKey:@"comment_text_content"]];
+                            [text appendFormat:@"%@:%@\n", userStr, comStr];
+                        }
+                    }
                 }
             }
         }
+        
+        NSLog(@"%@",text);
         self.comment.text = text;
         self.commentNumber.text = [NSString stringWithFormat:@"%ld", commentArr.count];
         // i6Plus （414-60(两边边距)） / 9 = 39.33
@@ -174,7 +193,7 @@
                     // 每个按键的约束
                     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.size.mas_equalTo(CGSizeMake(32, 32));
-                        make.top.mas_equalTo(self.propV.mas_top).offset(20);
+                        make.top.mas_equalTo(self.propV.mas_top).offset(15);
                         // 存在小偏差？
                         make.left.mas_equalTo(self.propV.mas_left).offset(20+(float)i*((float)(SCREEN_WIDTH-60)/count));
                     }];
@@ -241,7 +260,7 @@
         if (self.isProp) {
             self.propV.hidden = NO;
             // 固定高度，PropV 装载 点赞
-            self.propHeight = 72.0; // 头像32+上下边距各20
+            self.propHeight = 62.0; // 头像32+上下边距各15
             [self.propV mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-20, self.propHeight));
                 make.left.mas_equalTo(self.contentV.mas_left).with.offset(0);

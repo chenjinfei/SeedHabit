@@ -84,12 +84,12 @@
 
 // 上拉加载
 static BOOL hotFlag = 0;
-//static BOOL keepFlag = 0;
-//static BOOL newestFlag = 0;
+static BOOL keepFlag = 0;
+static BOOL newestFlag = 0;
 // 判断是否下拉刷新
 static BOOL isHotRefresh = 0;
-//static BOOL isKeepRefresh = 0;
-//static BOOL isNewRefresh = 0;
+static BOOL isKeepRefresh = 0;
+static BOOL isNewRefresh = 0;
 
 @implementation DiscoverViewController
 
@@ -202,8 +202,8 @@ static BOOL isHotRefresh = 0;
     
     // 加载数据
     [self hotLoadData];
-    //    [self NewestLoadData];
-    //    [self keepLoadData];
+    [self NewestLoadData];
+    [self keepLoadData];
     
 }
 
@@ -213,20 +213,19 @@ static BOOL isHotRefresh = 0;
     __weak typeof (self) weakSelf = self;
     
     // hotTableView上拉下拉
-    hotTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        NSLog(@"下拉加载， 自动加载？");
-        isHotRefresh = 1;
-        [weakSelf hotLoadData];
-    }];
+//    hotTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        NSLog(@"下拉刷新？");
+//        isHotRefresh = 1;
+//        [weakSelf hotLoadData];
+//    }];
     hotTabelView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         // 加载完第一次之后，flag == 1
-        NSLog(@"上拉刷新");
+        NSLog(@"上拉加载");
         isHotRefresh = 0;
         hotFlag = 1;
         [weakSelf hotLoadData];
     }];
     
-    /*
     // keepTableView上拉下拉
     keepTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         NSLog(@"下拉加载， 自动加载？");
@@ -252,7 +251,7 @@ static BOOL isHotRefresh = 0;
         newestFlag = 1;
         [weakSelf NewestLoadData];
     }];
-     */
+    
 }
 
 #pragma mark 创建 头部滚动列表
@@ -346,7 +345,7 @@ static BOOL isHotRefresh = 0;
         
         return hotCell;
     }
-    /*
+    
     else if ([tableView isEqual:keepTableView]) {
         
         keepCell = [tableView dequeueReusableCellWithIdentifier:@"DiscoverKeep"];
@@ -366,10 +365,10 @@ static BOOL isHotRefresh = 0;
             }
         }
 
-        keepCell.delegate = self;
-        [keepCell.propListBtn addTarget:self action:@selector(keepPropsListPush:) forControlEvents:UIControlEventTouchUpInside];
-        [keepCell.seedBtn addTarget:self action:@selector(keepTreeInfoPush:) forControlEvents:UIControlEventTouchUpInside];
-        [keepCell.omitBtn addTarget:self action:@selector(keepAlbumPush:) forControlEvents:UIControlEventTouchUpInside];
+//        keepCell.delegate = self;
+//        [keepCell.propListBtn addTarget:self action:@selector(keepPropsListPush:) forControlEvents:UIControlEventTouchUpInside];
+//        [keepCell.seedBtn addTarget:self action:@selector(keepTreeInfoPush:) forControlEvents:UIControlEventTouchUpInside];
+//        [keepCell.omitBtn addTarget:self action:@selector(keepAlbumPush:) forControlEvents:UIControlEventTouchUpInside];
         
         return keepCell;
     }
@@ -394,27 +393,26 @@ static BOOL isHotRefresh = 0;
             }
         }
         
-        NewCell.delegate = self;
-        [NewCell.propListBtn addTarget:self action:@selector(newPropsListPush:) forControlEvents:UIControlEventTouchUpInside];
-        [NewCell.seedBtn addTarget:self action:@selector(newTreeInfoPush:) forControlEvents:UIControlEventTouchUpInside];
-        [NewCell.omitBtn addTarget:self action:@selector(newAlbumPush:) forControlEvents:UIControlEventTouchUpInside];
+//        NewCell.delegate = self;
+//        [NewCell.propListBtn addTarget:self action:@selector(newPropsListPush:) forControlEvents:UIControlEventTouchUpInside];
+//        [NewCell.seedBtn addTarget:self action:@selector(newTreeInfoPush:) forControlEvents:UIControlEventTouchUpInside];
+//        [NewCell.omitBtn addTarget:self action:@selector(newAlbumPush:) forControlEvents:UIControlEventTouchUpInside];
 
         return NewCell;
     }
-     */
     
     return nil;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([tableView isEqual:hotTabelView]) {
         return self.notesArr.count;
-    }/*
+    }
     else if ([tableView isEqual:keepTableView]) {
         return self.keepNotesArr.count;
     }
     else if ([tableView isEqual:newestTableView]) {
         return self.NewNotesArr.count;
-    }*/
+    }
     else
         return 0;
 }
@@ -424,7 +422,6 @@ static BOOL isHotRefresh = 0;
         return  height + 140;
         
     }
-    /*
     else if ([tableView isEqual:keepTableView]) {
         CGFloat height = [keepCell Height];
         return  height + 140;
@@ -432,7 +429,7 @@ static BOOL isHotRefresh = 0;
     else if ([tableView isEqual:newestTableView]){
         CGFloat height = [NewCell Height];
         return  height + 140;
-    }*/
+    }
     else
         return 0;
 }
@@ -638,7 +635,7 @@ static BOOL isHotRefresh = 0;
     }];
     
 }
-/*
+
 - (void)keepLoadData {
 
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
@@ -704,7 +701,7 @@ static BOOL isHotRefresh = 0;
     }];
 
 }
-*/
+
 
 // 解析数据
 - (void)analysisDataWithResponseObject:(id)responseObject NotesArr:(NSMutableArray *)NotesArr UsersArr:(NSMutableArray *)UsersArr HabitsArr:(NSMutableArray *)HabitsArr isRefresh:(BOOL)isRefresh tableView:(UITableView *)tableView{
@@ -720,7 +717,6 @@ static BOOL isHotRefresh = 0;
             if ([tableView isEqual:hotTabelView]) {
                 [self.mReadStr appendFormat:@"%@|", [note valueForKey:@"id"]];
             }
-            
             else if ([tableView isEqual:newestTableView]) {
                 self.NewNextId = [note valueForKey:@"id"];
             }
@@ -740,37 +736,37 @@ static BOOL isHotRefresh = 0;
             [HabitsArr addObject:habits];
         }
     }
-    else {
-        NSMutableArray *notesArr = [[NSMutableArray alloc] init];
-        for (NSDictionary *dict in responseObject[@"data"][@"notes"]) {
-            Notes *notes = [[Notes alloc] init];
-            [notes setValuesForKeysWithDictionary:dict];
-            [notesArr addObject:notes];
-        }
-        NSArray *arr = [notesArr arrayByAddingObjectsFromArray:NotesArr];
-        [NotesArr removeAllObjects];
-        [NotesArr addObjectsFromArray:arr];
-        
-        NSMutableArray *usersArr = [[NSMutableArray alloc] init];
-        for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
-            Users *users = [[Users alloc] init];
-            [users setValuesForKeysWithDictionary:dict];
-            [usersArr addObject:users];
-        }
-        
-        NSArray *arr1 = [usersArr arrayByAddingObjectsFromArray:UsersArr];
-        [UsersArr removeAllObjects];
-        [UsersArr addObjectsFromArray:arr1];
-        NSMutableArray *habitsArr = [[NSMutableArray alloc] init];
-        for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
-            Habits *habits = [[Habits alloc] init];
-            [habits setValuesForKeysWithDictionary:dict];
-            [habitsArr addObject:habits];
-        }
-        NSArray *arr2 = [habitsArr arrayByAddingObjectsFromArray:HabitsArr];
-        [HabitsArr removeAllObjects];
-        [HabitsArr addObjectsFromArray:arr2];
-    }
+//    else {
+//        NSMutableArray *notesArr = [[NSMutableArray alloc] init];
+//        for (NSDictionary *dict in responseObject[@"data"][@"notes"]) {
+//            Notes *notes = [[Notes alloc] init];
+//            [notes setValuesForKeysWithDictionary:dict];
+//            [notesArr addObject:notes];
+//        }
+//        NSArray *arr = [notesArr arrayByAddingObjectsFromArray:NotesArr];
+//        [NotesArr removeAllObjects];
+//        [NotesArr addObjectsFromArray:arr];
+//        
+//        NSMutableArray *usersArr = [[NSMutableArray alloc] init];
+//        for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
+//            Users *users = [[Users alloc] init];
+//            [users setValuesForKeysWithDictionary:dict];
+//            [usersArr addObject:users];
+//        }
+//        
+//        NSArray *arr1 = [usersArr arrayByAddingObjectsFromArray:UsersArr];
+//        [UsersArr removeAllObjects];
+//        [UsersArr addObjectsFromArray:arr1];
+//        NSMutableArray *habitsArr = [[NSMutableArray alloc] init];
+//        for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
+//            Habits *habits = [[Habits alloc] init];
+//            [habits setValuesForKeysWithDictionary:dict];
+//            [habitsArr addObject:habits];
+//        }
+//        NSArray *arr2 = [habitsArr arrayByAddingObjectsFromArray:HabitsArr];
+//        [HabitsArr removeAllObjects];
+//        [HabitsArr addObjectsFromArray:arr2];
+//    }
     
     dispatch_async(dispatch_get_main_queue(), ^{
         // 数据加载完毕之后，结束更新
@@ -784,7 +780,7 @@ static BOOL isHotRefresh = 0;
 #pragma mark 热门轮播图
 - (void)createXRCarousel {
     
-    self.carouselView = [[XRCarouselView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 250)];
+    self.carouselView = [[XRCarouselView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3)];
 
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
@@ -801,18 +797,14 @@ static BOOL isHotRefresh = 0;
         NSArray *dataArr = responseObject[@"data"][@"banners"];
         
         for (NSDictionary *dict in dataArr) {
-            // 转换为图片
-            //            UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:dict[@"banner_pic"]];
-            //            [self.carPicArr addObject:cacheImage];
             [self.carPicArr addObject:dict[@"banner_pic"]];
-            
-            
         }
         
 #pragma mark 广告图加载是否需要返回主线程刷新？
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"%@", self.carPicArr);
+//            NSLog(@"%@", self.carPicArr);
             self.carouselView.contentMode = UIViewContentModeScaleAspectFit;
+#pragma mark 待修改
             self.carouselView.imageArray = @[self.carPicArr[0], self.carPicArr[1], self.carPicArr[2], self.carPicArr[3]];
             self.carouselView.time = 2;
         });
@@ -823,7 +815,5 @@ static BOOL isHotRefresh = 0;
           }];
 
 }
-
-
 
 @end

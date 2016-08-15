@@ -12,6 +12,7 @@
                 <outlet property="dayNumber" destination="EAF-ET-CUX" id="dRj-B1-iF1"/>
                 <outlet property="insist" destination="dzJ-ah-FGH" id="ybp-Ma-c4P"/>
                 <outlet property="publish" destination="mvX-iQ-V7b" id="AfW-uW-EPD"/>
+                <outlet property="scrollView" destination="VB2-X6-U88" id="DVF-EZ-R5V"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="0gd-wT-1HA"/>
                 <outlet property="viewHeight" destination="nhw-VE-gZz" id="M9p-hc-mbV"/>
             </connections>
