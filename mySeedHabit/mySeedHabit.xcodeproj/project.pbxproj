@@ -510,9 +510,6 @@
 		37DB26671D4F40A600FA5198 = {
 			isa = PBXGroup;
 			children = (
-				3F7536C21D5AD23400228C71 /* heart_32.png */,
-				3F7536BE1D5AD1F200228C71 /* 同好取消关注@2x.png */,
-				3F7536BF1D5AD1F200228C71 /* comment_32.png */,
 				37DB26721D4F40A600FA5198 /* mySeedHabit */,
 				37DB26711D4F40A600FA5198 /* Products */,
 				8FF4F6A08C4C12B24A3D4A3B /* Frameworks */,

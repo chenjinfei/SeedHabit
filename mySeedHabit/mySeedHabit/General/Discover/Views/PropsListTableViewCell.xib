@@ -29,23 +29,21 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4b-Ob-43j">
-                        <rect key="frame" x="70" y="10" width="294" height="21"/>
+                        <rect key="frame" x="70" y="10" width="264" height="21"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aV3-4l-1IV">
-                        <rect key="frame" x="374" y="15" width="30" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aV3-4l-1IV">
+                        <rect key="frame" x="344" y="15" width="60" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="HeJ-QV-p0R"/>
+                            <constraint firstAttribute="width" constant="60" id="HeJ-QV-p0R"/>
                         </constraints>
-                        <state key="normal" title="关注"/>
-                        <connections>
-                            <action selector="keepAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jqh-To-aYd"/>
-                        </connections>
+                        <state key="normal" image="同好关注.png"/>
+                        <state key="selected" image="同好取消关注.png"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="signature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIU-nw-QBy">
-                        <rect key="frame" x="70" y="35" width="294" height="16"/>
+                        <rect key="frame" x="70" y="35" width="264" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -70,10 +68,15 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatar_small" destination="Wrp-GV-ch1" id="UjK-hp-rGB"/>
+                <outlet property="followBtn" destination="aV3-4l-1IV" id="uzJ-Es-Ab6"/>
                 <outlet property="nickname" destination="E4b-Ob-43j" id="Rkq-jt-POm"/>
                 <outlet property="signature" destination="ZIU-nw-QBy" id="d7p-fT-NVG"/>
             </connections>
             <point key="canvasLocation" x="365" y="412"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="同好关注.png" width="67" height="27"/>
+        <image name="同好取消关注.png" width="67" height="27"/>
+    </resources>
 </document>

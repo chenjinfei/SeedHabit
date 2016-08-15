@@ -9,10 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "Users.h"
 
+// 代理方法
+@protocol followDelegate <NSObject>
+- (void)followBtn:(id)sender;
+@end
+
+
 @interface PropsListTableViewCell : UITableViewCell
+@property (nonatomic, assign) id<followDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UILabel *nickname;
 @property (strong, nonatomic) IBOutlet UIImageView *avatar_small;
 @property (strong, nonatomic) IBOutlet UILabel *signature;
+@property (strong, nonatomic) IBOutlet UIButton *followBtn;
 
 @property (nonatomic, strong) Users *users;
 
