@@ -140,6 +140,7 @@
 		3FEB75C21D5F014500AA2FB4 /* JoinHabitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB75C01D5F014400AA2FB4 /* JoinHabitCell.m */; settings = {ASSET_TAGS = (); }; };
 		3FEB75C31D5F014500AA2FB4 /* JoinHabitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FEB75C11D5F014500AA2FB4 /* JoinHabitCell.xib */; settings = {ASSET_TAGS = (); }; };
 		3FEB75D11D61848D00AA2FB4 /* TabPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AC3FB1D5ADC9C00F10709 /* TabPageScrollView.m */; };
+		3FEB75DA1D61863900AA2FB4 /* CheckTabPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB75D91D61863900AA2FB4 /* CheckTabPageScrollView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -346,6 +347,8 @@
 		3FEB75BF1D5F014400AA2FB4 /* JoinHabitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinHabitCell.h; sourceTree = "<group>"; };
 		3FEB75C01D5F014400AA2FB4 /* JoinHabitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinHabitCell.m; sourceTree = "<group>"; };
 		3FEB75C11D5F014500AA2FB4 /* JoinHabitCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinHabitCell.xib; sourceTree = "<group>"; };
+		3FEB75D81D61863900AA2FB4 /* CheckTabPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckTabPageScrollView.h; sourceTree = "<group>"; };
+		3FEB75D91D61863900AA2FB4 /* CheckTabPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckTabPageScrollView.m; sourceTree = "<group>"; };
 		4A76CC3D92ADF4371271DF91 /* libPods-mySeedHabit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mySeedHabit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A876A9800A11817B78D669E1 /* Pods-mySeedHabit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mySeedHabit.release.xcconfig"; path = "Pods/Target Support Files/Pods-mySeedHabit/Pods-mySeedHabit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -622,6 +625,8 @@
 		3F1AC3F01D5ADC9C00F10709 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3FEB75D81D61863900AA2FB4 /* CheckTabPageScrollView.h */,
+				3FEB75D91D61863900AA2FB4 /* CheckTabPageScrollView.m */,
 				3F1AC3F11D5ADC9C00F10709 /* HabitCheckInCell.h */,
 				3F1AC3F21D5ADC9C00F10709 /* HabitCheckInCell.m */,
 				3F1AC3F31D5ADC9C00F10709 /* HabitCheckInCell.xib */,
@@ -1035,6 +1040,7 @@
 				3F1AC4781D5ADC9C00F10709 /* HabitHabitsModel.m in Sources */,
 				3F1AC48C1D5ADC9C00F10709 /* ContactsViewController.m in Sources */,
 				3F1AC4771D5ADC9C00F10709 /* HabitCommentsModel.m in Sources */,
+				3FEB75DA1D61863900AA2FB4 /* CheckTabPageScrollView.m in Sources */,
 				37DB26751D4F40A600FA5198 /* main.m in Sources */,
 				3F1AC4CE1D5B246100F10709 /* HabitClassifyModel.m in Sources */,
 				3F1AC4981D5ADC9C00F10709 /* RegisterByPhoneViewController.m in Sources */,
