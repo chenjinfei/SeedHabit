@@ -13,6 +13,8 @@
 
 // 当前登录用户的信息
 @property (nonatomic, strong) SeedUser *currentUser;
+// 当前登录用户的id
+@property (nonatomic, strong) NSNumber *userId;
 
 /**
  *  单例
@@ -72,5 +74,12 @@
  *  清除本地登录持久化数据
  */
 -(void)removeUserDefaults;
+
+/**
+ *  更换头像
+ *
+ *  @param params 参数：@{@"avatar":<UIImage>, @"id", userId}
+ */
+-(void)avatarUpdateWithParameters:(NSDictionary *)params;
 
 @end

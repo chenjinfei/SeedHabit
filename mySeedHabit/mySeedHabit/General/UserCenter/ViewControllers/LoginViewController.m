@@ -72,9 +72,8 @@
                 if ([userData[@"status"] intValue] == 0) { // 用户信息匹配成功
                     
                     // 本地持久化登录
-                    NSNumber *numName = [NSNumber numberWithInteger:[[parameters valueForKey:@"account"] integerValue]];
+                    NSString *username = [NSString stringWithFormat:@"%@", [parameters valueForKey:@"account"]];
                     NSString *password = [parameters valueForKey:@"password"];
-                    NSString *username = [NSString stringWithFormat:@"%@", numName];
                     [[UserManager manager] setUserDefaultsWithUserName:username password:password];
                     
                     [self dismissViewControllerAnimated:YES completion:nil];
@@ -179,18 +178,21 @@
                                          };
             
             [[UserManager manager] loginWithInfo:parameters success:^(NSDictionary *userData) {
-                [self dismissViewControllerAnimated:YES completion:^{
-                    
+                if (userData != nil) {
                     // 本地持久化登录
                     NSString *username = [NSString md5WithString:snsAccount.usid];
                     [[UserManager manager] setUserDefaultsWithUserName:username password:nil];
-                    
-                }];
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }
+                
             } failure:^(NSError *error) {
                 NSLog(@"%@", error);
             }];
             
-        }});
+        }else {
+            NSLog(@"微博登录发生异常：%@", response);
+        }
+    });
     
 }
 

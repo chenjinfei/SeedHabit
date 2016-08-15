@@ -38,7 +38,7 @@
             self.image = cacheImage;
         }
         else {
-            [self sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:placeHolderStr] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            [self sd_setImageWithURL:url placeholderImage:[[UIImage imageNamed:placeHolderStr] circleImage] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 if (!error) {
                     UIImage *radiusImage = [UIImage createRoundedRectImage:image size:self.frame.size radius:radius];
                     self.image = radiusImage;
