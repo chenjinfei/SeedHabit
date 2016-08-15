@@ -156,6 +156,9 @@
 		3767F69E1D614F53004E2945 /* HabitCheckInCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AC3F21D5ADC9C00F10709 /* HabitCheckInCell.m */; };
 		3767F69F1D614F53004E2945 /* HabitNotesByTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AC3F51D5ADC9C00F10709 /* HabitNotesByTimeCell.m */; };
 		3767F6A11D614F53004E2945 /* LogoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AC4121D5ADC9C00F10709 /* LogoutTableViewCell.m */; };
+		3767F6A51D61667E004E2945 /* hoveringBtnBg_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6A41D61667E004E2945 /* hoveringBtnBg_32.png */; };
+		3767F6A91D61693B004E2945 /* MsgChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F6A71D61693B004E2945 /* MsgChatViewController.m */; };
+		3767F6AA1D61693B004E2945 /* MsgChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6A81D61693B004E2945 /* MsgChatViewController.xib */; };
 		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
 		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
@@ -304,6 +307,10 @@
 		3767F6281D5F4E74004E2945 /* 同好关注@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "同好关注@2x.png"; sourceTree = "<group>"; };
 		3767F6291D5F4E74004E2945 /* 同好取消关注@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "同好取消关注@2x.png"; sourceTree = "<group>"; };
 		3767F62A1D5F4E74004E2945 /* 搜索@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索@2x.png"; sourceTree = "<group>"; };
+		3767F6A41D61667E004E2945 /* hoveringBtnBg_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hoveringBtnBg_32.png; sourceTree = "<group>"; };
+		3767F6A61D61693B004E2945 /* MsgChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgChatViewController.h; sourceTree = "<group>"; };
+		3767F6A71D61693B004E2945 /* MsgChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgChatViewController.m; sourceTree = "<group>"; };
+		3767F6A81D61693B004E2945 /* MsgChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgChatViewController.xib; sourceTree = "<group>"; };
 		379B01111D54AB1500D75383 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		379B01131D54AB2200D75383 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -507,6 +514,7 @@
 		3767F5ED1D5F4E74004E2945 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3767F6A41D61667E004E2945 /* hoveringBtnBg_32.png */,
 				3767F5EE1D5F4E74004E2945 /* add_32.png */,
 				3767F5EF1D5F4E74004E2945 /* addContact_32.png */,
 				3767F5F01D5F4E74004E2945 /* addContact_white_32_cjf.png */,
@@ -832,6 +840,9 @@
 				3F1AC4001D5ADC9C00F10709 /* MessageViewController.h */,
 				3F1AC4011D5ADC9C00F10709 /* MessageViewController.m */,
 				3F1AC4021D5ADC9C00F10709 /* MessageViewController.xib */,
+				3767F6A61D61693B004E2945 /* MsgChatViewController.h */,
+				3767F6A71D61693B004E2945 /* MsgChatViewController.m */,
+				3767F6A81D61693B004E2945 /* MsgChatViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1062,6 +1073,7 @@
 				3767F6461D5F4E74004E2945 /* omit2_32.png in Resources */,
 				3767F63C1D5F4E74004E2945 /* heart_32.png in Resources */,
 				3767F64A1D5F4E74004E2945 /* portrait_default.jpg in Resources */,
+				3767F6A51D61667E004E2945 /* hoveringBtnBg_32.png in Resources */,
 				3767F5B91D5F4DDB004E2945 /* PropsListTableViewCell.xib in Resources */,
 				3767F63A1D5F4E74004E2945 /* heard_32.png in Resources */,
 				3767F64B1D5F4E74004E2945 /* qq_32.png in Resources */,
@@ -1091,6 +1103,7 @@
 				3767F62E1D5F4E74004E2945 /* check_in1.png in Resources */,
 				3767F6421D5F4E74004E2945 /* message_32.png in Resources */,
 				3767F6611D5F4E74004E2945 /* user_32.png in Resources */,
+				3767F6AA1D61693B004E2945 /* MsgChatViewController.xib in Resources */,
 				3767F6551D5F4E74004E2945 /* sina_32.png in Resources */,
 				3767F5A61D5F4DC5004E2945 /* DiscoverViewController.xib in Resources */,
 				3767F6321D5F4E74004E2945 /* comment_32.png in Resources */,
@@ -1181,6 +1194,7 @@
 				3767F6851D60B246004E2945 /* UserCenterViewController.m in Sources */,
 				3767F6841D60B214004E2945 /* ContactsViewController.m in Sources */,
 				3767F6831D60B1F3004E2945 /* MessageViewController.m in Sources */,
+				3767F6A91D61693B004E2945 /* MsgChatViewController.m in Sources */,
 				3767F6811D60AF75004E2945 /* HabitTableViewCell.m in Sources */,
 				3767F67F1D5F5718004E2945 /* HabitNoteModel.m in Sources */,
 				3767F67E1D5F5704004E2945 /* HabitUsersModel.m in Sources */,

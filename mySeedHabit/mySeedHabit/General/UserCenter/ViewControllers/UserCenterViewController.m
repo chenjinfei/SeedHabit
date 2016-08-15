@@ -19,6 +19,8 @@
 #import "UIImage+CJFImage.h"
 #import "UIImageView+CJFUIImageView.h"
 #import <SCLAlertView.h>
+#import "UIButton+CJFUIButton.h"
+#import "UIColor+CJFColor.h"
 
 #import "UserInfo_TBHeaderView.h"
 #import "UserHaBitList_TBCell.h"
@@ -26,6 +28,7 @@
 #import "AddFriendsViewController.h"
 #import "AvatarUpdateViewController.h"
 #import "MindNotesReviewViewController.h"
+#import "MsgChatViewController.h"
 
 @interface UserCenterViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -41,6 +44,11 @@
 @property (nonatomic, strong) UIButton *followBtn;
 // 弹出窗口对象
 @property (nonatomic, strong) SCLAlertView *alert;
+
+// 悬浮按钮的uiwindow对象
+@property (nonatomic, strong) UIWindow *hoveringBtnWindow;
+// 悬浮按钮
+@property (nonatomic, strong) UIButton *hoveringBtn;
 
 @end
 
@@ -62,9 +70,13 @@
     // 加载数据
     [self loadData];
     
+    if (self.user) {
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+        // 延迟一秒创建悬浮按钮
+        [self performSelector:@selector(buildHoveringBtnWindow) withObject:nil afterDelay:1];
+    }
+    
 }
-
-
 
 
 -(UITableView *)tableView {
@@ -140,16 +152,82 @@
     
 }
 
+
+/**
+ *  创建悬浮按钮和window对象
+ */
+-(void)buildHoveringBtnWindow {
+    
+    CGFloat btnWidth = 50;
+    CGFloat btnHeight = 50;
+    
+    // uiwindow
+    self.hoveringBtnWindow = [[UIWindow alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-btnWidth)/2, SCREEN_HEIGHT-btnHeight-20, btnWidth, btnHeight)];
+    self.hoveringBtnWindow.windowLevel = UIWindowLevelAlert + 1;
+    self.hoveringBtnWindow.backgroundColor = [UIColor colorWithHexString:UIMainColor alpha:1];
+    self.hoveringBtnWindow.layer.cornerRadius = btnWidth / 2;
+    self.hoveringBtnWindow.layer.masksToBounds = YES;
+    
+    self.hoveringBtnWindow.layer.shadowColor = [UIColor grayColor].CGColor;
+    self.hoveringBtnWindow.layer.shadowOpacity = 0.3;
+    self.hoveringBtnWindow.layer.shadowRadius = 2.0;
+    self.hoveringBtnWindow.layer.shadowOffset = CGSizeMake(0, 0);
+    self.hoveringBtnWindow.clipsToBounds = NO;
+    
+    [self.hoveringBtnWindow makeKeyAndVisible];//关键语句,显示window
+    
+    // 悬浮按钮
+    self.hoveringBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    [self.hoveringBtn setTitle:@"悬浮按钮" forState:UIControlStateNormal];
+    [self.hoveringBtn setImage:[UIImage imageNamed:@"hoveringBtnBg_32"] forState:UIControlStateNormal];
+    self.hoveringBtn.frame = CGRectMake(0, 0, btnWidth, btnHeight);
+    [self.hoveringBtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
+    [self.hoveringBtnWindow addSubview:self.hoveringBtn];
+    
+}
+
+/**
+ *  关闭悬浮按钮window
+ */
+-(void)resignHoveringBtnWindow {
+    [self.hoveringBtnWindow resignKeyWindow];
+    self.hoveringBtnWindow = nil;
+}
+
+
+/**
+ *  聊天
+ */
+-(void)chat {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    MsgChatViewController *chatVc = [[MsgChatViewController alloc]init];
+    chatVc.toUser = self.user;
+    [self.navigationController pushViewController:chatVc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
+    // 关闭悬浮按钮
+    [self resignHoveringBtnWindow];
+    
+}
+
+
 // 设置按钮响应方法
 -(void)setupAction: (UIButton *)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
     UserSetupViewController *setupVc = [[UserSetupViewController alloc]init];
     [self.navigationController pushViewController:setupVc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
 }
 
 // 搜索联系人按钮响应方法
 -(void)searchBtnAction: (UIButton *)sender {
+    self.hidesBottomBarWhenPushed = YES;
     AddFriendsViewController *addVc = [[AddFriendsViewController alloc]init];
     [self.navigationController pushViewController:addVc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 // 加关注按钮响应方法

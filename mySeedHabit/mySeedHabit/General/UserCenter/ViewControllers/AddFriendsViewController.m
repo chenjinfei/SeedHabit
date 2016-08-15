@@ -54,7 +54,7 @@
     _dataList = [NSMutableArray array];
     _searchList = [NSMutableArray array];
     
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH , SCREEN_HEIGHT-64-49-44)];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH , SCREEN_HEIGHT-64-44)];
     _tableView.backgroundColor = CLEARCOLOR;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"UserSearchList_TBCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"USERSEARCHCELL"];
@@ -73,7 +73,7 @@
     //搜索时，背景变暗色
     _searchController.dimsBackgroundDuringPresentation = NO;
     //搜索时，背景变模糊
-//    _searchController.obscuresBackgroundDuringPresentation = YES;
+    //    _searchController.obscuresBackgroundDuringPresentation = YES;
     //隐藏导航栏
     _searchController.hidesNavigationBarDuringPresentation = YES;
     
@@ -118,7 +118,10 @@
     
     UserCenterViewController *userVc = [[UserCenterViewController alloc]init];
     userVc.user = self.searchList[indexPath.row];
+    
+    self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:userVc animated:YES];
+    self.hidesBottomBarWhenPushed = YES;
     
 }
 
@@ -176,7 +179,7 @@
         self.tableView.frame = CGRectMake(0, 64, SCREEN_WIDTH , SCREEN_HEIGHT-64-kbHeight);
     }else {
         NSLog(@"close");
-        self.tableView.frame = CGRectMake(0, 64, SCREEN_WIDTH , SCREEN_HEIGHT-49-64);
+        self.tableView.frame = CGRectMake(0, 64, SCREEN_WIDTH , SCREEN_HEIGHT-64);
     }
     
 }
@@ -184,7 +187,7 @@
 // 点击搜索按钮的响应事件
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"search");
-    self.tableView.frame = CGRectMake(0, 64, SCREEN_WIDTH , SCREEN_HEIGHT-49-64);
+    self.tableView.frame = CGRectMake(0, 64, SCREEN_WIDTH , SCREEN_HEIGHT-64);
     [self loadData];
 }
 

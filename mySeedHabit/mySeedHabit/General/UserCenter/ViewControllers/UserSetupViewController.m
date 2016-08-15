@@ -46,7 +46,7 @@
 
 -(UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-49) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStyleGrouped];
     }
     return _tableView;
 }
@@ -101,8 +101,10 @@
 // 用户信息修改
 -(void)updateUserInfo: (UITapGestureRecognizer *)tap {
     
+    self.hidesBottomBarWhenPushed = YES;
     UserInfoViewController *infoVc = [[UserInfoViewController alloc]init];
     [self.navigationController pushViewController:infoVc animated:YES];
+    self.hidesBottomBarWhenPushed = YES;
     
 }
 

@@ -10,6 +10,8 @@
 
 @implementation UserInfo_TBHeaderView
 
-
+-(void)layoutSubviews {
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 150);
+}
 
 @end
