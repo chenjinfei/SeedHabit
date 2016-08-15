@@ -7,15 +7,12 @@
 //
 
 #import "PropsListTableViewCell.h"
-#import <UIImageView+WebCache.h>
+#import "UIImageView+CJFUIImageView.h"
 
 @implementation PropsListTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
-    
-    self.avatar_small.layer.cornerRadius = 20;
-    self.avatar_small.layer.masksToBounds = YES;
     
 }
 
@@ -32,11 +29,11 @@
         self.nickname.text = users.nickname;
         self.signature.text = users.signature;
         
-        [self.avatar_small sd_setImageWithURL:[NSURL URLWithString:users.avatar_small] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+        [self.avatar_small lhy_loadImageUrlStr:[NSString stringWithFormat:@"%@", [NSURL URLWithString:users.avatar_small]] placeHolderImageName:nil radius:20];
     }
     
 }
-- (IBAction)keepAction:(id)sender {
-}
+
+
 
 @end

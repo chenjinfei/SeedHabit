@@ -10,6 +10,7 @@
 
 #import "TreeInfo.h"
 #import <UIImageView+WebCache.h>
+#import "UIColor+CJFColor.h"
 
 @interface TreeInfoViewController ()
 
@@ -20,6 +21,10 @@
 @property (nonatomic, strong) NSMutableArray *dataArr;
 
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, assign) int day;
+@property (nonatomic, assign) int hour;
+@property (nonatomic, assign) int minute;
+@property (nonatomic, assign) int second;
 
 @end
 
@@ -28,13 +33,17 @@
 - (void)viewWillAppear:(BOOL)animated {
 
     self.navigationController.navigationBarHidden = NO;
-    self.tabBarController.tabBar.hidden = YES;
     
 }
 - (void)viewWillDisappear:(BOOL)animated {
 
     self.navigationController.navigationBarHidden = YES;
-    self.tabBarController.tabBar.hidden = NO;
+
+}
+#pragma mark 离开这个页面之后停止计时器
+- (void)viewDidDisappear:(BOOL)animated {
+    
+    [self.timer invalidate];
     
 }
 
@@ -43,6 +52,11 @@
     // Do any additional setup after loading the view from its nib.
     
     [self loadData];
+    
+    // 掩盖导航
+    UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, -64, 414, 64)];
+    [self.view addSubview:vi];
+    vi.backgroundColor = [UIColor colorWithHexString:UIMainColor alpha:1.0];
     
     self.navigationItem.title = self.treeTitle;
     
@@ -68,19 +82,11 @@
     NSDictionary *parameters = @{
                                  @"habit_id":self.habit_id,
                                  @"user_id":self.user_id
-                                 
 //                                  种子树信息
 //                                http://api.idothing.com/zhongzi/v2.php/mindNote/getTreeInfo
 //                                 habit_id=644198&user_id=1847514
                                  };
     [session POST:@"http://api.idothing.com/zhongzi/v2.php/mindNote/getTreeInfo" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-
-//        NSArray *arr = responseObject[@"data"];
-//        for (NSDictionary *dic in arr) {
-//            TreeInfo *tree = [[TreeInfo alloc] init];
-//            [tree setValuesForKeysWithDictionary:dic];
-//            [self.dataArr addObject:tree];
-//        }
         
         TreeInfo *tree = [[TreeInfo alloc] init];
         tree = responseObject[@"data"];
@@ -93,46 +99,46 @@
         NSString *timeS = [NSString stringWithFormat:@"%@", [tree valueForKey:@"start_time"]];
         NSTimeInterval time = [timeS doubleValue];
         NSDate *detail = [NSDate dateWithTimeIntervalSince1970:time];
-        NSLog(@"date:%@", [detail description]);
-//        NSDateFormatter *date = [[NSDateFormatter alloc] init];
-//        [date setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//        [date setDateFormat:@"HH:mm:ss"];
-//        NSString *old = [date stringFromDate:detail];
-        NSDate *new = [NSDate dateWithTimeIntervalSinceNow:8*60*60];
+        NSDate *new = [NSDate date];
         NSTimeInterval interval = [new timeIntervalSinceDate:detail];
         
-        int second = (int)interval % 60;
-        int minute = (int)interval / 60;
-        int hour = (int)interval / 3600;
-        int day = (int)interval / 3660*24;
-//        
-        self.time.text = [NSString stringWithFormat:@"%d : %d : %d : %d", day, hour, minute, second];
+        self.second = (int)interval % 60;
+        self.minute = (int)interval / 60 % 60;
+        self.hour = (int)interval / 3600 % 24;
+        self.day = (int)interval / 3600 / 24;
+//        self.time.text = [NSString stringWithFormat:@"%d  :  %d  :  %d  :  %d", self.day, self.hour, self.minute, self.second];
         
-//        self.time.text = new;
-//        
-//        self.time.text = curr;
-        //         NSLog(@"%@", curr);
-        // 当前时间
-        //        NSDate *nowDate = [NSDate date];
-        // 时间间隔
-        //        double interval = [nowDate timeIntervalSinceDate:detail];
+        // 开启定时器
+        [self addTimer];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error=%@", error);
     }];
     
 }
+- (void)addTimer {
 
-// 判断闰年
-//+(BOOL)bissextile:(int)year {
-//    if ((year%4==0 && year %100 !=0) || year%400==0) {
-//        return YES;
-//    }else {
-//        return NO;
-//    }
-//    return NO;
-//}
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+    
+}
+- (void)timerAction {
 
+    self.second++;
+    if (self.second == 60) {
+        self.second = 0;
+        self.minute++;
+        if (self.minute == 60) {
+            self.minute = 0;
+            self.hour++;
+            if (self.hour == 24) {
+                self.hour = 0;
+                self.day++;
+            }
+        }
+    }
+    self.time.text = [NSString stringWithFormat:@"%d  :  %0.2d  :  %0.2d  :  %0.2d", self.day, self.hour, self.minute, self.second];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

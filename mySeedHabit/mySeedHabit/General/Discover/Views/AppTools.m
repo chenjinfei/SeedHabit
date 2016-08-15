@@ -10,10 +10,10 @@
 
 @implementation AppTools
 
-+ (CGFloat)imageHeightWithImageName:(NSString *)imageName width:(CGFloat)width {
++ (CGFloat)imageHeightWithImage:(UIImage *)image width:(CGFloat)width {
 
 //    加载图片
-    UIImage *image = [UIImage imageNamed:imageName];
+//    UIImage *image = [UIImage imageNamed:imageName];
     
 //    获取图片大小
     CGSize imageSize = image.size;
