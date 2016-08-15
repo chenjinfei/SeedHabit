@@ -252,12 +252,14 @@
                 <outlet property="mind_pic_small" destination="hnJ-hS-ZVA" id="vtt-T8-6U6"/>
                 <outlet property="name" destination="T0T-mF-bJA" id="6QT-Hd-Iin"/>
                 <outlet property="nickname" destination="liV-RE-iyn" id="pyy-HA-uDb"/>
+                <outlet property="propListBtn" destination="eRk-KB-dMR" id="Pex-sp-hDH"/>
                 <outlet property="propUser1" destination="8nH-ys-ncu" id="iYb-tZ-Ekb"/>
                 <outlet property="propUser2" destination="Ted-OI-nbg" id="WUl-iD-LCU"/>
                 <outlet property="propUser3" destination="OJi-Fk-Nds" id="Y6N-dV-BDG"/>
                 <outlet property="propUser4" destination="Obd-sA-FcT" id="VxL-lW-xcj"/>
                 <outlet property="propUser5" destination="Oud-rt-7Qa" id="VEm-3a-hLc"/>
                 <outlet property="propUser6" destination="q3c-2g-kFa" id="IRX-K8-KaB"/>
+                <outlet property="treeInfo" destination="4S7-Kj-bIt" id="ik1-oc-grY"/>
             </connections>
             <point key="canvasLocation" x="652" y="261.5"/>
         </tableViewCell>

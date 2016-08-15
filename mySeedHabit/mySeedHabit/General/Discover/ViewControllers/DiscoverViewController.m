@@ -7,6 +7,8 @@
 //
 
 #import "DiscoverViewController.h"
+#import "PropsListViewController.h"
+#import "TreeInfoViewController.h"
 
 #import "UserManager.h"
 #import "LoginViewController.h"
@@ -29,7 +31,7 @@
 
 #import <MJRefresh.h>
 
-@interface DiscoverViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface DiscoverViewController () <UITableViewDataSource, UITableViewDelegate, pushDelegate>
 {
 
     UITableView *hotTabelView;
@@ -53,6 +55,8 @@
 @property (nonatomic, strong) NSMutableString *commentStr;
 // 存储loadData参数的数据
 @property (nonatomic, strong) NSMutableString *mReadStr;
+// 判断是否下拉刷新
+@property (nonatomic, assign) BOOL isHotRefresh;
 
 // 关注
 @property (nonatomic, strong) NSMutableArray *keepUsersArr;
@@ -63,6 +67,8 @@
 @property (nonatomic, strong) NSMutableArray *keepNotesArr;
 // 存储评论
 @property (nonatomic, strong) NSMutableString *keepCommentStr;
+// 存储loadData参数的数据
+@property (nonatomic, strong) NSString *keepNextId;
 
 // 最新
 @property (nonatomic, strong) NSMutableArray *NewUsersArr;
@@ -73,13 +79,26 @@
 @property (nonatomic, strong) NSMutableArray *NewNotesArr;
 // 存储评论
 @property (nonatomic, strong) NSMutableString *NewCommentStr;
+// 存储loadData参数的数据
+@property (nonatomic, strong) NSString *NewNextId;
+
+// 传递push的参数
+@property (nonatomic, strong) NSString *user_id;
+@property (nonatomic, strong) NSString *mind_note_id;
+@property (nonatomic, strong) NSString *habit_id;
+@property (nonatomic, strong) NSString *treeTitle;
+
 
 @end
 
-// 下拉加载
+// 上拉加载
 static BOOL hotFlag = 0;
 static BOOL keepFlag = 0;
 static BOOL newestFlag = 0;
+// 判断是否下拉刷新
+static BOOL isHotRefresh = 0;
+//static BOOL isKeepRefresh = 0;
+static BOOL isNewRefresh = 0;
 
 @implementation DiscoverViewController
 
@@ -212,18 +231,15 @@ static BOOL newestFlag = 0;
     if (_NewNotesArr == nil) {
         _NewNotesArr = [[NSMutableArray alloc] init];
     }
-    return _keepNotesArr;
+    return _NewNotesArr;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.mReadStr = [[NSMutableString alloc] init];
+    self.view.backgroundColor = [UIColor colorWithRed:0 green:168/255.0 blue:130/255.0 alpha:1];
     
-    // 加载数据
-    [self hotLoadData];
-    [NSThread detachNewThreadSelector:@selector(keepLoadData) toTarget:self withObject:nil];
-//    [NSThread detachNewThreadSelector:@selector(NewLoadData) toTarget:self withObject:nil];
+    self.mReadStr = [[NSMutableString alloc] init];
 
     // 头部滑动
     [self createHeadList];
@@ -231,67 +247,71 @@ static BOOL newestFlag = 0;
     // 刷新
     [self Refresh];
 }
-- (void)loadData {
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+      self.navigationController.navigationBarHidden = YES;
+    
+    // 加载数据
+    [self hotLoadData];
+    [self NewestLoadData];
     [self keepLoadData];
     
 }
-- (void)NewLoadData {
-    
-    [self NewestLoadData];
 
-}
-
-#pragma mark 刷新
+#pragma mark 数据刷新
 - (void)Refresh {
     
     __weak typeof (self) weakSelf = self;
     
     // hotTableView上拉下拉
-    //    hotTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    //        NSLog(@"下拉加载， 自动加载？");
-    //        [weakSelf hotLoadData];
-    //    }];
+//    hotTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        NSLog(@"下拉加载， 自动加载？");
+//        isHotRefresh = 1;
+//        [weakSelf hotLoadData];
+//    }];
     hotTabelView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         // 加载完第一次之后，flag == 1
         NSLog(@"上拉刷新");
+        isHotRefresh = 0;
         hotFlag = 1;
         [weakSelf hotLoadData];
     }];
     
-    // keepTableView上拉下拉
-    //    hotTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    //        NSLog(@"下拉加载， 自动加载？");
-    //        [weakSelf hotLoadData];
-    //    }];
+//    // keepTableView上拉下拉
+//    keepTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        NSLog(@"下拉加载， 自动加载？");
+//        [weakSelf keepLoadData];
+//    }];
     keepTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         // 加载完第一次之后，flag == 1
         NSLog(@"上拉刷新");
         keepFlag = 1;
         [weakSelf keepLoadData];
     }];
-    
+//
     // newestTableView上拉下拉
-    //    hotTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    //        NSLog(@"下拉加载， 自动加载？");
-    //        [weakSelf hotLoadData];
-    //    }];
+//    newestTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        NSLog(@"下拉加载， 自动加载？");
+//        isNewRefresh = 1;
+//        [weakSelf NewLoadData];
+//    }];
     newestTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         // 加载完第一次之后，flag == 1
         NSLog(@"上拉刷新");
+        isNewRefresh = 0;
         newestFlag = 1;
         [weakSelf NewestLoadData];
     }];
 
 }
 
-#pragma mark 创建 头部列表
+#pragma mark 创建 头部滚动列表
 - (void)createHeadList {
     
     // 创建tableView
     [self createTableView];
 
-    self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor colorWithRed:0/255.0 green:180/255.0 blue:150/255.0 alpha:1];
 
     NSArray *pageItems = @[
@@ -309,10 +329,80 @@ static BOOL newestFlag = 0;
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
+    [self createSearch];
+    
+}
 
+#pragma mark 创建 搜索框
+-(void)createSearch {
+
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+    btn.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:btn];
+    btn.frame = CGRectMake(SCREEN_WIDTH-35, 30, 20, 20);
+    [btn setBackgroundImage:[UIImage imageNamed:@"搜索@2x.png"] forState:UIControlStateNormal];
+    
 }
 
 #pragma mark 创建 Tableview
+// cell.btn 代理事件
+- (void)propsListPush:(id)sender {
+    
+    UIView *v = [sender superview];//获取父类view
+    UIView *v1 = [v superview];
+    DiscoverHotCell *cell = (DiscoverHotCell *)[v1 superview];//获取cell
+    NSIndexPath *indexPathAll = [hotTabelView indexPathForCell:cell];//获取cell对应的section
+//    NSLog(@"indexPath:--------%@",indexPathAll);
+    
+    Notes *notes = self.notesArr[indexPathAll.row];
+    Note *note = notes.note;
+    // push 参数
+    self.mind_note_id = [note valueForKey:@"id"];
+    self.user_id = [note valueForKey:@"user_id"];
+
+    PropsListViewController *propsListVC = [[PropsListViewController alloc] init];
+    
+    // 当前用户
+    self.user_id = @"1850869";
+    // 发表的用户
+    propsListVC.user_id = self.user_id;
+    propsListVC.mind_note_id = self.mind_note_id;
+    
+    [self.navigationController pushViewController:propsListVC animated:YES];
+    
+}
+- (void)treeInfoPush:(id)sender {
+    
+    UIView *v = [sender superview];//获取父类view
+    UIView *v1 = [v superview];
+    DiscoverHotCell *cell = (DiscoverHotCell *)[v1 superview];//获取cell
+    NSIndexPath *indexPathAll = [hotTabelView indexPathForCell:cell];//获取cell对应的section
+    //    NSLog(@"indexPath:--------%@",indexPathAll);
+    
+    Notes *notes = self.notesArr[indexPathAll.row];
+    Note *note = notes.note;
+    // push 参数
+    self.mind_note_id = [note valueForKey:@"id"];
+    self.habit_id = [note valueForKey:@"habit_id"];
+    self.user_id = [note valueForKey:@"user_id"];
+    for (Habits *habits in self.habitsArr) {
+        if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
+            self.treeTitle = habits.name;
+        }
+    }
+    
+    TreeInfoViewController *treeInfoVC = [[TreeInfoViewController alloc] init];
+    
+    // 发表的用户
+    treeInfoVC.user_id = self.user_id;
+    // 发表的用户的习惯
+    treeInfoVC.habit_id = self.habit_id;
+    // 发表的用户的坚持
+    treeInfoVC.treeTitle = self.treeTitle;
+    
+    [self.navigationController pushViewController:treeInfoVC animated:YES];
+}
+
 - (void)createTableView {
     
     // 轮播
@@ -345,6 +435,7 @@ static BOOL newestFlag = 0;
 //    [newestTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"DiscoverNewst"];
     
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if ([tableView isEqual:hotTabelView]) {
@@ -352,7 +443,8 @@ static BOOL newestFlag = 0;
         
         Notes *notes = self.notesArr[indexPath.row];
         cell.notes = notes;
-        
+//        NSLog(@"hot=%@",self.notesArr[indexPath.row]);
+
         // 点语法 会导致 crash
         Note *note = notes.note;
         cell.note = notes.note;
@@ -410,6 +502,11 @@ static BOOL newestFlag = 0;
         }
         cell.comment_text_content.text = self.commentStr;
         
+        
+        cell.delegate = self;
+        [cell.propListBtn addTarget:self action:@selector(propsListPush:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.treeInfo addTarget:self action:@selector(treeInfoPush:) forControlEvents:UIControlEventTouchUpInside];
+        
         return cell;
     }
     
@@ -422,7 +519,7 @@ static BOOL newestFlag = 0;
         
         Notes *notes = self.keepNotesArr[indexPath.row];
         cell.notes = notes;
-        
+//        NSLog(@"keep=%@",self.keepNotesArr[indexPath.row]);
         // 点语法 会导致 crash
         Note *note = notes.note;
         cell.note = notes.note;
@@ -495,7 +592,8 @@ static BOOL newestFlag = 0;
         
         Notes *notes = self.NewNotesArr[indexPath.row];
         cell.notes = notes;
-        
+//        NSLog(@"news=%@",self.NewNotesArr[indexPath.row]);
+
         // 点语法 会导致 crash
         Note *note = notes.note;
         cell.note = notes.note;
@@ -602,6 +700,72 @@ static BOOL newestFlag = 0;
 }
 
 #pragma mark 网络加载数据
+
+// 解析数据
+/*
+- (void)analysisDataWithResponseObject:(id)responseObject CommentsArr:(NSMutableArray *)CommentsArr PropsArr:(NSMutableArray *)PropsArr NoteArr:(NSMutableArray *)NoteArr NotesArr:(NSMutableArray *)NotesArr UsersArr:(NSMutableArray *)UsersArr HabitsArr:(NSMutableArray *)HabitsArr {
+    
+        NSMutableArray *notesArr = [[NSMutableArray alloc] init];
+        for (NSDictionary *dict in responseObject[@"data"][@"notes"]) {
+            Notes *notes = [[Notes alloc] init];
+            [notes setValuesForKeysWithDictionary:dict];
+            
+            NSMutableArray *commentsArr = [[NSMutableArray alloc] init];
+            for (NSDictionary *commentsDict in dict[@"comments"]) {
+                Comments *comments = [[Comments alloc] init];
+                [comments setValuesForKeysWithDictionary:commentsDict];
+                [commentsArr addObject:comments];
+            }
+            [CommentsArr addObjectsFromArray:commentsArr];
+            
+            NSMutableArray *propsArr = [[NSMutableArray alloc] init];
+            for (NSDictionary *propsDict in dict[@"props"]) {
+                Props *props = [[Props alloc] init];
+                [props setValuesForKeysWithDictionary:propsDict];
+                [propsArr addObject:props];
+            }
+            [PropsArr addObjectsFromArray:propsArr];
+            
+            NSMutableArray *noteArr = [[NSMutableArray alloc] init];
+            noteArr = dict[@"note"];
+            [NoteArr addObjectsFromArray:noteArr];
+            
+            if (isHotRefresh == 0) {
+                Note *note = dict[@"note"];
+                for (NSString *s in noteArr) {
+                    // 拼接刷新的参数
+                    [self.mReadStr appendFormat:@"%@|", [note valueForKey:s]];
+                }
+            }
+            [notesArr addObject:notes];
+        }
+        [NotesArr addObjectsFromArray:notesArr];
+    
+        NSMutableArray *usersArr = [[NSMutableArray alloc] init];
+        for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
+            Users *users = [[Users alloc] init];
+            [users setValuesForKeysWithDictionary:dict];
+            [usersArr addObject:users];
+        }
+        [UsersArr addObjectsFromArray:usersArr];
+        
+        NSMutableArray *habitsArr = [[NSMutableArray alloc] init];
+        for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
+            Habits *habits = [[Habits alloc] init];
+            [habits setValuesForKeysWithDictionary:dict];
+            [habitsArr addObject:habits];
+        }
+        [HabitsArr addObjectsFromArray:habitsArr];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            // 数据加载完毕之后，结束更新
+            [hotTabelView.mj_footer endRefreshing];
+            [hotTabelView.mj_header endRefreshing];
+            [hotTabelView reloadData];
+        });
+}
+*/
 - (void)hotLoadData {
     
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
@@ -614,13 +778,14 @@ static BOOL newestFlag = 0;
                                  @"flag":flag,
                                  @"prop_num":@10,
                                  @"read_ids":readStr,
+                                 // 拼接之前用户iD
 //                                 @"read_ids":@"18451873|18453274|18452611|18453227|18450703|18450867|18451082|18449541|18451039|18450507|18451345|18450871|18450265|18450865",
                                  @"user_id":@1850869
                                  };
     [session POST:APIAllHotNotes parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"ok === %@", responseObject);
         //        ULog(@"%@", responseObject);
-        
+    
         for (NSDictionary *dict in responseObject[@"data"][@"notes"]) {
             Notes *notes = [[Notes alloc] init];
             [notes setValuesForKeysWithDictionary:dict];
@@ -632,7 +797,13 @@ static BOOL newestFlag = 0;
 //                [self.commentsArr addObject:comments];
                 [commentsArr addObject:comments];
             }
-            [self.commentsArr addObjectsFromArray:commentsArr];
+            // 判断上拉或者下拉
+            if (isHotRefresh == 1) {
+                [commentsArr addObjectsFromArray:self.commentsArr];
+                self.commentsArr = commentsArr;
+            }
+            else
+                [self.commentsArr addObjectsFromArray:commentsArr];
             
             NSMutableArray *propsArr = [[NSMutableArray alloc] init];
             for (NSDictionary *propsDict in dict[@"props"]) {
@@ -641,23 +812,41 @@ static BOOL newestFlag = 0;
 //                [self.propsArr addObject:props];
                 [propsArr addObject:props];
             }
-            [self.propsArr addObjectsFromArray:propsArr];
+            if (isHotRefresh == 1) {
+                [propsArr addObjectsFromArray:self.propsArr];
+                self.propsArr = propsArr;
+            }
+            else
+                [self.propsArr addObjectsFromArray:propsArr];
             
             NSMutableArray *noteArr = [[NSMutableArray alloc] init];
             noteArr = dict[@"note"];
-            [self.noteArr addObjectsFromArray:noteArr];
-            
-            Note *note = dict[@"note"];
-            for (NSString *s in noteArr) {
-                // 拼接刷新的参数
-                [self.mReadStr appendFormat:@"%@|", [note valueForKey:s]];
+            if (isHotRefresh == 1) {
+                [noteArr addObjectsFromArray:self.noteArr];
+                self.noteArr = noteArr;
             }
-            // 为什么不行？？？
-//            NSLog(@"%@", [note valueForKey:@"idx"]);
+            else
+                [self.noteArr addObjectsFromArray:noteArr];
+            
+            
+            if (isHotRefresh == 0) {
+                Note *note = dict[@"note"];
+                for (NSString *s in noteArr) {
+                    // 拼接刷新的参数
+                    [self.mReadStr appendFormat:@"%@|", [note valueForKey:s]];
+                }
+                // 为什么不行？？？
+                //            NSLog(@"%@", [note valueForKey:@"idx"]);
+            }
             
             NSMutableArray *notesArr = [[NSMutableArray alloc] init];
             [notesArr addObject:notes];
-            [self.notesArr addObjectsFromArray:notesArr];
+            if (isHotRefresh == 1) {
+                [notesArr addObjectsFromArray:self.notesArr];
+                self.notesArr = notesArr;
+            }
+            else
+                [self.notesArr addObjectsFromArray:notesArr];
         }
 //        NSLog(@"%@", self.mReadStr);
         
@@ -667,10 +856,13 @@ static BOOL newestFlag = 0;
             [users setValuesForKeysWithDictionary:dict];
 //            [self.usersArr addObject:users];
             [usersArr addObject:users];
-            
         }
-        
-        [self.usersArr addObjectsFromArray:usersArr];
+        if (isHotRefresh == 1) {
+            [usersArr addObjectsFromArray:self.usersArr];
+            self.usersArr = usersArr;
+        }
+        else
+            [self.usersArr addObjectsFromArray:usersArr];
         
         NSMutableArray *habitsArr = [[NSMutableArray alloc] init];
         for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
@@ -679,7 +871,12 @@ static BOOL newestFlag = 0;
 //            [self.habitsArr addObject:habits];
             [habitsArr addObject:habits];
         }
-        [self.habitsArr addObjectsFromArray:habitsArr];
+        if (isHotRefresh == 1) {
+            [habitsArr addObjectsFromArray:self.habitsArr];
+            self.habitsArr = habitsArr;
+        }
+        else
+            [self.habitsArr addObjectsFromArray:habitsArr];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -689,7 +886,9 @@ static BOOL newestFlag = 0;
             [hotTabelView reloadData];
         });
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        [self analysisDataWithResponseObject:responseObject CommentsArr:self.commentsArr PropsArr:self.propsArr NoteArr:self.noteArr NotesArr:self.notesArr UsersArr:self.usersArr HabitsArr:self.habitsArr];
+    }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
     
@@ -700,21 +899,27 @@ static BOOL newestFlag = 0;
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
     NSNumber *flag = [NSNumber numberWithBool:keepFlag];
-//    NSString *readStr = self.mReadStr;
+    NSInteger next_id;
+    if (keepFlag == 1) {
+        next_id = [self.keepNextId integerValue];
+        next_id--;
+    }
     
     NSDictionary *parameters = @{
                                  // 默认十条数据
                                  @"detail":@1,
                                  @"flag":flag,
-                                 @"next_id":@18503190,
+                                 @"next_id":@(next_id),
+//                                 @"flag":@0,
+//                                 @"next_id":@18503725,
                                  @"user_id":@1850869,
                                 
+                                 // 刷新数据 获取 最后一个用户id - 1 = next_id
 //                                 http://api.idothing.com/zhongzi/v2.php/MindNote/listAllNotesByFriend
 //                                 detail=1&flag=0&user_id=1850869
-//                                 detail=1&flag=1&next_id=18503190&user_id=1850869
+//                                 detail=1&flag=1&next_id=18503725&user_id=1850869
 //                                 detail=1&flag=1&next_id=18421893&user_id=1850869
 //                                 detail=1&flag=1&next_id=18372514&user_id=1850869
-                                 
                                  };
     [session POST:APIAllNotesByFriend parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"ok === %@", responseObject);
@@ -728,7 +933,6 @@ static BOOL newestFlag = 0;
             for (NSDictionary *commentsDict in dict[@"comments"]) {
                 Comments *comments = [[Comments alloc] init];
                 [comments setValuesForKeysWithDictionary:commentsDict];
-                //                [self.commentsArr addObject:comments];
                 [commentsArr addObject:comments];
             }
             [self.keepCommentsArr addObjectsFromArray:commentsArr];
@@ -737,7 +941,6 @@ static BOOL newestFlag = 0;
             for (NSDictionary *propsDict in dict[@"props"]) {
                 Props *props = [[Props alloc] init];
                 [props setValuesForKeysWithDictionary:propsDict];
-                //                [self.propsArr addObject:props];
                 [propsArr addObject:props];
             }
             [self.keepPropsArr addObjectsFromArray:propsArr];
@@ -746,29 +949,22 @@ static BOOL newestFlag = 0;
             noteArr = dict[@"note"];
             [self.keepNoteArr addObjectsFromArray:noteArr];
             
-//            Note *note = dict[@"note"];
-//            for (NSString *s in noteArr) {
-//                // 拼接刷新的参数
-//                [self.mReadStr appendFormat:@"%@|", [note valueForKey:s]];
-//            }
-//             为什么不行？？？
-//                        NSLog(@"%@", [note valueForKey:@"idx"]);
+            // 存储刷新ID
+            Note *note = dict[@"note"];
+            self.keepNextId =[note valueForKey:@"id"];
+//            NSLog(@"%@", self.keepNextId);
             
             NSMutableArray *notesArr = [[NSMutableArray alloc] init];
             [notesArr addObject:notes];
             [self.keepNotesArr addObjectsFromArray:notesArr];
         }
-        //        NSLog(@"%@", self.mReadStr);
         
         NSMutableArray *usersArr = [[NSMutableArray alloc] init];
         for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
             Users *users = [[Users alloc] init];
             [users setValuesForKeysWithDictionary:dict];
-            //            [self.usersArr addObject:users];
             [usersArr addObject:users];
-            
         }
-        
         [self.keepUsersArr addObjectsFromArray:usersArr];
         
         NSMutableArray *habitsArr = [[NSMutableArray alloc] init];
@@ -783,10 +979,12 @@ static BOOL newestFlag = 0;
         dispatch_async(dispatch_get_main_queue(), ^{
             
             // 数据加载完毕之后，结束更新
-//            [keepTableView.mj_footer endRefreshing];
-//            [keepTableView.mj_header endRefreshing];
+            [keepTableView.mj_footer endRefreshing];
+            [keepTableView.mj_header endRefreshing];
             [keepTableView reloadData];
         });
+        
+//        [self analysisDataWithResponseObject:responseObject CommentsArr:self.keepCommentsArr PropsArr:self.keepPropsArr NoteArr:self.keepNoteArr NotesArr:self.keepNotesArr UsersArr:self.keepUsersArr HabitsArr:self.keepHabitsArr];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
@@ -799,18 +997,23 @@ static BOOL newestFlag = 0;
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
     NSNumber *flag = [NSNumber numberWithBool:newestFlag];
-//    NSString *readStr = self.mReadStr;
+    NSInteger next_id;
+    if (newestFlag == 1) {
+        next_id = [self.NewNextId integerValue];
+        next_id--;
+    }
     
     NSDictionary *parameters = @{
                                  @"detail":@1,
                                  @"flag":flag,
-//                                 @"prop_num":@10,
+                                 @"next_id":@(next_id),
                                  @"user_id":@1850869
                                  //detail=1&flag=0&user_id=1850869
+//                                 detail=1&flag=1&next_id=18162615&user_id=1850878
                                  };
     [session POST:APIAllNotesByTime parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //        NSLog(@"ok === %@", responseObject);
-        //        ULog(@"%@", responseObject);
+//                NSLog(@"ok === %@", responseObject);
+//                ULog(@"%@", responseObject);
         
         for (NSDictionary *dict in responseObject[@"data"][@"notes"]) {
             Notes *notes = [[Notes alloc] init];
@@ -823,7 +1026,13 @@ static BOOL newestFlag = 0;
                 //                [self.commentsArr addObject:comments];
                 [commentsArr addObject:comments];
             }
-            [self.NewCommentsArr addObjectsFromArray:commentsArr];
+            // 判断上拉还是下拉
+//            if (isNewRefresh == 1) {
+//                [commentsArr addObjectsFromArray:self.NewCommentsArr];
+//                self.NewCommentsArr = commentsArr;
+//            }
+//            else
+                [self.NewCommentsArr addObjectsFromArray:commentsArr];
             
             NSMutableArray *propsArr = [[NSMutableArray alloc] init];
             for (NSDictionary *propsDict in dict[@"props"]) {
@@ -832,23 +1041,37 @@ static BOOL newestFlag = 0;
                 //                [self.propsArr addObject:props];
                 [propsArr addObject:props];
             }
-            [self.NewPropsArr addObjectsFromArray:propsArr];
+//            if (isNewRefresh == 1) {
+//                [propsArr addObjectsFromArray:self.NewPropsArr];
+//                self.NewPropsArr = propsArr;
+//            }
+//            else
+                [self.NewPropsArr addObjectsFromArray:propsArr];
             
             NSMutableArray *noteArr = [[NSMutableArray alloc] init];
             noteArr = dict[@"note"];
-            [self.NewNoteArr addObjectsFromArray:noteArr];
-            
-//            Note *note = dict[@"note"];
-//            for (NSString *s in noteArr) {
-//                // 拼接刷新的参数
-//                [self.mReadStr appendFormat:@"%@|", [note valueForKey:s]];
+//            if (isNewRefresh == 1) {
+//                [noteArr addObjectsFromArray:self.NewNoteArr];
+//                self.NewNoteArr = noteArr;
 //            }
-//             为什么不行？？？
-//                        NSLog(@"%@", [note valueForKey:@"idx"]);
+//            else
+                [self.NewNoteArr addObjectsFromArray:noteArr];
+            
+            // 存储刷新ID
+            if (isNewRefresh == 0) {
+                Note *note = dict[@"note"];
+                self.NewNextId =[note valueForKey:@"id"];
+                //            NSLog(@"%@", self.keepNextId);
+            }
             
             NSMutableArray *notesArr = [[NSMutableArray alloc] init];
             [notesArr addObject:notes];
-            [self.NewNotesArr addObjectsFromArray:notesArr];
+//            if (isNewRefresh == 1) {
+//                [notesArr addObjectsFromArray:self.NewNotesArr];
+//                self.NewNotesArr = notesArr;
+//            }
+//            else
+                [self.NewNotesArr addObjectsFromArray:notesArr];
         }
         
         NSMutableArray *usersArr = [[NSMutableArray alloc] init];
@@ -857,7 +1080,12 @@ static BOOL newestFlag = 0;
             [users setValuesForKeysWithDictionary:dict];
             [usersArr addObject:users];
         }
-        [self.NewUsersArr addObjectsFromArray:usersArr];
+        if (isNewRefresh == 1) {
+            [usersArr addObjectsFromArray:self.NewUsersArr];
+            self.usersArr = usersArr;
+        }
+        else
+            [self.NewUsersArr addObjectsFromArray:usersArr];
         
         NSMutableArray *habitsArr = [[NSMutableArray alloc] init];
         for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
@@ -866,7 +1094,12 @@ static BOOL newestFlag = 0;
             //            [self.habitsArr addObject:habits];
             [habitsArr addObject:habits];
         }
-        [self.NewHabitsArr addObjectsFromArray:habitsArr];
+        if (isNewRefresh == 1) {
+            [habitsArr addObjectsFromArray:self.NewHabitsArr];
+            self.NewHabitsArr = habitsArr;
+        }
+        else
+            [self.NewHabitsArr addObjectsFromArray:habitsArr];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -876,7 +1109,7 @@ static BOOL newestFlag = 0;
             // 刷新tableView
             [newestTableView reloadData];
         });
-        
+    
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];

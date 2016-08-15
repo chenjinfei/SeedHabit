@@ -37,6 +37,13 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleDefault;
+}
 
 /**
  *  加载数据

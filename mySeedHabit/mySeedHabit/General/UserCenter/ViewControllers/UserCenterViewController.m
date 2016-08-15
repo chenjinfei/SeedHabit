@@ -12,6 +12,7 @@
 #import "SeedUser.h"
 #import "LoginViewController.h"
 #import "HabitModel.h"
+#import "HabitListModel.h"
 #import "MindNotesModel.h"
 
 #import <UIImageView+WebCache.h>
