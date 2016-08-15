@@ -24,5 +24,11 @@
 #pragma mark === UI ===
 #import "Macros_UI.h"
 
+/**
+ *  持久化登录
+ */
+#define USERNAME @"userName"
+#define USERPASSWORD @"userPassword"
+
 
 #endif /* PrefixHeader_pch */

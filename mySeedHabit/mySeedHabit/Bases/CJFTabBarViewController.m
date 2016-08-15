@@ -24,17 +24,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UINavigationController *habitNav = [self buildViewControllerWithClassName:@"HabitViewController" title:@"习惯" image:@"habit_32" selectedImage:@"habit_32"];
-    UINavigationController *discoverNav = [self buildViewControllerWithClassName:@"DiscoverViewController" title:@"发现" image:@"discover_32" selectedImage:@"discover_32"];
-    UINavigationController *messageNav = [self buildViewControllerWithClassName:@"MessageViewController" title:@"信息" image:@"msg3_32" selectedImage:@"msg3_32"];
-    UINavigationController *userNav = [self buildViewControllerWithClassName:@"UserCenterViewController" title:@"我的" image:@"user_32" selectedImage:@"user_32"];
+    UINavigationController *habitNav = [self buildViewControllerWithClassName:@"HabitViewController" title:@"习惯" image:@"habit_normal_32" selectedImage:@"habit_selected_32"];
+    UINavigationController *discoverNav = [self buildViewControllerWithClassName:@"DiscoverViewController" title:@"发现" image:@"discover_normal_32" selectedImage:@"discover_selected_32"];
+    UINavigationController *messageNav = [self buildViewControllerWithClassName:@"MessageViewController" title:@"信息" image:@"msg_normal_32" selectedImage:@"msg_selected_32"];
+    UINavigationController *userNav = [self buildViewControllerWithClassName:@"UserCenterViewController" title:@"我的" image:@"mine_normal_32" selectedImage:@"mine_selected_32"];
     
+    // 设置导航背景风格颜色
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithHexString:UIMainColor alpha:1]];
     // 设置导航按钮风格颜色
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    
     // 隐藏导航返回按钮的文字
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
-    
     // 设置tabbar不透明
     [UITabBar appearance].translucent = NO;
     
@@ -55,7 +55,11 @@
  */
 -(UINavigationController *)buildViewControllerWithClassName:(NSString *)className title: (NSString *)title image:(NSString*)imageName selectedImage: (NSString *)selectedImageName {
     
-    UIViewController *newVc = [[NSClassFromString(className) alloc]init];
+    Class vcClass = NSClassFromString(className);
+    UIViewController *newVc = nil;
+    if (vcClass) {
+        newVc = (UIViewController *)[[vcClass alloc]init];
+    }
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:newVc];
     
@@ -71,8 +75,8 @@
     newVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     // 设置字体颜色
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:UIMainColor alpha:1.0], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:UISelectedColor alpha:1.0],NSForegroundColorAttributeName, nil]forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:UITabBarNormalColor alpha:1.0], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:                                                         [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:UITabBarSelectedColor alpha:1.0],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
     
     return nav;
     

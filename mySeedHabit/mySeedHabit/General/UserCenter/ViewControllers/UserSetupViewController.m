@@ -12,6 +12,7 @@
 #import "SeedUser.h"
 #import "UserManager.h"
 #import "LoginViewController.h"
+#import "UserInfoViewController.h"
 
 #import <UIImageView+WebCache.h>
 #import "UIImage+CJFImage.h"
@@ -33,6 +34,10 @@
     
     // 创建视图
     [self buildView];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated {
     
     // 加载数据
     [self loadData];
@@ -87,35 +92,20 @@
     
     self.tableHeaderView.textView.text = @"编辑个人资料";
     
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.dataArr.count;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.dataArr[section] count];
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SETUPMENU"];
-    cell.textLabel.text = self.dataArr[indexPath.section][indexPath.row];
-    cell.textLabel.textColor = [UIColor grayColor];
-    if (indexPath.section == self.dataArr.count-1) {
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell.textLabel.textColor = [UIColor redColor];
-    }
-    return cell;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // 取消选中状态
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(updateUserInfo:)];
+    [self.tableHeaderView addGestureRecognizer:tap];
     
-    if (indexPath.section == self.dataArr.count - 1) {
-        [self logoutClick:nil];
-    }
 }
+
+
+// 用户信息修改
+-(void)updateUserInfo: (UITapGestureRecognizer *)tap {
+    
+    UserInfoViewController *infoVc = [[UserInfoViewController alloc]init];
+    [self.navigationController pushViewController:infoVc animated:YES];
+    
+}
+
 
 
 // 退出登录
@@ -134,6 +124,35 @@
     }];
 }
 
+#pragma mark tableView代理方法的实现
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.dataArr.count;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.dataArr[section] count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SETUPMENU"];
+    cell.textLabel.text = self.dataArr[indexPath.section][indexPath.row];
+    cell.textLabel.textColor = [UIColor darkGrayColor];
+    if (indexPath.section == self.dataArr.count-1) {
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.textColor = [UIColor redColor];
+    }
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // 取消选中状态
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if (indexPath.section == self.dataArr.count - 1) {
+        [self logoutClick:nil];
+    }
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10;
@@ -142,6 +161,8 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.01;
 }
+
+
 
 
 

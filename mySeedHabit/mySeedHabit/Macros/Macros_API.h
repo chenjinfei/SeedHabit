@@ -49,6 +49,10 @@
 #define APIIsTelExist                  [APIUser stringByAppendingString:@"checkTelExist"]
 // 通过手机号码注册
 #define APIRegisterWithTel             [APIUser stringByAppendingString:@"registerWithTel"]
+// 通过ID获取用户信息
+#define APIUserInfoById                [APIUser stringByAppendingString:@"getUserInfoById"]
+// 修改密码
+#define APIChangePwd               [APIUser stringByAppendingString:@"changePsw"]
 
 
 
@@ -91,6 +95,8 @@
 #define APIRecommendChoiceHabits   [APIHabit stringByAppendingString:@"recommendChoiceHabits"]
 // 习惯列表预览（无图）
 #define APIHabitListPreview        [APIHabit stringByAppendingString:@"getHabitListPreview"]
+// 排行榜
+#define APIHabitExpertList         [APIHabit stringByAppendingString:@"getExpertList"]
 
 
 
