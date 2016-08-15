@@ -164,7 +164,6 @@
 		3FB405081D61EF180076A446 /* user_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404CD1D61EF180076A446 /* user_32.png */; settings = {ASSET_TAGS = (); }; };
 		3FB405091D61EF180076A446 /* weixin_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404CE1D61EF180076A446 /* weixin_32.png */; settings = {ASSET_TAGS = (); }; };
 		3FB4050A1D61EF180076A446 /* whiteCup_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404CF1D61EF180076A446 /* whiteCup_32.png */; settings = {ASSET_TAGS = (); }; };
-		3FB4050B1D61EF180076A446 /* 归档.zip in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404D01D61EF180076A446 /* 归档.zip */; settings = {ASSET_TAGS = (); }; };
 		3FB4050C1D61EF700076A446 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F59D1D5F4DC5004E2945 /* DiscoverViewController.m */; };
 		3FB4050D1D61EF700076A446 /* PropsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F5A01D5F4DC5004E2945 /* PropsListViewController.m */; };
 		3FB4050E1D61EF700076A446 /* TreeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F5A31D5F4DC5004E2945 /* TreeInfoViewController.m */; };
@@ -424,7 +423,6 @@
 		3FB404CD1D61EF180076A446 /* user_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_32.png; sourceTree = "<group>"; };
 		3FB404CE1D61EF180076A446 /* weixin_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weixin_32.png; sourceTree = "<group>"; };
 		3FB404CF1D61EF180076A446 /* whiteCup_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteCup_32.png; sourceTree = "<group>"; };
-		3FB404D01D61EF180076A446 /* 归档.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "归档.zip"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -910,7 +908,6 @@
 				3FB404CD1D61EF180076A446 /* user_32.png */,
 				3FB404CE1D61EF180076A446 /* weixin_32.png */,
 				3FB404CF1D61EF180076A446 /* whiteCup_32.png */,
-				3FB404D01D61EF180076A446 /* 归档.zip */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1028,7 +1025,6 @@
 				3FB404E31D61EF180076A446 /* heart_32.png in Resources */,
 				3FB404D31D61EF180076A446 /* addContact_white_32_cjf.png in Resources */,
 				3FB404741D61EEC20076A446 /* RegisterDataViewController.xib in Resources */,
-				3FB4050B1D61EF180076A446 /* 归档.zip in Resources */,
 				3FB405011D61EF180076A446 /* mine_normal_32.png in Resources */,
 				3FB405091D61EF180076A446 /* weixin_32.png in Resources */,
 				3FB405031D61EF180076A446 /* msg_normal_32.png in Resources */,
