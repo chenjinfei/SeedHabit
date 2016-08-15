@@ -33,12 +33,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self buildView];
-    
-    
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {

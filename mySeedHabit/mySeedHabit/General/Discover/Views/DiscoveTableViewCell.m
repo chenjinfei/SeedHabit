@@ -8,6 +8,7 @@
 
 #import "DiscoveTableViewCell.h"
 #import "UIImageView+CJFUIImageView.h"
+#import "UIButton+CJFUIButton.h"
 #import <Masonry.h>
 #import <UIButton+WebCache.h>
 
@@ -189,6 +190,7 @@
                     else {
 //                        NSLog(@"%@",[mArr[i-1] valueForKey:@"avatar_small"]);
                         [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:[mArr[i-1] valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//                        [btn setImageWithUrl:[NSURL URLWithString:[mArr[i-1] valueForKey:@"avatar_small"]] placeHolderImage:[UIImage imageNamed:@"placeHolder.png"] radius:16 forState:UIControlStateNormal];
                     }
                     // 每个按键的约束
                     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
