@@ -47,6 +47,8 @@
 // 登录
 - (IBAction)loginClick:(UIButton *)sender {
     
+    [self.phoneNumber resignFirstResponder];
+    
     // 判断帐号是否已经注册
     NSNumber *n = [NSNumber numberWithInteger:[self.phoneNumber.text integerValue]];
     [[UserManager manager] isTelExists:@{@"account" : n} responseBlock:^(id responseObject) {

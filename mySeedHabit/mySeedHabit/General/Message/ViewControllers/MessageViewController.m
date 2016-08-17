@@ -19,6 +19,9 @@
 
 @interface MessageViewController ()<EMChatManagerDelegate>
 
+// 会话列表
+@property (nonatomic, strong) NSMutableArray *conversationsArr;
+
 @end
 
 @implementation MessageViewController
@@ -26,32 +29,75 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    testBtn.frame = CGRectMake(100, 350, 100, 100);
     
-    NSURL *url = [NSURL URLWithString:@"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1994807006,3190709677&fm=58"];
-    [testBtn setImageWithUrl:url placeHolderImage:IMAGE(@"placeHolder.png") radius:50 forState:UIControlStateNormal];
-    NSURL *url2 = [NSURL URLWithString:@"http://avatar.csdn.net/3/1/7/1_perfect_milk.jpg"];
-    [testBtn setImageWithUrl:url2 placeHolderImage:IMAGE(@"placeHolder.png") radius:50 forState:UIControlStateHighlighted];
-    
-    
-    [self.view addSubview:testBtn];
-    
-    
-    // 测试圆角处理 == 可删除
-    UIImage *image = [[UIImage imageNamed:@"placeHolder.png"] circleImage];
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-    imageView.frame = CGRectMake(100, 100, 200, 200);
-    [self.view addSubview:imageView];
-    
+#pragma mark 接收信息
     // 注册消息回调
     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     
 }
 
+
+-(void)viewWillAppear:(BOOL)animated {
+    // 创建控制器视图
+    [self buildView];
+    
+    
+    [self loadData];
+}
+
+
+// 加载数据
+-(void)loadData {
+    
+    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+    NSLog(@"内存中所有会话：%@", conversations);
+    
+    for (EMConversation *cs in conversations) {
+        EMTextMessageBody *msgBody = (EMTextMessageBody *)cs.latestMessage.body;
+        NSLog(@"未读信息条数：%d 条； 最新一条信息是：%@",cs.unreadMessagesCount, msgBody.text);
+    }
+    
+    
+}
+
+
+-(NSMutableArray *)conversationsArr {
+    if (!_conversationsArr) {
+        _conversationsArr = [[NSMutableArray alloc]init];
+    }
+    return _conversationsArr;
+}
+
+
+
+
+// 创建控制器视图
+-(void)buildView {
+    
+    // 创建导航右按钮
+    UIButton *addContactBtnView = [UIButton buttonWithType:UIButtonTypeCustom];
+    [addContactBtnView setImage:IMAGE(@"contacts_32.png") forState:UIControlStateNormal];
+    [addContactBtnView setImage:IMAGE(@"contacts_32.png") forState:UIControlStateHighlighted];
+    [addContactBtnView addTarget:self action:@selector(showContacts:) forControlEvents:UIControlEventTouchUpInside];
+    addContactBtnView.frame = CGRectMake(0, 0, 25, 25);
+    UIBarButtonItem *addContactBtn = [[UIBarButtonItem alloc]initWithCustomView:addContactBtnView];
+    self.navigationItem.rightBarButtonItems = @[addContactBtn];
+    
+}
+
+// 导航右按钮响应方法
+-(void)showContacts: (UIButton *)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    ContactsViewController *conVc = [[ContactsViewController alloc]init];
+    [self.navigationController pushViewController:conVc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+
 // 收到消息的回调，带有附件类型的消息可以用 SDK 提供的下载附件方法下载（后面会讲到）
 - (void)didReceiveMessages:(NSArray *)aMessages
 {
+    ULog(@"========= 收到新信息 ==============");
     for (EMMessage *message in aMessages) {
         EMMessageBody *msgBody = message.body;
         switch (msgBody.type) {
@@ -138,29 +184,14 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    // 创建控制器视图
-    [self buildView];
-}
-
-
-// 创建控制器视图
--(void)buildView {
-    // 创建导航右按钮
-    UIButton *addContactBtnView = [UIButton buttonWithType:UIButtonTypeCustom];
-    [addContactBtnView setImage:IMAGE(@"contacts_32.png") forState:UIControlStateNormal];
-    [addContactBtnView setImage:IMAGE(@"contacts_32.png") forState:UIControlStateHighlighted];
-    [addContactBtnView addTarget:self action:@selector(showContacts:) forControlEvents:UIControlEventTouchUpInside];
-    addContactBtnView.frame = CGRectMake(0, 0, 25, 25);
-    UIBarButtonItem *addContactBtn = [[UIBarButtonItem alloc]initWithCustomView:addContactBtnView];
-    self.navigationItem.rightBarButtonItems = @[addContactBtn];
-    
-}
-
-// 导航右按钮响应方法
--(void)showContacts: (UIButton *)sender {
-    ContactsViewController *conVc = [[ContactsViewController alloc]init];
-    [self.navigationController pushViewController:conVc animated:YES];
+#pragma mark 消息已送达回执
+/*!
+ @method
+ @brief 接收到一条及以上已送达回执
+ 当对方收到您的消息后，您会收到以下回调
+ */
+- (void)didReceiveHasDeliveredAcks:(NSArray *)aMessages {
+    NSLog(@"消息已送达！：%@", aMessages);
 }
 
 

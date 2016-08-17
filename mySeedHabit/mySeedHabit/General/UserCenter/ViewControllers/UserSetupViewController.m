@@ -61,11 +61,11 @@
 -(void)loadData {
     
     NSArray *arrFirst = [NSArray arrayWithObjects:@"我的收藏", @"帐号绑定", @"帮助中心", @"消息提醒管理", nil];
-    NSArray *arrSecond = [NSArray arrayWithObjects:@"关于种子习惯", nil];
+    NSArray *arrSecond = [NSArray arrayWithObjects:@"清除缓存", @"关于种子习惯", nil];
     NSArray *arrThird = [NSArray arrayWithObjects:@"退出帐号", nil];
     
     NSArray *menuArr = [NSArray arrayWithObjects:arrFirst, arrSecond, arrThird, nil];
-    
+    [self.dataArr removeAllObjects];
     [self.dataArr addObjectsFromArray:menuArr];
     
     SeedUser *user = [UserManager manager].currentUser;
@@ -85,7 +85,7 @@
     
     [self.view addSubview:self.tableView];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"SETUPMENU"];
+    //    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"SETUPMENU"];
     
     self.tableHeaderView = [[NSBundle mainBundle] loadNibNamed:@"UserInfo_LabelImage" owner:self options:nil][0];
     self.tableView.tableHeaderView = self.tableHeaderView;
@@ -126,6 +126,74 @@
     }];
 }
 
+/**
+ *  cell操作处理方法
+ *
+ *  @param section 分区号
+ *  @param row     行号
+ */
+-(void)switchActionWithSection: (NSInteger)section row: (NSInteger)row {
+    
+    NSInteger actionFlag = [[NSString stringWithFormat:@"%ld%ld", section, row] integerValue];
+    switch (actionFlag) {
+        case 00:{// 我的收藏
+            
+            break;
+        }
+        case 01:{// 帐号绑定
+            
+            break;
+        }
+        case 02:{// 帮助中心
+            
+            break;
+        }
+        case 03:{// 消息提醒设置
+            
+            break;
+        }
+        case 10:{// 清除缓存
+            
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle: UIAlertControllerStyleActionSheet];
+            UIAlertAction *clearAction = [UIAlertAction actionWithTitle:@"清除缓存" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                
+                [self clearCache];
+                [self.tableView reloadData];
+                
+            }];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            [alertController addAction:clearAction];
+            [alertController addAction:cancelAction];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+            break;
+        }
+        case 11:{// 关于种子习惯
+            
+            break;
+        }
+        default:
+            break;
+    }
+    
+}
+
+// 获取缓存大小
+-(CGFloat)getCachedSize {
+    //计算检查缓存大小: 单位：b
+    float tmpSize = [[SDImageCache sharedImageCache] getSize];
+    return tmpSize;
+}
+
+//清除缓存
+- (void)clearCache
+{
+    [[SDImageCache sharedImageCache] clearDisk];
+    [[SDImageCache sharedImageCache] clearMemory];//可有可无
+}
+
+
 #pragma mark tableView代理方法的实现
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -137,13 +205,26 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SETUPMENU"];
-    cell.textLabel.text = self.dataArr[indexPath.section][indexPath.row];
+    static NSString *cellIdentifier = @"SETUPMENU";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    }
     cell.textLabel.textColor = [UIColor darkGrayColor];
+    if (indexPath.section == 1 && indexPath.row == 0){
+        CGFloat tmpSize = [self getCachedSize];
+        tmpSize /= (1024*1024);
+        NSString * clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.2fM",tmpSize] : [NSString stringWithFormat:@"%.2fK",tmpSize * 1024];
+        NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:clearCacheName];
+        [AttributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0] range:NSMakeRange(0, clearCacheName.length)];
+        cell.detailTextLabel.attributedText = AttributedStr;
+    }
     if (indexPath.section == self.dataArr.count-1) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.textLabel.textColor = [UIColor redColor];
     }
+    cell.textLabel.text = self.dataArr[indexPath.section][indexPath.row];
     return cell;
 }
 
@@ -153,6 +234,8 @@
     
     if (indexPath.section == self.dataArr.count - 1) {
         [self logoutClick:nil];
+    }else {
+        [self switchActionWithSection:indexPath.section row:indexPath.row];
     }
 }
 

@@ -160,6 +160,10 @@
 		3767F6A91D61693B004E2945 /* MsgChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F6A71D61693B004E2945 /* MsgChatViewController.m */; };
 		3767F6AA1D61693B004E2945 /* MsgChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6A81D61693B004E2945 /* MsgChatViewController.xib */; };
 		3767F6AE1D61941D004E2945 /* placeHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6AD1D61941D004E2945 /* placeHolder.png */; };
+		3767F6B01D61BAA2004E2945 /* Icon-58.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6AF1D61BAA2004E2945 /* Icon-58.png */; };
+		3767F8571D634D6A004E2945 /* expression_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8541D634D6A004E2945 /* expression_32.png */; };
+		3767F8581D634D6A004E2945 /* Microphone_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8551D634D6A004E2945 /* Microphone_32.png */; };
+		3767F8591D634D6A004E2945 /* msg_add_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8561D634D6A004E2945 /* msg_add_32.png */; };
 		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
 		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
@@ -313,6 +317,10 @@
 		3767F6A71D61693B004E2945 /* MsgChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgChatViewController.m; sourceTree = "<group>"; };
 		3767F6A81D61693B004E2945 /* MsgChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgChatViewController.xib; sourceTree = "<group>"; };
 		3767F6AD1D61941D004E2945 /* placeHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeHolder.png; sourceTree = "<group>"; };
+		3767F6AF1D61BAA2004E2945 /* Icon-58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-58.png"; sourceTree = "<group>"; };
+		3767F8541D634D6A004E2945 /* expression_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expression_32.png; sourceTree = "<group>"; };
+		3767F8551D634D6A004E2945 /* Microphone_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_32.png; sourceTree = "<group>"; };
+		3767F8561D634D6A004E2945 /* msg_add_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_add_32.png; sourceTree = "<group>"; };
 		379B01111D54AB1500D75383 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		379B01131D54AB2200D75383 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -516,6 +524,10 @@
 		3767F5ED1D5F4E74004E2945 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3767F8541D634D6A004E2945 /* expression_32.png */,
+				3767F8551D634D6A004E2945 /* Microphone_32.png */,
+				3767F8561D634D6A004E2945 /* msg_add_32.png */,
+				3767F6AF1D61BAA2004E2945 /* Icon-58.png */,
 				3767F6AD1D61941D004E2945 /* placeHolder.png */,
 				3767F6A41D61667E004E2945 /* hoveringBtnBg_32.png */,
 				3767F5EE1D5F4E74004E2945 /* add_32.png */,
@@ -1058,6 +1070,8 @@
 				3767F65D1D5F4E74004E2945 /* msg_selected_32.png in Resources */,
 				3767F6531D5F4E74004E2945 /* setup_white_32_cjf.png in Resources */,
 				3767F6521D5F4E74004E2945 /* setup_32.png in Resources */,
+				3767F8591D634D6A004E2945 /* msg_add_32.png in Resources */,
+				3767F8571D634D6A004E2945 /* expression_32.png in Resources */,
 				37DB26831D4F40A600FA5198 /* LaunchScreen.storyboard in Resources */,
 				3767F64C1D5F4E74004E2945 /* radio.png in Resources */,
 				3767F6631D5F4E74004E2945 /* whiteCup_32.png in Resources */,
@@ -1097,6 +1111,7 @@
 				3767F5A81D5F4DC5004E2945 /* PropsListViewController.xib in Resources */,
 				3767F6411D5F4E74004E2945 /* man_orange_32_cjf.png in Resources */,
 				3767F6591D5F4E74004E2945 /* habit_selected_32.png in Resources */,
+				3767F6B01D61BAA2004E2945 /* Icon-58.png in Resources */,
 				3767F6491D5F4E74004E2945 /* placeholder2.png in Resources */,
 				3767F6641D5F4E74004E2945 /* 同好关注@2x.png in Resources */,
 				3767F62C1D5F4E74004E2945 /* addContact_32.png in Resources */,
@@ -1110,6 +1125,7 @@
 				3767F6AA1D61693B004E2945 /* MsgChatViewController.xib in Resources */,
 				3767F6551D5F4E74004E2945 /* sina_32.png in Resources */,
 				3767F5A61D5F4DC5004E2945 /* DiscoverViewController.xib in Resources */,
+				3767F8581D634D6A004E2945 /* Microphone_32.png in Resources */,
 				3767F6321D5F4E74004E2945 /* comment_32.png in Resources */,
 				3767F6301D5F4E74004E2945 /* checkBox.png in Resources */,
 				3767F63E1D5F4E74004E2945 /* lady_orange_32_cjf.png in Resources */,
@@ -1360,6 +1376,11 @@
 				INFOPLIST_FILE = mySeedHabit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1466,6 +1487,11 @@
 				INFOPLIST_FILE = mySeedHabit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

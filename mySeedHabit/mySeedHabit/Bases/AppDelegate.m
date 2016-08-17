@@ -20,6 +20,7 @@
 #import "UMSocialWechatHandler.h"
 
 #import <EMSDK.h>
+//#import "EaseUI.h"
 
 @interface AppDelegate ()
 
@@ -43,7 +44,7 @@
     [self checkLogin];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-//    UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true);
+    //    UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true);
     
     // 设置友盟AppKey
     [UMSocialData setAppKey:AppKeyUmeng];
@@ -55,6 +56,19 @@
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:WeiboAppKey
                                               secret:WeiboAppSecret
                                          RedirectURL:WeiboRedirectUrl];
+    
+    
+    //AppKey:注册的AppKey，详细见下面注释。
+    //apnsCertName:推送证书名（不需要加后缀），详细见下面注释。
+    EMOptions *options = [EMOptions optionsWithAppkey:AppKeyEM];
+    options.apnsCertName = AppApnsCertName;
+    [[EMClient sharedClient] initializeSDKWithOptions:options];
+    
+    
+    // 初始化EaseUI
+    //    [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions appkey:AppKeyEM apnsCertName:AppApnsCertName otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
+    
+    
     return YES;
 }
 

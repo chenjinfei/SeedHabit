@@ -13,6 +13,6 @@
 @interface MsgChatViewController : UIViewController
 
 // 聊天的对象
-@property (nonatomic, strong) SeedUser *toUser;
+@property (nonatomic, strong) SeedUser *targetUser;
 
 @end

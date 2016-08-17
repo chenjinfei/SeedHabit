@@ -52,7 +52,9 @@
 // 通过ID获取用户信息
 #define APIUserInfoById                [APIUser stringByAppendingString:@"getUserInfoById"]
 // 修改密码
-#define APIChangePwd               [APIUser stringByAppendingString:@"changePsw"]
+#define APIChangePwd                   [APIUser stringByAppendingString:@"changePsw"]
+// 获取已经关注的好友
+#define APIFriendsList                 [APIUser stringByAppendingString:@"getFriendsList"]
 
 
 
@@ -147,6 +149,8 @@
 #define APIPropNote          [APIMindNote stringByAppendingString:@"propNote"]
 // 种子树信息
 #define APITreeInfo          [APIMindNote stringByAppendingString:@"getTreeInfo"]
+// 添加心情记录
+#define APIAddMindNote          [APIMindNote stringByAppendingString:@"addNote"]
 
 
 

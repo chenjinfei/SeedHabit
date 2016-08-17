@@ -161,6 +161,10 @@
     CGFloat btnWidth = 50;
     CGFloat btnHeight = 50;
     
+    if (self.hoveringBtnWindow) {
+        self.hoveringBtnWindow = nil;
+    }
+    
     // uiwindow
     self.hoveringBtnWindow = [[UIWindow alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-btnWidth)/2, SCREEN_HEIGHT-btnHeight-20, btnWidth, btnHeight)];
     self.hoveringBtnWindow.windowLevel = UIWindowLevelAlert + 1;
@@ -190,6 +194,7 @@
  *  关闭悬浮按钮window
  */
 -(void)resignHoveringBtnWindow {
+    self.hoveringBtnWindow.hidden = YES;
     [self.hoveringBtnWindow resignKeyWindow];
     self.hoveringBtnWindow = nil;
 }
@@ -200,14 +205,14 @@
  */
 -(void)chat {
     
-    self.hidesBottomBarWhenPushed = YES;
-    MsgChatViewController *chatVc = [[MsgChatViewController alloc]init];
-    chatVc.toUser = self.user;
-    [self.navigationController pushViewController:chatVc animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
-    
     // 关闭悬浮按钮
     [self resignHoveringBtnWindow];
+    
+    self.hidesBottomBarWhenPushed = YES;
+    MsgChatViewController *chatVc = [[MsgChatViewController alloc]init];
+    chatVc.targetUser = self.user;
+    [self.navigationController pushViewController:chatVc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
     
 }
 

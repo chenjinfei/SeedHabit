@@ -19,22 +19,59 @@
  *  @return UIImage对象
  */
 -(UIImage *)circleImage {
-    // 开始画图
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0);
-    // 获取上下文
-    CGContextRef ctr = UIGraphicsGetCurrentContext();
-    // 设置圆形
-    CGRect rect = CGRectMake(0, 0, self.size.width, self.size.height);
-    CGContextAddEllipseInRect(ctr, rect);
-    // 裁剪
-    CGContextClip(ctr);
-    // 将图片画上去
-    [self drawInRect:rect];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    // 完成画图
-    UIGraphicsEndImageContext();
-    return image;
+    CGSize imageSize = self.size;
+    //UIImage绘制为圆角
+    int w = imageSize.width;
+    int h = imageSize.height;
+    int radius = imageSize.width/2;
+    
+    UIImage *img = self;
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedFirst);
+    CGRect rect = CGRectMake(0, 0, w, h);
+    
+    CGContextBeginPath(context);
+    addRoundedRectToPath(context, rect, radius, radius);
+    CGContextClosePath(context);
+    CGContextClip(context);
+    CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);
+    CGImageRef imageMasked = CGBitmapContextCreateImage(context);
+    img = [UIImage imageWithCGImage:imageMasked];
+    
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    CGImageRelease(imageMasked);
+    return img;
 }
+
+
+-(UIImage *)circleImageWithRadius: (int)radius {
+    CGSize imageSize = self.size;
+    //UIImage绘制为圆角
+    int w = imageSize.width;
+    int h = imageSize.height;
+    //    int radius = imageSize.width/2;
+    
+    UIImage *img = self;
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedFirst);
+    CGRect rect = CGRectMake(0, 0, w, h);
+    
+    CGContextBeginPath(context);
+    addRoundedRectToPath(context, rect, radius, radius);
+    CGContextClosePath(context);
+    CGContextClip(context);
+    CGContextDrawImage(context, CGRectMake(0, 0, w, h), img.CGImage);
+    CGImageRef imageMasked = CGBitmapContextCreateImage(context);
+    img = [UIImage imageWithCGImage:imageMasked];
+    
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    CGImageRelease(imageMasked);
+    return img;
+}
+
+
 
 /**
  *  绘制圆角路径

@@ -15,7 +15,10 @@
 #import "UserManager.h"
 #import "SeedUser.h"
 #import <UIImageView+WebCache.h>
+#import "UIImageView+CJFUIImageView.h"
 #import <EMSDK.h>
+
+#import "MsgChatViewController.h"
 
 @interface ContactsViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating>
 
@@ -36,9 +39,6 @@
     
     [self buildView];
     
-    
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -56,7 +56,7 @@
                                  @"user_id": [UserManager manager].currentUser.uId
                                  };
     [session POST:APIFollowedList parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"yes = %@", responseObject[@"data"][@"users"]);
+        //        NSLog(@"yes = %@", responseObject[@"data"][@"users"]);
         [self.dataList removeAllObjects];
         for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
             SeedUser *modelUser = [[SeedUser alloc]init];
@@ -103,84 +103,9 @@
     self.searchController.searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
     self.searchController.searchBar.delegate = self;
     self.searchController.searchResultsUpdater = self;
+    self.searchController.searchBar.barTintColor = RGBA(240, 240, 240, 1);
     [self.searchController.searchBar sizeToFit];
     [self.view addSubview:self.searchController.searchBar];
-    
-}
-
-//设置区域的行数
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.searchController.active) {
-        return [self.searchList count];
-    }else{
-        return [self.dataList count];
-    }
-    //    return  self.dataList.count;
-}
-
-//返回单元格内容
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *flag=@"cellFlag";
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:flag];
-    if (cell==nil) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:flag];
-    }
-    SeedUser *user = [[SeedUser alloc]init];
-    if (self.searchController.active) {
-        user = self.searchList[indexPath.row];
-    }else {
-        user = self.dataList[indexPath.row];
-    }
-    
-    [cell.textLabel setText:user.nickname];
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.avatar_small] placeholderImage:IMAGE(@"placeHolder.png")];
-    
-    return cell;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    SeedUser *user = [[SeedUser alloc]init];
-    
-    if (self.searchController.active) {
-        
-        NSString *searchText = [self.searchController.searchBar text];
-        if ([NSString isValidateEmpty:searchText]) {
-            NSLog(@"===== %@ ====", self.dataList[indexPath.row]);
-            
-            user = self.dataList[indexPath.row];
-            
-        }else {
-            NSLog(@"===== %@ ====", self.searchList[indexPath.row]);
-            
-            user = self.searchList[indexPath.row];
-            
-        }
-        
-    }else {
-        
-        NSLog(@"===== %@ ====", self.dataList[indexPath.row]);
-        user = self.dataList[indexPath.row];
-    }
-    
-    EMTextMessageBody *body = [[EMTextMessageBody alloc] initWithText:@"要发送的消息"];
-    NSString *from = [[EMClient sharedClient] currentUsername];
-    
-    // 构建会话ID
-    NSString *conversationId = [NSString stringWithFormat:@"%@%@", from, user.account];
-    EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:conversationId type:EMConversationTypeChat createIfNotExist:YES];
-    
-    //生成Message
-    EMMessage *message = [[EMMessage alloc] initWithConversationID:conversation.conversationId from:from to:user.account body:body ext:nil];
-    message.chatType = EMChatTypeChat;// 设置为单聊消息
-    [[EMClient sharedClient].chatManager asyncSendMessage:message progress:nil completion:^(EMMessage *aMessage, EMError *aError) {
-        if (!aError) {
-            NSLog(@"msgBody=%@, msgStatus=%d, conversationId=%@", aMessage.body, aMessage.status, aMessage.conversationId);
-        }else {
-            NSLog(@"%@", aError);
-        }
-        ULog(@"status=%d, to=%@, from=%@", aMessage.status, aMessage.to, aMessage.from);
-    }];
     
 }
 
@@ -223,6 +148,71 @@
             self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, SCREEN_HEIGHT-40-64+keyboardHeight);
         }];
     };
+}
+
+
+
+#pragma mark tableview的代理方法实现
+
+//设置区域的行数
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (self.searchController.active) {
+        return [self.searchList count];
+    }else{
+        return [self.dataList count];
+    }
+    //    return  self.dataList.count;
+}
+
+//返回单元格内容
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *flag=@"cellFlag";
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:flag];
+    if (cell==nil) {
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:flag];
+    }
+    SeedUser *user = [[SeedUser alloc]init];
+    if (self.searchController.active) {
+        user = self.searchList[indexPath.row];
+    }else {
+        user = self.dataList[indexPath.row];
+    }
+    
+    [cell.textLabel setText:user.nickname];
+    //    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.avatar_small] placeholderImage:IMAGE(@"placeHolder.png")];
+    [cell.imageView lhy_loadImageUrlStr:user.avatar_small placeHolderImageName:@"placeHolder.png" radius:20];
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // 取消选中状态
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    SeedUser *targetUser = [[SeedUser alloc]init];
+    
+    if (self.searchController.active) {
+        NSString *searchText = [self.searchController.searchBar text];
+        if ([NSString isValidateEmpty:searchText]) {
+            targetUser = self.dataList[indexPath.row];
+        }else {
+            targetUser = self.searchList[indexPath.row];
+        }
+    }else {
+        targetUser = self.dataList[indexPath.row];
+    }
+    
+    self.hidesBottomBarWhenPushed = YES;
+    MsgChatViewController *chatVc = [[MsgChatViewController alloc]init];
+    chatVc.targetUser = targetUser;
+    [self.navigationController pushViewController:chatVc animated:YES];
+    self.hidesBottomBarWhenPushed = YES;
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
 }
 
 
