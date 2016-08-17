@@ -52,9 +52,6 @@
     // 创建视图控件
     [self buildView];
     
-    
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -226,9 +223,8 @@
     }else {
         user = [UserManager manager].currentUser;
     }
-    
     self.navigationItem.title = user.nickname;
-    
+    NSLog(@"%@", self.navigationItem.title)
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
     if (user) {

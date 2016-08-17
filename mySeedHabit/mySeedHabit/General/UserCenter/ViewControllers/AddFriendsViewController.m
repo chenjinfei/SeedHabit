@@ -53,7 +53,7 @@
     
     _dataList = [NSMutableArray array];
     _searchList = [NSMutableArray array];
-    
+
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH , SCREEN_HEIGHT-64-49-44)];
     _tableView.backgroundColor = CLEARCOLOR;
     

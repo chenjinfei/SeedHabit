@@ -31,6 +31,13 @@
 @property (nonatomic, strong) UILabel *comment;
 @property (nonatomic, assign) CGFloat commentHeight;
 
+// 创建btn
+@property (nonatomic, strong) UIButton *propPortraitBtn;
+// 存储 Btn
+@property (nonatomic, strong) NSMutableArray *btnArr;
+// 个数
+@property (nonatomic, assign) int count;
+
 @end
 
 @implementation DiscoveTableViewCell
@@ -38,6 +45,13 @@
 #pragma mark 自定义控件
 - (void)awakeFromNib {
     // Initialization code
+    
+    // 创建habitNameBtn
+    self.habit_name.userInteractionEnabled = YES;
+    self.habitNameBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.habitNameBtn.frame = self.habit_name.bounds;
+    [self.habit_name addSubview:self.habitNameBtn];
+    self.habitNameBtn.backgroundColor = [UIColor clearColor];
     
     // 背景View角
     self.backgroundV.layer.cornerRadius = 3;
@@ -67,6 +81,54 @@
     [self.contentV addSubview:self.comment];
 //    self.comment.backgroundColor = [UIColor redColor];
     
+    // 创建 Btn
+    self.btnArr = [[NSMutableArray alloc] init];
+    
+    // i6Plus （414-60(两边边距)） / 9 = 39.33
+    // 每个按键大小固定 32 ,39.33 - 32 = 7.33（每个按键间隔）
+    // i6 375  / 8
+    // i5、i4 320    / 7
+    
+    // 判断应该放多少点赞头像
+    if (SCREEN_WIDTH == 414) {
+        self.count = 9;
+    }
+    else if (SCREEN_WIDTH == 375) {
+        self.count = 8;
+    }
+    else {
+        self.count = 7;
+    }
+
+    for (int i = 0; i < self.count; i++) {
+        self.propPortraitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.propV addSubview:self.propPortraitBtn];
+//        self.propPortraitBtn.backgroundColor = [UIColor yellowColor];
+        self.propPortraitBtn.layer.cornerRadius = 16;
+        self.propPortraitBtn.layer.masksToBounds = YES;
+        
+        // 分别给第一个和最后一个赋值
+        if (i == 0) {
+            [self.propPortraitBtn setBackgroundImage:[UIImage imageNamed:@"heart2_32.png"] forState:UIControlStateNormal];
+        }
+        else if (i == self.count-1) {
+            self.propListBtn = self.propPortraitBtn;
+            [self.propPortraitBtn setBackgroundImage:[UIImage imageNamed:@"omit_32.png"] forState:UIControlStateNormal];
+        }
+        // 每个按键的约束
+        [self.propPortraitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(32, 32));
+            make.top.mas_equalTo(self.propV.mas_top).offset(15);
+            // 存在小偏差？
+            make.left.mas_equalTo(self.propV.mas_left).offset(20+(float)i*((float)(SCREEN_WIDTH-60)/self.count));
+        }];
+        // 吧按键存到数组
+        [self.btnArr addObject:self.propPortraitBtn];
+    }
+    
+//    static int i = 0;
+//    NSLog(@"输出多少次%d", i);
+//    i ++;
 }
 
 #pragma mark model 赋值
@@ -103,7 +165,7 @@
         // 解析评论
         NSArray *commentArr = notes.comments;
         Note *note = notes.note;
-        NSLog(@"%@", note);
+//        NSLog(@"%@", note);
         NSMutableString *text = [[NSMutableString alloc] init];
         NSMutableArray *comId = [[NSMutableArray alloc] init];
         if (commentArr != nil && commentArr.count > 0) {
@@ -121,7 +183,7 @@
                     NSString *userStr;
                     NSString *comStr;
                     for (Users *users in self.usersArr) {
-                        if ([com valueForKey:@"user_id"] == [users valueForKey:@"idx"]) {
+                        if ([com valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
                             userStr = [NSString stringWithFormat:@"%@", users.nickname];
                             comStr = [NSString stringWithFormat:@"%@", [com valueForKey:@"comment_text_content"]];
                             [text appendFormat:@"%@:%@\n", userStr, comStr];
@@ -131,30 +193,16 @@
             }
         }
         
-        NSLog(@"%@",text);
+//        NSLog(@"%@",text);
         self.comment.text = text;
         self.commentNumber.text = [NSString stringWithFormat:@"%ld", commentArr.count];
-        // i6Plus （414-60(两边边距)） / 9 = 39.33
-        // 每个按键大小固定 32 ,39.33 - 32 = 7.33（每个按键间隔）
-        // i6 375  / 8
-        // i5、i4 320    / 7
-        
-        // 判断应该放多少点赞头像
-        int count;
-        if (SCREEN_WIDTH == 414) {
-            count = 9;
-        }
-        else if (SCREEN_WIDTH == 375) {
-            count = 8;
-        }
-        else {
-            count = 7;
-        }
+
         
         // 解析点赞
         NSArray *propsArr = notes.props;
-        self.propNumber.text = [NSString stringWithFormat:@"%lu", (unsigned long)propsArr.count];
-        NSLog(@"%lu", (unsigned long)propsArr.count);
+        // 点赞个数
+        self.propNumber.text = [NSString stringWithFormat:@"%@", [note valueForKey:@"prop_count"]];
+//        NSLog(@"%lu", (unsigned long)propsArr.count);
         // 装载点赞头像
         NSMutableArray *mArr = [[NSMutableArray alloc] init];
         if (propsArr.count > 0) {
@@ -162,21 +210,22 @@
 //            [__NSCFArray objectAtIndex:]: index (1) beyond bounds (1)' *** First throw call stack:
             // 如果 propsArr.count > 2 ????????
             if (propsArr.count > 2) {
-                for (int i = 0; i < count-2; i++) {
+                for (int i = 0; i < self.count-2; i++) {
                     Props *props = propsArr[i];
                     for (Users *users in self.usersArr) {
-                        if ([props valueForKey:@"user_id"] == [users valueForKey:@"idx"]) {
+                        if ([props valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
                             [mArr addObject:users];
                         }
                     }
                 }
                 
-                
+                // 有图片
                 self.isProp = YES;
                 for (int i = 0; i < propsArr.count; i++) {
+                    /*
                     UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
                     [self.propV addSubview:btn];
-//                    btn.backgroundColor = [UIColor yellowColor];
+                    btn.backgroundColor = [UIColor yellowColor];
                     btn.layer.cornerRadius = 16;
                     btn.layer.masksToBounds = YES;
                     
@@ -188,25 +237,29 @@
                         [btn setBackgroundImage:[UIImage imageNamed:@"omit_32.png"] forState:UIControlStateNormal];
                     }
                     else {
-//                        NSLog(@"%@",[mArr[i-1] valueForKey:@"avatar_small"]);
                         [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:[mArr[i-1] valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
 //                        [btn setImageWithUrl:[NSURL URLWithString:[mArr[i-1] valueForKey:@"avatar_small"]] placeHolderImage:[UIImage imageNamed:@"placeHolder.png"] radius:16 forState:UIControlStateNormal];
                     }
-                    // 每个按键的约束
+                     // 每个按键的约束
                     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.size.mas_equalTo(CGSizeMake(32, 32));
                         make.top.mas_equalTo(self.propV.mas_top).offset(15);
                         // 存在小偏差？
                         make.left.mas_equalTo(self.propV.mas_left).offset(20+(float)i*((float)(SCREEN_WIDTH-60)/count));
                     }];
+                    */
+                    if (i != 0 && i != self.count - 1) {
+//                        [self.btnArr[i] sd_setBackgroundImageWithURL:[NSURL URLWithString:[mArr[i-1] valueForKey:@"avatar_small"]] forState:UIControlStateNormal];
+//                        [self.btnArr[i] setImageWithUrl:[NSURL URLWithString:[mArr[i-1] valueForKey:@"avatar_small"]] placeHolderImage:[UIImage imageNamed:@"placeHolder.png"] radius:16 forState:UIControlStateNormal];
+                        [self.btnArr[i] setImageWithUrl:[NSURL URLWithString:[mArr[i - 1] valueForKey:@"avatar_small"]] placeHolderImage:nil radius:16 forState:UIControlStateNormal];
+                    }
                     //当 个数 达到 ，不再遍历，退出循环
-                    if (i == count-1) {
+                    if (i == self.count-1) {
                         break;
                     }
                 }
 
             }
-            
         }
         else {
             self.isProp = NO;
@@ -242,7 +295,7 @@
                 make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-60, self.noteHeight));
                 make.left.mas_equalTo(self.contentV.mas_left).with.offset(20);
                 if (self.isImage) {
-                    make.top.mas_equalTo(self.contentImageV.mas_bottom).with.offset(0);
+                    make.top.mas_equalTo(self.contentImageV.mas_bottom).with.offset(10);
                 }
                 else
                     make.top.mas_equalTo(self.contentV.mas_top).with.offset(20);

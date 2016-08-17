@@ -20,6 +20,8 @@
  */
 -(UIImage *)circleImage;
 
+-(UIImage *)circleImageWithRadius: (int)radius;
+
 
 /**
  *  创建一个圆角图片

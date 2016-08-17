@@ -19,9 +19,12 @@
 // 代理方法
 @protocol pushDelegate <NSObject>
 
-- (void)hotPropsListPush:(id)sender;
-- (void)hotTreeInfoPush:(id)sender;
-- (void)hotAlbumPush:(id)sender;
+- (void)propsListPush:(id)sender;
+- (void)treeInfoPush:(id)sender;
+- (void)albumPush:(id)sender;
+- (void)habitPush:(id)sender;
+- (void)propBtnAction:(id)sender;
+- (void)commentBtnAction:(id)sender;
 /*
 - (void)keepPropsListPush:(id)sender;
 - (void)keepTreeInfoPush:(id)sender;
@@ -44,6 +47,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *seedBtn;
 @property (strong, nonatomic) IBOutlet UIButton *omitBtn;
 @property (nonatomic, strong) UIButton *propListBtn;
+@property (nonatomic, strong) UIButton *habitNameBtn;
 
 // Model
 @property (nonatomic, strong) Users *users;

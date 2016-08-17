@@ -10,6 +10,8 @@
 #import "Users.h"
 #import "PropsListTableViewCell.h"
 #import "UIColor+CJFColor.h"
+#import "SeedUser.h"
+#import "UserManager.h"
 
 
 @interface PropsListViewController () <UITableViewDataSource, UITableViewDelegate, followDelegate>
@@ -22,6 +24,9 @@
 @property (nonatomic, strong) NSMutableArray *followArr;
 // 点赞列表id
 @property (nonatomic, strong) NSMutableArray *propsArr;
+
+//
+@property (nonatomic, strong) SeedUser *user;
 
 @end
 
@@ -67,6 +72,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.user = [UserManager manager].currentUser;
 
     // 掩盖导航
     UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, -64, 414, 64)];
@@ -89,11 +96,11 @@
 #pragma mark  判断是否已经关注
     if ([self.followArr containsObject:self.propsArr[indexPath.row]]) {
         cell.followBtn.selected = YES;
-        NSLog(@"关注了");
+//        NSLog(@"关注了");
     }
     else {
         cell.followBtn.selected = NO;
-        NSLog(@"没有关注");
+//        NSLog(@"没有关注");
     }
     
     cell.delegate = self;
@@ -130,7 +137,7 @@
         // 关注请求
         AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
         NSDictionary *parameters = @{
-                                     @"followed_user_id":[users valueForKey:@"idx"],
+                                     @"followed_user_id":[users valueForKey:@"uId"],
                                      @"user_id":self.user_id
                                      //    关注
                                      //APIFollowUser
@@ -146,7 +153,7 @@
     // 取消关注请求
         AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
         NSDictionary *parameters = @{
-                                     @"followed_user_id":[users valueForKey:@"idx"],
+                                     @"followed_user_id":[users valueForKey:@"uId"],
                                      @"user_id":self.user_id
                                      };
         [session POST:APICancelFollow parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -179,7 +186,7 @@
             [users setValuesForKeysWithDictionary:dic];
             [self.dataArr addObject:users];
             [self.propsArr addObject:dic[@"id"]];
-            NSLog(@"%@", users.nickname);
+//            NSLog(@"%@", users.nickname);
 //            self.propsArr
         }
 //        NSLog(@"%@", self.propsArr);
@@ -203,7 +210,7 @@
                                  @"num":@60,
                                  @"page":@0,
                                  // 当前用户的id
-                                 @"user_id":@1850869
+                                 @"user_id":self.user.uId
                                  };
     [session POST:@"http://api.idothing.com/zhongzi/v2.php/User/getFriendsList" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         

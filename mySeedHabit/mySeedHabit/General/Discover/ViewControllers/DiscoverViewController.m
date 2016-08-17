@@ -14,6 +14,8 @@
 #import "UIColor+CJFColor.h"
 #import "UserManager.h"
 #import "CJFTools.h"
+#import "SeedUser.h"
+#import "KeyboardObserved.h"
 
 #import <XRCarouselView.h>
 #import <UIImageView+WebCache.h>
@@ -30,10 +32,11 @@
 #import "Notes.h"
 
 #import "DiscoveTableViewCell.h"
+#import "UserCenterViewController.h"
 
-@interface DiscoverViewController () <UITableViewDataSource, UITableViewDelegate, pushDelegate>
+
+@interface DiscoverViewController () <UITableViewDataSource, UITableViewDelegate, pushDelegate, UITextViewDelegate>
 {
-
     UITableView *hotTabelView;
     UITableView *keepTableView;
     UITableView *newestTableView;
@@ -46,25 +49,22 @@
 
 // 导航栏列表
 @property (nonatomic, strong) YHJTabPageScrollView *pageScroll;
+// 广告轮播
 @property (nonatomic, strong) XRCarouselView *carouselView;
+// 存储请求回来的广告图片
+@property (nonatomic, strong) NSMutableArray *carPicArr;
 
 // 热门
 @property (nonatomic, strong) NSMutableArray *usersArr;
 @property (nonatomic, strong) NSMutableArray *habitsArr;
 @property (nonatomic, strong) NSMutableArray *notesArr;
-// 存储评论
-@property (nonatomic, strong) NSMutableString *commentStr;
 // 存储loadData参数的数据
 @property (nonatomic, strong) NSMutableString *mReadStr;
-// 判断是否下拉刷新
-@property (nonatomic, assign) BOOL isHotRefresh;
 
 // 关注
 @property (nonatomic, strong) NSMutableArray *keepUsersArr;
 @property (nonatomic, strong) NSMutableArray *keepHabitsArr;
 @property (nonatomic, strong) NSMutableArray *keepNotesArr;
-// 存储评论
-@property (nonatomic, strong) NSMutableString *keepCommentStr;
 // 存储loadData参数的数据
 @property (nonatomic, strong) NSString *keepNextId;
 
@@ -72,24 +72,28 @@
 @property (nonatomic, strong) NSMutableArray *NewUsersArr;
 @property (nonatomic, strong) NSMutableArray *NewHabitsArr;
 @property (nonatomic, strong) NSMutableArray *NewNotesArr;
-// 存储评论
-@property (nonatomic, strong) NSMutableString *NewCommentStr;
 // 存储loadData参数的数据
 @property (nonatomic, strong) NSString *NewNextId;
 
-// 存储请求回来的广告图片
-@property (nonatomic, strong) NSMutableArray *carPicArr;
+
+// 传递的用户信息 Push
+@property (nonatomic, strong) SeedUser *user;
+@property (nonatomic, strong) NSString *commentText;
+@property (nonatomic, strong) NSString *mindNoteId;
+
+// 键盘输入框
+@property (nonatomic, strong) UITextView *textView;
 
 @end
 
 // 上拉加载
 static BOOL hotFlag = 0;
-static BOOL keepFlag = 0;
-static BOOL newestFlag = 0;
+//static BOOL keepFlag = 0;
+//static BOOL newestFlag = 0;
 // 判断是否下拉刷新
 static BOOL isHotRefresh = 0;
-static BOOL isKeepRefresh = 0;
-static BOOL isNewRefresh = 0;
+//static BOOL isKeepRefresh = 0;
+//static BOOL isNewRefresh = 0;
 
 @implementation DiscoverViewController
 
@@ -170,7 +174,7 @@ static BOOL isNewRefresh = 0;
     }
     return _carPicArr;
 }
-
+// 存储loadData参数的数据
 - (NSMutableString *)mReadStr {
 
     if (_mReadStr == nil) {
@@ -183,27 +187,40 @@ static BOOL isNewRefresh = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.user = [UserManager manager].currentUser;
+    NSLog(@"%@", self.user.uId);
+    
     self.view.backgroundColor = [UIColor colorWithHexString:UIMainColor alpha:1.0];
     
-//    self.mReadStr = [[NSMutableString alloc] init];
-
+    // 创建tableView
+    [self createTableView];
+    // 搜索框
+    [self createSearch];
+    
     // 头部滑动
     [self createHeadList];
    
     // 上下拉刷新
     [self Refresh];
+    
 }
 
-// 进入这个这个控制器隐藏 导航栏
+#pragma mark 即将进入这个这个控制器隐藏 导航栏隐藏 加载数据
 - (void)viewWillAppear:(BOOL)animated {
     
     self.navigationController.navigationBarHidden = YES;
-    self.view.window.backgroundColor = [UIColor whiteColor];
     
     // 加载数据
     [self hotLoadData];
-    [self NewestLoadData];
-    [self keepLoadData];
+//    [self NewestLoadData];
+//    [self keepLoadData];
+    
+}
+
+#pragma mark 即将离开这个控制器
+- (void)viewWillDisappear:(BOOL)animated {
+
+    self.navigationController.navigationBarHidden = NO;
     
 }
 
@@ -225,7 +242,8 @@ static BOOL isNewRefresh = 0;
         hotFlag = 1;
         [weakSelf hotLoadData];
     }];
-    
+
+    /*
     // keepTableView上拉下拉
     keepTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         NSLog(@"下拉加载， 自动加载？");
@@ -251,15 +269,12 @@ static BOOL isNewRefresh = 0;
         newestFlag = 1;
         [weakSelf NewestLoadData];
     }];
-    
+    */
 }
 
 #pragma mark 创建 头部滚动列表
 - (void)createHeadList {
-    
-    // 创建tableView
-    [self createTableView];
-
+   
     NSArray *pageItems = @[
                            [[YHJTabPageScrollViewPageItem alloc] initWithTabName:@"热门" andTabView:hotTabelView],
                            [[YHJTabPageScrollViewPageItem alloc] initWithTabName:@"关注" andTabView:keepTableView],
@@ -276,9 +291,6 @@ static BOOL isNewRefresh = 0;
         make.bottom.equalTo(self.view.mas_bottom);
     }];
     
-    // 搜索框
-    [self createSearch];
-    
 }
 
 #pragma mark 创建 搜索框
@@ -288,7 +300,7 @@ static BOOL isNewRefresh = 0;
     btn.backgroundColor = [UIColor clearColor];
     [self.view addSubview:btn];
     btn.frame = CGRectMake(SCREEN_WIDTH-35, 30, 20, 20);
-    [btn setBackgroundImage:[UIImage imageNamed:@"搜索@2x.png"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"search_white_32.png"] forState:UIControlStateNormal];
     
 }
 
@@ -333,19 +345,23 @@ static BOOL isNewRefresh = 0;
             }
         }
         for (Users *users in self.usersArr) {
-            if ([note valueForKey:@"user_id"] == [users valueForKey:@"idx"]) {
+            if ([note valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
                 hotCell.users = users;
             }
         }
         
+        // 自定义cell代理方法
         hotCell.delegate = self;
-        [hotCell.propListBtn addTarget:self action:@selector(hotPropsListPush:) forControlEvents:UIControlEventTouchUpInside];
-        [hotCell.seedBtn addTarget:self action:@selector(hotTreeInfoPush:) forControlEvents:UIControlEventTouchUpInside];
-        [hotCell.omitBtn addTarget:self action:@selector(hotAlbumPush:) forControlEvents:UIControlEventTouchUpInside];
+        [hotCell.propListBtn addTarget:self action:@selector(propsListPush:) forControlEvents:UIControlEventTouchUpInside];
+        [hotCell.seedBtn addTarget:self action:@selector(treeInfoPush:) forControlEvents:UIControlEventTouchUpInside];
+        [hotCell.omitBtn addTarget:self action:@selector(albumPush:) forControlEvents:UIControlEventTouchUpInside];
+        [hotCell.habitNameBtn addTarget:self action:@selector(habitPush:) forControlEvents:UIControlEventTouchUpInside];
+        [hotCell.propBtn addTarget:self action:@selector(propBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [hotCell.commentBtn addTarget:self action:@selector(commentBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         
         return hotCell;
     }
-    
+    /*
     else if ([tableView isEqual:keepTableView]) {
         
         keepCell = [tableView dequeueReusableCellWithIdentifier:@"DiscoverKeep"];
@@ -360,7 +376,7 @@ static BOOL isNewRefresh = 0;
             }
         }
         for (Users *users in self.keepUsersArr) {
-            if ([note valueForKey:@"user_id"] == [users valueForKey:@"idx"]) {
+            if ([note valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
                 keepCell.users = users;
             }
         }
@@ -388,7 +404,7 @@ static BOOL isNewRefresh = 0;
             }
         }
         for (Users *users in self.NewUsersArr) {
-            if ([note valueForKey:@"user_id"] == [users valueForKey:@"idx"]) {
+            if ([note valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
                 NewCell.users = users;
             }
         }
@@ -400,13 +416,36 @@ static BOOL isNewRefresh = 0;
 
         return NewCell;
     }
-    
+    */
     return nil;
 }
+// tableViewCell 响应方法 点击进入用户个人信息页面
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    UserCenterViewController *userVC = [[UserCenterViewController alloc] init];
+    
+    Notes *notes = self.notesArr[indexPath.row];
+    hotCell.notes = notes;
+    Note *note = notes.note;
+    Users *us;
+    for (Users *users in self.usersArr) {
+        if ([note valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
+            us = users;
+        }
+    }
+    // 传递当前cell的user过去
+    userVC.user = (SeedUser *)us;
+    self.hidesBottomBarWhenPushed=YES;
+    [self.navigationController pushViewController:userVC animated:YES];
+    self.hidesBottomBarWhenPushed=NO;
+    
+}
+// row number
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([tableView isEqual:hotTabelView]) {
         return self.notesArr.count;
     }
+    
     else if ([tableView isEqual:keepTableView]) {
         return self.keepNotesArr.count;
     }
@@ -416,12 +455,14 @@ static BOOL isNewRefresh = 0;
     else
         return 0;
 }
+// 每个row的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([tableView isEqual:hotTabelView]) {
         CGFloat height = [hotCell Height];
         return  height + 140;
         
     }
+    
     else if ([tableView isEqual:keepTableView]) {
         CGFloat height = [keepCell Height];
         return  height + 140;
@@ -435,7 +476,7 @@ static BOOL isNewRefresh = 0;
 }
 
 #pragma mark cell.btn 代理事件
-- (void)hotPropsListPush:(id)sender{
+- (void)propsListPush:(id)sender{
     
     // propsListBtn 下面还有一个view
     UIView *v = [sender superview];//获取父类view
@@ -455,17 +496,15 @@ static BOOL isNewRefresh = 0;
     self.hidesBottomBarWhenPushed=YES;
     PropsListViewController *propsListVC = [[PropsListViewController alloc] init];
     
-    // 当前用户
-    NSString *user_id = @"1850869";
     // 发表的用户
-    propsListVC.user_id = user_id;
+    propsListVC.user_id = [self.user valueForKey:@"uId"];
     propsListVC.mind_note_id = [note valueForKey:@"id"];
     
     [self.navigationController pushViewController:propsListVC animated:YES];
     self.hidesBottomBarWhenPushed=NO;
 
 }
-- (void)hotTreeInfoPush:(id)sender {
+- (void)treeInfoPush:(id)sender {
 
     // 获取indexPath
     NSIndexPath *indexPath = [self getindePathWith:sender];
@@ -546,7 +585,7 @@ static BOOL isNewRefresh = 0;
     self.hidesBottomBarWhenPushed=NO;
 }
 */
-- (void)hotAlbumPush:(id)sender {
+- (void)albumPush:(id)sender {
     
     NSIndexPath *indexPath = [self getindePathWith:sender];
     NSLog(@"%ld", (long)indexPath.row);
@@ -565,7 +604,7 @@ static BOOL isNewRefresh = 0;
         }
     }
     for (Users *users in self.usersArr) {
-        if ([note valueForKey:@"user_id"] == [users valueForKey:@"idx"]) {
+        if ([note valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
             author = users.nickname;
         }
     }
@@ -594,6 +633,155 @@ static BOOL isNewRefresh = 0;
     self.hidesBottomBarWhenPushed=NO;
     
 }
+- (void)habitPush:(id)sender {
+
+    // propsListBtn 下面还有一个view
+    UIView *v = [sender superview];//获取父类view
+    UIView *v1 = [v superview];
+    UIView *v2 = [v1 superview];
+//    UIView *v3 = [v2 superview];
+    DiscoveTableViewCell *cell = (DiscoveTableViewCell *)[v2 superview];//获取cell
+    NSIndexPath *indexPath = [hotTabelView indexPathForCell:cell];//获取cell对应的section
+//        NSLog(@"indexPath:--------%@",indexPathAll);
+    
+    NSLog(@"%ld", (long)indexPath.row);
+    //     push 参数
+    
+    [self.navigationController pushViewController:[[AlbumViewController alloc] init] animated:YES];
+    
+}
+- (void)propBtnAction:(id)sender {
+
+    UIButton *btn = sender;
+
+    NSIndexPath *indexPath = [self getindePathWith:sender];
+    Notes *notes = self.notesArr[indexPath.row];
+    Note *note = notes.note;
+//    NSLog(@"%@", [note valueForKey:@"id"]);
+    // 未关注
+    if (btn.selected == NO) {
+        // 关注请求
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        NSDictionary *parameters = @{
+                                     @"mind_note_id":[note valueForKey:@"id"],
+                                     @"user_id":self.user.uId
+                                     //      mind_note_id=18035359&user_id=1850878
+                                     };
+        [session POST:APIPropNote parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"error=%@", error);
+        }];
+        NSLog(@"点赞 成功");
+    }
+    else {
+        // 取消关注请求
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        NSDictionary *parameters = @{
+                                     @"mind_note_id":[notes.note valueForKey:@"id"],
+                                     @"user_id":self.user.uId
+                                     // mind_note_id=18035359&user_id=1850878
+                                     };
+        [session POST:APICancelProp parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"error=%@", error);
+        }];
+        NSLog(@"取消 点赞");
+    }
+
+    btn.selected = !btn.selected;
+    
+    /*
+     点赞
+     http://api.idothing.com/zhongzi/v2.php/MindNote/propNote
+     mind_note_id=18035359&user_id=1850878
+     
+     取消点赞
+     http://api.idothing.com/zhongzi/v2.php/MindNote/cancelProp
+     mind_note_id=18035359&user_id=1850878
+     */
+}
+- (void)commentBtnAction:(id)sender {
+
+    NSIndexPath *indexPath = [self getindePathWith:sender];
+    NSLog(@"%ld", indexPath.row);
+    
+    Notes *notes = self.notesArr[indexPath.row];
+    Note *note = notes.note;
+    self.mindNoteId = [note valueForKey:@"id"];
+    
+    hotTabelView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    [KeyboardObserved manager];
+    [self createKeyboard];
+}
+// 弹出键盘
+- (void)createKeyboard {
+
+    UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 40, 414, 40)];
+//    vi.backgroundColor = [UIColor whiteColor];
+    vi.hidden = YES;
+    
+    UITextView *text = [[UITextView alloc] initWithFrame:CGRectInset(vi.bounds, 5, 5)];
+    text.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
+    text.inputAccessoryView = text;
+    text.backgroundColor = [UIColor whiteColor];
+    text.returnKeyType = UIKeyboardTypeDefault;
+    text.delegate = self;
+    text.font = [UIFont boldSystemFontOfSize:15];
+    [vi addSubview:text];
+    
+    [self.view.window addSubview:vi];
+    [text becomeFirstResponder];
+    
+    self.textView = text;
+}
+// 点击return回收键盘
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        UIView *v = [self.view viewWithTag:11];
+        v.backgroundColor = [UIColor redColor];
+        
+        NSLog(@"发发发发送评论");
+        NSLog(@"%@", textView.text);
+        
+        if (textView.text.length > 0) {
+            self.commentText = textView.text;
+            [self loadCommentData];
+        }
+        
+        return NO;
+    }
+    return YES;
+    
+}
+// 发送评论请求
+- (void)loadCommentData {
+
+    // 评论
+//    http://api.idothing.com/zhongzi/v2.php/MindNote/comment
+//    comment_text_content=%E8%B5%9E&mind_note_id=18917711&user_id=1878988
+    
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    
+    NSDictionary *parameters = @{
+                                @"comment_text_content":self.commentText,
+                                @"mind_note_id":self.mindNoteId,
+                                @"user_id":self.user.uId
+                                };
+    [session POST:@"http://api.idothing.com/zhongzi/v2.php/MindNote/comment" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+//        [hotTabelView reloadData];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
+    
+}
+
 #pragma mark 点击cell上面的控件，直接获取cell的indexPath
 - (NSIndexPath *)getindePathWith:(id)sender {
     
@@ -606,8 +794,7 @@ static BOOL isNewRefresh = 0;
     return indexPathAll;
 }
 
-#pragma mark 网络加载数据 !!!
-
+#pragma mark 网络加载数据
 - (void)hotLoadData {
     
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
@@ -620,7 +807,7 @@ static BOOL isNewRefresh = 0;
                                  @"flag":flag,
                                  @"prop_num":@10,
                                  @"read_ids":readStr,
-                                 @"user_id":@1850869
+                                 @"user_id":self.user.uId
                                  // 拼接之前用户iD
                                  // @"read_ids":@"18451873|18453274|18452611|18453227|18450703|18450867|18451082|18449541|18451039|18450507|18451345|18450871|18450265|18450865",
                                  };
@@ -635,7 +822,7 @@ static BOOL isNewRefresh = 0;
     }];
     
 }
-
+/*
 - (void)keepLoadData {
 
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
@@ -701,7 +888,7 @@ static BOOL isNewRefresh = 0;
     }];
 
 }
-
+*/
 
 // 解析数据
 - (void)analysisDataWithResponseObject:(id)responseObject NotesArr:(NSMutableArray *)NotesArr UsersArr:(NSMutableArray *)UsersArr HabitsArr:(NSMutableArray *)HabitsArr isRefresh:(BOOL)isRefresh tableView:(UITableView *)tableView{
@@ -736,37 +923,39 @@ static BOOL isNewRefresh = 0;
             [HabitsArr addObject:habits];
         }
     }
-//    else {
-//        NSMutableArray *notesArr = [[NSMutableArray alloc] init];
-//        for (NSDictionary *dict in responseObject[@"data"][@"notes"]) {
-//            Notes *notes = [[Notes alloc] init];
-//            [notes setValuesForKeysWithDictionary:dict];
-//            [notesArr addObject:notes];
-//        }
-//        NSArray *arr = [notesArr arrayByAddingObjectsFromArray:NotesArr];
-//        [NotesArr removeAllObjects];
-//        [NotesArr addObjectsFromArray:arr];
-//        
-//        NSMutableArray *usersArr = [[NSMutableArray alloc] init];
-//        for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
-//            Users *users = [[Users alloc] init];
-//            [users setValuesForKeysWithDictionary:dict];
-//            [usersArr addObject:users];
-//        }
-//        
-//        NSArray *arr1 = [usersArr arrayByAddingObjectsFromArray:UsersArr];
-//        [UsersArr removeAllObjects];
-//        [UsersArr addObjectsFromArray:arr1];
-//        NSMutableArray *habitsArr = [[NSMutableArray alloc] init];
-//        for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
-//            Habits *habits = [[Habits alloc] init];
-//            [habits setValuesForKeysWithDictionary:dict];
-//            [habitsArr addObject:habits];
-//        }
-//        NSArray *arr2 = [habitsArr arrayByAddingObjectsFromArray:HabitsArr];
-//        [HabitsArr removeAllObjects];
-//        [HabitsArr addObjectsFromArray:arr2];
-//    }
+    /*
+    else {
+        NSMutableArray *notesArr = [[NSMutableArray alloc] init];
+        for (NSDictionary *dict in responseObject[@"data"][@"notes"]) {
+            Notes *notes = [[Notes alloc] init];
+            [notes setValuesForKeysWithDictionary:dict];
+            [notesArr addObject:notes];
+        }
+        NSArray *arr = [notesArr arrayByAddingObjectsFromArray:NotesArr];
+        [NotesArr removeAllObjects];
+        [NotesArr addObjectsFromArray:arr];
+        
+        NSMutableArray *usersArr = [[NSMutableArray alloc] init];
+        for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
+            Users *users = [[Users alloc] init];
+            [users setValuesForKeysWithDictionary:dict];
+            [usersArr addObject:users];
+        }
+        
+        NSArray *arr1 = [usersArr arrayByAddingObjectsFromArray:UsersArr];
+        [UsersArr removeAllObjects];
+        [UsersArr addObjectsFromArray:arr1];
+        NSMutableArray *habitsArr = [[NSMutableArray alloc] init];
+        for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
+            Habits *habits = [[Habits alloc] init];
+            [habits setValuesForKeysWithDictionary:dict];
+            [habitsArr addObject:habits];
+        }
+        NSArray *arr2 = [habitsArr arrayByAddingObjectsFromArray:HabitsArr];
+        [HabitsArr removeAllObjects];
+        [HabitsArr addObjectsFromArray:arr2];
+    }
+     */
     
     dispatch_async(dispatch_get_main_queue(), ^{
         // 数据加载完毕之后，结束更新
@@ -785,10 +974,10 @@ static BOOL isNewRefresh = 0;
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
     NSDictionary *parameters = @{
-                                 @"user_id":@1850869
-                                 //                                 列出轮播图和习惯
-                                 //                                 http://api.idothing.com/zhongzi/v2.php/ChoiceNote/listBannersAndHabits
-                                 //                                 user_id=1850878
+                                 @"user_id":self.user.uId
+                                 // 列出轮播图和习惯
+                                 // http://api.idothing.com/zhongzi/v2.php/ChoiceNote/listBannersAndHabits
+                                 // user_id=1850878
                                  };
     [session POST:APIBannersAndHabits parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"ok === %@", responseObject);
@@ -806,13 +995,12 @@ static BOOL isNewRefresh = 0;
             self.carouselView.contentMode = UIViewContentModeScaleAspectFit;
 #pragma mark 待修改
             self.carouselView.imageArray = @[self.carPicArr[0], self.carPicArr[1], self.carPicArr[2], self.carPicArr[3]];
-            self.carouselView.time = 2;
+            self.carouselView.time = 2.5;
         });
-        
     }
-          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-              NSLog(@"%@", error);
-          }];
+      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+          NSLog(@"%@", error);
+      }];
 
 }
 

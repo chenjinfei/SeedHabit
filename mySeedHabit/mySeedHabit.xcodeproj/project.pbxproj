@@ -31,10 +31,10 @@
 		37DB270E1D4F9B5700FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		37DB27101D4F9B6700FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		37DB27121D4F9B7200FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		3F7A5A221D6303C000279F41 /* UIButton+CJFUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A5A1F1D6303C000279F41 /* UIButton+CJFUIButton.m */; settings = {ASSET_TAGS = (); }; };
+		3F7A5A231D6303C000279F41 /* UIImage+CJFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A5A211D6303C000279F41 /* UIImage+CJFImage.m */; settings = {ASSET_TAGS = (); }; };
 		3FB403D91D61EE420076A446 /* NSString+CJFString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403BF1D61EE420076A446 /* NSString+CJFString.m */; settings = {ASSET_TAGS = (); }; };
-		3FB403DA1D61EE420076A446 /* UIButton+CJFUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403C11D61EE420076A446 /* UIButton+CJFUIButton.m */; settings = {ASSET_TAGS = (); }; };
 		3FB403DB1D61EE420076A446 /* UIColor+CJFColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403C31D61EE420076A446 /* UIColor+CJFColor.m */; settings = {ASSET_TAGS = (); }; };
-		3FB403DC1D61EE420076A446 /* UIImage+CJFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403C51D61EE420076A446 /* UIImage+CJFImage.m */; settings = {ASSET_TAGS = (); }; };
 		3FB403DD1D61EE420076A446 /* UIImageView+CJFUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403C71D61EE420076A446 /* UIImageView+CJFUIImageView.m */; settings = {ASSET_TAGS = (); }; };
 		3FB403DE1D61EE420076A446 /* UILabel+LeftTopAlign.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403C91D61EE420076A446 /* UILabel+LeftTopAlign.m */; settings = {ASSET_TAGS = (); }; };
 		3FB403DF1D61EE420076A446 /* CheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403CC1D61EE420076A446 /* CheckButton.m */; settings = {ASSET_TAGS = (); }; };
@@ -230,14 +230,14 @@
 		37DB268C1D4F46CC00FA5198 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		37DB268D1D4F46CC00FA5198 /* CJFTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFTabBarViewController.h; sourceTree = "<group>"; };
 		37DB268E1D4F46CC00FA5198 /* CJFTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFTabBarViewController.m; sourceTree = "<group>"; };
+		3F7A5A1E1D6303C000279F41 /* UIButton+CJFUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CJFUIButton.h"; sourceTree = "<group>"; };
+		3F7A5A1F1D6303C000279F41 /* UIButton+CJFUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CJFUIButton.m"; sourceTree = "<group>"; };
+		3F7A5A201D6303C000279F41 /* UIImage+CJFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CJFImage.h"; sourceTree = "<group>"; };
+		3F7A5A211D6303C000279F41 /* UIImage+CJFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CJFImage.m"; sourceTree = "<group>"; };
 		3FB403BE1D61EE420076A446 /* NSString+CJFString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CJFString.h"; sourceTree = "<group>"; };
 		3FB403BF1D61EE420076A446 /* NSString+CJFString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CJFString.m"; sourceTree = "<group>"; };
-		3FB403C01D61EE420076A446 /* UIButton+CJFUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CJFUIButton.h"; sourceTree = "<group>"; };
-		3FB403C11D61EE420076A446 /* UIButton+CJFUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CJFUIButton.m"; sourceTree = "<group>"; };
 		3FB403C21D61EE420076A446 /* UIColor+CJFColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CJFColor.h"; sourceTree = "<group>"; };
 		3FB403C31D61EE420076A446 /* UIColor+CJFColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CJFColor.m"; sourceTree = "<group>"; };
-		3FB403C41D61EE420076A446 /* UIImage+CJFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CJFImage.h"; sourceTree = "<group>"; };
-		3FB403C51D61EE420076A446 /* UIImage+CJFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CJFImage.m"; sourceTree = "<group>"; };
 		3FB403C61D61EE420076A446 /* UIImageView+CJFUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CJFUIImageView.h"; sourceTree = "<group>"; };
 		3FB403C71D61EE420076A446 /* UIImageView+CJFUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CJFUIImageView.m"; sourceTree = "<group>"; };
 		3FB403C81D61EE420076A446 /* UILabel+LeftTopAlign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+LeftTopAlign.h"; sourceTree = "<group>"; };
@@ -583,9 +583,6 @@
 		3F1AC3BD1D5ADC9C00F10709 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3FB404011D61EE660076A446 /* AlbumViewController.h */,
-				3FB404021D61EE660076A446 /* AlbumViewController.m */,
-				3FB404031D61EE660076A446 /* AlbumViewController.xib */,
 				3767F59C1D5F4DC5004E2945 /* DiscoverViewController.h */,
 				3767F59D1D5F4DC5004E2945 /* DiscoverViewController.m */,
 				3767F59E1D5F4DC5004E2945 /* DiscoverViewController.xib */,
@@ -595,6 +592,9 @@
 				3767F5A21D5F4DC5004E2945 /* TreeInfoViewController.h */,
 				3767F5A31D5F4DC5004E2945 /* TreeInfoViewController.m */,
 				3767F5A41D5F4DC5004E2945 /* TreeInfoViewController.xib */,
+				3FB404011D61EE660076A446 /* AlbumViewController.h */,
+				3FB404021D61EE660076A446 /* AlbumViewController.m */,
+				3FB404031D61EE660076A446 /* AlbumViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -819,14 +819,14 @@
 		3FB403BD1D61EE420076A446 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				3F7A5A1E1D6303C000279F41 /* UIButton+CJFUIButton.h */,
+				3F7A5A1F1D6303C000279F41 /* UIButton+CJFUIButton.m */,
+				3F7A5A201D6303C000279F41 /* UIImage+CJFImage.h */,
+				3F7A5A211D6303C000279F41 /* UIImage+CJFImage.m */,
 				3FB403BE1D61EE420076A446 /* NSString+CJFString.h */,
 				3FB403BF1D61EE420076A446 /* NSString+CJFString.m */,
-				3FB403C01D61EE420076A446 /* UIButton+CJFUIButton.h */,
-				3FB403C11D61EE420076A446 /* UIButton+CJFUIButton.m */,
 				3FB403C21D61EE420076A446 /* UIColor+CJFColor.h */,
 				3FB403C31D61EE420076A446 /* UIColor+CJFColor.m */,
-				3FB403C41D61EE420076A446 /* UIImage+CJFImage.h */,
-				3FB403C51D61EE420076A446 /* UIImage+CJFImage.m */,
 				3FB403C61D61EE420076A446 /* UIImageView+CJFUIImageView.h */,
 				3FB403C71D61EE420076A446 /* UIImageView+CJFUIImageView.m */,
 				3FB403C81D61EE420076A446 /* UILabel+LeftTopAlign.h */,
@@ -1163,6 +1163,7 @@
 				3FB405131D61EF700076A446 /* HabitPreviewViewNoImage.m in Sources */,
 				3FB405141D61EF700076A446 /* HabitReviewCollectionViewCell.m in Sources */,
 				3FB405151D61EF700076A446 /* UserInfoUpdateViewController.m in Sources */,
+				3F7A5A231D6303C000279F41 /* UIImage+CJFImage.m in Sources */,
 				3FB405161D61EF700076A446 /* UserInfoViewController.m in Sources */,
 				3FB4046B1D61EEC20076A446 /* AvatarUpdateViewController.m in Sources */,
 				3FB4048E1D61EEF90076A446 /* CJFTools.m in Sources */,
@@ -1173,7 +1174,6 @@
 				3FB4044C1D61EEAD0076A446 /* ContactsViewController.m in Sources */,
 				3FB403F81D61EE570076A446 /* Banners.m in Sources */,
 				3FB403FF1D61EE570076A446 /* TreeInfo.m in Sources */,
-				3FB403DC1D61EE420076A446 /* UIImage+CJFImage.m in Sources */,
 				3FB403FE1D61EE570076A446 /* Props.m in Sources */,
 				3FB404241D61EE890076A446 /* HabitPropsModel.m in Sources */,
 				3FB404421D61EE9D0076A446 /* HabitNotesByTimeCell.m in Sources */,
@@ -1215,7 +1215,7 @@
 				3FB404711D61EEC20076A446 /* RegisterByPhoneViewController.m in Sources */,
 				3FB404731D61EEC20076A446 /* RegisterDataViewController.m in Sources */,
 				3FB403FD1D61EE570076A446 /* Notes.m in Sources */,
-				3FB403DA1D61EE420076A446 /* UIButton+CJFUIButton.m in Sources */,
+				3F7A5A221D6303C000279F41 /* UIButton+CJFUIButton.m in Sources */,
 				3FB403E51D61EE420076A446 /* YHJTabPageScrollView.m in Sources */,
 				3FB403E41D61EE420076A446 /* UserManager.m in Sources */,
 				3FB403FA1D61EE570076A446 /* Data.m in Sources */,
@@ -1331,7 +1331,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/mySeedHabit/Macros/PrefixHeader.pch";
 				INFOPLIST_FILE = mySeedHabit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1436,7 +1436,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/mySeedHabit/Macros/PrefixHeader.pch";
 				INFOPLIST_FILE = mySeedHabit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

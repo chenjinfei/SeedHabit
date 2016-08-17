@@ -8,74 +8,83 @@
 
 #import "UIButton+CJFUIButton.h"
 
-#import <UIImageView+WebCache.h>
+#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 #import "UIImage+CJFImage.h"
+#import "UIView+WebCacheOperation.h"
 
 @implementation UIButton (CJFUIButton)
 
+
+
 /**
- *  通过SDWebImage设置按钮圆角图片
+ *  结合SDWebImage设置按钮圆角图片
  *
  *  @param url              NSURL: 图片url
  *  @param placeHolderImage UIImage: 占位图对象
- *  @param radius           CGFloat: 圆角半径
+ *  @param radius           CGFloat: 圆角半径（这里必须保证图片为正方形图片）
  *  @param state            UIControlState: 按钮状态
- *
- *  使用方法：
- *  NSURL *url = [NSURL URLWithString:@"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1994807006,3190709677&fm=58"];
- *  [testButton setImageWithUrl:url placeHolderImage:IMAGE(@"placeHolder.png") radius:50 forState:UIControlStateNormal];
- *  NSURL *url2 = [NSURL URLWithString:@"http://avatar.csdn.net/3/1/7/1_perfect_milk.jpg"];
- *  [testButton setImageWithUrl:url2 placeHolderImage:IMAGE(@"placeHolder.png") radius:50 forState:UIControlStateHighlighted];
  */
 - (void)setImageWithUrl:(NSURL *)url placeHolderImage:(UIImage *)placeHolderImage radius:(CGFloat)radius forState: (UIControlState)state {
     
-    __block UIImage *btnImage = nil;
-    
-    // 判断占位图是否存在, 设置默认占位图
-    if (placeHolderImage == nil) {
-        placeHolderImage = [[UIImage imageNamed:@"placeHolder.png"] circleImage];
-    }
-    
-    /**
-     *  这里进行手动缓存图片
-     */
-    NSString *cacheUrlStrKey = [[url absoluteString] stringByAppendingString:@"noRadiusCache"];
-    // 先获取缓存图片
-    UIImage *cacheImg = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:cacheUrlStrKey];
-    if (!cacheImg) {
-        
-        // 获取到网络图片
-        NSData *imgData = [NSData dataWithContentsOfURL:url];
-        UIImage *webImage = [UIImage imageWithData:imgData];
-        
-        if (webImage) {
-            
-            // 判断是否需要做图片的圆角处理
-            if (radius != 0.0) {
-                UIImage *radiusImage = [UIImage createRoundedRectImage:webImage size:self.frame.size radius:radius];
-                btnImage = radiusImage;
-            }else {
-                btnImage = webImage;
-            }
-            
-            // 进行图片缓存
-            [[SDImageCache sharedImageCache] storeImage:btnImage forKey:cacheUrlStrKey];
-            // 清除原有图片的缓存
-            [[SDImageCache sharedImageCache] removeImageForKey:[url absoluteString]];
-            
+    dispatch_main_async_safe(^{
+        if (radius != 0.0) {
+            CGSize placeHolderSize = placeHolderImage.size;
+            [self setImage:[placeHolderImage circleImageWithRadius:placeHolderSize.width/2] forState:state];
         }else {
-            
-            btnImage = placeHolderImage;
-            
+            [self setImage:placeHolderImage forState:state];
         }
-        
-    }else {
-        btnImage = cacheImg;
+    });
+    
+    //取消正在下载的操作
+    [self sd_cancelImageLoadForState:state];
+    
+    if (!url) {
+        dispatch_main_async_safe(^{
+            NSError *error = [NSError errorWithDomain:SDWebImageErrorDomain code:-1 userInfo:@{NSLocalizedDescriptionKey : @"Trying to load a nil url"}];
+            if (error) {
+                NSLog(@"%@", error);
+            }
+        });
+        return;
     }
     
-    [self setImage:btnImage forState:state];
-    
+    // 创建缓存key: cachedKey
+    NSString *cachedKey = [NSString stringWithFormat:@"%@_myCachedKey%f", url, radius];
+    // 从缓存中获取图片
+    UIImage *myCachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:cachedKey];
+    if (myCachedImage) {
+        NSLog(@"有缓存图片");
+        [self setImage:myCachedImage forState:state];
+    }else {
+        NSLog(@"没有缓存图片");
+        __weak __typeof(self)wself = self;
+        [[SDWebImageManager sharedManager] downloadImageWithURL:url options:SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            if (!wself) return;
+            dispatch_main_async_safe(^{
+                __strong UIButton *sself = wself;
+                if (!sself) return;
+                if (image && (SDWebImageLowPriority & SDWebImageAvoidAutoSetImage))
+                {
+                    NSLog(@"1");
+                    return;
+                }
+                else if (image) {
+                    NSLog(@"2");
+                    [sself setImage:image forState:state];
+                }
+                if (finished) {
+                    NSLog(@"3");
+                    [[SDImageCache sharedImageCache] storeImage:[image circleImageWithRadius:radius] forKey:cachedKey];
+                }
+            });
+        }];
+    }
     
 }
+
+
+
+
 
 @end

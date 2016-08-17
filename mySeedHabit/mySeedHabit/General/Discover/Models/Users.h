@@ -10,7 +10,7 @@
 
 @interface Users : NSObject
 
-@property (nonatomic, copy) NSString *idx;
+@property (nonatomic, copy) NSNumber *uId;
 
 @property (nonatomic, assign) NSInteger status;
 
@@ -18,15 +18,15 @@
 
 @property (nonatomic, copy) NSString *device;
 
-@property (nonatomic, copy) NSString *account_type;
+@property (nonatomic, assign) NSInteger *account_type;
 
-@property (nonatomic, copy) NSString *relation_with_me;
+@property (nonatomic, assign) NSInteger relation_with_me;
 
 @property (nonatomic, copy) NSString *avatar_big;
 
 @property (nonatomic, copy) NSString *fans_count;
 
-@property (nonatomic, assign) NSInteger friends_count;
+@property (nonatomic, strong) NSString *friends_count;
 
 @property (nonatomic, assign) NSInteger expose_diary;
 
@@ -44,7 +44,7 @@
 
 @property (nonatomic, copy) NSString *avatar_small;
 
-
 @property (nonatomic, assign) NSInteger user_type;
+
 
 @end

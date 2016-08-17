@@ -12,6 +12,8 @@
 #import <UIImageView+WebCache.h>
 #import "UIColor+CJFColor.h"
 
+#import<Masonry.h>
+
 @interface TreeInfoViewController ()
 
 @property (strong, nonatomic) IBOutlet UILabel *note;
@@ -61,7 +63,6 @@
     self.navigationItem.title = self.treeTitle;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"omit2_32.png"] style:UIBarButtonItemStylePlain target:self action:@selector(rightAction)];
-    
     
 }
 
