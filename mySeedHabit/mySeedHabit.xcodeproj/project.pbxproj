@@ -164,6 +164,13 @@
 		3767F8571D634D6A004E2945 /* expression_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8541D634D6A004E2945 /* expression_32.png */; };
 		3767F8581D634D6A004E2945 /* Microphone_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8551D634D6A004E2945 /* Microphone_32.png */; };
 		3767F8591D634D6A004E2945 /* msg_add_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8561D634D6A004E2945 /* msg_add_32.png */; };
+		3767F85F1D6408C8004E2945 /* MsgConversationListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F85D1D6408C8004E2945 /* MsgConversationListTableViewCell.m */; };
+		3767F8601D6408C8004E2945 /* MsgConversationListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F85E1D6408C8004E2945 /* MsgConversationListTableViewCell.xib */; };
+		3767F8621D645926004E2945 /* more_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8611D645926004E2945 /* more_32.png */; };
+		3767F8661D645CEE004E2945 /* MsgChatTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8641D645CEE004E2945 /* MsgChatTextTableViewCell.m */; };
+		3767F8671D645CEE004E2945 /* MsgChatTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8651D645CEE004E2945 /* MsgChatTextTableViewCell.xib */; };
+		3767F86B1D646743004E2945 /* MsgChatTextReceiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8691D646743004E2945 /* MsgChatTextReceiveTableViewCell.m */; };
+		3767F86C1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F86A1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib */; };
 		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
 		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
@@ -321,6 +328,16 @@
 		3767F8541D634D6A004E2945 /* expression_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expression_32.png; sourceTree = "<group>"; };
 		3767F8551D634D6A004E2945 /* Microphone_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_32.png; sourceTree = "<group>"; };
 		3767F8561D634D6A004E2945 /* msg_add_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_add_32.png; sourceTree = "<group>"; };
+		3767F85C1D6408C8004E2945 /* MsgConversationListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgConversationListTableViewCell.h; sourceTree = "<group>"; };
+		3767F85D1D6408C8004E2945 /* MsgConversationListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgConversationListTableViewCell.m; sourceTree = "<group>"; };
+		3767F85E1D6408C8004E2945 /* MsgConversationListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgConversationListTableViewCell.xib; sourceTree = "<group>"; };
+		3767F8611D645926004E2945 /* more_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_32.png; sourceTree = "<group>"; };
+		3767F8631D645CEE004E2945 /* MsgChatTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgChatTextTableViewCell.h; sourceTree = "<group>"; };
+		3767F8641D645CEE004E2945 /* MsgChatTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgChatTextTableViewCell.m; sourceTree = "<group>"; };
+		3767F8651D645CEE004E2945 /* MsgChatTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgChatTextTableViewCell.xib; sourceTree = "<group>"; };
+		3767F8681D646743004E2945 /* MsgChatTextReceiveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgChatTextReceiveTableViewCell.h; sourceTree = "<group>"; };
+		3767F8691D646743004E2945 /* MsgChatTextReceiveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgChatTextReceiveTableViewCell.m; sourceTree = "<group>"; };
+		3767F86A1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgChatTextReceiveTableViewCell.xib; sourceTree = "<group>"; };
 		379B01111D54AB1500D75383 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		379B01131D54AB2200D75383 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -524,6 +541,7 @@
 		3767F5ED1D5F4E74004E2945 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3767F8611D645926004E2945 /* more_32.png */,
 				3767F8541D634D6A004E2945 /* expression_32.png */,
 				3767F8551D634D6A004E2945 /* Microphone_32.png */,
 				3767F8561D634D6A004E2945 /* msg_add_32.png */,
@@ -600,6 +618,29 @@
 				3767F6211D5F4E74004E2945 /* msg_selected_32.png */,
 			);
 			path = TabBarIcon;
+			sourceTree = "<group>";
+		};
+		3767F85A1D64089E004E2945 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3767F85B1D64089E004E2945 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3767F85C1D6408C8004E2945 /* MsgConversationListTableViewCell.h */,
+				3767F85D1D6408C8004E2945 /* MsgConversationListTableViewCell.m */,
+				3767F85E1D6408C8004E2945 /* MsgConversationListTableViewCell.xib */,
+				3767F8631D645CEE004E2945 /* MsgChatTextTableViewCell.h */,
+				3767F8641D645CEE004E2945 /* MsgChatTextTableViewCell.m */,
+				3767F8651D645CEE004E2945 /* MsgChatTextTableViewCell.xib */,
+				3767F8681D646743004E2945 /* MsgChatTextReceiveTableViewCell.h */,
+				3767F8691D646743004E2945 /* MsgChatTextReceiveTableViewCell.m */,
+				3767F86A1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		37DB26671D4F40A600FA5198 = {
@@ -842,6 +883,8 @@
 		3F1AC3FC1D5ADC9C00F10709 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				3767F85A1D64089E004E2945 /* Models */,
+				3767F85B1D64089E004E2945 /* Views */,
 				3F1AC3FD1D5ADC9C00F10709 /* ViewControllers */,
 			);
 			path = Message;
@@ -1056,6 +1099,7 @@
 				3767F6981D614D98004E2945 /* LoginViewController.xib in Resources */,
 				3767F6991D614D98004E2945 /* LogoutTableViewCell.xib in Resources */,
 				3767F69A1D614D98004E2945 /* RegisterByPhoneViewController.xib in Resources */,
+				3767F8671D645CEE004E2945 /* MsgChatTextTableViewCell.xib in Resources */,
 				3767F69B1D614D98004E2945 /* RegisterDataViewController.xib in Resources */,
 				3767F69C1D614D98004E2945 /* UserSetupViewController.xib in Resources */,
 				3767F6901D60BEC9004E2945 /* UserSearchList_TBCell.xib in Resources */,
@@ -1099,6 +1143,7 @@
 				3767F65B1D5F4E74004E2945 /* mine_selected_32.png in Resources */,
 				3767F6331D5F4E74004E2945 /* contacts_32.png in Resources */,
 				3767F5B71D5F4DDB004E2945 /* DiscoverHotCell.xib in Resources */,
+				3767F8621D645926004E2945 /* more_32.png in Resources */,
 				3767F6381D5F4E74004E2945 /* goldCup.png in Resources */,
 				3767F6621D5F4E74004E2945 /* weixin_32.png in Resources */,
 				3767F63D1D5F4E74004E2945 /* into_32.png in Resources */,
@@ -1125,6 +1170,7 @@
 				3767F6AA1D61693B004E2945 /* MsgChatViewController.xib in Resources */,
 				3767F6551D5F4E74004E2945 /* sina_32.png in Resources */,
 				3767F5A61D5F4DC5004E2945 /* DiscoverViewController.xib in Resources */,
+				3767F8601D6408C8004E2945 /* MsgConversationListTableViewCell.xib in Resources */,
 				3767F8581D634D6A004E2945 /* Microphone_32.png in Resources */,
 				3767F6321D5F4E74004E2945 /* comment_32.png in Resources */,
 				3767F6301D5F4E74004E2945 /* checkBox.png in Resources */,
@@ -1133,6 +1179,7 @@
 				3767F6371D5F4E74004E2945 /* follow_cancel_32.png in Resources */,
 				3767F6341D5F4E74004E2945 /* copperCup.png in Resources */,
 				3767F6431D5F4E74004E2945 /* msg2_32.png in Resources */,
+				3767F86C1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib in Resources */,
 				3767F6541D5F4E74004E2945 /* silverCup.png in Resources */,
 				3767F64F1D5F4E74004E2945 /* search_32.png in Resources */,
 				3767F62B1D5F4E74004E2945 /* add_32.png in Resources */,
@@ -1225,6 +1272,7 @@
 				3767F6781D5F56BF004E2945 /* HabitDetailsViewController.m in Sources */,
 				3767F6771D5F56B6004E2945 /* HabitClassifyViewController.m in Sources */,
 				3767F6761D5F569F004E2945 /* HabitViewController.m in Sources */,
+				3767F8661D645CEE004E2945 /* MsgChatTextTableViewCell.m in Sources */,
 				3767F6721D5F4F5E004E2945 /* RegisterDataViewController.m in Sources */,
 				3767F6711D5F4F51004E2945 /* RegisterByPhoneViewController.m in Sources */,
 				3767F6701D5F4F42004E2945 /* Users.m in Sources */,
@@ -1232,6 +1280,8 @@
 				3767F66E1D5F4F33004E2945 /* Props.m in Sources */,
 				3767F66D1D5F4F2B004E2945 /* Notes.m in Sources */,
 				3767F66C1D5F4F24004E2945 /* LoginViewController.m in Sources */,
+				3767F85F1D6408C8004E2945 /* MsgConversationListTableViewCell.m in Sources */,
+				3767F86B1D646743004E2945 /* MsgChatTextReceiveTableViewCell.m in Sources */,
 				3767F66B1D5F4F1A004E2945 /* Habits.m in Sources */,
 				3767F66A1D5F4F11004E2945 /* HabitReviewCollectionViewCell.m in Sources */,
 				3767F6691D5F4F03004E2945 /* Comments.m in Sources */,

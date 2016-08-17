@@ -28,7 +28,7 @@ static KeyboardObserved *instance = nil;
         instance = [[[self class] alloc] init];
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:instance selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-        [center addObserver:instance selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
+        [center addObserver:instance selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
         instance.keyboardIsVisible = NO;
     });
     return instance;
@@ -46,14 +46,14 @@ static KeyboardObserved *instance = nil;
  *  键盘将要显示，设置键盘的可见值为显示
  */
 -(void)keyboardWillShow: (NSNotification *)notification {
-    [self keyboardHeight:notification];
     _keyboardIsVisible = YES;
+    [self keyboardHeight:notification];
 }
 
 /**
  *  键盘将要隐藏，设置键盘的可见值为隐藏
  */
--(void)keyboardWillHide {
+-(void)keyboardWillHide: (NSNotification *)notification {
     _keyboardIsVisible = NO;
 }
 
@@ -76,6 +76,11 @@ static KeyboardObserved *instance = nil;
     CGRect keyBoardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     _keyboardFrame = keyBoardFrame;
 }
+
+
+
+
+
 
 
 @end

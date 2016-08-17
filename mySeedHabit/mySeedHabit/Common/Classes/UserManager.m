@@ -172,7 +172,7 @@ static UserManager *instance = nil;
                 self.userId = model.uId;
             }
             
-            NSString *username = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"user"][@"account"]];
+            NSString *username = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"user"][@"id"]];
             NSString *password = nil;
             if ([info valueForKey:@"password"]) {
                 password = [info valueForKey:@"password"];

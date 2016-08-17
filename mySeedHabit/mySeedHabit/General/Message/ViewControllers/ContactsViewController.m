@@ -180,7 +180,7 @@
     
     [cell.textLabel setText:user.nickname];
     //    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.avatar_small] placeholderImage:IMAGE(@"placeHolder.png")];
-    [cell.imageView lhy_loadImageUrlStr:user.avatar_small placeHolderImageName:@"placeHolder.png" radius:20];
+    [cell.imageView lhy_loadImageUrlStr:user.avatar_small placeHolderImageName:@"placeHolder.png" radius:30];
     
     return cell;
 }

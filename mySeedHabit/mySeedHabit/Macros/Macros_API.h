@@ -26,9 +26,9 @@
 #define APIUser                        [APIURL stringByAppendingString:@"User/"]
 
 // 登录
-#define APILogin                   [APIUser stringByAppendingString:@"login"]
+#define APILogin                       [APIUser stringByAppendingString:@"login"]
 // 退出登录
-#define APILogout                   [APIUser stringByAppendingString:@"logout"]
+#define APILogout                      [APIUser stringByAppendingString:@"logout"]
 // 用户信息更新
 #define APIUserUpdate                  [APIUser stringByAppendingString:@"update"]
 // 我的联系人、互相关注的好友列表

@@ -9,6 +9,8 @@
 #import "MessageViewController.h"
 
 #import "ContactsViewController.h"
+#import "MsgConversationListTableViewCell.h"
+#import "MsgChatViewController.h"
 
 #import <EMSDK.h>
 #import "UIImage+CJFImage.h"
@@ -17,10 +19,13 @@
 #import "UIButton+CJFUIButton.h"
 #import <UIImageView+WebCache.h>
 
-@interface MessageViewController ()<EMChatManagerDelegate>
+@interface MessageViewController ()<EMChatManagerDelegate, UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *tableView;
 
 // 会话列表
 @property (nonatomic, strong) NSMutableArray *conversationsArr;
+
 
 @end
 
@@ -41,7 +46,7 @@
     // 创建控制器视图
     [self buildView];
     
-    
+    // 加载数据
     [self loadData];
 }
 
@@ -50,13 +55,14 @@
 -(void)loadData {
     
     NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+    [self.conversationsArr removeAllObjects];
+    [self.conversationsArr addObjectsFromArray:conversations];
+    [self.tableView reloadData];
     NSLog(@"内存中所有会话：%@", conversations);
     
     for (EMConversation *cs in conversations) {
-        EMTextMessageBody *msgBody = (EMTextMessageBody *)cs.latestMessage.body;
-        NSLog(@"未读信息条数：%d 条； 最新一条信息是：%@",cs.unreadMessagesCount, msgBody.text);
+        NSLog(@"%@", cs.latestMessage.ext)
     }
-    
     
 }
 
@@ -68,7 +74,12 @@
     return _conversationsArr;
 }
 
-
+-(UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-41-72) style:UITableViewStyleGrouped];
+    }
+    return _tableView;
+}
 
 
 // 创建控制器视图
@@ -82,6 +93,14 @@
     addContactBtnView.frame = CGRectMake(0, 0, 25, 25);
     UIBarButtonItem *addContactBtn = [[UIBarButtonItem alloc]initWithCustomView:addContactBtnView];
     self.navigationItem.rightBarButtonItems = @[addContactBtn];
+    
+    [self.view addSubview:self.tableView];
+    self.tableView.backgroundColor = RGBA(245, 245, 245, 1);
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"MsgConversationListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"CVCELL"];
     
 }
 
@@ -97,7 +116,7 @@
 // 收到消息的回调，带有附件类型的消息可以用 SDK 提供的下载附件方法下载（后面会讲到）
 - (void)didReceiveMessages:(NSArray *)aMessages
 {
-    ULog(@"========= 收到新信息 ==============");
+    NSLog(@"========= 收到新信息 ==============");
     for (EMMessage *message in aMessages) {
         EMMessageBody *msgBody = message.body;
         switch (msgBody.type) {
@@ -182,6 +201,12 @@
                 break;
         }
     }
+    
+    
+    // 刷新数据
+    [self.tableView reloadData];
+    
+    
 }
 
 #pragma mark 消息已送达回执
@@ -195,5 +220,70 @@
 }
 
 
+
+#pragma mark tableView的代理方法实现
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.conversationsArr.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MsgConversationListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CVCELL"];
+    cell.model = self.conversationsArr[indexPath.row];
+    return cell;
+    
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.001;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"聊天会话记录";
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // 取消选中状态
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    self.hidesBottomBarWhenPushed = YES;
+    MsgChatViewController *chatVc = [[MsgChatViewController alloc]init];
+    chatVc.conversation = self.conversationsArr[indexPath.row];
+    [self.navigationController pushViewController:chatVc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"删除会话");
+    
+    EMConversation *conversation = self.conversationsArr[indexPath.row];
+    [[EMClient sharedClient].chatManager deleteConversation:conversation.conversationId deleteMessages:YES];
+    
+    [self.conversationsArr removeObject:conversation];
+    
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+}
 
 @end

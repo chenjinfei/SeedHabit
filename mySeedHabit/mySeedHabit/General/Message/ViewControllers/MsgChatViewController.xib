@@ -8,9 +8,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MsgChatViewController">
             <connections>
                 <outlet property="InputAreaView" destination="50a-tk-52s" id="DDv-xU-Mmr"/>
+                <outlet property="bottomSpace" destination="49Y-MW-Cbv" id="asu-2z-jhZ"/>
                 <outlet property="expressionBtn" destination="O6Z-G2-OGc" id="r8Q-pA-t3z"/>
+                <outlet property="fileBtn" destination="QbH-Ig-0pg" id="Z2r-LF-wmo"/>
                 <outlet property="msgContent" destination="zGG-5m-nyb" id="a27-H4-aeD"/>
-                <outlet property="sendBtn" destination="QbH-Ig-0pg" id="eXl-eP-R3p"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="voiceBtn" destination="ECW-zt-Cqs" id="ysj-OK-EM1"/>
             </connections>
@@ -30,6 +31,9 @@
                                 <constraint firstAttribute="width" constant="28" id="loA-hi-0NU"/>
                             </constraints>
                             <state key="normal" title="Button" image="Microphone_32.png"/>
+                            <connections>
+                                <action selector="addVoice:" destination="-1" eventType="touchUpInside" id="704-8V-2XO"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbH-Ig-0pg">
                             <rect key="frame" x="335" y="0.0" width="40" height="41"/>
@@ -44,6 +48,9 @@
                                     <exclude reference="uM7-T3-gbs"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="addFile:" destination="-1" eventType="touchUpInside" id="S83-ja-E1D"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6Z-G2-OGc">
                             <rect key="frame" x="295" y="0.0" width="30" height="41"/>
@@ -58,6 +65,9 @@
                                     <exclude reference="qk3-Cc-HlM"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="addExpression:" destination="-1" eventType="touchUpInside" id="tKf-Ff-2J8"/>
+                            </connections>
                         </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入您的消息" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zGG-5m-nyb">
                             <rect key="frame" x="52" y="0.0" width="233" height="41"/>

@@ -59,10 +59,7 @@
     
     // 创建视图控件
     [self buildView];
-    
-    
-    
-    
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {
