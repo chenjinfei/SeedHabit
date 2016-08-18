@@ -11,8 +11,10 @@
 #import <UIImageView+WebCache.h>
 #import "UIImageView+CJFUIImageView.h"
 #import <EMSDK.h>
+#import "CJFTools.h"
 
 @implementation MsgChatTextReceiveTableViewCell
+
 
 -(void)setModel:(EMMessage *)model {
     _model = model;
@@ -24,6 +26,17 @@
     EMTextMessageBody *msgBody = (EMTextMessageBody *)model.body;
     _msgText.text = msgBody.text;
     
+}
+
+
+-(void)updateConstraints {
+    [super updateConstraints];
+    NSLog(@"updateConstraints");
+}
+
+-(void)updateConstraintsIfNeeded {
+    [super updateConstraintsIfNeeded];
+    NSLog(@"updateConstraintsIfNeeded");
 }
 
 

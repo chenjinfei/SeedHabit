@@ -171,6 +171,8 @@
 		3767F8671D645CEE004E2945 /* MsgChatTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8651D645CEE004E2945 /* MsgChatTextTableViewCell.xib */; };
 		3767F86B1D646743004E2945 /* MsgChatTextReceiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8691D646743004E2945 /* MsgChatTextReceiveTableViewCell.m */; };
 		3767F86C1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F86A1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib */; };
+		3767F8701D658CF4004E2945 /* MsgBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F86E1D658CF4004E2945 /* MsgBubbleTableViewCell.m */; };
+		3767F8711D658CF4004E2945 /* MsgBubbleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F86F1D658CF4004E2945 /* MsgBubbleTableViewCell.xib */; };
 		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
 		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
@@ -338,6 +340,9 @@
 		3767F8681D646743004E2945 /* MsgChatTextReceiveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgChatTextReceiveTableViewCell.h; sourceTree = "<group>"; };
 		3767F8691D646743004E2945 /* MsgChatTextReceiveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgChatTextReceiveTableViewCell.m; sourceTree = "<group>"; };
 		3767F86A1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgChatTextReceiveTableViewCell.xib; sourceTree = "<group>"; };
+		3767F86D1D658CF4004E2945 /* MsgBubbleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgBubbleTableViewCell.h; sourceTree = "<group>"; };
+		3767F86E1D658CF4004E2945 /* MsgBubbleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgBubbleTableViewCell.m; sourceTree = "<group>"; };
+		3767F86F1D658CF4004E2945 /* MsgBubbleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgBubbleTableViewCell.xib; sourceTree = "<group>"; };
 		379B01111D54AB1500D75383 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		379B01131D54AB2200D75383 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -639,6 +644,9 @@
 				3767F8681D646743004E2945 /* MsgChatTextReceiveTableViewCell.h */,
 				3767F8691D646743004E2945 /* MsgChatTextReceiveTableViewCell.m */,
 				3767F86A1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib */,
+				3767F86D1D658CF4004E2945 /* MsgBubbleTableViewCell.h */,
+				3767F86E1D658CF4004E2945 /* MsgBubbleTableViewCell.m */,
+				3767F86F1D658CF4004E2945 /* MsgBubbleTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1113,6 +1121,7 @@
 				3767F6561D5F4E74004E2945 /* discover_normal_32.png in Resources */,
 				3767F65D1D5F4E74004E2945 /* msg_selected_32.png in Resources */,
 				3767F6531D5F4E74004E2945 /* setup_white_32_cjf.png in Resources */,
+				3767F8711D658CF4004E2945 /* MsgBubbleTableViewCell.xib in Resources */,
 				3767F6521D5F4E74004E2945 /* setup_32.png in Resources */,
 				3767F8591D634D6A004E2945 /* msg_add_32.png in Resources */,
 				3767F8571D634D6A004E2945 /* expression_32.png in Resources */,
@@ -1302,6 +1311,7 @@
 				3767F5A71D5F4DC5004E2945 /* PropsListViewController.m in Sources */,
 				3767F5E61D5F4E4F004E2945 /* UILabel+LeftTopAlign.m in Sources */,
 				37DB26751D4F40A600FA5198 /* main.m in Sources */,
+				3767F8701D658CF4004E2945 /* MsgBubbleTableViewCell.m in Sources */,
 				37DB26D81D4F46CC00FA5198 /* CJFTabBarViewController.m in Sources */,
 				3767F5A91D5F4DC5004E2945 /* TreeInfoViewController.m in Sources */,
 				3767F5E41D5F4E4F004E2945 /* UIImage+CJFImage.m in Sources */,

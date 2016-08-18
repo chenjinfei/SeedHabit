@@ -37,4 +37,39 @@
  */
 -(void)submitFormDataToUrl: (NSString *)url withParameters: (NSDictionary *)parameters exImgParameterName: (NSString *)exImgName;
 
+
+/**
+ *  左右拼接图片
+ *
+ *  @param leftImage  左图
+ *  @param rightImage 右图
+ *
+ *  @return 图片对象
+ */
++(UIImage *)combineLeftImage: (UIImage *)leftImage andRightImage: (UIImage *)rightImage;
+
+
+
+/**
+ *  上下拼接图片
+ *
+ *  @param topImage    上图
+ *  @param bottomImage 下图
+ *
+ *  @return 图片对象
+ */
++(UIImage *)combineTopImage: (UIImage *)topImage andBottomImage: (UIImage *)bottomImage;
+
+
+/**
+ *  根据宽度计算字符串的高度
+ *
+ *  @param string 字符串
+ *  @param width  宽度
+ *  @param font   字体
+ *
+ *  @return CGFloat 高度
+ */
++(CGFloat)heightWithString: (NSString *)string width: (CGFloat)width font: (UIFont *)font;
+
 @end

@@ -152,4 +152,84 @@ static CJFTools *instance = nil;
 
 
 
+
+/**
+ *  左右拼接图片
+ *
+ *  @param leftImage  左图
+ *  @param rightImage 右图
+ *
+ *  @return 图片对象
+ */
++(UIImage *)combineLeftImage: (UIImage *)leftImage andRightImage: (UIImage *)rightImage {
+    CGFloat width = leftImage.size.width * 2;
+    CGFloat height = leftImage.size.height;
+    CGSize offScreenSize = CGSizeMake(width, height);
+    
+    UIGraphicsBeginImageContext(offScreenSize);
+    
+    CGRect rect = CGRectMake(0, 0, width/2, height);
+    [leftImage drawInRect:rect];
+    
+    rect.origin.x += width/2;
+    [rightImage drawInRect:rect];
+    
+    UIImage* imagez = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return imagez;
+}
+
+/**
+ *  上下拼接图片
+ *
+ *  @param topImage    上图
+ *  @param bottomImage 下图
+ *
+ *  @return 图片对象
+ */
++(UIImage *)combineTopImage: (UIImage *)topImage andBottomImage: (UIImage *)bottomImage {
+    
+    CGFloat width = topImage.size.width;
+    CGFloat height = topImage.size.height + bottomImage.size.height;
+    CGSize offScreenSize = CGSizeMake(width, height);
+    
+    UIGraphicsBeginImageContext(offScreenSize);
+    
+    CGRect rect = CGRectMake(0, 0, width, topImage.size.height);
+    [topImage drawInRect:rect];
+    
+    rect.origin.y += topImage.size.height;
+    [bottomImage drawInRect:rect];
+    
+    UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return resultImage;
+    
+}
+
+/**
+ *  根据宽度计算字符串的高度
+ *
+ *  @param string 字符串
+ *  @param width  宽度
+ *  @param font   字体
+ *
+ *  @return CGFloat 高度
+ */
++(CGFloat)heightWithString: (NSString *)string width: (CGFloat)width font: (UIFont *)font {
+    NSLog(@"文本：%@, 宽度：%f", string, width);
+    
+    NSDictionary *attributes = @{NSFontAttributeName:font};
+    CGSize textSize = [string boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    
+    return textSize.height;
+}
+
+
+
+
 @end

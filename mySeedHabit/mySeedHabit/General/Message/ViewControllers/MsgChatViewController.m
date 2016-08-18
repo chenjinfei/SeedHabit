@@ -20,6 +20,8 @@
 #import "MsgChatTextTableViewCell.h"
 #import "MsgChatTextReceiveTableViewCell.h"
 
+#import "MsgBubbleTableViewCell.h"
+
 @interface MsgChatViewController ()<EMChatManagerDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
 // 输入区域
@@ -123,11 +125,13 @@
 -(void)buildView {
     
     if (self.conversation) {
-        self.navigationItem.title = self.conversation.conversationId;
+        self.navigationItem.title = self.conversation.ext[@"nickname"];
     }
     if (self.targetUser) {
-        self.navigationItem.title = self.targetUser.nickname;
+        self.conversation = [[EMClient sharedClient].chatManager getConversation:[NSString stringWithFormat:@"%@", self.targetUser.uId] type:EMConversationTypeChat createIfNotExist:YES];
+        self.navigationItem.title = self.conversation.ext[@"nickname"];
     }
+    //    self.navigationItem.title = self.conversation.conversationId;
     self.view.backgroundColor = RGBA(249, 249, 249, 1);
     
     // 监听输入框
@@ -138,7 +142,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = RGBA(249, 249, 249, 1);
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
@@ -160,6 +164,8 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"MsgChatTextTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MyBubbleCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"MsgChatTextReceiveTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MyReceiveBubbleCell"];
     
+    //    [self.tableView registerNib:[UINib nibWithNibName:@"MsgBubbleTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"BubbleCell"];
+    
 }
 
 // 监听导航右按钮的响应事件
@@ -173,18 +179,62 @@
         NSLog(@"清空聊天记录");
         
     }];
+    
     // 加入黑名单
     UIAlertAction *blackListAction = [UIAlertAction actionWithTitle:@"加入黑名单" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
         NSLog(@"加入黑名单");
         
     }];
+    
+#pragma mark 生成图片
+    // 生成图片
+    UIAlertAction *buildImageAction = [UIAlertAction actionWithTitle:@"生成长图片" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        NSLog(@"生成长图片");
+        // 把tableView的内容全部展开
+        self.tableView.frame = CGRectMake(0, 0, self.tableView.contentSize.width, self.tableView.contentSize.height);
+        UIGraphicsBeginImageContextWithOptions(self.tableView.contentSize, YES, 0.0);
+        [self.tableView.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *tmpImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        UIImageWriteToSavedPhotosAlbum(tmpImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        // 把tableView的frame复位
+        self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-41);
+        
+    }];
+    
+    
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
     [alertController addAction:deleteAction];
     [alertController addAction:blackListAction];
     [alertController addAction:cancelAction];
     
+    [alertController addAction:buildImageAction];
+    
     [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
+
+
+// 指定回调方法
+- (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
+{
+    NSString *msg = nil ;
+    if(error != NULL){
+        msg = @"保存图片失败" ;
+    }else{
+        msg = @"保存图片成功" ;
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"保存图片结果提示"
+                                                    message:msg
+                                                   delegate:self
+                                          cancelButtonTitle:@"确定"
+                                          otherButtonTitles:nil];
+    [alert show];
     
 }
 
@@ -202,10 +252,6 @@
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
-    
-    
-    
-    
     
 }
 
@@ -453,32 +499,43 @@
     
     EMMessage *message = self.chatRecordArr[indexPath.row];
     
-    NSString *cellIdentifier = nil;
-    if ((int)message.direction == 0) {
-        cellIdentifier = @"MyBubbleCell";
-        MsgChatTextTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        cell.model = self.chatRecordArr[indexPath.row];
-        
-        cell.backgroundColor = CLEARCOLOR;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }else {
-        cellIdentifier = @"MyReceiveBubbleCell";
-        MsgChatTextReceiveTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        cell.model = self.chatRecordArr[indexPath.row];
-        
-        cell.backgroundColor = CLEARCOLOR;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        return cell;
+    //    NSString *cellIdentifier = nil;
+    //    if ((int)message.direction == 0) {
+    //        cellIdentifier = @"MyBubbleCell";
+    //        MsgChatTextTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    //        cell.model = self.chatRecordArr[indexPath.row];
+    //        
+    //        cell.backgroundColor = CLEARCOLOR;
+    //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //        return cell;
+    //    }else {
+    //        cellIdentifier = @"MyReceiveBubbleCell";
+    //        MsgChatTextReceiveTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    //        cell.model = self.chatRecordArr[indexPath.row];
+    //        
+    //        cell.backgroundColor = CLEARCOLOR;
+    //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //        
+    //        return cell;
+    //    }
+    
+    MsgBubbleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BubbleCell"];
+    if (!cell) {
+        cell = [[MsgBubbleTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BubbleCell"];
     }
     
+    cell.model = message;
+    cell.conversationType = self.conversation.type;
     
+    return cell;
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
+    //        return 100;
+    EMMessage *msg = self.chatRecordArr[indexPath.row];
+    CGFloat height = [MsgBubbleTableViewCell heightWithMsgModel:msg];
+    return height;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
