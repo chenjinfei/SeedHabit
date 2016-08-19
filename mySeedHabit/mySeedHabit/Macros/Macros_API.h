@@ -151,6 +151,8 @@
 #define APITreeInfo          [APIMindNote stringByAppendingString:@"getTreeInfo"]
 // 添加心情记录
 #define APIAddMindNote          [APIMindNote stringByAppendingString:@"addNote"]
+// 收藏详情       id=18983384
+#define APINoteDetailById          [APIMindNote stringByAppendingString:@"getNoteDetail/id/"]
 
 
 
@@ -165,8 +167,12 @@
 #define APIAddCollection        [APICollect stringByAppendingString:@"addCollection"]
 // 取消收藏
 #define APICancelCollection     [APICollect stringByAppendingString:@"cancelCollection"]
-// 收藏状态
+// 收藏状态   collect_type=1&unique_id=18983384&user_id=1859926
 #define APIIsCollected          [APICollect stringByAppendingString:@"isCollected"]
+// 获取收藏心情列表   page=1&user_id=1859926
+#define APICollectionByTime          [APICollect stringByAppendingString:@"listCollectionByTime"]
+
+
 
 
 

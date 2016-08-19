@@ -18,6 +18,8 @@
 #import "UIImage+CJFImage.h"
 #import "UIImageView+CJFUIImageView.h"
 
+#import "NotesCollectionViewController.h"
+
 @interface UserSetupViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -137,7 +139,10 @@
     NSInteger actionFlag = [[NSString stringWithFormat:@"%ld%ld", section, row] integerValue];
     switch (actionFlag) {
         case 00:{// 我的收藏
-            
+            self.hidesBottomBarWhenPushed = YES;
+            NotesCollectionViewController *ncVc = [[NotesCollectionViewController alloc]init];
+            [self.navigationController pushViewController:ncVc animated:YES];
+            self.hidesBottomBarWhenPushed = YES;
             break;
         }
         case 01:{// 帐号绑定

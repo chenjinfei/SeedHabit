@@ -26,6 +26,13 @@
 // 会话类型
 @property (nonatomic, assign) EMConversationType conversationType;
 
+/**
+ *  通过数据模型计算高度
+ *
+ *  @param message 数据模型
+ *
+ *  @return 高度
+ */
 +(CGFloat)heightWithMsgModel: (EMMessage *)message;
 
 @end

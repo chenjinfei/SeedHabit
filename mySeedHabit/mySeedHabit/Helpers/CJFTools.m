@@ -221,13 +221,24 @@ static CJFTools *instance = nil;
  *  @return CGFloat 高度
  */
 +(CGFloat)heightWithString: (NSString *)string width: (CGFloat)width font: (UIFont *)font {
-    NSLog(@"文本：%@, 宽度：%f", string, width);
     
-    NSDictionary *attributes = @{NSFontAttributeName:font};
-    CGSize textSize = [string boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    //高度估计文本大概要显示几行，宽度根据需求自己定义。 MAXFLOAT 可以算出具体要多高
     
-    return textSize.height;
+    CGSize size =CGSizeMake(width,CGFLOAT_MAX);
+    
+    //    获取当前文本的属性
+    
+    NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName,nil];
+    
+    //ios7方法，获取文本需要的size，限制宽度
+    
+    CGSize  actualsize =[string boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin  attributes:tdic context:nil].size;
+    
+    return actualsize.height;
+    
+    
 }
+
 
 
 

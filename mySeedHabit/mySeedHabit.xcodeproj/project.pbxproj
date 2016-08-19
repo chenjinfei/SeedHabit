@@ -173,6 +173,12 @@
 		3767F86C1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F86A1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib */; };
 		3767F8701D658CF4004E2945 /* MsgBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F86E1D658CF4004E2945 /* MsgBubbleTableViewCell.m */; };
 		3767F8711D658CF4004E2945 /* MsgBubbleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F86F1D658CF4004E2945 /* MsgBubbleTableViewCell.xib */; };
+		3767F87A1D65FF68004E2945 /* NotesCollectionListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8781D65FF68004E2945 /* NotesCollectionListTableViewCell.m */; };
+		3767F87B1D65FF68004E2945 /* NotesCollectionListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8791D65FF68004E2945 /* NotesCollectionListTableViewCell.xib */; };
+		3767F87F1D65FFA0004E2945 /* NotesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F87D1D65FFA0004E2945 /* NotesCollectionViewController.m */; };
+		3767F8801D65FFA0004E2945 /* NotesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F87E1D65FFA0004E2945 /* NotesCollectionViewController.xib */; };
+		3767F8831D66C34B004E2945 /* CJFNoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8821D66C34B004E2945 /* CJFNoteModel.m */; };
+		3767F8861D67251C004E2945 /* CJFUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8851D67251C004E2945 /* CJFUILabel.m */; };
 		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
 		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
@@ -343,6 +349,16 @@
 		3767F86D1D658CF4004E2945 /* MsgBubbleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgBubbleTableViewCell.h; sourceTree = "<group>"; };
 		3767F86E1D658CF4004E2945 /* MsgBubbleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgBubbleTableViewCell.m; sourceTree = "<group>"; };
 		3767F86F1D658CF4004E2945 /* MsgBubbleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MsgBubbleTableViewCell.xib; sourceTree = "<group>"; };
+		3767F8771D65FF68004E2945 /* NotesCollectionListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesCollectionListTableViewCell.h; sourceTree = "<group>"; };
+		3767F8781D65FF68004E2945 /* NotesCollectionListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesCollectionListTableViewCell.m; sourceTree = "<group>"; };
+		3767F8791D65FF68004E2945 /* NotesCollectionListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesCollectionListTableViewCell.xib; sourceTree = "<group>"; };
+		3767F87C1D65FFA0004E2945 /* NotesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotesCollectionViewController.h; sourceTree = "<group>"; };
+		3767F87D1D65FFA0004E2945 /* NotesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotesCollectionViewController.m; sourceTree = "<group>"; };
+		3767F87E1D65FFA0004E2945 /* NotesCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotesCollectionViewController.xib; sourceTree = "<group>"; };
+		3767F8811D66C34B004E2945 /* CJFNoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFNoteModel.h; sourceTree = "<group>"; };
+		3767F8821D66C34B004E2945 /* CJFNoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFNoteModel.m; sourceTree = "<group>"; };
+		3767F8841D67251C004E2945 /* CJFUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFUILabel.h; sourceTree = "<group>"; };
+		3767F8851D67251C004E2945 /* CJFUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFUILabel.m; sourceTree = "<group>"; };
 		379B01111D54AB1500D75383 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		379B01131D54AB2200D75383 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -520,6 +536,8 @@
 				3767F5D11D5F4E4F004E2945 /* UIImageView+CJFUIImageView.m */,
 				3767F5D21D5F4E4F004E2945 /* UILabel+LeftTopAlign.h */,
 				3767F5D31D5F4E4F004E2945 /* UILabel+LeftTopAlign.m */,
+				3767F8841D67251C004E2945 /* CJFUILabel.h */,
+				3767F8851D67251C004E2945 /* CJFUILabel.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -928,6 +946,8 @@
 			children = (
 				3767F5BE1D5F4E1E004E2945 /* SeedUser.h */,
 				3767F5BF1D5F4E1E004E2945 /* SeedUser.m */,
+				3767F8811D66C34B004E2945 /* CJFNoteModel.h */,
+				3767F8821D66C34B004E2945 /* CJFNoteModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -962,6 +982,9 @@
 				3F1AC41C1D5ADC9C00F10709 /* UserSetupViewController.h */,
 				3F1AC41D1D5ADC9C00F10709 /* UserSetupViewController.m */,
 				3F1AC41E1D5ADC9C00F10709 /* UserSetupViewController.xib */,
+				3767F87C1D65FFA0004E2945 /* NotesCollectionViewController.h */,
+				3767F87D1D65FFA0004E2945 /* NotesCollectionViewController.m */,
+				3767F87E1D65FFA0004E2945 /* NotesCollectionViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -969,6 +992,9 @@
 		3F1AC41F1D5ADC9C00F10709 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3767F8771D65FF68004E2945 /* NotesCollectionListTableViewCell.h */,
+				3767F8781D65FF68004E2945 /* NotesCollectionListTableViewCell.m */,
+				3767F8791D65FF68004E2945 /* NotesCollectionListTableViewCell.xib */,
 				3F1AC4201D5ADC9C00F10709 /* UserHaBitList_TBCell.h */,
 				3F1AC4211D5ADC9C00F10709 /* UserHaBitList_TBCell.m */,
 				3F1AC4221D5ADC9C00F10709 /* UserHaBitList_TBCell.xib */,
@@ -1102,6 +1128,7 @@
 				3767F6931D614D98004E2945 /* HabitDetailsViewController.xib in Resources */,
 				3767F6941D614D98004E2945 /* HabitViewController.xib in Resources */,
 				3767F6951D614D98004E2945 /* HabitCheckInCell.xib in Resources */,
+				3767F87B1D65FF68004E2945 /* NotesCollectionListTableViewCell.xib in Resources */,
 				3767F6961D614D98004E2945 /* HabitNotesByTimeCell.xib in Resources */,
 				3767F6971D614D98004E2945 /* AddFriendsViewController.xib in Resources */,
 				3767F6981D614D98004E2945 /* LoginViewController.xib in Resources */,
@@ -1154,6 +1181,7 @@
 				3767F5B71D5F4DDB004E2945 /* DiscoverHotCell.xib in Resources */,
 				3767F8621D645926004E2945 /* more_32.png in Resources */,
 				3767F6381D5F4E74004E2945 /* goldCup.png in Resources */,
+				3767F8801D65FFA0004E2945 /* NotesCollectionViewController.xib in Resources */,
 				3767F6621D5F4E74004E2945 /* weixin_32.png in Resources */,
 				3767F63D1D5F4E74004E2945 /* into_32.png in Resources */,
 				3767F63F1D5F4E74004E2945 /* left_32.png in Resources */,
@@ -1261,11 +1289,13 @@
 				3767F6911D60BF3A004E2945 /* UserSearchList_TBCell.m in Sources */,
 				3767F68D1D60B9EA004E2945 /* UserInfo_LabelImage.m in Sources */,
 				3767F68C1D60B9B7004E2945 /* HabitPreviewView.m in Sources */,
+				3767F8831D66C34B004E2945 /* CJFNoteModel.m in Sources */,
 				3767F68B1D60B98D004E2945 /* UserHaBitList_TBCell.m in Sources */,
 				3767F68A1D60B933004E2945 /* UserInfo_TBHeaderView.m in Sources */,
 				3767F6891D60B51C004E2945 /* UserSetupViewController.m in Sources */,
 				3767F6881D60B50C004E2945 /* HabitModel.m in Sources */,
 				3767F6871D60B501004E2945 /* AddFriendsViewController.m in Sources */,
+				3767F8861D67251C004E2945 /* CJFUILabel.m in Sources */,
 				3767F6861D60B2C3004E2945 /* HabitListModel.m in Sources */,
 				3767F6851D60B246004E2945 /* UserCenterViewController.m in Sources */,
 				3767F6841D60B214004E2945 /* ContactsViewController.m in Sources */,
@@ -1284,6 +1314,7 @@
 				3767F8661D645CEE004E2945 /* MsgChatTextTableViewCell.m in Sources */,
 				3767F6721D5F4F5E004E2945 /* RegisterDataViewController.m in Sources */,
 				3767F6711D5F4F51004E2945 /* RegisterByPhoneViewController.m in Sources */,
+				3767F87F1D65FFA0004E2945 /* NotesCollectionViewController.m in Sources */,
 				3767F6701D5F4F42004E2945 /* Users.m in Sources */,
 				3767F66F1D5F4F3B004E2945 /* TreeInfo.m in Sources */,
 				3767F66E1D5F4F33004E2945 /* Props.m in Sources */,
@@ -1299,6 +1330,7 @@
 				3767F5BD1D5F4DEE004E2945 /* MindNotesReviewViewController.m in Sources */,
 				3767F5E71D5F4E4F004E2945 /* CheckButton.m in Sources */,
 				3767F5EB1D5F4E4F004E2945 /* TabPageScrollView.m in Sources */,
+				3767F87A1D65FF68004E2945 /* NotesCollectionListTableViewCell.m in Sources */,
 				37DB26D71D4F46CC00FA5198 /* AppDelegate.m in Sources */,
 				3767F5E31D5F4E4F004E2945 /* UIColor+CJFColor.m in Sources */,
 				3767F5E11D5F4E4F004E2945 /* NSString+CJFString.m in Sources */,

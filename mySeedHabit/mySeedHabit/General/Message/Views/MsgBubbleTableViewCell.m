@@ -194,7 +194,6 @@
         [_bubbleView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentView.mas_top).with.offset(padding.top + 25);
             make.right.equalTo(self.contentView.mas_right).with.offset(-60);
-            //            make.left.equalTo(self.contentView.mas_left).with.offset(selfWidth*3/5/2);
             make.width.lessThanOrEqualTo(@(selfWidth*3/5));
         }];
         
@@ -223,7 +222,6 @@
         // 设置气泡的约束
         [_bubbleView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentView.mas_top).with.offset(padding.top + 25);
-            //            make.right.equalTo(self.contentView.mas_right).with.offset(-selfWidth*3/5/2);
             make.left.equalTo(self.contentView.mas_left).with.offset(60);
             make.width.lessThanOrEqualTo(@(selfWidth*3/5));
         }];
@@ -237,7 +235,13 @@
 
 
 
-
+/**
+ *  通过数据模型计算高度
+ *
+ *  @param message 数据模型
+ *
+ *  @return 高度
+ */
 +(CGFloat)heightWithMsgModel: (EMMessage *)message {
     EMTextMessageBody *msgBody = (EMTextMessageBody *)message.body;
     CGFloat width = SCREEN_WIDTH * 3 / 5;

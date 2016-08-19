@@ -44,6 +44,11 @@
     return _alert;
 }
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.phoneNumber resignFirstResponder];
+    [self.password resignFirstResponder];
+}
+
 // 登录
 - (IBAction)loginClick:(UIButton *)sender {
     
