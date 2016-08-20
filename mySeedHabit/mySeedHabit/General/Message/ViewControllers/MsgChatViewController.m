@@ -16,6 +16,7 @@
 
 #import <EMSDK.h>
 #import <Masonry.h>
+#import <MJRefresh.h>
 
 #import "MsgChatTextTableViewCell.h"
 #import "MsgChatTextReceiveTableViewCell.h"
@@ -45,6 +46,10 @@
 // 发送按钮
 @property (nonatomic, strong) UIButton *sendBtn;
 
+// 信息记录显示页数
+@property (nonatomic, assign) NSInteger page;
+@property (nonatomic, assign) NSInteger limit;
+
 @end
 
 @implementation MsgChatViewController
@@ -55,14 +60,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self buildView];
     
+    self.page = 0;
+    self.limit = 10;
     
     
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    [self buildView];
+    // 将所有未读信息设为已读
+    [self.conversation markAllMessagesAsRead];
     
     [self loadData];
     
@@ -109,12 +118,37 @@
                                   };
         NSLog(@"当前会话的拓展信息：%@", self.conversation.ext);
     }
-    // 将所有未读信息设为已读
-    [self.conversation markAllMessagesAsRead];
+    
     // 加载会话记录
-    NSArray *tmpArr = [self.conversation loadMoreMessagesFromId:nil limit:50 direction:EMMessageSearchDirectionUp];
+    NSArray *tmpArr = [self.conversation loadMoreMessagesFromId:nil limit:500 direction:EMMessageSearchDirectionUp];
+    
+    //    [largeArray subarrayWithRange:NSMakeRange(0, 10)];
+    
+    
     [self.chatRecordArr removeAllObjects];
+    
+    
+    //    NSLog(@"page: %ld, limit: %ld, totalCount: %ld", self.page * self.limit, self.limit, tmpArr.count);
+    //    
+    //    if (self.page * self.limit + 10 < tmpArr.count) {
+    //        self.limit = 10;
+    //    }else {
+    //        self.limit = tmpArr.count - self.page * self.limit;
+    //    }
+    //    
+    //    NSRange range = NSMakeRange(self.page * self.limit, self.limit);
+    //    
+    //    NSLog(@"%@", [tmpArr subarrayWithRange: range]);
+    //    
     [self.chatRecordArr addObjectsFromArray:tmpArr];
+    //
+    //    if (self.limit < 10) {
+    //        self.page = 0;
+    //    }else {
+    //        self.page ++;
+    //    }
+    
+    [self.tableView.mj_header endRefreshing];
     
 }
 
@@ -165,6 +199,13 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"MsgChatTextReceiveTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MyReceiveBubbleCell"];
     
     //    [self.tableView registerNib:[UINib nibWithNibName:@"MsgBubbleTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"BubbleCell"];
+    
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    // 设置header
+    self.tableView.mj_header = header;
     
 }
 

@@ -14,4 +14,19 @@
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, 150);
 }
 
+// 习惯列表
+- (IBAction)habitList:(UIButton *)sender {
+    NSLog(@"习惯列表");
+}
+
+// 关注列表
+- (IBAction)followList:(UIButton *)sender {
+    NSLog(@"关注列表");
+}
+
+// 粉丝列表
+- (IBAction)fansList:(UIButton *)sender {
+    NSLog(@"粉丝列表");
+}
+
 @end

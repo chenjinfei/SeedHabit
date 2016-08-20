@@ -194,6 +194,8 @@
 		3767F8AD1D680952004E2945 /* ProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8AC1D680952004E2945 /* ProtocolViewController.m */; };
 		3767F8B01D680A8A004E2945 /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8AF1D680A8A004E2945 /* ContactUsViewController.m */; };
 		3767F8B21D680BC9004E2945 /* contactus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8B11D680BC9004E2945 /* contactus.png */; };
+		3767F8B61D683C61004E2945 /* ContactsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8B41D683C61004E2945 /* ContactsListTableViewCell.m */; };
+		3767F8B71D683C61004E2945 /* ContactsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8B51D683C61004E2945 /* ContactsListTableViewCell.xib */; };
 		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
 		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
@@ -396,6 +398,9 @@
 		3767F8AE1D680A8A004E2945 /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
 		3767F8AF1D680A8A004E2945 /* ContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
 		3767F8B11D680BC9004E2945 /* contactus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contactus.png; sourceTree = "<group>"; };
+		3767F8B31D683C61004E2945 /* ContactsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsListTableViewCell.h; sourceTree = "<group>"; };
+		3767F8B41D683C61004E2945 /* ContactsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsListTableViewCell.m; sourceTree = "<group>"; };
+		3767F8B51D683C61004E2945 /* ContactsListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListTableViewCell.xib; sourceTree = "<group>"; };
 		379B01111D54AB1500D75383 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		379B01131D54AB2200D75383 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -708,6 +713,9 @@
 				3767F86D1D658CF4004E2945 /* MsgBubbleTableViewCell.h */,
 				3767F86E1D658CF4004E2945 /* MsgBubbleTableViewCell.m */,
 				3767F86F1D658CF4004E2945 /* MsgBubbleTableViewCell.xib */,
+				3767F8B31D683C61004E2945 /* ContactsListTableViewCell.h */,
+				3767F8B41D683C61004E2945 /* ContactsListTableViewCell.m */,
+				3767F8B51D683C61004E2945 /* ContactsListTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1226,6 +1234,7 @@
 				3767F6451D5F4E74004E2945 /* msg_32.png in Resources */,
 				3767F89B1D678732004E2945 /* msg_16.png in Resources */,
 				3767F6661D5F4E74004E2945 /* 搜索@2x.png in Resources */,
+				3767F8B71D683C61004E2945 /* ContactsListTableViewCell.xib in Resources */,
 				3767F6311D5F4E74004E2945 /* checkBox_selected.png in Resources */,
 				3767F6391D5F4E74004E2945 /* habit_32.png in Resources */,
 				3767F6401D5F4E74004E2945 /* lock_32.png in Resources */,
@@ -1427,6 +1436,7 @@
 				3767F5B51D5F4DDB004E2945 /* AppTools.m in Sources */,
 				3767F5EC1D5F4E4F004E2945 /* UserManager.m in Sources */,
 				3767F5B81D5F4DDB004E2945 /* PropsListTableViewCell.m in Sources */,
+				3767F8B61D683C61004E2945 /* ContactsListTableViewCell.m in Sources */,
 				3767F59B1D5F4D7C004E2945 /* MindNotesModel.m in Sources */,
 				3767F5C61D5F4E2D004E2945 /* UserInfoViewController.m in Sources */,
 				3767F5C51D5F4E2D004E2945 /* UserInfoUpdateViewController.m in Sources */,

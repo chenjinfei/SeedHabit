@@ -21,6 +21,7 @@
 #import <SCLAlertView.h>
 #import "UIButton+CJFUIButton.h"
 #import "UIColor+CJFColor.h"
+#import <MJRefresh.h>
 
 #import "UserInfo_TBHeaderView.h"
 #import "UserHaBitList_TBCell.h"
@@ -59,13 +60,12 @@
     
     // 创建视图控件
     [self buildView];
-
+    // 加载数据
+    [self loadData];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    
-    // 加载数据
-    [self loadData];
     
     if (self.user) {
         self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, SCREEN_WIDTH, SCREEN_HEIGHT-64);
@@ -146,6 +146,13 @@
     self.tableHeaderView = [[NSBundle mainBundle] loadNibNamed:@"UserInfo_TBHeaderView" owner:self options:nil][0];
     self.tableView.tableHeaderView = self.tableHeaderView;
     
+    
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    // 设置header
+    self.tableView.mj_header = header;
     
 }
 
@@ -339,6 +346,7 @@
             self.tableHeaderView.habitCountView.text = [NSString stringWithFormat:@"%ld", self.dataArr.count];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
+                [self.tableView.mj_header endRefreshing];
             });
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"%@", error);

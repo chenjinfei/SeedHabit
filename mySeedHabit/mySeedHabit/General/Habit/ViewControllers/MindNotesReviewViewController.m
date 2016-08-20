@@ -12,6 +12,8 @@
 #import "MindNotesModel.h"
 #import "HabitModel.h"
 
+#import <MJRefresh.h>
+
 // 导入布局类
 #import "PinterestLayout.h"
 
@@ -71,6 +73,13 @@
     // 注册自定义的cell
     [self.collectionView registerClass:[HabitReviewCollectionViewCell class] forCellWithReuseIdentifier:@"HabitPreviewCell"];
     
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    // 设置header
+    self.collectionView.mj_header = header;
+    
 }
 
 /**
@@ -82,6 +91,7 @@
         [self.dataArr removeAllObjects];
     }
     [self.dataArr addObjectsFromArray:self.habitModel.mind_notes];
+    [self.collectionView.mj_header endRefreshing];
     
 }
 

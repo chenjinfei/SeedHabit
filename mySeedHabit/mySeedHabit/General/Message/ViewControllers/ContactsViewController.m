@@ -19,6 +19,7 @@
 #import <EMSDK.h>
 
 #import "MsgChatViewController.h"
+#import "ContactsListTableViewCell.h"
 
 @interface ContactsViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating>
 
@@ -96,6 +97,10 @@
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     
+    self.tableView.separatorColor = RGBA(225, 225, 225, 1);
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"ContactsListTableViewCell" bundle:nil] forCellReuseIdentifier:@"CONTACTCELL"];
+    
     // 搜索框
     self.searchController = [[UISearchController alloc]initWithSearchResultsController:nil];
     self.searchController.dimsBackgroundDuringPresentation = NO;
@@ -166,11 +171,9 @@
 
 //返回单元格内容
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *flag=@"cellFlag";
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:flag];
-    if (cell==nil) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:flag];
-    }
+    
+    ContactsListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CONTACTCELL"];
+    
     SeedUser *user = [[SeedUser alloc]init];
     if (self.searchController.active) {
         user = self.searchList[indexPath.row];
@@ -178,9 +181,7 @@
         user = self.dataList[indexPath.row];
     }
     
-    [cell.textLabel setText:user.nickname];
-    //    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.avatar_small] placeholderImage:IMAGE(@"placeHolder.png")];
-    [cell.imageView lhy_loadImageUrlStr:user.avatar_small placeHolderImageName:@"placeHolder.png" radius:30];
+    cell.model = user;
     
     return cell;
 }

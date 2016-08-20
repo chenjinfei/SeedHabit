@@ -66,6 +66,7 @@
     
     [self.view addSubview:self.tableView];
     self.tableView.backgroundColor = RGB(249, 249, 249);
+    self.tableView.separatorColor = RGBA(235, 235, 235, 1);
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -99,28 +100,51 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuse"];
     cell.textLabel.text = self.dataSource[indexPath.section][indexPath.row];
     cell.textLabel.textColor = [UIColor darkGrayColor];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     //实例化一个开关控件
     UILabel *boundStatus=[[UILabel alloc]init];
-    boundStatus.text = @"未绑定";
-    boundStatus.font = [UIFont systemFontOfSize:12];
-    boundStatus.textColor = [UIColor colorWithHexString:UIMainColor alpha:1];
+    boundStatus.font = [UIFont systemFontOfSize:14];
     [cell.contentView addSubview:boundStatus];
     
     UIView *superView = cell.contentView;
-    [boundStatus mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(superView.mas_top).with.mas_offset(0);
-        make.right.equalTo(superView.mas_right).with.mas_offset(5);
-        make.width.mas_equalTo(60);
-        make.height.mas_equalTo(40);
-    }];
+    
+    if (indexPath.section == 0) {
+        
+        boundStatus.text = @"已绑定";
+        boundStatus.textColor = RGB(200, 200, 200);
+        
+        [boundStatus mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(superView.mas_top).with.mas_offset(0);
+            make.right.equalTo(superView.mas_right).with.mas_offset(0);
+            make.width.mas_equalTo(60);
+            make.height.mas_equalTo(60);
+        }];
+        
+    }else {
+        
+        boundStatus.text = @"未绑定";
+        boundStatus.textColor = [UIColor colorWithHexString:UIMainColor alpha:1];
+        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        [boundStatus mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(superView.mas_top).with.mas_offset(0);
+            make.right.equalTo(superView.mas_right).with.mas_offset(20);
+            make.width.mas_equalTo(60);
+            make.height.mas_equalTo(40);
+        }];
+        
+    }
     
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 40;
+    if (indexPath.section == 0) {
+        return 60;
+    }else {
+        return 40;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

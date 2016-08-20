@@ -11,6 +11,7 @@
 #import "SeedUser.h"
 #import "UserManager.h"
 #import "CJFNoteModel.h"
+#import <MJRefresh.h>
 
 #import "NotesCollectionListTableViewCell.h"
 
@@ -76,6 +77,7 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+            [self.tableView.mj_header endRefreshing];
         });
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -94,6 +96,14 @@
     self.tableView.backgroundColor = RGBA(249, 249, 249, 1);
     
     [self.tableView registerNib:[UINib nibWithNibName:@"NotesCollectionListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"NoteColletionCell"];
+    
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    // 设置header
+    self.tableView.mj_header = header;
+    
 }
 
 

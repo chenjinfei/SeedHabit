@@ -79,7 +79,7 @@
     // 获取或创建会话
     EMConversation *conversation = [[EMClient sharedClient].chatManager getConversation:model.conversationId type:_conversationType createIfNotExist:YES];
     
-    // 显示图像
+    // 显示头像
     NSString *avatarUrl = nil;
     NSString *nickname = nil;
     if (self.direction == EMMessageDirectionSend) {

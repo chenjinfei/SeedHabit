@@ -78,12 +78,12 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一切，源于喜欢。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKo-eK-hee">
-                    <rect key="frame" x="30" y="95" width="315" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一切，源于喜欢。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKo-eK-hee">
+                    <rect key="frame" x="30" y="95" width="245" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="21" id="mES-cb-qq9"/>
+                        <constraint firstAttribute="height" constant="40" id="mES-cb-qq9"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -110,13 +110,46 @@
                     <state key="selected" image="radio_selected.png"/>
                     <state key="highlighted" image="radio_selected.png"/>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGW-GP-Ewa">
+                    <rect key="frame" x="295" y="25" width="50" height="47"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="47" id="lre-T5-yV8"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="fansList:" destination="iN0-l3-epB" eventType="touchUpInside" id="kbg-3b-ZUR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3K-P7-YJf">
+                    <rect key="frame" x="211" y="25" width="50" height="47"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="47" id="dpx-th-uPj"/>
+                    </constraints>
+                    <connections>
+                        <action selector="followList:" destination="iN0-l3-epB" eventType="touchUpInside" id="rVC-eo-btW"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4o-vf-AdJ">
+                    <rect key="frame" x="141" y="25" width="50" height="47"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="47" id="agt-eB-I1D"/>
+                    </constraints>
+                    <connections>
+                        <action selector="habitList:" destination="iN0-l3-epB" eventType="touchUpInside" id="Gfa-Yr-aTn"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="QGW-GP-Ewa" firstAttribute="leading" secondItem="n3K-P7-YJf" secondAttribute="trailing" constant="34" id="0wa-N3-n9A"/>
                 <constraint firstItem="pFK-t5-bqK" firstAttribute="top" secondItem="U7W-12-PkU" secondAttribute="bottom" constant="5" id="3V1-Db-bbS"/>
+                <constraint firstItem="n3K-P7-YJf" firstAttribute="width" secondItem="Vhs-sI-qXR" secondAttribute="width" id="8mK-Or-bqK"/>
+                <constraint firstAttribute="trailing" secondItem="QGW-GP-Ewa" secondAttribute="trailing" constant="30" id="8zk-Ub-Clr"/>
                 <constraint firstItem="U7W-12-PkU" firstAttribute="leading" secondItem="pFK-t5-bqK" secondAttribute="leading" id="9lq-V7-a43"/>
                 <constraint firstAttribute="trailing" secondItem="iU5-Vx-OTa" secondAttribute="trailing" constant="30" id="Dif-Ls-1O5"/>
+                <constraint firstItem="h4o-vf-AdJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="FWy-DT-DGS"/>
                 <constraint firstItem="QKo-eK-hee" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="Hup-gi-EVz"/>
+                <constraint firstItem="QGW-GP-Ewa" firstAttribute="width" secondItem="ybx-5k-mAB" secondAttribute="width" id="IAU-PY-Jgj"/>
                 <constraint firstItem="iU5-Vx-OTa" firstAttribute="top" secondItem="ybx-5k-mAB" secondAttribute="bottom" constant="5" id="IGt-s9-ZmK"/>
                 <constraint firstItem="U7W-12-PkU" firstAttribute="leading" secondItem="4Rc-y3-spy" secondAttribute="trailing" constant="43" id="Ivs-oK-5eO"/>
                 <constraint firstItem="d2M-gj-8kl" firstAttribute="top" secondItem="Vhs-sI-qXR" secondAttribute="bottom" constant="5" id="J9H-Oe-Gb3"/>
@@ -130,10 +163,14 @@
                 <constraint firstItem="4Rc-y3-spy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="VYa-d8-Wt8"/>
                 <constraint firstAttribute="trailing" secondItem="ybx-5k-mAB" secondAttribute="trailing" constant="30" id="WMp-av-MDN"/>
                 <constraint firstItem="QKo-eK-hee" firstAttribute="top" secondItem="4Rc-y3-spy" secondAttribute="bottom" constant="10" id="bbz-au-HpW"/>
+                <constraint firstItem="n3K-P7-YJf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="c7v-c5-SSR"/>
                 <constraint firstItem="4Rc-y3-spy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="kns-nC-yf7"/>
                 <constraint firstItem="ybx-5k-mAB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="qDW-D8-xov"/>
                 <constraint firstItem="Vq3-z0-01U" firstAttribute="leading" secondItem="CUG-J1-1BC" secondAttribute="trailing" constant="7" id="qQT-zY-d6I"/>
-                <constraint firstAttribute="trailing" secondItem="QKo-eK-hee" secondAttribute="trailing" constant="30" id="unE-n8-jl4"/>
+                <constraint firstItem="h4o-vf-AdJ" firstAttribute="width" secondItem="U7W-12-PkU" secondAttribute="width" id="qh7-9j-rWk"/>
+                <constraint firstItem="n3K-P7-YJf" firstAttribute="leading" secondItem="h4o-vf-AdJ" secondAttribute="trailing" constant="20" id="uKj-AZ-80u"/>
+                <constraint firstAttribute="trailing" secondItem="QKo-eK-hee" secondAttribute="trailing" constant="100" id="unE-n8-jl4"/>
+                <constraint firstItem="QGW-GP-Ewa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="wU7-1e-fMa"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

@@ -72,4 +72,14 @@
  */
 +(CGFloat)heightWithString: (NSString *)string width: (CGFloat)width font: (UIFont *)font;
 
+
+/**
+ *  根据时间戳获取距离现在的状态(刚刚,分钟前,今天,昨天)
+ *
+ *  @param beTime 时间戳
+ *
+ *  @return （字符串）时间状态
+ */
+- (NSString *)distanceTimeWithBeforeTime:(double)beTimeamp;
+
 @end
