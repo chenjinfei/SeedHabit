@@ -179,6 +179,21 @@
 		3767F8801D65FFA0004E2945 /* NotesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F87E1D65FFA0004E2945 /* NotesCollectionViewController.xib */; };
 		3767F8831D66C34B004E2945 /* CJFNoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8821D66C34B004E2945 /* CJFNoteModel.m */; };
 		3767F8861D67251C004E2945 /* CJFUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8851D67251C004E2945 /* CJFUILabel.m */; };
+		3767F8881D6748AF004E2945 /* Smiling_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8871D6748AF004E2945 /* Smiling_32.png */; };
+		3767F8901D67785B004E2945 /* HelpCenterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F88F1D67785B004E2945 /* HelpCenterDetailViewController.m */; };
+		3767F8941D678593004E2945 /* HelpCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8921D678593004E2945 /* HelpCenterViewController.m */; };
+		3767F8951D678593004E2945 /* HelpCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8931D678593004E2945 /* HelpCenterViewController.xib */; };
+		3767F8991D678732004E2945 /* bug_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8961D678732004E2945 /* bug_16.png */; };
+		3767F89A1D678732004E2945 /* list_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8971D678732004E2945 /* list_16.png */; };
+		3767F89B1D678732004E2945 /* msg_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8981D678732004E2945 /* msg_16.png */; };
+		3767F89F1D67E5FD004E2945 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F89D1D67E5FD004E2945 /* NotificationsViewController.m */; };
+		3767F8A31D67ED4B004E2945 /* AccountBoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8A21D67ED4B004E2945 /* AccountBoundViewController.m */; };
+		3767F8A71D67EDB7004E2945 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8A51D67EDB7004E2945 /* AboutViewController.m */; };
+		3767F8A81D67EDB7004E2945 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8A61D67EDB7004E2945 /* AboutViewController.xib */; };
+		3767F8AA1D67F34D004E2945 /* logo_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8A91D67F34D004E2945 /* logo_128.png */; };
+		3767F8AD1D680952004E2945 /* ProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8AC1D680952004E2945 /* ProtocolViewController.m */; };
+		3767F8B01D680A8A004E2945 /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8AF1D680A8A004E2945 /* ContactUsViewController.m */; };
+		3767F8B21D680BC9004E2945 /* contactus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8B11D680BC9004E2945 /* contactus.png */; };
 		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
 		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
@@ -359,6 +374,28 @@
 		3767F8821D66C34B004E2945 /* CJFNoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFNoteModel.m; sourceTree = "<group>"; };
 		3767F8841D67251C004E2945 /* CJFUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFUILabel.h; sourceTree = "<group>"; };
 		3767F8851D67251C004E2945 /* CJFUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFUILabel.m; sourceTree = "<group>"; };
+		3767F8871D6748AF004E2945 /* Smiling_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Smiling_32.png; sourceTree = "<group>"; };
+		3767F88E1D67785B004E2945 /* HelpCenterDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCenterDetailViewController.h; sourceTree = "<group>"; };
+		3767F88F1D67785B004E2945 /* HelpCenterDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCenterDetailViewController.m; sourceTree = "<group>"; };
+		3767F8911D678593004E2945 /* HelpCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCenterViewController.h; sourceTree = "<group>"; };
+		3767F8921D678593004E2945 /* HelpCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCenterViewController.m; sourceTree = "<group>"; };
+		3767F8931D678593004E2945 /* HelpCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpCenterViewController.xib; sourceTree = "<group>"; };
+		3767F8961D678732004E2945 /* bug_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bug_16.png; sourceTree = "<group>"; };
+		3767F8971D678732004E2945 /* list_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_16.png; sourceTree = "<group>"; };
+		3767F8981D678732004E2945 /* msg_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_16.png; sourceTree = "<group>"; };
+		3767F89C1D67E5FD004E2945 /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
+		3767F89D1D67E5FD004E2945 /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
+		3767F8A11D67ED4B004E2945 /* AccountBoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountBoundViewController.h; sourceTree = "<group>"; };
+		3767F8A21D67ED4B004E2945 /* AccountBoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountBoundViewController.m; sourceTree = "<group>"; };
+		3767F8A41D67EDB7004E2945 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		3767F8A51D67EDB7004E2945 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		3767F8A61D67EDB7004E2945 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		3767F8A91D67F34D004E2945 /* logo_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_128.png; sourceTree = "<group>"; };
+		3767F8AB1D680952004E2945 /* ProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolViewController.h; sourceTree = "<group>"; };
+		3767F8AC1D680952004E2945 /* ProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolViewController.m; sourceTree = "<group>"; };
+		3767F8AE1D680A8A004E2945 /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
+		3767F8AF1D680A8A004E2945 /* ContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
+		3767F8B11D680BC9004E2945 /* contactus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contactus.png; sourceTree = "<group>"; };
 		379B01111D54AB1500D75383 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		379B01131D54AB2200D75383 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -564,6 +601,12 @@
 		3767F5ED1D5F4E74004E2945 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3767F8B11D680BC9004E2945 /* contactus.png */,
+				3767F8A91D67F34D004E2945 /* logo_128.png */,
+				3767F8961D678732004E2945 /* bug_16.png */,
+				3767F8971D678732004E2945 /* list_16.png */,
+				3767F8981D678732004E2945 /* msg_16.png */,
+				3767F8871D6748AF004E2945 /* Smiling_32.png */,
 				3767F8611D645926004E2945 /* more_32.png */,
 				3767F8541D634D6A004E2945 /* expression_32.png */,
 				3767F8551D634D6A004E2945 /* Microphone_32.png */,
@@ -985,6 +1028,22 @@
 				3767F87C1D65FFA0004E2945 /* NotesCollectionViewController.h */,
 				3767F87D1D65FFA0004E2945 /* NotesCollectionViewController.m */,
 				3767F87E1D65FFA0004E2945 /* NotesCollectionViewController.xib */,
+				3767F88E1D67785B004E2945 /* HelpCenterDetailViewController.h */,
+				3767F88F1D67785B004E2945 /* HelpCenterDetailViewController.m */,
+				3767F8911D678593004E2945 /* HelpCenterViewController.h */,
+				3767F8921D678593004E2945 /* HelpCenterViewController.m */,
+				3767F8931D678593004E2945 /* HelpCenterViewController.xib */,
+				3767F89C1D67E5FD004E2945 /* NotificationsViewController.h */,
+				3767F89D1D67E5FD004E2945 /* NotificationsViewController.m */,
+				3767F8A11D67ED4B004E2945 /* AccountBoundViewController.h */,
+				3767F8A21D67ED4B004E2945 /* AccountBoundViewController.m */,
+				3767F8A41D67EDB7004E2945 /* AboutViewController.h */,
+				3767F8A51D67EDB7004E2945 /* AboutViewController.m */,
+				3767F8A61D67EDB7004E2945 /* AboutViewController.xib */,
+				3767F8AB1D680952004E2945 /* ProtocolViewController.h */,
+				3767F8AC1D680952004E2945 /* ProtocolViewController.m */,
+				3767F8AE1D680A8A004E2945 /* ContactUsViewController.h */,
+				3767F8AF1D680A8A004E2945 /* ContactUsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1137,6 +1196,7 @@
 				3767F8671D645CEE004E2945 /* MsgChatTextTableViewCell.xib in Resources */,
 				3767F69B1D614D98004E2945 /* RegisterDataViewController.xib in Resources */,
 				3767F69C1D614D98004E2945 /* UserSetupViewController.xib in Resources */,
+				3767F8AA1D67F34D004E2945 /* logo_128.png in Resources */,
 				3767F6901D60BEC9004E2945 /* UserSearchList_TBCell.xib in Resources */,
 				3767F68F1D60BA95004E2945 /* AvatarUpdateViewController.xib in Resources */,
 				3767F68E1D60BA50004E2945 /* UserInfo_LabelImage.xib in Resources */,
@@ -1147,12 +1207,14 @@
 				3767F65F1D5F4E74004E2945 /* tool_32.png in Resources */,
 				3767F6561D5F4E74004E2945 /* discover_normal_32.png in Resources */,
 				3767F65D1D5F4E74004E2945 /* msg_selected_32.png in Resources */,
+				3767F89A1D678732004E2945 /* list_16.png in Resources */,
 				3767F6531D5F4E74004E2945 /* setup_white_32_cjf.png in Resources */,
 				3767F8711D658CF4004E2945 /* MsgBubbleTableViewCell.xib in Resources */,
 				3767F6521D5F4E74004E2945 /* setup_32.png in Resources */,
 				3767F8591D634D6A004E2945 /* msg_add_32.png in Resources */,
 				3767F8571D634D6A004E2945 /* expression_32.png in Resources */,
 				37DB26831D4F40A600FA5198 /* LaunchScreen.storyboard in Resources */,
+				3767F8B21D680BC9004E2945 /* contactus.png in Resources */,
 				3767F64C1D5F4E74004E2945 /* radio.png in Resources */,
 				3767F6631D5F4E74004E2945 /* whiteCup_32.png in Resources */,
 				3767F6351D5F4E74004E2945 /* discover_32.png in Resources */,
@@ -1162,12 +1224,14 @@
 				3767F6471D5F4E74004E2945 /* omit_32.png in Resources */,
 				3767F5931D5F4B81004E2945 /* HabitPreviewView.xib in Resources */,
 				3767F6451D5F4E74004E2945 /* msg_32.png in Resources */,
+				3767F89B1D678732004E2945 /* msg_16.png in Resources */,
 				3767F6661D5F4E74004E2945 /* 搜索@2x.png in Resources */,
 				3767F6311D5F4E74004E2945 /* checkBox_selected.png in Resources */,
 				3767F6391D5F4E74004E2945 /* habit_32.png in Resources */,
 				3767F6401D5F4E74004E2945 /* lock_32.png in Resources */,
 				3767F6571D5F4E74004E2945 /* discover_selected_32.png in Resources */,
 				3767F6581D5F4E74004E2945 /* habit_normal_32.png in Resources */,
+				3767F8951D678593004E2945 /* HelpCenterViewController.xib in Resources */,
 				3767F6461D5F4E74004E2945 /* omit2_32.png in Resources */,
 				3767F63C1D5F4E74004E2945 /* heart_32.png in Resources */,
 				3767F64A1D5F4E74004E2945 /* portrait_default.jpg in Resources */,
@@ -1195,6 +1259,7 @@
 				3767F6591D5F4E74004E2945 /* habit_selected_32.png in Resources */,
 				3767F6B01D61BAA2004E2945 /* Icon-58.png in Resources */,
 				3767F6491D5F4E74004E2945 /* placeholder2.png in Resources */,
+				3767F8991D678732004E2945 /* bug_16.png in Resources */,
 				3767F6641D5F4E74004E2945 /* 同好关注@2x.png in Resources */,
 				3767F62C1D5F4E74004E2945 /* addContact_32.png in Resources */,
 				3767F65E1D5F4E74004E2945 /* time_32.png in Resources */,
@@ -1203,6 +1268,7 @@
 				3767F6601D5F4E74004E2945 /* tools_white_32.png in Resources */,
 				3767F62E1D5F4E74004E2945 /* check_in1.png in Resources */,
 				3767F6421D5F4E74004E2945 /* message_32.png in Resources */,
+				3767F8A81D67EDB7004E2945 /* AboutViewController.xib in Resources */,
 				3767F6611D5F4E74004E2945 /* user_32.png in Resources */,
 				3767F6AA1D61693B004E2945 /* MsgChatViewController.xib in Resources */,
 				3767F6551D5F4E74004E2945 /* sina_32.png in Resources */,
@@ -1217,6 +1283,7 @@
 				3767F6341D5F4E74004E2945 /* copperCup.png in Resources */,
 				3767F6431D5F4E74004E2945 /* msg2_32.png in Resources */,
 				3767F86C1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib in Resources */,
+				3767F8881D6748AF004E2945 /* Smiling_32.png in Resources */,
 				3767F6541D5F4E74004E2945 /* silverCup.png in Resources */,
 				3767F64F1D5F4E74004E2945 /* search_32.png in Resources */,
 				3767F62B1D5F4E74004E2945 /* add_32.png in Resources */,
@@ -1306,13 +1373,16 @@
 				3767F67E1D5F5704004E2945 /* HabitUsersModel.m in Sources */,
 				3767F67D1D5F56FD004E2945 /* HabitPropsModel.m in Sources */,
 				3767F67C1D5F56F4004E2945 /* HabitNotesModel.m in Sources */,
+				3767F8A31D67ED4B004E2945 /* AccountBoundViewController.m in Sources */,
 				3767F67B1D5F56E8004E2945 /* HabitHabitsModel.m in Sources */,
+				3767F8A71D67EDB7004E2945 /* AboutViewController.m in Sources */,
 				3767F67A1D5F56DB004E2945 /* HabitCommentsModel.m in Sources */,
 				3767F6781D5F56BF004E2945 /* HabitDetailsViewController.m in Sources */,
 				3767F6771D5F56B6004E2945 /* HabitClassifyViewController.m in Sources */,
 				3767F6761D5F569F004E2945 /* HabitViewController.m in Sources */,
 				3767F8661D645CEE004E2945 /* MsgChatTextTableViewCell.m in Sources */,
 				3767F6721D5F4F5E004E2945 /* RegisterDataViewController.m in Sources */,
+				3767F8B01D680A8A004E2945 /* ContactUsViewController.m in Sources */,
 				3767F6711D5F4F51004E2945 /* RegisterByPhoneViewController.m in Sources */,
 				3767F87F1D65FFA0004E2945 /* NotesCollectionViewController.m in Sources */,
 				3767F6701D5F4F42004E2945 /* Users.m in Sources */,
@@ -1326,6 +1396,7 @@
 				3767F66A1D5F4F11004E2945 /* HabitReviewCollectionViewCell.m in Sources */,
 				3767F6691D5F4F03004E2945 /* Comments.m in Sources */,
 				3767F6681D5F4EF8004E2945 /* CJFTools.m in Sources */,
+				3767F8901D67785B004E2945 /* HelpCenterDetailViewController.m in Sources */,
 				3767F6671D5F4EDE004E2945 /* AvatarUpdateViewController.m in Sources */,
 				3767F5BD1D5F4DEE004E2945 /* MindNotesReviewViewController.m in Sources */,
 				3767F5E71D5F4E4F004E2945 /* CheckButton.m in Sources */,
@@ -1340,7 +1411,10 @@
 				3767F5E51D5F4E4F004E2945 /* UIImageView+CJFUIImageView.m in Sources */,
 				3767F5A51D5F4DC5004E2945 /* DiscoverViewController.m in Sources */,
 				3767F5BA1D5F4DDB004E2945 /* YHJTabPageScrollView.m in Sources */,
+				3767F89F1D67E5FD004E2945 /* NotificationsViewController.m in Sources */,
 				3767F5A71D5F4DC5004E2945 /* PropsListViewController.m in Sources */,
+				3767F8AD1D680952004E2945 /* ProtocolViewController.m in Sources */,
+				3767F8941D678593004E2945 /* HelpCenterViewController.m in Sources */,
 				3767F5E61D5F4E4F004E2945 /* UILabel+LeftTopAlign.m in Sources */,
 				37DB26751D4F40A600FA5198 /* main.m in Sources */,
 				3767F8701D658CF4004E2945 /* MsgBubbleTableViewCell.m in Sources */,

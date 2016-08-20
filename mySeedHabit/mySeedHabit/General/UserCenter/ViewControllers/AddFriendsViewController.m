@@ -80,7 +80,7 @@
     _searchController.searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44.0);
     _searchController.searchBar.barTintColor = RGBA(240, 240, 240, 1);
     _searchController.searchBar.tintColor = [UIColor colorWithHexString:UIMainColor alpha:1];
-    _searchController.searchBar.searchBarStyle = UISearchBarStyleDefault;
+    _searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
     _searchController.searchBar.placeholder = @"输入你要搜索的用户名";
     
     // 添加 searchbar 到 self.view

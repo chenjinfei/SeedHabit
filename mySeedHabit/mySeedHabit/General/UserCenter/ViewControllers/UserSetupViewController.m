@@ -19,6 +19,10 @@
 #import "UIImageView+CJFUIImageView.h"
 
 #import "NotesCollectionViewController.h"
+#import "HelpCenterViewController.h"
+#import "NotificationsViewController.h"
+#import "AccountBoundViewController.h"
+#import "AboutViewController.h"
 
 @interface UserSetupViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -63,7 +67,7 @@
 -(void)loadData {
     
     NSArray *arrFirst = [NSArray arrayWithObjects:@"我的收藏", @"帐号绑定", @"帮助中心", @"消息提醒管理", nil];
-    NSArray *arrSecond = [NSArray arrayWithObjects:@"清除缓存", @"关于种子习惯", nil];
+    NSArray *arrSecond = [NSArray arrayWithObjects:@"关于种子习惯", nil];
     NSArray *arrThird = [NSArray arrayWithObjects:@"退出帐号", nil];
     
     NSArray *menuArr = [NSArray arrayWithObjects:arrFirst, arrSecond, arrThird, nil];
@@ -73,6 +77,7 @@
     SeedUser *user = [UserManager manager].currentUser;
     [self.tableHeaderView.avatarView lhy_loadImageUrlStr:user.avatar_small placeHolderImageName:@"placeHolder.png" radius:self.tableHeaderView.avatarView.frame.size.height/2];
     
+    [self.tableView reloadData];
 }
 
 -(void)buildView {
@@ -116,14 +121,13 @@
 - (void)logoutClick:(UIButton *)sender {
     [[UserManager manager] logoutSuccess:^(NSDictionary *responseObject) {
         
-        LoginViewController *loginVc = [[LoginViewController alloc]init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:loginVc animated:YES completion:^{
+        [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:^{
             NSLog(@"登出成功");
         }];
         
     } failure:^(NSError *error) {
         
-        ULog(@"%@", error);
+        NSLog(@"%@", error);
         
     }];
 }
@@ -139,42 +143,47 @@
     NSInteger actionFlag = [[NSString stringWithFormat:@"%ld%ld", section, row] integerValue];
     switch (actionFlag) {
         case 00:{// 我的收藏
+            
             self.hidesBottomBarWhenPushed = YES;
             NotesCollectionViewController *ncVc = [[NotesCollectionViewController alloc]init];
             [self.navigationController pushViewController:ncVc animated:YES];
             self.hidesBottomBarWhenPushed = YES;
+            
             break;
         }
         case 01:{// 帐号绑定
+            
+            self.hidesBottomBarWhenPushed = YES;
+            AccountBoundViewController *abVc = [[AccountBoundViewController alloc]init];
+            [self.navigationController pushViewController:abVc animated:YES];
+            self.hidesBottomBarWhenPushed = YES;
             
             break;
         }
         case 02:{// 帮助中心
             
+            self.hidesBottomBarWhenPushed = YES;
+            HelpCenterViewController *hcVc = [[HelpCenterViewController alloc]init];
+            [self.navigationController pushViewController:hcVc animated:YES];
+            self.hidesBottomBarWhenPushed = YES;
+            
             break;
         }
         case 03:{// 消息提醒设置
             
-            break;
-        }
-        case 10:{// 清除缓存
-            
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle: UIAlertControllerStyleActionSheet];
-            UIAlertAction *clearAction = [UIAlertAction actionWithTitle:@"清除缓存" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                
-                [self clearCache];
-                [self.tableView reloadData];
-                
-            }];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-            [alertController addAction:clearAction];
-            [alertController addAction:cancelAction];
-            
-            [self presentViewController:alertController animated:YES completion:nil];
+            self.hidesBottomBarWhenPushed = YES;
+            NotificationsViewController *nfVc = [[NotificationsViewController alloc]init];
+            [self.navigationController pushViewController:nfVc animated:YES];
+            self.hidesBottomBarWhenPushed = YES;
             
             break;
         }
-        case 11:{// 关于种子习惯
+        case 10:{// 关于种子习惯
+            
+            self.hidesBottomBarWhenPushed = YES;
+            AboutViewController *aVc = [[AboutViewController alloc]init];
+            [self.navigationController pushViewController:aVc animated:YES];
+            self.hidesBottomBarWhenPushed = YES;
             
             break;
         }
@@ -182,20 +191,6 @@
             break;
     }
     
-}
-
-// 获取缓存大小
--(CGFloat)getCachedSize {
-    //计算检查缓存大小: 单位：b
-    float tmpSize = [[SDImageCache sharedImageCache] getSize];
-    return tmpSize;
-}
-
-//清除缓存
-- (void)clearCache
-{
-    [[SDImageCache sharedImageCache] clearDisk];
-    [[SDImageCache sharedImageCache] clearMemory];//可有可无
 }
 
 
@@ -216,14 +211,6 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
     cell.textLabel.textColor = [UIColor darkGrayColor];
-    if (indexPath.section == 1 && indexPath.row == 0){
-        CGFloat tmpSize = [self getCachedSize];
-        tmpSize /= (1024*1024);
-        NSString * clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"%.2fM",tmpSize] : [NSString stringWithFormat:@"%.2fK",tmpSize * 1024];
-        NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:clearCacheName];
-        [AttributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0] range:NSMakeRange(0, clearCacheName.length)];
-        cell.detailTextLabel.attributedText = AttributedStr;
-    }
     if (indexPath.section == self.dataArr.count-1) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;

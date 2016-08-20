@@ -61,7 +61,7 @@
                     <constraint firstAttribute="trailing" secondItem="F1I-mo-M4a" secondAttribute="trailing" constant="8" id="siZ-rB-06G"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.95686274510000002" green="0.95294117649999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="avatarView" destination="oBo-Rj-Hw7" id="m87-DR-Uxk"/>
                 <outlet property="holdTimeView" destination="BA4-9x-06x" id="Nr5-fI-EHh"/>

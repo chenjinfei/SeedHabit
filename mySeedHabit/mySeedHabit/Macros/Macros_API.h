@@ -153,6 +153,9 @@
 #define APIAddMindNote          [APIMindNote stringByAppendingString:@"addNote"]
 // 收藏详情       id=18983384
 #define APINoteDetailById          [APIMindNote stringByAppendingString:@"getNoteDetail/id/"]
+// 评论心情    comment_text_content=%E8%B5%9E&mind_note_id=18917711&user_id=1878988
+#define APIComment          [APIMindNote stringByAppendingString:@"comment"]
+
 
 
 

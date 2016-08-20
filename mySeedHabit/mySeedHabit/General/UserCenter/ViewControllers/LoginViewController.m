@@ -10,6 +10,7 @@
 
 #import "RegisterByPhoneViewController.h"
 #import "RegisterDataViewController.h"
+#import "CJFTabBarViewController.h"
 
 #import "UserManager.h"
 #import <UMSocial.h>
@@ -83,7 +84,7 @@
                     NSString *password = [parameters valueForKey:@"password"];
                     [[UserManager manager] setUserDefaultsWithUserName:username password:password];
                     
-                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[CJFTabBarViewController alloc]init] animated:YES completion:nil];
                     
                 }else if ([userData[@"status"] intValue] == 2003) {
                     [self.alert showWarning:self title:@"唉哟~" subTitle:@"宝宝输错密码啦！重来。。。" closeButtonTitle:@"好的" duration:0.0f];
