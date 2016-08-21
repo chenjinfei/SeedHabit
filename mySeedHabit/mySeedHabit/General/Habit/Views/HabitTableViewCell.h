@@ -10,16 +10,15 @@
 #import "HabitListModel.h"
 
 @interface HabitTableViewCell : UITableViewCell
+
 @property (strong, nonatomic) IBOutlet UIImageView *imageV;
 
 @property (strong, nonatomic) IBOutlet UILabel *titleL;
+
 @property (strong, nonatomic) IBOutlet UILabel *descL;
 
 @property (strong, nonatomic) IBOutlet UILabel *timeL;
 
 @property (nonatomic,strong)HabitListModel *habit;
-
-
-
 
 @end

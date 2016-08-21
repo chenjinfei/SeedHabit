@@ -14,15 +14,21 @@
 #import "HabitCommentsModel.h"
 #import "HabitUsersModel.h"
 #import "HabitHabitsModel.h"
+#import "HabitCheckInModel.h"
 #import "HabitNotesByTimeCell.h"
 #import "HabitCheckInCell.h"
 #import "HabitCheckModel.h"
 #import "HabitCheckInViewController.h"
+#import "AddNoteViewController.h"
+
 
 // SDWebImage可以设置为button加背景照片
 #import <UIImageView+WebCache.h>
 #import <UIButton+WebCache.h>
 #import "MJRefresh.h"
+#import "Masonry.h"
+#import "UserManager.h"
+#import "SeedUser.h"
 
 @interface HabitDetailsViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -36,6 +42,8 @@
 @property (nonatomic,strong)NSMutableArray *checkArr;
 @property (nonatomic,strong)NSMutableArray *check_in_timeArr;
 @property (nonatomic,strong)NSMutableArray *is_check_inArr;
+@property (nonatomic,strong)NSString *check_in_idStr;
+@property (nonatomic,strong)SeedUser *user;
 
 // 是否下拉刷新
 @property (nonatomic,assign)BOOL isRefresh;
@@ -43,8 +51,7 @@
 // 存储评论数据
 @property (nonatomic,strong)NSMutableString *commentStr;
 
-// 当地时间的时间戳
-@property (nonatomic,assign)NSInteger timeTemp;
+@property (nonatomic,strong)UIButton *checkBtn;
 
 @end
 
@@ -53,6 +60,8 @@ static BOOL flag = 0;
 
 // 上拉加载需要另外的一个数据
 static NSString *nextStr = nil;
+// 控制签到背景图片
+static BOOL Flag = 0;
 
 @implementation HabitDetailsViewController
 
@@ -126,9 +135,18 @@ static NSString *nextStr = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self createTableView];
-    [self getWeelCheckInData];
     [self getNotesByTimeData];
+    [self getLastWeekCheck];
     [self TableViewRefresh];
+    self.user = [[UserManager manager] currentUser];
+    
+//    NSArray *weekDay = [NSArray arrayWithObjects:[NSNull null],@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六", nil];
+//    NSDate *newDate = [NSDate dateWithTimeIntervalSince1970:1471535999];
+//    NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
+//    NSDateComponents *components = [calendar components:NSWeekdayCalendarUnit fromDate:newDate];
+//    NSString *weekStr = [weekDay objectAtIndex:components.weekday];
+//    NSLog(@"666666666%@",weekStr);
+    
 }
 
 #pragma mark 刷新加载控件
@@ -142,7 +160,6 @@ static NSString *nextStr = nil;
         nextStr = nil;
         [weakSelf getNotesByTimeData];
     }];
-    
     // 默认block方法:设置上拉加载
     self.tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
         flag = 1;
@@ -155,6 +172,7 @@ static NSString *nextStr = nil;
 {
     self.title = self.titleStr;
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+    self.tableView.separatorStyle = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = RGB(239, 239, 239);
@@ -163,7 +181,7 @@ static NSString *nextStr = nil;
     UINib *nib1 = [UINib nibWithNibName:@"HabitNotesByTimeCell" bundle:nil];
     [self.tableView registerNib:nib1 forCellReuseIdentifier:@"habit"];
     UINib *nib2 = [UINib nibWithNibName:@"HabitCheckInCell" bundle:nil];
-    [self.tableView registerNib:nib2 forCellReuseIdentifier:@"check"];
+    [self.tableView registerNib:nib2 forCellReuseIdentifier:@"checkIn"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuse"];
     
     // 自定义工具按钮
@@ -175,47 +193,12 @@ static NSString *nextStr = nil;
     self.navigationItem.rightBarButtonItem = toolItem;
 }
 
-#pragma mark 获取签到列表数据
-- (void)getWeelCheckInData
-{
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    NSInteger num = [self.habit_idStr integerValue];
-    // 把当地时间转换为时间戳,作为参数
-    NSDate *datenow = [NSDate date];
-    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-    NSInteger interval = [zone secondsFromGMTForDate:datenow];
-    NSDate *localeDate = [datenow dateByAddingTimeInterval:interval];
-    NSString *timeSp = [NSString stringWithFormat:@"%ld",(long)[localeDate timeIntervalSince1970]];
-    self.timeTemp = [timeSp integerValue];
-    NSLog(@"%ld %ld",(long)self.timeTemp,(long)num);
-    NSDictionary *parameters = @{
-                                 @"habit_id":@(num),
-                                 @"user_id":@1850869,
-                                 @"next_check_in_time":@(self.timeTemp)
-                                 };
-    [session POST:APILastWeekCheckIn parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        for (NSDictionary *dic in responseObject[@"data"][@"check_ins"]) {
-            HabitCheckModel *check = [[HabitCheckModel alloc]init];
-            [check setValuesForKeysWithDictionary:dic];
-            [self.checkArr addObject:check];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
-    }];
-}
-
-
-
 #pragma mark 获取心情列表数据
 - (void)getNotesByTimeData
 {
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     // 此处post所需的参数习惯id从上一个页面通过属性传值获取,获取到的是字符串类型,相应的要转换为NSInteger类型
     NSInteger num = [self.habit_idStr integerValue];
-    NSLog(@"%ld", num);
     // 刷新状态不同时参数flag的值不一样
     NSNumber *Flag = [NSNumber numberWithBool:flag];
     
@@ -229,10 +212,18 @@ static NSString *nextStr = nil;
                                  @"detail":@1,
                                  @"flag":Flag,
                                  @"habit_id":@(num),
-                                 @"user_id":@1850869,
+                                 @"user_id":@1878988,
                                  @"next_id":@(next)
                                  };
     [session POST:APIHabitNotesByTime parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        // 移除用户发表心情前的数据
+        [self.noteArr removeAllObjects];
+        [self.notesArr removeAllObjects];
+        [self.usersArr removeAllObjects];
+        [self.habitsArr removeAllObjects];
+        [self.propsArr removeAllObjects];
+        [self.commentsArr removeAllObjects];
         
         for (NSDictionary *dic in responseObject[@"data"][@"habits"]) {
             HabitHabitsModel *habits = [[HabitHabitsModel alloc]init];
@@ -285,7 +276,7 @@ static NSString *nextStr = nil;
     }];
 }
 
-
+#pragma mark 返回按钮
 - (void)backAction:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -299,8 +290,10 @@ static NSString *nextStr = nil;
 #pragma mark cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0 || indexPath.row == 1) {
-        return 150;
+    if (indexPath.row == 0 ) {
+        return SCREEN_WIDTH*0.5+100;
+    }else if (indexPath.row == 1){
+        return 180;
     }else{
         HabitNotesModel *notes = self.notesArr[indexPath.row];
         HabitNoteModel *note = notes.note;
@@ -315,42 +308,65 @@ static NSString *nextStr = nil;
     return self.notesArr.count;
 }
 
-#pragma mark 返回cell
+#pragma mark 返回cell 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0 || indexPath.row == 1) {
-//        HabitCheckInCell *checkCell = [tableView dequeueReusableCellWithIdentifier:@"check"];
-//        HabitCheckModel *check = [[HabitCheckModel alloc]init];
-//        
-//        NSInteger num;
-//        for (NSDictionary *dic in self.checkArr) {
-//            if ([dic[@"check_in_time"] isKindOfClass:[NSString class]]) {
-//                num = [dic[@"check_in_time"] integerValue];
-//            }else{
-//                num = (NSInteger)dic[@"check_in_time"];
-//            }
-//            NSNumber *number = [NSNumber numberWithInteger:num];
-//            [self.check_in_timeArr addObject:number];
-//        }
-//        [self.check_in_timeArr.lastObject integerValue];
-//        NSArray *weekday = [NSArray arrayWithObjects:@"一",@"二",@"三",@"四",@"五",@"六",@"日", nil];
-//        NSDate *date = [NSDate date];
-//        NSDate *newDate = [NSDate dateWithTimeIntervalSince1970:date];
-//        
-//    
-//        // 坚持天数
-//        NSInteger check_in_time = [self.check_in_times integerValue];
-//        NSString *str = [NSString stringWithFormat:@"已坚持%ld天",(long)check_in_time];
-//        checkCell.check_in_timeL.text = str;
-//
+    if (indexPath.row == 0) {
+        
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuse"];
-        cell.textLabel.text = @"这怎么搞";
+        self.checkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.checkBtn setImage:[UIImage imageNamed:@"check_in2.png"] forState:UIControlStateNormal];
+        [self.checkBtn setImage:[UIImage imageNamed:@"check_in1.png"] forState:UIControlStateSelected];
+        [self.checkBtn addTarget:self action:@selector(checkAction) forControlEvents:UIControlEventTouchUpInside];
+        self.checkBtn.selected = NO;
+        // 防止block的循环引用
+        __weak typeof (cell)weakCell = cell;
+        [cell.contentView addSubview:self.checkBtn];
+        [self.checkBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(weakCell.contentView);
+            make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH*0.4, SCREEN_WIDTH*0.4));
+        }];
+        // 取消cell的点击相应事件
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
         
-    } else {
+    } else if(indexPath.row == 1){
+        HabitCheckInCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checkIn"];
+        NSInteger check_in_time = [self.check_in_times integerValue];
+        cell.check_in_timeL.text = [NSString stringWithFormat:@"已坚持%ld天",(long)check_in_time];
+        cell.check_in_timeL.textColor = RGB(195, 195, 195);
+        cell.check_in_timeL.font = [UIFont systemFontOfSize:15];
+        cell.check_in_timeL.textAlignment = NSTextAlignmentRight;
+        // 把时间戳转换为星期
+        if (self.checkArr.count > 0) {
+            for (int i = 0; i < 7; i++) {
+                for (NSDictionary *dic in self.checkArr) {
+                    if ([[dic valueForKey:@"check_in_id"] integerValue] != -1 || [[dic valueForKey:@"is_check_in"] integerValue] != 0) {
+                        NSInteger date = [[dic valueForKey:@"check_in_time"] integerValue];
+                        NSArray *weekDay = [NSArray arrayWithObjects:[NSNull null],@"日",@"一",@"二",@"三",@"四",@"五",@"六", nil];
+                        NSDate *newDate = [NSDate dateWithTimeIntervalSince1970:date];
+                        NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
+                        NSDateComponents *components = [calendar components:NSWeekdayCalendarUnit fromDate:newDate];
+                        NSString *weekStr = [weekDay objectAtIndex:components.weekday];
+                        UIButton *btn ;
+                        if ([weekStr isEqualToString:weekDay[i+1]]) {
+                            btn = cell.arr[i];
+                            btn.selected = YES;
+                        }
+                        else
+                            btn.selected = NO;
+                    }
+                }
+            }
+        }
+        return cell;
+    }else{
         HabitNotesByTimeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"habit"];
         // 坚持的天数
-        HabitNotesModel *notes = self.notesArr[indexPath.row-2];
+        HabitNotesModel *notes;
+        if (self.notesArr.count > 0) {
+            notes = self.notesArr[indexPath.row-2];
+        }
         cell.check_in_times.text = [NSString stringWithFormat:@"坚持%ld天",(long)notes.check_in_times];
         // 点语法
         HabitNoteModel *note = notes.note;
@@ -369,7 +385,7 @@ static NSString *nextStr = nil;
         // 内容照片
         [cell.mind_pic_small sd_setImageWithURL:[NSURL URLWithString:[note valueForKey:@"mind_pic_small"]]];
         for (HabitUsersModel *model in self.usersArr) {
-            if ([note valueForKey:@"user_id"] == [model valueForKey:@"idx"]) {
+            if ([note valueForKey:@"user_id"] == [model valueForKey:@"uId"]) {
                 cell.users = model;
             }
         }
@@ -387,7 +403,7 @@ static NSString *nextStr = nil;
             NSString *userStr;
             NSString *comStr;
             for (HabitUsersModel *users in self.usersArr) {
-                if ([comments valueForKey:@"user_id"] == [users valueForKey:@"idx"]) {
+                if ([comments valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
                     userStr = [NSString stringWithFormat:@"%@", users.nickname];
                     comStr = [NSString stringWithFormat:@"%@", [comments valueForKey:@"comment_text_content"]];
                     [self.commentStr appendFormat:@"%@:%@\n", userStr, comStr];
@@ -437,13 +453,138 @@ static NSString *nextStr = nil;
     return nil;
 }
 
-#pragma mark 点击cell响应方法 
+
+#pragma mark 获取签到数据
+- (void)checkAction
+{
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    AddNoteViewController *addNoteVC = [[AddNoteViewController alloc]init];
+    addNoteVC.habit_idStr = self.habit_idStr;
+    // 当地时间转换为时间戳
+    NSDate *datenow = [NSDate date];
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate:datenow];
+    NSDate *localeDate = [datenow dateByAddingTimeInterval:interval];
+    NSLog(@"%@",localeDate);
+    NSString *timeSp = [NSString stringWithFormat:@"%ld",(long)[localeDate timeIntervalSince1970]];
+    // 得到的时间戳再减掉8个小时
+    NSInteger delta = [zone secondsFromGMT];
+    NSInteger timeTemp = [timeSp integerValue] - delta;
+    NSInteger num = [self.habit_idStr integerValue];
+    NSDictionary *parameter = @{
+                                @"check_in_time":@(timeTemp),
+                                @"habit_id":@(num),
+                                @"time_zone":@0,
+                                @"user_id":@1878988
+                                };
+    [session POST:@"http://api.idothing.com/zhongzi/v2.php/CheckIn/checkIn" parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        // 判断签到相应的情况,当没签到且没有错误信息时才能签到
+        if ([responseObject[@"status"] integerValue] == 0 && responseObject[@"data"] != nil) {
+            NSLog(@"666666666");
+            // 选中状态切换背景图片
+            self.checkBtn.selected = YES;
+            Flag = 1;
+            // 当签到成功后获取到相应的参数数据(check_in_id),再push到下一页
+            addNoteVC.check_in_id = responseObject[@"data"][@"check_in"][@"id"];
+            self.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:addNoteVC animated:YES];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+#pragma mark 获取一个星期的签到情况
+- (void)getLastWeekCheck
+{
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+     NSInteger num = [self.habit_idStr integerValue];
+    NSDate *datenow = [NSDate date];
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate:datenow];
+    NSDate *localeDate = [datenow dateByAddingTimeInterval:interval];
+    NSLog(@"%@",localeDate);
+    NSString *timeSp = [NSString stringWithFormat:@"%ld",(long)[localeDate timeIntervalSince1970]];
+    // 得到的时间戳再减掉8个小时
+    NSInteger delta = [zone secondsFromGMT];
+    NSInteger timeTemp = [timeSp integerValue] - delta;
+    NSDictionary *parameter = @{
+                                @"habit_id":@(num),
+                                @"next_check_in_time":@(timeTemp),
+                                @"user_id":@1878988
+                                };
+    [session POST:APILastWeekCheckIn parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"==================================%@",responseObject);
+        for (NSDictionary *dic in responseObject[@"data"][@"check_ins"]) {
+            
+            HabitCheckModel *check = [[HabitCheckModel alloc]init];
+            [check setValuesForKeysWithDictionary:dic];
+            [self.checkArr addObject:check];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+
+#pragma mark 点击cell响应方法
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 1) {
-        HabitCheckInViewController *checkInVC = [[HabitCheckInViewController alloc]init];
-        [self.navigationController pushViewController:checkInVC animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (indexPath.row == 0) {
+        
+    }else if(indexPath.row == 1){
+        
+        // 点击cell才获取当地时间戳作为参数
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        NSInteger num = [self.habit_idStr integerValue];
+        NSDate *datenow = [NSDate date];
+        NSTimeZone *zone = [NSTimeZone systemTimeZone];
+        NSInteger interval = [zone secondsFromGMTForDate:datenow];
+        NSDate *localeDate = [datenow dateByAddingTimeInterval:interval];
+        NSString *timeSp = [NSString stringWithFormat:@"%ld",(long)[localeDate timeIntervalSince1970]];
+        NSInteger delta = [zone secondsFromGMT];
+        NSInteger timeTemp = [timeSp integerValue] - delta;
+        NSLog(@"%ld,%ld",(long)timeTemp,(long)num);
+        NSDictionary *parameter = @{
+                                    @"habit_id":@(num),
+                                    @"next_check_time":@(timeTemp),
+                                    @"user_id":@1878988
+                                    };
+        [session POST:@"http://api.idothing.com/zhongzi/v2.php/CheckIn/getLastWeekCheckIn" parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            HabitCheckInViewController *checkInVC = [[HabitCheckInViewController alloc]init];
+            checkInVC.habit_idStr = self.habit_idStr;
+            checkInVC.check_in_times = self.check_in_times;
+            checkInVC.members = self.members;
+            checkInVC.join_days = self.join_days;
+            self.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:checkInVC animated:YES];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"%@",error);
+        }];
     }
+}
+
+#pragma mark 将要显示时调用此方法
+- (void)viewWillAppear:(BOOL)animated
+{
+    
+//    // 异步请求
+//    if (self.checkArr.count > 0) {
+//        if ([[self.checkArr lastObject][@"check_in_id"] integerValue] != -1 && [[self.checkArr lastObject][@"is_check_in"] integerValue] == 1) {
+//            self.checkBtn.selected = YES;
+//            NSLog(@"%d",self.checkBtn.selected);
+//        }
+//    }
+    
+    [self getNotesByTimeData];
+    [self.tableView reloadData];
 }
 
 

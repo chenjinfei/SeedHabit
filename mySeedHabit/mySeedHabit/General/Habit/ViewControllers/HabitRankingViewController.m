@@ -10,12 +10,15 @@
 #import "HabitUsersModel.h"
 #import "HabitRankingCell.h"
 #import <UIImageView+WebCache.h>
+#import "UserManager.h"
+#import "SeedUser.h"
 
 @interface HabitRankingViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *usersArr;
 @property (nonatomic,strong)NSMutableArray *numArr;
+@property (nonatomic,strong)SeedUser *user;
 
 @end
 
@@ -32,6 +35,7 @@
     [super viewDidLoad];
     [self createTableView];
     [self getData];
+    self.user = [[UserManager manager] currentUser];
 }
 
 #pragma mark 创建tableView

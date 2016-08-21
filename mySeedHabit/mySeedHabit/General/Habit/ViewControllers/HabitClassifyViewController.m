@@ -13,6 +13,8 @@
 #import "HabitClassifyCell.h"
 #import "HabitJoinListViewController.h"
 #import "HabitJoinListViewController.h"
+#import "UserManager.h"
+#import "SeedUser.h"
 
 @interface HabitClassifyViewController ()<UITableViewDataSource,UITableViewDelegate,TabPageScrollViewDelegate>
 
@@ -32,6 +34,7 @@
 @property (nonatomic,strong)NSMutableArray *efficiencyArr;
 @property (nonatomic,strong)NSMutableArray *thindArr;
 @property (nonatomic,strong)NSMutableArray *allArr;
+@property (nonatomic,strong)SeedUser *user;
 
 @end
 
@@ -81,6 +84,8 @@
     return _healthArr;
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.allArr = [[NSMutableArray alloc] init];
@@ -92,9 +97,12 @@
     [self getData:4];
     [self getData:5];
     [self getData:6];
+    self.user = [[UserManager manager] currentUser];
 }
 
-#pragma mark 创建UI界面
+
+
+#pragma mark 创建习惯分类界面
 - (void)buildUI
 {
     self.title = @"习惯分类";
@@ -151,7 +159,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark 获取网络数据
+#pragma mark 获取习惯分类网络数据
 /**
  *  获取6个tableView数据数组,再放在一个大数组
  *
@@ -170,7 +178,6 @@
         for (NSDictionary *dic in responseObject[@"data"][@"habits"]) {
             HabitClassifyModel *classify = [[HabitClassifyModel alloc]init];
             [classify setValuesForKeysWithDictionary:dic];
-            NSLog(@"%@", classify.logo_url);
             [tempArr addObject:classify];
         }
         // 把临时数组对应赋给相应的tableView,没必要放到大数组中
@@ -329,7 +336,6 @@
     // 隐藏push到下个页面时下面的tabar
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:JoinListVC animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
 }
 
 @end

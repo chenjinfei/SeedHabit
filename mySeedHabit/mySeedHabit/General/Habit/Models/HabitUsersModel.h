@@ -10,7 +10,7 @@
 
 @interface HabitUsersModel : NSObject
 
-@property (nonatomic, copy) NSString *idx;
+@property (nonatomic, copy) NSString *uId;
 
 @property (nonatomic, assign) NSInteger expose_diary;
 

@@ -19,4 +19,8 @@
 // 坚持天数
 @property (nonatomic,strong)NSString *check_in_times;
 
+@property (nonatomic,strong)NSString *members;
+
+@property (nonatomic,assign)NSString *join_days;
+
 @end

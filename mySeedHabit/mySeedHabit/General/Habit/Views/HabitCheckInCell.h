@@ -7,55 +7,32 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HabitCheckModel.h"
+#import "HabitCheckInModel.h"
 
 @interface HabitCheckInCell : UITableViewCell
 
-@property (nonatomic,strong)HabitCheckModel *check;
-
+// 背景V
 @property (strong, nonatomic) IBOutlet UIView *backgroundV;
 
+// 按钮个数
+@property (nonatomic,assign)int count;
 
-@property (strong, nonatomic) IBOutlet UILabel *check_in_timeL;
+// 星期
+@property (nonatomic,strong)UILabel *dataLabel;
 
-// 日期
-@property (strong, nonatomic) IBOutlet UILabel *date1;
+// 签到情况
+@property (nonatomic,strong)UIButton *check_in_Btn;
 
-@property (strong, nonatomic) IBOutlet UILabel *date2;
+// 按钮数组
+@property (nonatomic,strong)NSMutableArray *arr;
 
-@property (strong, nonatomic) IBOutlet UILabel *date3;
+@property (nonatomic,strong)UIView *bgView;
 
-@property (strong, nonatomic) IBOutlet UILabel *date4;
+@property (nonatomic,strong)UILabel *titleL;
 
-@property (strong, nonatomic) IBOutlet UILabel *date5;
+@property (nonatomic,strong)UILabel *check_in_timeL;
 
-@property (strong, nonatomic) IBOutlet UILabel *date6;
-
-@property (strong, nonatomic) IBOutlet UILabel *date7;
-
-// 签到
-
-@property (strong, nonatomic) IBOutlet UIButton *check_in_Btn1;
-
-@property (strong, nonatomic) IBOutlet UIButton *check_in_Btn2;
-
-@property (strong, nonatomic) IBOutlet UIButton *check_in_Btn3;
-
-@property (strong, nonatomic) IBOutlet UIButton *check_in_Btn4;
-
-@property (strong, nonatomic) IBOutlet UIButton *check_in_Btn5;
-
-@property (strong, nonatomic) IBOutlet UIButton *check_in_Btn6;
-
-@property (strong, nonatomic) IBOutlet UIButton *check_in_Btn7;
-
-
-
-
-
-
-
-
+@property (nonatomic,strong)UIImageView *iconV;
 
 
 

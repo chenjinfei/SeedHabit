@@ -28,13 +28,11 @@
             NSString *str = habit.check_in_time;
             NSTimeInterval time = [str doubleValue];
             NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
-            NSLog(@"date:%@",date);
             NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
             [formatter setDateFormat:@"yy/MM/dd HH:mm:ss"];
             NSString *currentDateStr = [formatter stringFromDate:date];
             self.timeL.text = currentDateStr;
         }
     }
-
 }
 @end

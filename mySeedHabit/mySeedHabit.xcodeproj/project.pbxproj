@@ -137,10 +137,20 @@
 		3F1AC4E21D5C8F0300F10709 /* HabitJoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AC4E11D5C8F0300F10709 /* HabitJoinViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3F1AC4E61D5C903700F10709 /* HabitRankingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AC4E41D5C903700F10709 /* HabitRankingCell.m */; settings = {ASSET_TAGS = (); }; };
 		3F1AC4E71D5C903700F10709 /* HabitRankingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F1AC4E51D5C903700F10709 /* HabitRankingCell.xib */; settings = {ASSET_TAGS = (); }; };
+		3F6A641A1D65653000E809CD /* AllCheckInListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A64181D65653000E809CD /* AllCheckInListCell.m */; settings = {ASSET_TAGS = (); }; };
+		3F6A641B1D65653000E809CD /* AllCheckInListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F6A64191D65653000E809CD /* AllCheckInListCell.xib */; settings = {ASSET_TAGS = (); }; };
 		3FEB75C21D5F014500AA2FB4 /* JoinHabitCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB75C01D5F014400AA2FB4 /* JoinHabitCell.m */; settings = {ASSET_TAGS = (); }; };
 		3FEB75C31D5F014500AA2FB4 /* JoinHabitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FEB75C11D5F014500AA2FB4 /* JoinHabitCell.xib */; settings = {ASSET_TAGS = (); }; };
 		3FEB75D11D61848D00AA2FB4 /* TabPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AC3FB1D5ADC9C00F10709 /* TabPageScrollView.m */; };
-		3FEB75DA1D61863900AA2FB4 /* CheckTabPageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB75D91D61863900AA2FB4 /* CheckTabPageScrollView.m */; settings = {ASSET_TAGS = (); }; };
+		3FEB75DC1D61870800AA2FB4 /* HabitCheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB75DB1D61870800AA2FB4 /* HabitCheckInViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3FEB75E11D61A66F00AA2FB4 /* AddNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB75DF1D61A66F00AA2FB4 /* AddNoteViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3FEB75E51D62B37900AA2FB4 /* HabitCheckInModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB75E41D62B37900AA2FB4 /* HabitCheckInModel.m */; settings = {ASSET_TAGS = (); }; };
+		3FEB75E81D62F56700AA2FB4 /* check_in1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FEB75E61D62F56700AA2FB4 /* check_in1.png */; settings = {ASSET_TAGS = (); }; };
+		3FEB75E91D62F56700AA2FB4 /* check_in2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FEB75E71D62F56700AA2FB4 /* check_in2.png */; settings = {ASSET_TAGS = (); }; };
+		3FEB75F21D6318E000AA2FB4 /* quotation.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FEB75F01D6318E000AA2FB4 /* quotation.png */; settings = {ASSET_TAGS = (); }; };
+		3FEB75F41D632BD200AA2FB4 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3FEB75F31D632BD200AA2FB4 /* background.jpg */; settings = {ASSET_TAGS = (); }; };
+		3FEB75F71D63F42C00AA2FB4 /* CalendarDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB75F61D63F42C00AA2FB4 /* CalendarDate.m */; settings = {ASSET_TAGS = (); }; };
+		3FEB75FA1D63F6B400AA2FB4 /* CalendarDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FEB75F91D63F6B400AA2FB4 /* CalendarDateView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -343,12 +353,26 @@
 		3F1AC4E31D5C903700F10709 /* HabitRankingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitRankingCell.h; sourceTree = "<group>"; };
 		3F1AC4E41D5C903700F10709 /* HabitRankingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitRankingCell.m; sourceTree = "<group>"; };
 		3F1AC4E51D5C903700F10709 /* HabitRankingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitRankingCell.xib; sourceTree = "<group>"; };
+		3F6A64171D65653000E809CD /* AllCheckInListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllCheckInListCell.h; sourceTree = "<group>"; };
+		3F6A64181D65653000E809CD /* AllCheckInListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllCheckInListCell.m; sourceTree = "<group>"; };
+		3F6A64191D65653000E809CD /* AllCheckInListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllCheckInListCell.xib; sourceTree = "<group>"; };
 		3FEB75BC1D5ED9C100AA2FB4 /* HabitCheckInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitCheckInViewController.h; sourceTree = "<group>"; };
 		3FEB75BF1D5F014400AA2FB4 /* JoinHabitCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinHabitCell.h; sourceTree = "<group>"; };
 		3FEB75C01D5F014400AA2FB4 /* JoinHabitCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinHabitCell.m; sourceTree = "<group>"; };
 		3FEB75C11D5F014500AA2FB4 /* JoinHabitCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinHabitCell.xib; sourceTree = "<group>"; };
-		3FEB75D81D61863900AA2FB4 /* CheckTabPageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckTabPageScrollView.h; sourceTree = "<group>"; };
-		3FEB75D91D61863900AA2FB4 /* CheckTabPageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckTabPageScrollView.m; sourceTree = "<group>"; };
+		3FEB75DB1D61870800AA2FB4 /* HabitCheckInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitCheckInViewController.m; sourceTree = "<group>"; };
+		3FEB75DE1D61A66F00AA2FB4 /* AddNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNoteViewController.h; sourceTree = "<group>"; };
+		3FEB75DF1D61A66F00AA2FB4 /* AddNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNoteViewController.m; sourceTree = "<group>"; };
+		3FEB75E31D62B37900AA2FB4 /* HabitCheckInModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitCheckInModel.h; sourceTree = "<group>"; };
+		3FEB75E41D62B37900AA2FB4 /* HabitCheckInModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitCheckInModel.m; sourceTree = "<group>"; };
+		3FEB75E61D62F56700AA2FB4 /* check_in1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_in1.png; sourceTree = "<group>"; };
+		3FEB75E71D62F56700AA2FB4 /* check_in2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_in2.png; sourceTree = "<group>"; };
+		3FEB75F01D6318E000AA2FB4 /* quotation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quotation.png; sourceTree = "<group>"; };
+		3FEB75F31D632BD200AA2FB4 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
+		3FEB75F51D63F42C00AA2FB4 /* CalendarDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDate.h; sourceTree = "<group>"; };
+		3FEB75F61D63F42C00AA2FB4 /* CalendarDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDate.m; sourceTree = "<group>"; };
+		3FEB75F81D63F6B400AA2FB4 /* CalendarDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDateView.h; sourceTree = "<group>"; };
+		3FEB75F91D63F6B400AA2FB4 /* CalendarDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDateView.m; sourceTree = "<group>"; };
 		4A76CC3D92ADF4371271DF91 /* libPods-mySeedHabit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mySeedHabit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A876A9800A11817B78D669E1 /* Pods-mySeedHabit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mySeedHabit.release.xcconfig"; path = "Pods/Target Support Files/Pods-mySeedHabit/Pods-mySeedHabit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -588,9 +612,9 @@
 				3F1AC3DB1D5ADC9C00F10709 /* HabitListModel.m */,
 				3F1AC3DC1D5ADC9C00F10709 /* HabitModel.h */,
 				3F1AC3DD1D5ADC9C00F10709 /* HabitModel.m */,
-				3F1AC3DE1D5ADC9C00F10709 /* HabitNoteModel.h */,
 				3F1AC3DF1D5ADC9C00F10709 /* HabitNoteModel.m */,
 				3F1AC3E01D5ADC9C00F10709 /* HabitNotesModel.h */,
+				3F1AC3DE1D5ADC9C00F10709 /* HabitNoteModel.h */,
 				3F1AC3E11D5ADC9C00F10709 /* HabitNotesModel.m */,
 				3F1AC3E21D5ADC9C00F10709 /* HabitPropsModel.h */,
 				3F1AC3E31D5ADC9C00F10709 /* HabitPropsModel.m */,
@@ -598,6 +622,10 @@
 				3F1AC3E51D5ADC9C00F10709 /* HabitUsersModel.m */,
 				3F1AC4CC1D5B246100F10709 /* HabitClassifyModel.h */,
 				3F1AC4CD1D5B246100F10709 /* HabitClassifyModel.m */,
+				3FEB75E31D62B37900AA2FB4 /* HabitCheckInModel.h */,
+				3FEB75E41D62B37900AA2FB4 /* HabitCheckInModel.m */,
+				3FEB75F51D63F42C00AA2FB4 /* CalendarDate.h */,
+				3FEB75F61D63F42C00AA2FB4 /* CalendarDate.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -609,7 +637,10 @@
 				3F1AC3EE1D5ADC9C00F10709 /* HabitViewController.m */,
 				3F1AC3EA1D5ADC9C00F10709 /* HabitDetailsViewController.h */,
 				3F1AC3EB1D5ADC9C00F10709 /* HabitDetailsViewController.m */,
+				3FEB75DE1D61A66F00AA2FB4 /* AddNoteViewController.h */,
+				3FEB75DF1D61A66F00AA2FB4 /* AddNoteViewController.m */,
 				3FEB75BC1D5ED9C100AA2FB4 /* HabitCheckInViewController.h */,
+				3FEB75DB1D61870800AA2FB4 /* HabitCheckInViewController.m */,
 				3F1AC3E71D5ADC9C00F10709 /* HabitClassifyViewController.h */,
 				3F1AC3E81D5ADC9C00F10709 /* HabitClassifyViewController.m */,
 				3F1AC4D41D5C237800F10709 /* HabitJoinListViewController.h */,
@@ -625,8 +656,6 @@
 		3F1AC3F01D5ADC9C00F10709 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3FEB75D81D61863900AA2FB4 /* CheckTabPageScrollView.h */,
-				3FEB75D91D61863900AA2FB4 /* CheckTabPageScrollView.m */,
 				3F1AC3F11D5ADC9C00F10709 /* HabitCheckInCell.h */,
 				3F1AC3F21D5ADC9C00F10709 /* HabitCheckInCell.m */,
 				3F1AC3F31D5ADC9C00F10709 /* HabitCheckInCell.xib */,
@@ -638,6 +667,8 @@
 				3F1AC3F91D5ADC9C00F10709 /* HabitTableViewCell.xib */,
 				3F1AC3FA1D5ADC9C00F10709 /* TabPageScrollView.h */,
 				3F1AC3FB1D5ADC9C00F10709 /* TabPageScrollView.m */,
+				3FEB75F81D63F6B400AA2FB4 /* CalendarDateView.h */,
+				3FEB75F91D63F6B400AA2FB4 /* CalendarDateView.m */,
 				3F1AC4CF1D5B251D00F10709 /* HabitClassifyCell.h */,
 				3F1AC4D01D5B251D00F10709 /* HabitClassifyCell.m */,
 				3F1AC4D11D5B251D00F10709 /* HabitClassifyCell.xib */,
@@ -647,6 +678,9 @@
 				3FEB75BF1D5F014400AA2FB4 /* JoinHabitCell.h */,
 				3FEB75C01D5F014400AA2FB4 /* JoinHabitCell.m */,
 				3FEB75C11D5F014500AA2FB4 /* JoinHabitCell.xib */,
+				3F6A64171D65653000E809CD /* AllCheckInListCell.h */,
+				3F6A64181D65653000E809CD /* AllCheckInListCell.m */,
+				3F6A64191D65653000E809CD /* AllCheckInListCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -797,6 +831,10 @@
 				3F1AC4541D5ADC9C00F10709 /* time_32.png */,
 				3F1AC4561D5ADC9C00F10709 /* user_32.png */,
 				3F1AC4571D5ADC9C00F10709 /* weixin_32.png */,
+				3FEB75E61D62F56700AA2FB4 /* check_in1.png */,
+				3FEB75E71D62F56700AA2FB4 /* check_in2.png */,
+				3FEB75F31D632BD200AA2FB4 /* background.jpg */,
+				3FEB75F01D6318E000AA2FB4 /* quotation.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -920,16 +958,21 @@
 				3F1AC4BD1D5ADC9C00F10709 /* qq_32.png in Resources */,
 				3F1AC4881D5ADC9C00F10709 /* HabitNotesByTimeCell.xib in Resources */,
 				3F1AC49B1D5ADC9C00F10709 /* RegisterDataViewController.xib in Resources */,
+				3FEB75F41D632BD200AA2FB4 /* background.jpg in Resources */,
+				3FEB75E81D62F56700AA2FB4 /* check_in1.png in Resources */,
 				3F1AC4911D5ADC9C00F10709 /* AddFriendsViewController.xib in Resources */,
 				3F1AC4861D5ADC9C00F10709 /* HabitCheckInCell.xib in Resources */,
 				3F1AC49E1D5ADC9C00F10709 /* UserSetupViewController.xib in Resources */,
 				3F1AC4B71D5ADC9C00F10709 /* msg2_32.png in Resources */,
 				3F1AC48E1D5ADC9C00F10709 /* MessageViewController.xib in Resources */,
+				3FEB75F21D6318E000AA2FB4 /* quotation.png in Resources */,
 				3F1AC4B11D5ADC9C00F10709 /* heart_32.png in Resources */,
 				3F1AC4741D5ADC9C00F10709 /* PropsListTableViewCell.xib in Resources */,
 				3F1AC4B41D5ADC9C00F10709 /* left_32.png in Resources */,
 				3F1AC48A1D5ADC9C00F10709 /* HabitTableViewCell.xib in Resources */,
 				3F1AC4C51D5ADC9C00F10709 /* time_32.png in Resources */,
+				3F6A641B1D65653000E809CD /* AllCheckInListCell.xib in Resources */,
+				3FEB75E91D62F56700AA2FB4 /* check_in2.png in Resources */,
 				3F1AC4AF1D5ADC9C00F10709 /* headerImage.jpg in Resources */,
 				3F1AC4AD1D5ADC9C00F10709 /* discover_32.png in Resources */,
 				3F1AC4C81D5ADC9C00F10709 /* weixin_32.png in Resources */,
@@ -1006,6 +1049,7 @@
 				3F1AC4711D5ADC9C00F10709 /* DiscoverHotCell.m in Sources */,
 				3F1AC4611D5ADC9C00F10709 /* UserManager.m in Sources */,
 				3F1AC4811D5ADC9C00F10709 /* HabitDetailsViewController.m in Sources */,
+				3F6A641A1D65653000E809CD /* AllCheckInListCell.m in Sources */,
 				3F1AC4751D5ADC9C00F10709 /* YHJTabPageScrollView.m in Sources */,
 				3F1AC4681D5ADC9C00F10709 /* TreeInfo.m in Sources */,
 				3F1AC46A1D5ADC9C00F10709 /* DiscoverViewController.m in Sources */,
@@ -1017,11 +1061,14 @@
 				3F1AC4831D5ADC9C00F10709 /* HabitViewController.m in Sources */,
 				3F1AC49D1D5ADC9C00F10709 /* UserSetupViewController.m in Sources */,
 				3F1AC47C1D5ADC9C00F10709 /* HabitNotesModel.m in Sources */,
+				3FEB75FA1D63F6B400AA2FB4 /* CalendarDateView.m in Sources */,
+				3FEB75E51D62B37900AA2FB4 /* HabitCheckInModel.m in Sources */,
 				3F1AC4891D5ADC9C00F10709 /* HabitTableViewCell.m in Sources */,
 				3F1AC4671D5ADC9C00F10709 /* Props.m in Sources */,
 				3F1AC4A51D5ADC9C00F10709 /* UserSearchList_TBCell.m in Sources */,
 				3F1AC4761D5ADC9C00F10709 /* HabitCheckModel.m in Sources */,
 				3F1AC4701D5ADC9C00F10709 /* AppTools.m in Sources */,
+				3FEB75E11D61A66F00AA2FB4 /* AddNoteViewController.m in Sources */,
 				3F1AC49C1D5ADC9C00F10709 /* UserCenterViewController.m in Sources */,
 				3F1AC4E21D5C8F0300F10709 /* HabitJoinViewController.m in Sources */,
 				3F1AC47F1D5ADC9C00F10709 /* HabitClassifyViewController.m in Sources */,
@@ -1040,9 +1087,9 @@
 				3F1AC4781D5ADC9C00F10709 /* HabitHabitsModel.m in Sources */,
 				3F1AC48C1D5ADC9C00F10709 /* ContactsViewController.m in Sources */,
 				3F1AC4771D5ADC9C00F10709 /* HabitCommentsModel.m in Sources */,
-				3FEB75DA1D61863900AA2FB4 /* CheckTabPageScrollView.m in Sources */,
 				37DB26751D4F40A600FA5198 /* main.m in Sources */,
 				3F1AC4CE1D5B246100F10709 /* HabitClassifyModel.m in Sources */,
+				3FEB75DC1D61870800AA2FB4 /* HabitCheckInViewController.m in Sources */,
 				3F1AC4981D5ADC9C00F10709 /* RegisterByPhoneViewController.m in Sources */,
 				3F1AC47D1D5ADC9C00F10709 /* HabitPropsModel.m in Sources */,
 				3F1AC4791D5ADC9C00F10709 /* HabitListModel.m in Sources */,
@@ -1051,6 +1098,7 @@
 				3F1AC4E61D5C903700F10709 /* HabitRankingCell.m in Sources */,
 				3F1AC47E1D5ADC9C00F10709 /* HabitUsersModel.m in Sources */,
 				3F1AC48F1D5ADC9C00F10709 /* SeedUser.m in Sources */,
+				3FEB75F71D63F42C00AA2FB4 /* CalendarDate.m in Sources */,
 				3F1AC4731D5ADC9C00F10709 /* PropsListTableViewCell.m in Sources */,
 				3F1AC4A31D5ADC9C00F10709 /* UserInfo_TBHeaderView.m in Sources */,
 				3F1AC4901D5ADC9C00F10709 /* AddFriendsViewController.m in Sources */,

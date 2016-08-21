@@ -17,6 +17,8 @@
 #import "HabitCommentsModel.h"
 #import "HabitUsersModel.h"
 #import "HabitHabitsModel.h"
+#import "UserManager.h"
+#import "SeedUser.h"
 
 @interface HabitJoinListViewController ()
 
@@ -31,6 +33,7 @@
 @property (nonatomic,strong)NSMutableArray *noteArr;
 @property (nonatomic,strong)NSMutableArray *usersArr;
 @property (nonatomic,strong)NSMutableArray *habitsArr;
+@property (nonatomic,strong)SeedUser *user;
 @end
 
 @implementation HabitJoinListViewController
@@ -91,6 +94,7 @@
     [self buildUI];
     [self buildTableView];
     [self getData];
+    self.user = [[UserManager manager] currentUser];
 }
 
 #pragma mark 创建tableView上面的view
@@ -163,7 +167,7 @@
                                  @"detail":@1,
                                  @"flag":@0,
                                  @"habit_id":@(num),
-                                 @"user_id":@1850869,
+                                 @"user_id":@1878988
                                  };
     [session POST:APIHabitNotesByTime parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         for (NSDictionary *dic in responseObject[@"data"][@"habits"]) {
@@ -183,9 +187,11 @@
 - (void)cupAction
 {
     HabitRankingViewController *rankingVC = [[HabitRankingViewController alloc]init];
-    // TODO:此处有问题
-    rankingVC.habit_idStr = [self.habitsArr[0] valueForKey:@"idx"];
-    [self.navigationController pushViewController:rankingVC animated:YES];
+    if (self.habitsArr.count > 0) {
+        rankingVC.habit_idStr = [self.habitsArr[0] valueForKey:@"idx"];
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:rankingVC animated:YES];
+    }
 }
 
 #pragma mark 加入习惯点击方法 ranking
@@ -197,7 +203,7 @@
     joinVC.newHabit_id = num;
     NSDictionary *parameters = @{
                                  @"habit_id":@(num),
-                                 @"user_id":@1850869
+                                 @"user_id":@1878988
                                  };
     [session POST:APIJoinHabit parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"加入习惯成功");

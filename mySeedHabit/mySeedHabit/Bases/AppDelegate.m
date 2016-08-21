@@ -31,6 +31,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // 检查是否已经登录
+    [self checkLogin];
+    
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     // 主视图控制器
     self.mainVc = [[CJFTabBarViewController alloc]init];
@@ -40,9 +43,6 @@
     [self.window makeKeyAndVisible];
     
     
-    
-    // 检查是否已经登录
-    [self checkLogin];
     
     
     
