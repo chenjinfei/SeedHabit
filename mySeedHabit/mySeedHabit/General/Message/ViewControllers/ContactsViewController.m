@@ -21,6 +21,7 @@
 
 #import "MsgChatViewController.h"
 #import "ContactsListTableViewCell.h"
+#import "UserCenterViewController.h"
 
 @interface ContactsViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate>
 
@@ -147,9 +148,13 @@
     
 }
 
-// 输入框内容改变时的回调方法
+/**
+ *  输入框内容改变时的回调方法
+ *
+ *  @param searchController 搜索框对象
+ */
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    
+    self.hidesBottomBarWhenPushed = YES;
     // 监听键盘弹出
     [self keyboardManager];
     
@@ -168,7 +173,7 @@
         }
     }
     //刷新表格
-    [self.tableView reloadData];
+    [self.searchTableView reloadData];
 }
 
 /**
@@ -248,14 +253,30 @@
     
     [_searchController.view addSubview:_searchTableView];
     
-    _searchTableView.frame = CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-40-64-keyboardHeight);
+    [_searchList removeAllObjects];
+    [_searchTableView reloadData];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        _searchTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-keyboardHeight);
+    }];
+    
     
 }
 
 
+/**
+ *  监听键盘搜索按钮的事件
+ *
+ *  @param searchBar 搜索控件
+ */
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"object");
+    _searchController.active = NO;
+}
 
-
-
+//-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+//    NSLog(@"cancel");
+//}
 
 
 
@@ -307,7 +328,7 @@
     
     if ([tableView isEqual:self.searchTableView]) {
         
-        ContactsListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CONTACTCELL"];
+        ContactsListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SEARCHCELL"];
         
         cell.model = self.searchList[indexPath.row];
         
@@ -347,6 +368,14 @@
     }
     
     if ([tableView isEqual:self.searchTableView]) {
+        
+        _searchController.active = NO;
+        
+        self.hidesBottomBarWhenPushed = YES;
+        UserCenterViewController *ucVc = [[UserCenterViewController alloc]init];
+        ucVc.user = self.searchList[indexPath.row];
+        [self.navigationController pushViewController:ucVc animated:YES];
+        self.hidesBottomBarWhenPushed = YES;
         
     }
     
