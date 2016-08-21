@@ -156,6 +156,37 @@
 		3767FA131D69E5A6004E2945 /* HabitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB404141D61EE890076A446 /* HabitModel.m */; };
 		3767FA141D69E5B3004E2945 /* RegisterDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB404621D61EEC20076A446 /* RegisterDataViewController.m */; };
 		3767FA151D69E5BC004E2945 /* UserSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB404671D61EEC20076A446 /* UserSetupViewController.m */; };
+		3767FA161D69E8C3004E2945 /* Banners.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403E71D61EE570076A446 /* Banners.m */; };
+		3767FA171D69E8C3004E2945 /* Comments.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403E91D61EE570076A446 /* Comments.m */; };
+		3767FA181D69E8C3004E2945 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403EB1D61EE570076A446 /* Data.m */; };
+		3767FA191D69E8C3004E2945 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403EF1D61EE570076A446 /* Note.m */; };
+		3767FA1A1D69E8C3004E2945 /* Props.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403F31D61EE570076A446 /* Props.m */; };
+		3767FA1B1D69E8C3004E2945 /* DiscoveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB404071D61EE7C0076A446 /* DiscoveTableViewCell.m */; };
+		3767FA1C1D69E8C3004E2945 /* HabitCheckModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB4040C1D61EE890076A446 /* HabitCheckModel.m */; };
+		3767FA1D1D69E8C3004E2945 /* HabitCommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB4040E1D61EE890076A446 /* HabitCommentsModel.m */; };
+		3767FA1E1D69E8C3004E2945 /* HabitListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB404121D61EE890076A446 /* HabitListModel.m */; };
+		3767FA1F1D69E8C3004E2945 /* HabitNoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB404161D61EE890076A446 /* HabitNoteModel.m */; };
+		3767FA201D69E8C3004E2945 /* HabitNotesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB404181D61EE890076A446 /* HabitNotesModel.m */; };
+		3767FA211D69E8C3004E2945 /* HabitPropsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB4041A1D61EE890076A446 /* HabitPropsModel.m */; };
+		3767FA221D69E8C3004E2945 /* HabitClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB404271D61EE930076A446 /* HabitClassifyViewController.m */; };
+		3767FA231D69E8C3004E2945 /* HabitDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB4042A1D61EE930076A446 /* HabitDetailsViewController.m */; };
+		3767FA241D69E8C3004E2945 /* HabitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB4042D1D61EE930076A446 /* HabitViewController.m */; };
+		3767FA251D69E8C3004E2945 /* HabitCheckInCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB404361D61EE9D0076A446 /* HabitCheckInCell.m */; };
+		3767FA261D69E8C3004E2945 /* HabitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB4043C1D61EE9D0076A446 /* HabitTableViewCell.m */; };
+		3767FA271D69E8C3004E2945 /* LogoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB4045C1D61EEC20076A446 /* LogoutTableViewCell.m */; };
+		3767FA281D69E8FF004E2945 /* DiscoverDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FC17F3F1D68961F0067AAFB /* DiscoverDetailViewController.xib */; };
+		3767FA291D69E8FF004E2945 /* AlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404031D61EE660076A446 /* AlbumViewController.xib */; };
+		3767FA2A1D69E8FF004E2945 /* DiscoveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404081D61EE7C0076A446 /* DiscoveTableViewCell.xib */; };
+		3767FA2B1D69E8FF004E2945 /* HabitCheckInCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404371D61EE9D0076A446 /* HabitCheckInCell.xib */; };
+		3767FA2D1D69E8FF004E2945 /* HabitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4043D1D61EE9D0076A446 /* HabitTableViewCell.xib */; };
+		3767FA2E1D69E8FF004E2945 /* AddFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404541D61EEC20076A446 /* AddFriendsViewController.xib */; };
+		3767FA2F1D69E8FF004E2945 /* AvatarUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404571D61EEC20076A446 /* AvatarUpdateViewController.xib */; };
+		3767FA301D69E8FF004E2945 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4045A1D61EEC20076A446 /* LoginViewController.xib */; };
+		3767FA311D69E8FF004E2945 /* LogoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4045D1D61EEC20076A446 /* LogoutTableViewCell.xib */; };
+		3767FA321D69E8FF004E2945 /* RegisterByPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404601D61EEC20076A446 /* RegisterByPhoneViewController.xib */; };
+		3767FA331D69E8FF004E2945 /* RegisterDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404631D61EEC20076A446 /* RegisterDataViewController.xib */; };
+		3767FA341D69E8FF004E2945 /* UserSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404681D61EEC20076A446 /* UserSetupViewController.xib */; };
+		3767FA351D69E950004E2945 /* HabitNotesByTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4043A1D61EE9D0076A446 /* HabitNotesByTimeCell.xib */; };
 		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
 		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
@@ -440,13 +471,10 @@
 		3FB4041C1D61EE890076A446 /* HabitUsersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitUsersModel.m; sourceTree = "<group>"; };
 		3FB404261D61EE930076A446 /* HabitClassifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitClassifyViewController.h; sourceTree = "<group>"; };
 		3FB404271D61EE930076A446 /* HabitClassifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitClassifyViewController.m; sourceTree = "<group>"; };
-		3FB404281D61EE930076A446 /* HabitClassifyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitClassifyViewController.xib; sourceTree = "<group>"; };
 		3FB404291D61EE930076A446 /* HabitDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitDetailsViewController.h; sourceTree = "<group>"; };
 		3FB4042A1D61EE930076A446 /* HabitDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitDetailsViewController.m; sourceTree = "<group>"; };
-		3FB4042B1D61EE930076A446 /* HabitDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitDetailsViewController.xib; sourceTree = "<group>"; };
 		3FB4042C1D61EE930076A446 /* HabitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitViewController.h; sourceTree = "<group>"; };
 		3FB4042D1D61EE930076A446 /* HabitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitViewController.m; sourceTree = "<group>"; };
-		3FB4042E1D61EE930076A446 /* HabitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitViewController.xib; sourceTree = "<group>"; };
 		3FB404351D61EE9D0076A446 /* HabitCheckInCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitCheckInCell.h; sourceTree = "<group>"; };
 		3FB404361D61EE9D0076A446 /* HabitCheckInCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitCheckInCell.m; sourceTree = "<group>"; };
 		3FB404371D61EE9D0076A446 /* HabitCheckInCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitCheckInCell.xib; sourceTree = "<group>"; };
@@ -850,13 +878,10 @@
 				3767F97B1D69E1A3004E2945 /* HabitRankingViewController.m */,
 				3FB404261D61EE930076A446 /* HabitClassifyViewController.h */,
 				3FB404271D61EE930076A446 /* HabitClassifyViewController.m */,
-				3FB404281D61EE930076A446 /* HabitClassifyViewController.xib */,
 				3FB404291D61EE930076A446 /* HabitDetailsViewController.h */,
 				3FB4042A1D61EE930076A446 /* HabitDetailsViewController.m */,
-				3FB4042B1D61EE930076A446 /* HabitDetailsViewController.xib */,
 				3FB4042C1D61EE930076A446 /* HabitViewController.h */,
 				3FB4042D1D61EE930076A446 /* HabitViewController.m */,
-				3FB4042E1D61EE930076A446 /* HabitViewController.xib */,
 				3767F5BB1D5F4DEE004E2945 /* MindNotesReviewViewController.h */,
 				3767F5BC1D5F4DEE004E2945 /* MindNotesReviewViewController.m */,
 			);
@@ -1285,6 +1310,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3767FA351D69E950004E2945 /* HabitNotesByTimeCell.xib in Resources */,
+				3767FA281D69E8FF004E2945 /* DiscoverDetailViewController.xib in Resources */,
+				3767FA291D69E8FF004E2945 /* AlbumViewController.xib in Resources */,
+				3767FA2A1D69E8FF004E2945 /* DiscoveTableViewCell.xib in Resources */,
+				3767FA2B1D69E8FF004E2945 /* HabitCheckInCell.xib in Resources */,
+				3767FA2D1D69E8FF004E2945 /* HabitTableViewCell.xib in Resources */,
+				3767FA2E1D69E8FF004E2945 /* AddFriendsViewController.xib in Resources */,
+				3767FA2F1D69E8FF004E2945 /* AvatarUpdateViewController.xib in Resources */,
+				3767FA301D69E8FF004E2945 /* LoginViewController.xib in Resources */,
+				3767FA311D69E8FF004E2945 /* LogoutTableViewCell.xib in Resources */,
+				3767FA321D69E8FF004E2945 /* RegisterByPhoneViewController.xib in Resources */,
+				3767FA331D69E8FF004E2945 /* RegisterDataViewController.xib in Resources */,
+				3767FA341D69E8FF004E2945 /* UserSetupViewController.xib in Resources */,
 				3767F87B1D65FF68004E2945 /* NotesCollectionListTableViewCell.xib in Resources */,
 				3767F9931D69E1B1004E2945 /* HabitClassifyCell.xib in Resources */,
 				3767F9EC1D69E21A004E2945 /* Microphone_32.png in Resources */,
@@ -1406,6 +1444,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3767FA161D69E8C3004E2945 /* Banners.m in Sources */,
+				3767FA171D69E8C3004E2945 /* Comments.m in Sources */,
+				3767FA181D69E8C3004E2945 /* Data.m in Sources */,
+				3767FA191D69E8C3004E2945 /* Note.m in Sources */,
+				3767FA1A1D69E8C3004E2945 /* Props.m in Sources */,
+				3767FA1B1D69E8C3004E2945 /* DiscoveTableViewCell.m in Sources */,
+				3767FA1C1D69E8C3004E2945 /* HabitCheckModel.m in Sources */,
+				3767FA1D1D69E8C3004E2945 /* HabitCommentsModel.m in Sources */,
+				3767FA1E1D69E8C3004E2945 /* HabitListModel.m in Sources */,
+				3767FA1F1D69E8C3004E2945 /* HabitNoteModel.m in Sources */,
+				3767FA201D69E8C3004E2945 /* HabitNotesModel.m in Sources */,
+				3767FA211D69E8C3004E2945 /* HabitPropsModel.m in Sources */,
+				3767FA221D69E8C3004E2945 /* HabitClassifyViewController.m in Sources */,
+				3767FA231D69E8C3004E2945 /* HabitDetailsViewController.m in Sources */,
+				3767FA241D69E8C3004E2945 /* HabitViewController.m in Sources */,
+				3767FA251D69E8C3004E2945 /* HabitCheckInCell.m in Sources */,
+				3767FA261D69E8C3004E2945 /* HabitTableViewCell.m in Sources */,
+				3767FA271D69E8C3004E2945 /* LogoutTableViewCell.m in Sources */,
 				3767FA151D69E5BC004E2945 /* UserSetupViewController.m in Sources */,
 				3767FA141D69E5B3004E2945 /* RegisterDataViewController.m in Sources */,
 				3767FA131D69E5A6004E2945 /* HabitModel.m in Sources */,
