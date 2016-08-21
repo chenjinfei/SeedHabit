@@ -131,7 +131,7 @@
         make.left.equalTo(rootView.mas_left);
         make.right.equalTo(rootView.mas_right);
         // 隐藏tabar要减掉tabar的高度
-        make.bottom.equalTo(rootView.mas_bottom).offset(49);
+        make.bottom.equalTo(rootView.mas_bottom).offset(0);
     }];
     // 自定义返回按钮 详情
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -145,7 +145,7 @@
 #pragma mark 创建tableView
 - (UITableView *)createTableViewWithIndentifier:(NSString *)identifier
 {
-    UITableView *tableView = [UITableView new];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49-64-40) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorStyle = NO;
@@ -172,7 +172,7 @@
                                  @"classify_id":@(num),
                                  };
     [session POST:APIHabitClassify parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"%@",responseObject);
+        //        NSLog(@"%@",responseObject);
         // 获取每个tableView的数据,把数据放在一个临时数组
         NSMutableArray *tempArr = [[NSMutableArray alloc]init];
         for (NSDictionary *dic in responseObject[@"data"][@"habits"]) {
@@ -215,7 +215,7 @@
             [self.studyTabView reloadData];
             [self.efficiencyTabView reloadData];
             [self.thindTabView reloadData];
-    });
+        });
     }failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"+++++++++%@",error);
     }];
@@ -246,7 +246,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 70;
 }
 
 #pragma mark 返回cell方法

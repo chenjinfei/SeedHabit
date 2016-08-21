@@ -96,4 +96,10 @@
 +(NSString *)contentTypeForImageData: (NSData *)data;
 
 
+
+
+//根据时间戳获取星期几
++ (NSString *)getWeekDayFordate:(long long)data;
++ (NSInteger)getWeekDayForTimeamp:(long long)data;
+
 @end

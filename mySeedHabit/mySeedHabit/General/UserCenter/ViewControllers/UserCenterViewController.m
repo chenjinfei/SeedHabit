@@ -70,6 +70,8 @@
         [self performSelector:@selector(buildHoveringBtnWindow) withObject:nil afterDelay:1];
     }
     
+    [self loadData];
+    
 }
 
 

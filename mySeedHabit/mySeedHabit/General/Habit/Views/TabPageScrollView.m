@@ -150,7 +150,7 @@
     
     _separatorView = [UIView new];
     [tabView addSubview:_separatorView];
-    _separatorView.backgroundColor = RGB(146, 146, 146);
+    _separatorView.backgroundColor = RGB(220, 220, 220);
     [_separatorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(tabView.mas_left);
         make.right.equalTo(tabView.mas_right);

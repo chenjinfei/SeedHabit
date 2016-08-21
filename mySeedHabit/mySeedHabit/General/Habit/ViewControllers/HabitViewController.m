@@ -56,10 +56,11 @@
 {
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     NSDictionary *parameters = @{
-                                 @"user_id":@1878988
+                                 @"user_id": self.user.uId
                                  };
     [session POST:APIHabitList parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@", responseObject);
+        //        NSLog(@"%@", responseObject);
+        
         // 添加习惯后要清楚原有的习惯再重新从习惯接口获取数据
         [self.habiesArray removeAllObjects];
         [self.habitNameArr removeAllObjects];
@@ -81,10 +82,11 @@
 - (void)createTableView
 {
     self.navigationController.navigationBar.translucent = NO;
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49-64) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-49-64) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = RGB(239, 239, 239);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     UINib *nib = [UINib nibWithNibName:@"HabitTableViewCell" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"hh"];
@@ -116,7 +118,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 78;
 }
 
 #pragma mark 返回cell
@@ -131,19 +133,25 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HabitDetailsViewController *habitDetailsVC = [[HabitDetailsViewController alloc]init];
+    
+    habitDetailsVC.user = [UserManager manager].currentUser;
+    
     HabitListModel *habits = self.habiesArray[indexPath.row];
+    
     habitDetailsVC.titleStr = habits.name;
+    
     // 不能用点语法  把习惯id跟标题一起传过去
     habitDetailsVC.habit_idStr = [habits valueForKey:@"idx"];
-    // 传坚持习惯的天数
-//    habitDetailsVC.check_in_times = [habits valueForKey:@"check_in_time"];
+    
     NSString *membersStr = [NSString stringWithFormat:@"%@",[habits valueForKey:@"members"]];
     habitDetailsVC.members = membersStr;
+    
     NSString *join_daysStr = [NSString stringWithFormat:@"%@",[habits valueForKey:@"join_days"]];
     habitDetailsVC.join_days = join_daysStr;
+    
     NSString *check_in_timesStr = [NSString stringWithFormat:@"%@",[habits valueForKey:@"check_in_times"]];
     habitDetailsVC.check_in_times = check_in_timesStr;
-
+    
     // 隐藏下一页的tabar
     self.hidesBottomBarWhenPushed = YES;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -180,7 +188,7 @@
     NSInteger idNum = [habit_idStr integerValue];
     NSDictionary *parameter = @{
                                 @"habit_id":@(idNum),
-                                @"user_id":@1878988
+                                @"user_id": self.user.uId
                                 };
     [session POST:APIQuitHabit parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"删除成功");
@@ -211,6 +219,14 @@
     // 添加习惯后要重新获取数据,不是在viewDidLoad中写
     [self getData];
     [self.tableView reloadData];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 30;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.001;
 }
 
 @end
