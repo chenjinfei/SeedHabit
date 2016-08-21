@@ -50,7 +50,7 @@
     }
     
     // 创建缓存key: cachedKey
-    NSString *cachedKey = [NSString stringWithFormat:@"%@_myCachedKey%f", url, radius];
+    NSString *cachedKey = [NSString stringWithFormat:@"%@_myCachedKey_%f", url, radius];
     // 从缓存中获取图片
     UIImage *myCachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:cachedKey];
     if (myCachedImage) {
@@ -71,11 +71,11 @@
                 }
                 else if (image) {
                     NSLog(@"2");
-                    [sself setImage:image forState:state];
+                    [[SDImageCache sharedImageCache] storeImage:[image circleImageWithRadius:radius] forKey:cachedKey];
                 }
                 if (finished) {
                     NSLog(@"3");
-                    [[SDImageCache sharedImageCache] storeImage:[image circleImageWithRadius:radius] forKey:cachedKey];
+                    [sself setImage:image forState:state];
                 }
             });
         }];

@@ -41,9 +41,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    // 检查是否已经登录
-    [self checkLogin];
-    
+    // 创建window
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
     // 主视图控制器
@@ -56,6 +54,11 @@
     // 显示
     [self.window makeKeyAndVisible];
     
+    // 检查是否已经登录
+    if ([[UserManager manager] checkLogin]) {
+        // 直接登录
+        [self login];
+    }
     
     
     
