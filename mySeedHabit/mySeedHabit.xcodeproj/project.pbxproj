@@ -187,6 +187,52 @@
 		3767FA331D69E8FF004E2945 /* RegisterDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404631D61EEC20076A446 /* RegisterDataViewController.xib */; };
 		3767FA341D69E8FF004E2945 /* UserSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404681D61EEC20076A446 /* UserSetupViewController.xib */; };
 		3767FA351D69E950004E2945 /* HabitNotesByTimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4043A1D61EE9D0076A446 /* HabitNotesByTimeCell.xib */; };
+		3767FA361D69E98E004E2945 /* HabitNotesByTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB404391D61EE9D0076A446 /* HabitNotesByTimeCell.m */; };
+		3767FA371D69EAAA004E2945 /* add_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404951D61EF180076A446 /* add_32.png */; };
+		3767FA381D69EAAA004E2945 /* addContact_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404961D61EF180076A446 /* addContact_32.png */; };
+		3767FA391D69EAAA004E2945 /* addContact_white_32_cjf.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404971D61EF180076A446 /* addContact_white_32_cjf.png */; };
+		3767FA3A1D69EAAA004E2945 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4049A1D61EF180076A446 /* checkBox.png */; };
+		3767FA3B1D69EAAA004E2945 /* checkBox_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4049B1D61EF180076A446 /* checkBox_selected.png */; };
+		3767FA3C1D69EAAA004E2945 /* comment_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4049C1D61EF180076A446 /* comment_32.png */; };
+		3767FA3D1D69EAAA004E2945 /* contacts_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4049D1D61EF180076A446 /* contacts_32.png */; };
+		3767FA3E1D69EAAA004E2945 /* copperCup.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4049E1D61EF180076A446 /* copperCup.png */; };
+		3767FA3F1D69EAAA004E2945 /* discover_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB4049F1D61EF180076A446 /* discover_32.png */; };
+		3767FA401D69EAAA004E2945 /* follow_add_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404A11D61EF180076A446 /* follow_add_32.png */; };
+		3767FA411D69EAAA004E2945 /* follow_cancel_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404A21D61EF180076A446 /* follow_cancel_32.png */; };
+		3767FA421D69EAAA004E2945 /* goldCup.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404A31D61EF180076A446 /* goldCup.png */; };
+		3767FA431D69EAAA004E2945 /* habit_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404A41D61EF180076A446 /* habit_32.png */; };
+		3767FA441D69EAAA004E2945 /* heard_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404A51D61EF180076A446 /* heard_32.png */; };
+		3767FA451D69EAAA004E2945 /* heart2_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404A61D61EF180076A446 /* heart2_32.png */; };
+		3767FA461D69EAAA004E2945 /* heart_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404A71D61EF180076A446 /* heart_32.png */; };
+		3767FA471D69EAAA004E2945 /* into_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404A81D61EF180076A446 /* into_32.png */; };
+		3767FA481D69EAAA004E2945 /* lady_orange_32_cjf.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404A91D61EF180076A446 /* lady_orange_32_cjf.png */; };
+		3767FA491D69EAAA004E2945 /* left_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404AA1D61EF180076A446 /* left_32.png */; };
+		3767FA4A1D69EAAA004E2945 /* lock_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404AB1D61EF180076A446 /* lock_32.png */; };
+		3767FA4B1D69EAAA004E2945 /* man_orange_32_cjf.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404AC1D61EF180076A446 /* man_orange_32_cjf.png */; };
+		3767FA4C1D69EAAA004E2945 /* message_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404AD1D61EF180076A446 /* message_32.png */; };
+		3767FA4D1D69EAAA004E2945 /* msg2_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404AE1D61EF180076A446 /* msg2_32.png */; };
+		3767FA4E1D69EAAA004E2945 /* msg3_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404AF1D61EF180076A446 /* msg3_32.png */; };
+		3767FA4F1D69EAAA004E2945 /* msg_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404B01D61EF180076A446 /* msg_32.png */; };
+		3767FA501D69EAAA004E2945 /* omit2_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404B11D61EF180076A446 /* omit2_32.png */; };
+		3767FA511D69EAAA004E2945 /* omit_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404B21D61EF180076A446 /* omit_32.png */; };
+		3767FA521D69EAAA004E2945 /* phone_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404B31D61EF180076A446 /* phone_32.png */; };
+		3767FA531D69EAAA004E2945 /* portrait_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404B51D61EF180076A446 /* portrait_default.jpg */; };
+		3767FA541D69EAAA004E2945 /* qq_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404B61D61EF180076A446 /* qq_32.png */; };
+		3767FA551D69EAAA004E2945 /* radio.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404B71D61EF180076A446 /* radio.png */; };
+		3767FA561D69EAAA004E2945 /* radio_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404B81D61EF180076A446 /* radio_selected.png */; };
+		3767FA571D69EAAA004E2945 /* right_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404B91D61EF180076A446 /* right_32.png */; };
+		3767FA581D69EAAA004E2945 /* search_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404BA1D61EF180076A446 /* search_32.png */; };
+		3767FA591D69EAAA004E2945 /* search_white_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404BB1D61EF180076A446 /* search_white_32.png */; };
+		3767FA5A1D69EAAA004E2945 /* seeds_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404BC1D61EF180076A446 /* seeds_32.png */; };
+		3767FA5B1D69EAAA004E2945 /* setup_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404BD1D61EF180076A446 /* setup_32.png */; };
+		3767FA5C1D69EAAA004E2945 /* setup_white_32_cjf.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404BE1D61EF180076A446 /* setup_white_32_cjf.png */; };
+		3767FA5D1D69EAAA004E2945 /* silverCup.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404BF1D61EF180076A446 /* silverCup.png */; };
+		3767FA5E1D69EAAA004E2945 /* sina_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404C01D61EF180076A446 /* sina_32.png */; };
+		3767FA5F1D69EAAA004E2945 /* time_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404CA1D61EF180076A446 /* time_32.png */; };
+		3767FA601D69EAAA004E2945 /* tools_white_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404CC1D61EF180076A446 /* tools_white_32.png */; };
+		3767FA611D69EAAA004E2945 /* user_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404CD1D61EF180076A446 /* user_32.png */; };
+		3767FA621D69EAAA004E2945 /* weixin_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404CE1D61EF180076A446 /* weixin_32.png */; };
+		3767FA631D69EAAA004E2945 /* whiteCup_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB404CF1D61EF180076A446 /* whiteCup_32.png */; };
 		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
 		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
@@ -1310,6 +1356,59 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3767FA371D69EAAA004E2945 /* add_32.png in Resources */,
+				3767FA381D69EAAA004E2945 /* addContact_32.png in Resources */,
+				3767FA391D69EAAA004E2945 /* addContact_white_32_cjf.png in Resources */,
+				3767FA3A1D69EAAA004E2945 /* checkBox.png in Resources */,
+				3767FA3B1D69EAAA004E2945 /* checkBox_selected.png in Resources */,
+				3767FA3C1D69EAAA004E2945 /* comment_32.png in Resources */,
+				3767FA3D1D69EAAA004E2945 /* contacts_32.png in Resources */,
+				3767FA3E1D69EAAA004E2945 /* copperCup.png in Resources */,
+				3767FA3F1D69EAAA004E2945 /* discover_32.png in Resources */,
+				3767FA401D69EAAA004E2945 /* follow_add_32.png in Resources */,
+				3767FA411D69EAAA004E2945 /* follow_cancel_32.png in Resources */,
+				3767FA421D69EAAA004E2945 /* goldCup.png in Resources */,
+				3767FA431D69EAAA004E2945 /* habit_32.png in Resources */,
+				3767FA441D69EAAA004E2945 /* heard_32.png in Resources */,
+				3767FA451D69EAAA004E2945 /* heart2_32.png in Resources */,
+				3767FA461D69EAAA004E2945 /* heart_32.png in Resources */,
+				3767FA471D69EAAA004E2945 /* into_32.png in Resources */,
+				3767FA481D69EAAA004E2945 /* lady_orange_32_cjf.png in Resources */,
+				3767FA491D69EAAA004E2945 /* left_32.png in Resources */,
+				3767FA4A1D69EAAA004E2945 /* lock_32.png in Resources */,
+				3767FA4B1D69EAAA004E2945 /* man_orange_32_cjf.png in Resources */,
+				3767FA4C1D69EAAA004E2945 /* message_32.png in Resources */,
+				3767FA4D1D69EAAA004E2945 /* msg2_32.png in Resources */,
+				3767FA4E1D69EAAA004E2945 /* msg3_32.png in Resources */,
+				3767FA4F1D69EAAA004E2945 /* msg_32.png in Resources */,
+				3767FA501D69EAAA004E2945 /* omit2_32.png in Resources */,
+				3767FA511D69EAAA004E2945 /* omit_32.png in Resources */,
+				3767FA521D69EAAA004E2945 /* phone_32.png in Resources */,
+				3767FA531D69EAAA004E2945 /* portrait_default.jpg in Resources */,
+				3767FA541D69EAAA004E2945 /* qq_32.png in Resources */,
+				3767FA551D69EAAA004E2945 /* radio.png in Resources */,
+				3767FA561D69EAAA004E2945 /* radio_selected.png in Resources */,
+				3767FA571D69EAAA004E2945 /* right_32.png in Resources */,
+				3767FA581D69EAAA004E2945 /* search_32.png in Resources */,
+				3767FA591D69EAAA004E2945 /* search_white_32.png in Resources */,
+				3767FA5A1D69EAAA004E2945 /* seeds_32.png in Resources */,
+				3767FA5B1D69EAAA004E2945 /* setup_32.png in Resources */,
+				3767FA5C1D69EAAA004E2945 /* setup_white_32_cjf.png in Resources */,
+				3767FA5D1D69EAAA004E2945 /* silverCup.png in Resources */,
+				3767FA5E1D69EAAA004E2945 /* sina_32.png in Resources */,
+				3767F9F31D69E21A004E2945 /* discover_normal_32.png in Resources */,
+				3767F9F41D69E21A004E2945 /* discover_selected_32.png in Resources */,
+				3767F9F51D69E21A004E2945 /* habit_normal_32.png in Resources */,
+				3767F9F61D69E21A004E2945 /* habit_selected_32.png in Resources */,
+				3767F9F71D69E21A004E2945 /* mine_normal_32.png in Resources */,
+				3767F9F81D69E21A004E2945 /* mine_selected_32.png in Resources */,
+				3767F9F91D69E21A004E2945 /* msg_normal_32.png in Resources */,
+				3767F9FA1D69E21A004E2945 /* msg_selected_32.png in Resources */,
+				3767FA5F1D69EAAA004E2945 /* time_32.png in Resources */,
+				3767FA601D69EAAA004E2945 /* tools_white_32.png in Resources */,
+				3767FA611D69EAAA004E2945 /* user_32.png in Resources */,
+				3767FA621D69EAAA004E2945 /* weixin_32.png in Resources */,
+				3767FA631D69EAAA004E2945 /* whiteCup_32.png in Resources */,
 				3767FA351D69E950004E2945 /* HabitNotesByTimeCell.xib in Resources */,
 				3767FA281D69E8FF004E2945 /* DiscoverDetailViewController.xib in Resources */,
 				3767FA291D69E8FF004E2945 /* AlbumViewController.xib in Resources */,
@@ -1334,18 +1433,13 @@
 				3767F9681D69E189004E2945 /* DiscoverHotCell.xib in Resources */,
 				3767F9E61D69E21A004E2945 /* list_16.png in Resources */,
 				3767F8C21D6874E6004E2945 /* DeserveUsersListTableViewCell.xib in Resources */,
-				3767F9F91D69E21A004E2945 /* msg_normal_32.png in Resources */,
 				3767F9F11D69E21A004E2945 /* quotation.png in Resources */,
 				3767F8711D658CF4004E2945 /* MsgBubbleTableViewCell.xib in Resources */,
-				3767F9F71D69E21A004E2945 /* mine_normal_32.png in Resources */,
-				3767F9F81D69E21A004E2945 /* mine_selected_32.png in Resources */,
 				37DB26831D4F40A600FA5198 /* LaunchScreen.storyboard in Resources */,
 				3767F9B41D69E1F5004E2945 /* UserInfo_TBHeaderView.xib in Resources */,
-				3767F9F61D69E21A004E2945 /* habit_selected_32.png in Resources */,
 				3767F5AA1D5F4DC5004E2945 /* TreeInfoViewController.xib in Resources */,
 				3767F9F21D69E21A004E2945 /* Smiling_32.png in Resources */,
 				3767F9971D69E1B1004E2945 /* JoinHabitCell.xib in Resources */,
-				3767F9FA1D69E21A004E2945 /* msg_selected_32.png in Resources */,
 				3767F9DC1D69E21A004E2945 /* bug_16.png in Resources */,
 				3767F5931D5F4B81004E2945 /* HabitPreviewView.xib in Resources */,
 				3767F9951D69E1B1004E2945 /* HabitRankingCell.xib in Resources */,
@@ -1370,19 +1464,16 @@
 				3767F9E81D69E21A004E2945 /* listOne_selected_32.png in Resources */,
 				3767F9E51D69E21A004E2945 /* lady_32.jpg in Resources */,
 				3767F9E91D69E21A004E2945 /* listTwo_normal_32.png in Resources */,
-				3767F9F41D69E21A004E2945 /* discover_selected_32.png in Resources */,
 				3767F8D51D6980B5004E2945 /* FollowListTableViewController.xib in Resources */,
 				3767F9E71D69E21A004E2945 /* listOne_normal_32.png in Resources */,
 				3767F9F01D69E21A004E2945 /* placeHolder.png in Resources */,
 				3767F8DD1D6983C2004E2945 /* FollowListTableViewCell.xib in Resources */,
 				3767F8A81D67EDB7004E2945 /* AboutViewController.xib in Resources */,
 				3767F6AA1D61693B004E2945 /* MsgChatViewController.xib in Resources */,
-				3767F9F31D69E21A004E2945 /* discover_normal_32.png in Resources */,
 				3767F5A61D5F4DC5004E2945 /* DiscoverViewController.xib in Resources */,
 				3767F8601D6408C8004E2945 /* MsgConversationListTableViewCell.xib in Resources */,
 				3767F5951D5F4B81004E2945 /* HabitPreviewViewNoImage.xib in Resources */,
 				3767F86C1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib in Resources */,
-				3767F9F51D69E21A004E2945 /* habit_normal_32.png in Resources */,
 				3767F9E11D69E21A004E2945 /* expression_32.png in Resources */,
 				3767F9DE1D69E21A004E2945 /* check_in2.png in Resources */,
 				3767F9DF1D69E21A004E2945 /* contactus.png in Resources */,
@@ -1444,6 +1535,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3767FA361D69E98E004E2945 /* HabitNotesByTimeCell.m in Sources */,
 				3767FA161D69E8C3004E2945 /* Banners.m in Sources */,
 				3767FA171D69E8C3004E2945 /* Comments.m in Sources */,
 				3767FA181D69E8C3004E2945 /* Data.m in Sources */,
