@@ -26,4 +26,14 @@
  */
 -(NSString *)revertTimeamp: (NSString *)time withFormat: (NSString *)format;
 
+
+/**
+ *  提交form-data的数据(主要用于jpg图片的上传)
+ *
+ *  @param url        数据提交地址
+ *  @param parameters 参数
+ *  @param exImgName  图片的参数名(注意：这个参数对应的value值必须为UIImage对象)
+ */
+-(void)submitFormDataToUrl: (NSString *)url withParameters: (NSDictionary *)parameters exImgParameterName: (NSString *)exImgName;
+
 @end

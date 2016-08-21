@@ -31,6 +31,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // 检查是否已经登录
+    [self checkLogin];
+    
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     // 主视图控制器
     self.mainVc = [[CJFTabBarViewController alloc]init];
@@ -39,8 +42,8 @@
     // 显示
     [self.window makeKeyAndVisible];
     
-    // 检查是否已经登录
-    [self checkLogin];
+    
+    
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 //    UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true);

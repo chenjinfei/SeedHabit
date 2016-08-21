@@ -1,22 +1,24 @@
 //
-//  HabitUsersModel.m
+//  HabitCheckInModel.m
 //  mySeedHabit
 //
-//  Created by lanou on 16/8/8.
+//  Created by lanou on 16/8/16.
 //  Copyright © 2016年 Jinfei Chen. All rights reserved.
 //
 
-#import "HabitUsersModel.h"
+#import "HabitCheckInModel.h"
 
-@implementation HabitUsersModel
+@implementation HabitCheckInModel
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {}
+
 
 - (void)setValue:(id)value forKey:(NSString *)key{
     [super setValue:value forKey:key];
     if ([key isEqualToString:@"id"]) {
-        self.uId = [NSString stringWithFormat:@"%@", value];
+        self.idx = [NSString stringWithFormat:@"%@", value];
     }
 }
+
 
 @end

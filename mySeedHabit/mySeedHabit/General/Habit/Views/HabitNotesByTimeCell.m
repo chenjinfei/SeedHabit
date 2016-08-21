@@ -8,6 +8,7 @@
 
 #import "HabitNotesByTimeCell.h"
 #import <UIImageView+WebCache.h>
+#import "AppTools.h"
 
 @implementation HabitNotesByTimeCell
 
@@ -91,6 +92,25 @@
         _comments = comments;
     }
 }
+
++ (CGFloat)heightWithNoteStr:(NSString *)noteStr commentStr:(NSString *)commentStr mind_pic_small:(NSString *)mind_pic_small{
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    
+    UIFont *noteFont = [UIFont systemFontOfSize:17];
+    CGFloat noteHeight = [AppTools heightWithString:noteStr width:width font:noteFont];
+    
+    UIFont *commentFont = [UIFont systemFontOfSize:17];
+    CGFloat commentHeight = [AppTools heightWithString:commentStr width:width font:commentFont];
+    
+    CGFloat imageHeight;
+    if (mind_pic_small == NULL) {
+        imageHeight = 0;
+    }else
+        imageHeight = 300;
+    return noteHeight + 10 + commentHeight + imageHeight;
+}
+
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

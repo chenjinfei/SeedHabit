@@ -56,4 +56,6 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *propUser6;
 
++ (CGFloat)heightWithNoteStr:(NSString *)noteStr commentStr:(NSString *)commentStr mind_pic_small:(NSString *)mind_pic_small;
+
 @end
