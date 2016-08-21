@@ -236,7 +236,6 @@
 		3767F9B41D69E1F5004E2945 /* UserInfo_TBHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F9AB1D69E1F5004E2945 /* UserInfo_TBHeaderView.xib */; };
 		3767F9B51D69E1F5004E2945 /* UserSearchList_TBCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F9AD1D69E1F5004E2945 /* UserSearchList_TBCell.m */; };
 		3767F9B61D69E1F5004E2945 /* UserSearchList_TBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F9AE1D69E1F5004E2945 /* UserSearchList_TBCell.xib */; };
-		3767F9B91D69E206004E2945 /* CJFTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F9B81D69E206004E2945 /* CJFTools.m */; };
 		3767F9DB1D69E21A004E2945 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767F9BA1D69E21A004E2945 /* background.jpg */; };
 		3767F9DC1D69E21A004E2945 /* bug_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F9BB1D69E21A004E2945 /* bug_16.png */; };
 		3767F9DD1D69E21A004E2945 /* check_in1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F9BC1D69E21A004E2945 /* check_in1.png */; };
@@ -528,8 +527,6 @@
 		3767F9AC1D69E1F5004E2945 /* UserSearchList_TBCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSearchList_TBCell.h; sourceTree = "<group>"; };
 		3767F9AD1D69E1F5004E2945 /* UserSearchList_TBCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSearchList_TBCell.m; sourceTree = "<group>"; };
 		3767F9AE1D69E1F5004E2945 /* UserSearchList_TBCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSearchList_TBCell.xib; sourceTree = "<group>"; };
-		3767F9B71D69E206004E2945 /* CJFTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFTools.h; sourceTree = "<group>"; };
-		3767F9B81D69E206004E2945 /* CJFTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFTools.m; sourceTree = "<group>"; };
 		3767F9BA1D69E21A004E2945 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		3767F9BB1D69E21A004E2945 /* bug_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bug_16.png; sourceTree = "<group>"; };
 		3767F9BC1D69E21A004E2945 /* check_in1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_in1.png; sourceTree = "<group>"; };
@@ -1232,8 +1229,6 @@
 		3F1AC42C1D5ADC9C00F10709 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				3767F9B71D69E206004E2945 /* CJFTools.h */,
-				3767F9B81D69E206004E2945 /* CJFTools.m */,
 				3767F8CE1D696023004E2945 /* CJFPlaySound.h */,
 				3767F8CF1D696023004E2945 /* CJFPlaySound.m */,
 			);
@@ -1795,7 +1790,6 @@
 				3767F9B31D69E1F5004E2945 /* UserInfo_TBHeaderView.m in Sources */,
 				3767F5B81D5F4DDB004E2945 /* PropsListTableViewCell.m in Sources */,
 				3767F8B61D683C61004E2945 /* ContactsListTableViewCell.m in Sources */,
-				3767F9B91D69E206004E2945 /* CJFTools.m in Sources */,
 				3767F59B1D5F4D7C004E2945 /* MindNotesModel.m in Sources */,
 				3767F5C61D5F4E2D004E2945 /* UserInfoViewController.m in Sources */,
 				3767F5C51D5F4E2D004E2945 /* UserInfoUpdateViewController.m in Sources */,
