@@ -432,7 +432,6 @@
 		3FB4049D1D61EF180076A446 /* contacts_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contacts_32.png; sourceTree = "<group>"; };
 		3FB4049E1D61EF180076A446 /* copperCup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = copperCup.png; sourceTree = "<group>"; };
 		3FB4049F1D61EF180076A446 /* discover_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = discover_32.png; sourceTree = "<group>"; };
-		3FB404A01D61EF180076A446 /* down32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down32.png; sourceTree = "<group>"; };
 		3FB404A11D61EF180076A446 /* follow_add_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = follow_add_32.png; sourceTree = "<group>"; };
 		3FB404A21D61EF180076A446 /* follow_cancel_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = follow_cancel_32.png; sourceTree = "<group>"; };
 		3FB404A31D61EF180076A446 /* goldCup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldCup.png; sourceTree = "<group>"; };
@@ -991,7 +990,6 @@
 				3FB4049D1D61EF180076A446 /* contacts_32.png */,
 				3FB4049E1D61EF180076A446 /* copperCup.png */,
 				3FB4049F1D61EF180076A446 /* discover_32.png */,
-				3FB404A01D61EF180076A446 /* down32.png */,
 				3FB404A11D61EF180076A446 /* follow_add_32.png */,
 				3FB404A21D61EF180076A446 /* follow_cancel_32.png */,
 				3FB404A31D61EF180076A446 /* goldCup.png */,
