@@ -14,7 +14,6 @@
 		3767F8F21D69D3F1004E2945 /* UIImage+CJFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8E81D69D3F1004E2945 /* UIImage+CJFImage.m */; };
 		3767F8F31D69D3F1004E2945 /* UIImageView+CJFUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8EA1D69D3F1004E2945 /* UIImageView+CJFUIImageView.m */; };
 		3767F8F41D69D3F1004E2945 /* UILabel+LeftTopAlign.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8EC1D69D3F1004E2945 /* UILabel+LeftTopAlign.m */; };
-		3767F8F51D69D3F1004E2945 /* UIView+CJFUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8EE1D69D3F1004E2945 /* UIView+CJFUIView.m */; };
 		3767F8F91D69D431004E2945 /* DiscoverHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8F81D69D431004E2945 /* DiscoverHotCell.xib */; };
 		3767F9001D69D45A004E2945 /* CalendarDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8FB1D69D45A004E2945 /* CalendarDate.m */; };
 		3767F9011D69D45A004E2945 /* HabitCheckInModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8FD1D69D45A004E2945 /* HabitCheckInModel.m */; };
@@ -244,8 +243,6 @@
 		3767F8EA1D69D3F1004E2945 /* UIImageView+CJFUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CJFUIImageView.m"; sourceTree = "<group>"; };
 		3767F8EB1D69D3F1004E2945 /* UILabel+LeftTopAlign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+LeftTopAlign.h"; sourceTree = "<group>"; };
 		3767F8EC1D69D3F1004E2945 /* UILabel+LeftTopAlign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+LeftTopAlign.m"; sourceTree = "<group>"; };
-		3767F8ED1D69D3F1004E2945 /* UIView+CJFUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CJFUIView.h"; sourceTree = "<group>"; };
-		3767F8EE1D69D3F1004E2945 /* UIView+CJFUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CJFUIView.m"; sourceTree = "<group>"; };
 		3767F8F81D69D431004E2945 /* DiscoverHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiscoverHotCell.xib; sourceTree = "<group>"; };
 		3767F8FA1D69D45A004E2945 /* CalendarDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDate.h; sourceTree = "<group>"; };
 		3767F8FB1D69D45A004E2945 /* CalendarDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDate.m; sourceTree = "<group>"; };
@@ -956,8 +953,6 @@
 				3767F8EA1D69D3F1004E2945 /* UIImageView+CJFUIImageView.m */,
 				3767F8EB1D69D3F1004E2945 /* UILabel+LeftTopAlign.h */,
 				3767F8EC1D69D3F1004E2945 /* UILabel+LeftTopAlign.m */,
-				3767F8ED1D69D3F1004E2945 /* UIView+CJFUIView.h */,
-				3767F8EE1D69D3F1004E2945 /* UIView+CJFUIView.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1364,7 +1359,6 @@
 				3F1AC4901D5ADC9C00F10709 /* (null) in Sources */,
 				3F1AC4941D5ADC9C00F10709 /* (null) in Sources */,
 				3767F9021D69D45A004E2945 /* HabitClassifyModel.m in Sources */,
-				3767F8F51D69D3F1004E2945 /* UIView+CJFUIView.m in Sources */,
 				3F1AC4631D5ADC9C00F10709 /* (null) in Sources */,
 				3F1AC4A11D5ADC9C00F10709 /* (null) in Sources */,
 				3767F9251D69D475004E2945 /* HabitRankingCell.m in Sources */,
