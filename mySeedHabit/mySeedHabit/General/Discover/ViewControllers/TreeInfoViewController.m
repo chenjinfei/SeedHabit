@@ -11,6 +11,7 @@
 #import "TreeInfo.h"
 #import <UIImageView+WebCache.h>
 #import "UIColor+CJFColor.h"
+#import "NSString+CJFString.h"
 
 #import<Masonry.h>
 
@@ -32,16 +33,6 @@
 
 @implementation TreeInfoViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-
-    self.navigationController.navigationBarHidden = NO;
-    
-}
-- (void)viewWillDisappear:(BOOL)animated {
-
-    self.navigationController.navigationBarHidden = YES;
-
-}
 #pragma mark 离开这个页面之后停止计时器
 - (void)viewDidDisappear:(BOOL)animated {
     
@@ -89,28 +80,32 @@
                                  };
     [session POST:@"http://api.idothing.com/zhongzi/v2.php/mindNote/getTreeInfo" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        TreeInfo *tree = [[TreeInfo alloc] init];
-        tree = responseObject[@"data"];
+        if ([responseObject[@"status"] integerValue] == 0) {
         
-        self.note.text = [tree valueForKey:@"note"];
-        [self.treeImage sd_setImageWithURL:[NSURL URLWithString:[tree valueForKey:@"tree_address"]] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-        
-        // 时间戳转换
-        // 用户发表时间
-        NSString *timeS = [NSString stringWithFormat:@"%@", [tree valueForKey:@"start_time"]];
-        NSTimeInterval time = [timeS doubleValue];
-        NSDate *detail = [NSDate dateWithTimeIntervalSince1970:time];
-        NSDate *new = [NSDate date];
-        NSTimeInterval interval = [new timeIntervalSinceDate:detail];
-        
-        self.second = (int)interval % 60;
-        self.minute = (int)interval / 60 % 60;
-        self.hour = (int)interval / 3600 % 24;
-        self.day = (int)interval / 3600 / 24;
-//        self.time.text = [NSString stringWithFormat:@"%d  :  %d  :  %d  :  %d", self.day, self.hour, self.minute, self.second];
-        
-        // 开启定时器
-        [self addTimer];
+            TreeInfo *tree = [[TreeInfo alloc] init];
+            tree = responseObject[@"data"];
+            
+            self.note.text = [tree valueForKey:@"note"];
+            [self.treeImage sd_setImageWithURL:[NSURL URLWithString:[tree valueForKey:@"tree_address"]] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+            
+            // 时间戳转换
+            // 用户发表时间
+            NSString *timeS = [NSString stringWithFormat:@"%@", [tree valueForKey:@"start_time"]];
+            NSTimeInterval time = [timeS doubleValue];
+            NSDate *detail = [NSDate dateWithTimeIntervalSince1970:time];
+            NSDate *new = [NSDate date];
+            NSTimeInterval interval = [new timeIntervalSinceDate:detail];
+            
+            self.second = (int)interval % 60;
+            self.minute = (int)interval / 60 % 60;
+            self.hour = (int)interval / 3600 % 24;
+            self.day = (int)interval / 3600 / 24;
+    //        self.time.text = [NSString stringWithFormat:@"%d  :  %d  :  %d  :  %d", self.day, self.hour, self.minute, self.second];
+            
+            // 开启定时器
+            [self addTimer];
+            
+        }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error=%@", error);

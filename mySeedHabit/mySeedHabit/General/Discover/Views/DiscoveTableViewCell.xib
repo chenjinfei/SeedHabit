@@ -51,7 +51,7 @@
                                     <constraint firstAttribute="width" constant="60" id="Nae-J8-qg5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="habit_name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Um1-E2-uYr">
@@ -61,7 +61,7 @@
                                     <constraint firstAttribute="height" constant="21" id="occ-wk-llj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wR-yl-eyn">
@@ -72,6 +72,9 @@
                                 </constraints>
                                 <state key="normal" image="heard_32.png"/>
                                 <state key="selected" image="heart2_32.png"/>
+                                <connections>
+                                    <action selector="propBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RMw-wD-amJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDe-KW-tIc">
                                 <rect key="frame" x="237" y="757" width="32" height="32"/>
@@ -80,6 +83,9 @@
                                     <constraint firstAttribute="height" constant="32" id="LQ5-3U-75m"/>
                                 </constraints>
                                 <state key="normal" image="seeds_32.png"/>
+                                <connections>
+                                    <action selector="treeInfoPush:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7ss-79-zen"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B97-mg-Qga">
                                 <rect key="frame" x="309" y="757" width="32" height="32"/>
@@ -88,6 +94,9 @@
                                     <constraint firstAttribute="width" constant="32" id="hgK-Ci-3bG"/>
                                 </constraints>
                                 <state key="normal" image="omit2_32.png"/>
+                                <connections>
+                                    <action selector="albumPush:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Dbj-dk-gX2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4M-8i-a5D">
                                 <rect key="frame" x="137" y="757" width="32" height="32"/>
@@ -96,6 +105,9 @@
                                     <constraint firstAttribute="height" constant="32" id="zL8-y0-qoM"/>
                                 </constraints>
                                 <state key="normal" image="comment_32.png"/>
+                                <connections>
+                                    <action selector="commentBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Zpm-pf-EcD"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIs-oa-KQe">
                                 <rect key="frame" x="77" y="763" width="20" height="21"/>
@@ -128,9 +140,17 @@
                                 <rect key="frame" x="0.0" y="75" width="394" height="671"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfT-2o-FGS">
+                                <rect key="frame" x="20" y="15" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="HGy-wN-jyB"/>
+                                    <constraint firstAttribute="height" constant="60" id="pTP-bl-RGW"/>
+                                </constraints>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="KfT-2o-FGS" firstAttribute="top" secondItem="fgI-IE-kqO" secondAttribute="top" constant="15" id="0fW-wE-psq"/>
                             <constraint firstItem="exA-EX-rIF" firstAttribute="leading" secondItem="fgI-IE-kqO" secondAttribute="leading" constant="20" id="3bx-PY-o8e"/>
                             <constraint firstItem="v4M-8i-a5D" firstAttribute="top" secondItem="7hz-sQ-olZ" secondAttribute="bottom" constant="10" id="4U8-7f-tfR"/>
                             <constraint firstItem="LKy-d3-cag" firstAttribute="leading" secondItem="fgI-IE-kqO" secondAttribute="leading" id="5sW-iC-9gl"/>
@@ -144,6 +164,7 @@
                             <constraint firstAttribute="trailing" secondItem="LKy-d3-cag" secondAttribute="trailing" id="YOT-ma-JN2"/>
                             <constraint firstItem="7hz-sQ-olZ" firstAttribute="top" secondItem="LKy-d3-cag" secondAttribute="bottom" id="ZQT-9v-omj"/>
                             <constraint firstAttribute="bottom" secondItem="7wR-yl-eyn" secondAttribute="bottom" constant="10" id="aIN-AQ-1ch"/>
+                            <constraint firstItem="KfT-2o-FGS" firstAttribute="leading" secondItem="fgI-IE-kqO" secondAttribute="leading" constant="20" id="bIr-RK-vWQ"/>
                             <constraint firstItem="Um1-E2-uYr" firstAttribute="top" secondItem="UoQ-4N-QnJ" secondAttribute="bottom" constant="18" id="bpw-yA-7nh"/>
                             <constraint firstAttribute="bottom" secondItem="pE0-oK-N0d" secondAttribute="bottom" constant="15" id="cez-r1-fS3"/>
                             <constraint firstItem="v4M-8i-a5D" firstAttribute="leading" secondItem="ZIs-oa-KQe" secondAttribute="trailing" constant="40" id="d9t-Bv-Hna"/>
@@ -172,6 +193,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="add_time" destination="UoQ-4N-QnJ" id="11B-Pg-zeQ"/>
+                <outlet property="avatarBtn" destination="KfT-2o-FGS" id="LaH-hq-oJI"/>
                 <outlet property="backgroundV" destination="fgI-IE-kqO" id="O6A-Ra-5r5"/>
                 <outlet property="check_in_time" destination="fbT-VI-pUR" id="CO2-Qn-k81"/>
                 <outlet property="commentBtn" destination="v4M-8i-a5D" id="GY6-6B-mbo"/>

@@ -33,6 +33,7 @@
 		37DB27121D4F9B7200FA5198 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		3F7A5A221D6303C000279F41 /* UIButton+CJFUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A5A1F1D6303C000279F41 /* UIButton+CJFUIButton.m */; settings = {ASSET_TAGS = (); }; };
 		3F7A5A231D6303C000279F41 /* UIImage+CJFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7A5A211D6303C000279F41 /* UIImage+CJFImage.m */; settings = {ASSET_TAGS = (); }; };
+		3FA8B85A1D6995C2003F2F47 /* UIView+CJFUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8B8591D6995C2003F2F47 /* UIView+CJFUIView.m */; settings = {ASSET_TAGS = (); }; };
 		3FB403D91D61EE420076A446 /* NSString+CJFString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403BF1D61EE420076A446 /* NSString+CJFString.m */; settings = {ASSET_TAGS = (); }; };
 		3FB403DB1D61EE420076A446 /* UIColor+CJFColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403C31D61EE420076A446 /* UIColor+CJFColor.m */; settings = {ASSET_TAGS = (); }; };
 		3FB403DD1D61EE420076A446 /* UIImageView+CJFUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB403C71D61EE420076A446 /* UIImageView+CJFUIImageView.m */; settings = {ASSET_TAGS = (); }; };
@@ -182,6 +183,10 @@
 		3FB4051B1D61EF9D0076A446 /* HabitPreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F58C1D5F4B81004E2945 /* HabitPreviewView.xib */; };
 		3FB4051C1D61EF9D0076A446 /* HabitPreviewViewNoImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F58F1D5F4B81004E2945 /* HabitPreviewViewNoImage.xib */; };
 		3FB4051D1D61EFD20076A446 /* MindNotesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F59A1D5F4D7C004E2945 /* MindNotesModel.m */; };
+		3FC17F401D68961F0067AAFB /* DiscoverDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC17F3E1D68961F0067AAFB /* DiscoverDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3FC17F411D68961F0067AAFB /* DiscoverDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FC17F3F1D68961F0067AAFB /* DiscoverDetailViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		3FF612011D6445DD009409A0 /* Smiling_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FF612001D6445DD009409A0 /* Smiling_32.png */; settings = {ASSET_TAGS = (); }; };
+		3FF612041D64ABBA009409A0 /* SearchHabit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FF612031D64ABBA009409A0 /* SearchHabit.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -234,6 +239,8 @@
 		3F7A5A1F1D6303C000279F41 /* UIButton+CJFUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CJFUIButton.m"; sourceTree = "<group>"; };
 		3F7A5A201D6303C000279F41 /* UIImage+CJFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CJFImage.h"; sourceTree = "<group>"; };
 		3F7A5A211D6303C000279F41 /* UIImage+CJFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CJFImage.m"; sourceTree = "<group>"; };
+		3FA8B8581D6995C2003F2F47 /* UIView+CJFUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CJFUIView.h"; sourceTree = "<group>"; };
+		3FA8B8591D6995C2003F2F47 /* UIView+CJFUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CJFUIView.m"; sourceTree = "<group>"; };
 		3FB403BE1D61EE420076A446 /* NSString+CJFString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CJFString.h"; sourceTree = "<group>"; };
 		3FB403BF1D61EE420076A446 /* NSString+CJFString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CJFString.m"; sourceTree = "<group>"; };
 		3FB403C21D61EE420076A446 /* UIColor+CJFColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CJFColor.h"; sourceTree = "<group>"; };
@@ -423,6 +430,12 @@
 		3FB404CD1D61EF180076A446 /* user_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_32.png; sourceTree = "<group>"; };
 		3FB404CE1D61EF180076A446 /* weixin_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weixin_32.png; sourceTree = "<group>"; };
 		3FB404CF1D61EF180076A446 /* whiteCup_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteCup_32.png; sourceTree = "<group>"; };
+		3FC17F3D1D68961F0067AAFB /* DiscoverDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverDetailViewController.h; sourceTree = "<group>"; };
+		3FC17F3E1D68961F0067AAFB /* DiscoverDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverDetailViewController.m; sourceTree = "<group>"; };
+		3FC17F3F1D68961F0067AAFB /* DiscoverDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiscoverDetailViewController.xib; sourceTree = "<group>"; };
+		3FF612001D6445DD009409A0 /* Smiling_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Smiling_32.png; sourceTree = "<group>"; };
+		3FF612021D64ABBA009409A0 /* SearchHabit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchHabit.h; sourceTree = "<group>"; };
+		3FF612031D64ABBA009409A0 /* SearchHabit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchHabit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -576,6 +589,8 @@
 				3FB403F51D61EE570076A446 /* TreeInfo.m */,
 				3FB403F61D61EE570076A446 /* Users.h */,
 				3FB403F71D61EE570076A446 /* Users.m */,
+				3FF612021D64ABBA009409A0 /* SearchHabit.h */,
+				3FF612031D64ABBA009409A0 /* SearchHabit.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -583,9 +598,13 @@
 		3F1AC3BD1D5ADC9C00F10709 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3FF612001D6445DD009409A0 /* Smiling_32.png */,
 				3767F59C1D5F4DC5004E2945 /* DiscoverViewController.h */,
 				3767F59D1D5F4DC5004E2945 /* DiscoverViewController.m */,
 				3767F59E1D5F4DC5004E2945 /* DiscoverViewController.xib */,
+				3FC17F3D1D68961F0067AAFB /* DiscoverDetailViewController.h */,
+				3FC17F3E1D68961F0067AAFB /* DiscoverDetailViewController.m */,
+				3FC17F3F1D68961F0067AAFB /* DiscoverDetailViewController.xib */,
 				3767F59F1D5F4DC5004E2945 /* PropsListViewController.h */,
 				3767F5A01D5F4DC5004E2945 /* PropsListViewController.m */,
 				3767F5A11D5F4DC5004E2945 /* PropsListViewController.xib */,
@@ -819,6 +838,8 @@
 		3FB403BD1D61EE420076A446 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				3FA8B8581D6995C2003F2F47 /* UIView+CJFUIView.h */,
+				3FA8B8591D6995C2003F2F47 /* UIView+CJFUIView.m */,
 				3F7A5A1E1D6303C000279F41 /* UIButton+CJFUIButton.h */,
 				3F7A5A1F1D6303C000279F41 /* UIButton+CJFUIButton.m */,
 				3F7A5A201D6303C000279F41 /* UIImage+CJFImage.h */,
@@ -1020,6 +1041,7 @@
 				3FB404EE1D61EF180076A446 /* omit_32.png in Resources */,
 				3FB404D51D61EF180076A446 /* check_in2.png in Resources */,
 				3FB404F51D61EF180076A446 /* right_32.png in Resources */,
+				3FC17F411D68961F0067AAFB /* DiscoverDetailViewController.xib in Resources */,
 				3FB4046A1D61EEC20076A446 /* AddFriendsViewController.xib in Resources */,
 				3FB404DD1D61EF180076A446 /* follow_add_32.png in Resources */,
 				3FB404E31D61EF180076A446 /* heart_32.png in Resources */,
@@ -1072,6 +1094,7 @@
 				3FB404701D61EEC20076A446 /* LogoutTableViewCell.xib in Resources */,
 				3FB404FB1D61EF180076A446 /* silverCup.png in Resources */,
 				3FB404E41D61EF180076A446 /* into_32.png in Resources */,
+				3FF612011D6445DD009409A0 /* Smiling_32.png in Resources */,
 				3FB404DC1D61EF180076A446 /* down32.png in Resources */,
 				3FB404F61D61EF180076A446 /* search_32.png in Resources */,
 				3FB404D81D61EF180076A446 /* comment_32.png in Resources */,
@@ -1171,11 +1194,13 @@
 				3FB403FC1D61EE570076A446 /* Note.m in Sources */,
 				3FB404001D61EE570076A446 /* Users.m in Sources */,
 				3FB403E21D61EE420076A446 /* RadioGroup.m in Sources */,
+				3FA8B85A1D6995C2003F2F47 /* UIView+CJFUIView.m in Sources */,
 				3FB4044C1D61EEAD0076A446 /* ContactsViewController.m in Sources */,
 				3FB403F81D61EE570076A446 /* Banners.m in Sources */,
 				3FB403FF1D61EE570076A446 /* TreeInfo.m in Sources */,
 				3FB403FE1D61EE570076A446 /* Props.m in Sources */,
 				3FB404241D61EE890076A446 /* HabitPropsModel.m in Sources */,
+				3FF612041D64ABBA009409A0 /* SearchHabit.m in Sources */,
 				3FB404421D61EE9D0076A446 /* HabitNotesByTimeCell.m in Sources */,
 				3FB404841D61EECD0076A446 /* UserHaBitList_TBCell.m in Sources */,
 				3FB404401D61EE9D0076A446 /* HabitCheckInCell.m in Sources */,
@@ -1209,6 +1234,7 @@
 				3FB4041E1D61EE890076A446 /* HabitCommentsModel.m in Sources */,
 				3FB403D91D61EE420076A446 /* NSString+CJFString.m in Sources */,
 				3FB404331D61EE930076A446 /* HabitViewController.m in Sources */,
+				3FC17F401D68961F0067AAFB /* DiscoverDetailViewController.m in Sources */,
 				3FB404511D61EEB60076A446 /* SeedUser.m in Sources */,
 				3FB403E11D61EE420076A446 /* PinterestLayout.m in Sources */,
 				3FB4041F1D61EE890076A446 /* HabitHabitsModel.m in Sources */,

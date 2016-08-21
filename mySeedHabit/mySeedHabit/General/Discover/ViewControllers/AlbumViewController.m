@@ -28,17 +28,6 @@
 
 @implementation AlbumViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    
-    self.navigationController.navigationBarHidden = NO;
-    
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    
-    self.navigationController.navigationBarHidden = YES;
-    
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -70,32 +59,48 @@
          *  将图片保存到 本地相册
          *  @param getImageFromView:self.view]                                   传递一个 image
          */
-         UIImageWriteToSavedPhotosAlbum([self getImageFromView:self.view], self, @selector(imageSavedToPhotosAlbum:didFinishSavingWithError:contextInfo:), nil);
+        
+        UIGraphicsEndImageContext();
+        
+        // 保存未截图之前的偏移位置
+        CGPoint p = self.scrollView.contentOffset;
+        
+        self.scrollView.bounds = CGRectMake(0, 0, self.scrollView.contentSize.width, self.scrollView.contentSize.height);
+        
+        UIImage *tmpImage = nil;
+        // 将 view 转为 图片
+        UIGraphicsBeginImageContextWithOptions(self.scrollView.contentSize, YES, 0.0);
+        {
+            CGPoint saveContentOffset = self.scrollView.contentOffset;
+            CGRect savedFrame = self.scrollView.frame;
+            self.scrollView.contentOffset = CGPointZero;
+            self.scrollView.frame = CGRectMake(0, 0, self.scrollView.contentSize.width, self.scrollView.contentSize.height);
+            
+            [self.scrollView.layer renderInContext:UIGraphicsGetCurrentContext()];
+            tmpImage = UIGraphicsGetImageFromCurrentImageContext();
+            
+            self.scrollView.contentOffset = saveContentOffset;
+            self.scrollView.frame = savedFrame;
+            NSLog(@"%f, %f", self.scrollView.frame.size.height, self.scrollView.contentOffset.y);
+        }
+        
+        UIGraphicsEndImageContext();
+        
+        UIImageWriteToSavedPhotosAlbum(tmpImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        
+        self.scrollView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+        // 截图之后偏移位置为未截图之前的位置
+        self.scrollView.contentOffset = p;
         
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"不" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
     }]];
     
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-#pragma mark 将 view 转换为 iamge
--(UIImage *)getImageFromView:(UIView *)theView
-{
-    //UIGraphicsBeginImageContext(theView.bounds.size);
-    // 使接收机及其子层到指定的上下文。图形上下文使用呈现层。参数ctx图形上下文使用呈现层。
-    UIGraphicsBeginImageContextWithOptions(theView.bounds.size, YES, theView.layer.contentsScale);
-    [theView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    
-    // 返回一个图像基于当前基于位图的图形上下文的内容。一个图片对象包含当前位图图形上下文的内容。返回一个图片对象包含当前位图图形上下文的内容。
-    UIImage *image=UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
-}
-
 #pragma mark 将图片保存到本地
-- (void)imageSavedToPhotosAlbum:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
     NSString *message = @"呵呵";
     if (!error) {
@@ -105,6 +110,7 @@
         message = [error description];
     }
     NSLog(@"message is %@",message);
+    
 }
 
 #pragma mark 建立 自适应
@@ -139,11 +145,11 @@
     
     if (self.mind_note.length > 0) {
         self.noteHeight = [AppTools heightWithString:self.mind_note width:self.contentView.bounds.size.width font:[UIFont boldSystemFontOfSize:17]];
-        NSLog(@"%f", self.noteHeight);
+//        NSLog(@"%f", self.noteHeight);
         
         // 设置 LAbel
         self.label.text = self.mind_note;
-        self.label.numberOfLines = 10;
+        self.label.numberOfLines = 0;
         
         [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
              make.left.mas_equalTo(self.contentView).with.offset(0);
@@ -161,30 +167,6 @@
         self.noteHeight = 0;
     
 }
-
-#pragma mark //UIImage -> PNG / JPG
-- (void)makingImage:(UIImage *)image {
-
-    NSString *pngPath= [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Test.png"];
-    NSString *jpgPath =[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/Test.jpg"];
-    NSLog(@"%@", [NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES) firstObject]);
-    [UIImageJPEGRepresentation(image,1.0) writeToFile:jpgPath atomically:YES];
-    
-    // Write image to PNG
-    [UIImagePNGRepresentation(image) writeToFile:pngPath atomically:YES];
-    
-    // Let's check to see if files were successfully written...
-    // Create file manager
-    NSError*error;
-    NSFileManager*fileMgr=[NSFileManager defaultManager];
-    
-    // Point to Document directory
-    NSString*documentsDirectory =[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    
-    // Write out the contents of home directory to console
-    NSLog(@"Documentsdirectory: %@", [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
-}
-
 #pragma mark 更新约束
 - (void)updateViewConstraints {
     

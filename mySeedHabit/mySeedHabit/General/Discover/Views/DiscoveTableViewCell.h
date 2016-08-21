@@ -16,30 +16,8 @@
 #import "Comments.h"
 #import "Props.h"
 
-// 代理方法
-@protocol pushDelegate <NSObject>
-
-- (void)propsListPush:(id)sender;
-- (void)treeInfoPush:(id)sender;
-- (void)albumPush:(id)sender;
-- (void)habitPush:(id)sender;
-- (void)propBtnAction:(id)sender;
-- (void)commentBtnAction:(id)sender;
-/*
-- (void)keepPropsListPush:(id)sender;
-- (void)keepTreeInfoPush:(id)sender;
-- (void)keepAlbumPush:(id)sender;
-
-- (void)newPropsListPush:(id)sender;
-- (void)newTreeInfoPush:(id)sender;
-- (void)newAlbumPush:(id)sender;
-*/
-@end
-
 @interface DiscoveTableViewCell : UITableViewCell
 
-// 代理
-@property (nonatomic, assign) id<pushDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UIButton *propBtn;
 @property (strong, nonatomic) IBOutlet UILabel *propNumber;
 @property (strong, nonatomic) IBOutlet UIButton *commentBtn;
@@ -47,12 +25,15 @@
 @property (strong, nonatomic) IBOutlet UIButton *seedBtn;
 @property (strong, nonatomic) IBOutlet UIButton *omitBtn;
 @property (nonatomic, strong) UIButton *propListBtn;
+@property (nonatomic, strong) UIButton *propInfoBtn;
 @property (nonatomic, strong) UIButton *habitNameBtn;
+@property (strong, nonatomic) IBOutlet UIButton *avatarBtn;
 
 // Model
 @property (nonatomic, strong) Users *users;
 @property (nonatomic, strong) Note *note;
 @property (nonatomic, strong) Notes *notes;
+@property (nonatomic, strong) Notes *newsNotes;
 @property (nonatomic, strong) Habits *habits;
 @property (nonatomic, strong) Comments *comments;
 @property (nonatomic, strong) Props *props;
@@ -68,5 +49,11 @@
 - (CGFloat)Height;
 
 @property (nonatomic, strong) NSArray *usersArr;
+@property (nonatomic, strong) NSArray *newsUserArr;
+
+@property (nonatomic, strong) NSMutableArray *imageArr;
+
+// 内容图片
+@property (nonatomic, strong) UIImageView *contentImageV;
 
 @end

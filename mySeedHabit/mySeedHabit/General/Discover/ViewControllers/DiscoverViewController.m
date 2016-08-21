@@ -10,19 +10,22 @@
 #import "PropsListViewController.h"
 #import "TreeInfoViewController.h"
 #import "AlbumViewController.h"
+#import "DiscoveTableViewCell.h"
+#import "UserCenterViewController.h"
+#import "UserSearchList_TBCell.h"
+#import "DiscoverDetailViewController.h"
 
 #import "UIColor+CJFColor.h"
-#import "UserManager.h"
 #import "CJFTools.h"
-#import "SeedUser.h"
 #import "KeyboardObserved.h"
-
 #import <XRCarouselView.h>
 #import <UIImageView+WebCache.h>
 #import <UIButton+WebCache.h>
 #import <Masonry.h>
 #import "YHJTabPageScrollView.h"
 #import <MJRefresh.h>
+#import "NSString+CJFString.h"
+#import "CJFTools.h"
 
 #import "Users.h"
 #import "Habits.h"
@@ -30,12 +33,13 @@
 #import "Props.h"
 #import "Comments.h"
 #import "Notes.h"
+#import "SearchHabit.h"
 
-#import "DiscoveTableViewCell.h"
-#import "UserCenterViewController.h"
+#import "UserManager.h"
+#import "SeedUser.h"
 
 
-@interface DiscoverViewController () <UITableViewDataSource, UITableViewDelegate, pushDelegate, UITextViewDelegate>
+@interface DiscoverViewController () <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate>
 {
     UITableView *hotTabelView;
     UITableView *keepTableView;
@@ -44,7 +48,6 @@
     DiscoveTableViewCell *hotCell;
     DiscoveTableViewCell *keepCell;
     DiscoveTableViewCell *NewCell;
-    
 }
 
 // 导航栏列表
@@ -84,18 +87,34 @@
 // 键盘输入框
 @property (nonatomic, strong) UITextView *textView;
 
+// 搜索的tableView
+@property (nonatomic, strong) UITableView *searchTableView;
+@property (nonatomic, strong) UISearchController *searchController;
+@property (nonatomic, strong) NSMutableArray *searchList;
+@property (nonatomic, strong) NSMutableArray *searchDataList;
+
+@property (nonatomic, strong) NSMutableArray *imageArr;
+
 @end
 
 // 上拉加载
 static BOOL hotFlag = 0;
-//static BOOL keepFlag = 0;
-//static BOOL newestFlag = 0;
+static BOOL keepFlag = 0;
+static BOOL newestFlag = 0;
 // 判断是否下拉刷新
-static BOOL isHotRefresh = 0;
-//static BOOL isKeepRefresh = 0;
-//static BOOL isNewRefresh = 0;
+static BOOL isHotRefresh = 1;
+static BOOL isKeepRefresh = 0;
+static BOOL isNewRefresh = 1;
 
 @implementation DiscoverViewController
+
+- (NSMutableArray *)imageArr {
+    
+    if (_imageArr == nil) {
+        _imageArr = [[NSMutableArray alloc] init];
+    }
+    return _imageArr;
+}
 
 // 热门
 - (NSMutableArray *)usersArr {
@@ -168,7 +187,7 @@ static BOOL isHotRefresh = 0;
 
 // 轮播广告
 - (NSMutableArray *)carPicArr {
-
+    
     if (_carPicArr == nil) {
         _carPicArr = [[NSMutableArray alloc] init];
     }
@@ -176,13 +195,12 @@ static BOOL isHotRefresh = 0;
 }
 // 存储loadData参数的数据
 - (NSMutableString *)mReadStr {
-
+    
     if (_mReadStr == nil) {
         _mReadStr = [[NSMutableString alloc] init];
     }
     return _mReadStr;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -194,12 +212,10 @@ static BOOL isHotRefresh = 0;
     
     // 创建tableView
     [self createTableView];
-    // 搜索框
-    [self createSearch];
-    
     // 头部滑动
     [self createHeadList];
-   
+    // 搜索框
+    [self createSearch];
     // 上下拉刷新
     [self Refresh];
     
@@ -210,16 +226,15 @@ static BOOL isHotRefresh = 0;
     
     self.navigationController.navigationBarHidden = YES;
     
-    // 加载数据
+    //     加载数据
     [self hotLoadData];
-//    [self NewestLoadData];
-//    [self keepLoadData];
+    [self NewestLoadData];
+    [self keepLoadData];
     
 }
-
 #pragma mark 即将离开这个控制器
 - (void)viewWillDisappear:(BOOL)animated {
-
+    
     self.navigationController.navigationBarHidden = NO;
     
 }
@@ -230,20 +245,21 @@ static BOOL isHotRefresh = 0;
     __weak typeof (self) weakSelf = self;
     
     // hotTableView上拉下拉
-//    hotTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        NSLog(@"下拉刷新？");
-//        isHotRefresh = 1;
-//        [weakSelf hotLoadData];
-//    }];
+    hotTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        NSLog(@"下拉刷新？");
+        isHotRefresh = 0;
+        hotFlag = 0;
+        [weakSelf hotLoadData];
+    }];
     hotTabelView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         // 加载完第一次之后，flag == 1
         NSLog(@"上拉加载");
-        isHotRefresh = 0;
+        isHotRefresh = 1;
         hotFlag = 1;
         [weakSelf hotLoadData];
     }];
-
-    /*
+    
+    
     // keepTableView上拉下拉
     keepTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         NSLog(@"下拉加载， 自动加载？");
@@ -255,26 +271,27 @@ static BOOL isHotRefresh = 0;
         keepFlag = 1;
         [weakSelf keepLoadData];
     }];
-
+    
     // newestTableView上拉下拉
     newestTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         NSLog(@"下拉加载， 自动加载？");
-        isNewRefresh = 1;
+        isNewRefresh = 0;
+        newestFlag = 0;
         [weakSelf NewestLoadData];
     }];
     newestTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         // 加载完第一次之后，flag == 1
         NSLog(@"上拉刷新");
-        isNewRefresh = 0;
+        isNewRefresh = 1;
         newestFlag = 1;
         [weakSelf NewestLoadData];
     }];
-    */
+    
 }
 
-#pragma mark 创建 头部滚动列表
+#pragma mark 创建 ==========头部滚动列表=========
 - (void)createHeadList {
-   
+    
     NSArray *pageItems = @[
                            [[YHJTabPageScrollViewPageItem alloc] initWithTabName:@"热门" andTabView:hotTabelView],
                            [[YHJTabPageScrollViewPageItem alloc] initWithTabName:@"关注" andTabView:keepTableView],
@@ -293,18 +310,196 @@ static BOOL isHotRefresh = 0;
     
 }
 
-#pragma mark 创建 搜索框
--(void)createSearch {
+#pragma mark 热门轮播图
+- (void)createXRCarousel {
+    
+    self.carouselView = [[XRCarouselView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3)];
+    
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    
+    NSDictionary *parameters = @{
+                                 @"user_id":self.user.uId
+                                 // 列出轮播图和习惯
+                                 // http://api.idothing.com/zhongzi/v2.php/ChoiceNote/listBannersAndHabits
+                                 // user_id=1850878
+                                 };
+    [session POST:APIBannersAndHabits parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //        NSLog(@"ok === %@", responseObject);
+        //        ULog(@"%@", responseObject);
+        
+        if ([responseObject[@"status"] integerValue] == 0) {
+            
+            NSArray *dataArr = responseObject[@"data"][@"banners"];
+            
+            for (NSDictionary *dict in dataArr) {
+                [self.carPicArr addObject:dict[@"banner_pic"]];
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.carouselView.contentMode = UIViewContentModeScaleAspectFit;
+                self.carouselView.imageArray = self.carPicArr;
+                self.carouselView.time = 2.5;
+            });
+            
+        }
+    }
+          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+              NSLog(@"%@", error);
+          }];
+    
+}
 
+#pragma mark 创建 ==========搜索框==========
+-(void)createSearch {
+    
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
     btn.backgroundColor = [UIColor clearColor];
     [self.view addSubview:btn];
     btn.frame = CGRectMake(SCREEN_WIDTH-35, 30, 20, 20);
     [btn setBackgroundImage:[UIImage imageNamed:@"search_white_32.png"] forState:UIControlStateNormal];
     
+    [btn addTarget:self action:@selector(searchAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+#pragma mark 搜索
+- (void)searchAction:(id)sender {
+    
+    NSLog(@"开启吧，搜索框！");
+    
+    self.searchList = [NSMutableArray array];
+    self.searchDataList = [NSMutableArray array];
+    
+    self.searchTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-49) style:UITableViewStylePlain];
+    //    self.searchTableView.backgroundColor = [UIColor redColor];
+    self.searchTableView.delegate = self;
+    self.searchTableView.dataSource = self;
+    self.searchTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    // 创建uisearchController
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.delegate = self;
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.searchBar.delegate = self;
+    
+    // 设置UISearchController的显示属性，以下3属性默认为YES
+    // 搜索时，背景边暗色
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    // 搜索时，背景变模糊
+    //    self.searchController.obscuresBackgroundDuringPresentation = YES;
+    // 搜索时，隐藏导航栏
+    //    self.searchController.hidesNavigationBarDuringPresentation = YES;
+    
+    self.searchController.searchBar.hidden = YES;
+    self.searchController.searchBar.frame = CGRectMake(0, 20, SCREEN_WIDTH, 44);
+    self.searchController.searchBar.barTintColor = [UIColor colorWithHexString:UIMainColor alpha:1];
+    self.searchController.searchBar.tintColor = [UIColor whiteColor];
+    self.searchController.searchBar.searchBarStyle = UISearchBarStyleDefault;
+    self.searchController.searchBar.placeholder = @"输入您所感兴趣的习惯";
+    
+    [self.searchController.searchBar becomeFirstResponder];
+    
+    // 添加searchbar到self.view
+    [self.view addSubview:self.searchController.searchBar];
+    [self.searchController.view addSubview:self.searchTableView];
+    
+    
+}
+#pragma mark - UISearchControllerDelegate代理
+- (void)willPresentSearchController:(UISearchController *)searchController
+{
+    NSLog(@"willPresentSearchController");
+    
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [self.view addSubview:v];
+    v.backgroundColor =RGBA(240, 240, 240, 1);
+    v.tag = 13;
+    self.tabBarController.tabBar.hidden = YES;
+}
+- (void)didPresentSearchController:(UISearchController *)searchController
+{
+    NSLog(@"didPresentSearchController");
+    searchController.searchBar.hidden=  NO;
+    searchController.searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44);
+    
+}
+- (void)willDismissSearchController:(UISearchController *)searchController
+{
+    NSLog(@"willDismissSearchController");
+    self.tabBarController.tabBar.hidden= NO;
+}
+- (void)didDismissSearchController:(UISearchController *)searchController
+{
+    NSLog(@"didDismissSearchController");
+    searchController.searchBar.hidden = YES;
+    UIView *temp = [self.view viewWithTag:13];
+    [temp removeFromSuperview];
+    
+}
+- (void)presentSearchController:(UISearchController *)searchController
+{
+    //    self.navigationController.navigationBar.hidden = YES;
+    NSLog(@"presentSearchController");
+}
+-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    
+    NSLog(@"updateSearchResultsForSearchController");
+    
+    [self searchLoadData];
+    
+    
+}
+#pragma mark 点击键盘搜索按钮的响应事件
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    
+    NSLog(@"search");
+    
+    [self searchLoadData];
+    
+    
+}
+#pragma mark 搜索框搜索加载数据
+- (void)searchLoadData {
+    
+    NSString *searchString = [self.searchController.searchBar text];
+    
+    if (![NSString isValidateEmpty:searchString]) {
+        
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        NSDictionary *parameters = @{
+                                     @"name": searchString,
+                                     @"num": @20
+                                     };
+        [session POST:APISearchHabit parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if ([responseObject[@"status"] integerValue] == 0) {
+                
+                if (self.searchList!= nil) {
+                    [self.searchList removeAllObjects];
+                }
+                if (self.searchDataList!= nil) {
+                    [self.searchDataList removeAllObjects];
+                }
+                for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
+                    //                    SeedUser *model = [[SeedUser alloc]init];
+                    //                    [model setValuesForKeysWithDictionary:dict];
+                    SearchHabit *model = [[SearchHabit alloc] init];
+                    [model setValuesForKeysWithDictionary:dict];
+                    [self.searchList addObject:model];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.searchDataList = self.searchList;
+                    [self.searchTableView reloadData];
+                });
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+        }];
+    }else {
+        NSLog(@"搜索内容为空，请输入搜索内容！");
+    }
+    
 }
 
-#pragma mark 创建 Tableview
+#pragma mark 创建 ==========Tableview==========
 - (void)createTableView {
     
     // 轮播
@@ -317,31 +512,33 @@ static BOOL isHotRefresh = 0;
     
 }
 - (UITableView *)createTableViewWithidentifier:(NSString *)identifier {
-
+    
     // 不可以直接 创一个 空的 tableView进来
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [tableView registerNib:[UINib nibWithNibName:@"DiscoveTableViewCell" bundle:nil] forCellReuseIdentifier:identifier];
-
+    
     return tableView;
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if ([tableView isEqual:hotTabelView]) {
         
         hotCell = [tableView dequeueReusableCellWithIdentifier:@"DiscoverHot"];
+        hotTabelView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        hotCell.imageArr = self.imageArr;
         hotCell.usersArr = self.usersArr;
         
         Notes *notes = self.notesArr[indexPath.row];
         hotCell.notes = notes;
         Note *note = notes.note;
+        hotCell.propBtn.selected = NO;
         
         for (Habits *habits in self.habitsArr) {
             if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
-               hotCell.habits = habits;
+                hotCell.habits = habits;
             }
         }
         for (Users *users in self.usersArr) {
@@ -350,25 +547,19 @@ static BOOL isHotRefresh = 0;
             }
         }
         
-        // 自定义cell代理方法
-        hotCell.delegate = self;
-        [hotCell.propListBtn addTarget:self action:@selector(propsListPush:) forControlEvents:UIControlEventTouchUpInside];
-        [hotCell.seedBtn addTarget:self action:@selector(treeInfoPush:) forControlEvents:UIControlEventTouchUpInside];
-        [hotCell.omitBtn addTarget:self action:@selector(albumPush:) forControlEvents:UIControlEventTouchUpInside];
-        [hotCell.habitNameBtn addTarget:self action:@selector(habitPush:) forControlEvents:UIControlEventTouchUpInside];
-        [hotCell.propBtn addTarget:self action:@selector(propBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        [hotCell.commentBtn addTarget:self action:@selector(commentBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        
         return hotCell;
     }
-    /*
+    
     else if ([tableView isEqual:keepTableView]) {
         
         keepCell = [tableView dequeueReusableCellWithIdentifier:@"DiscoverKeep"];
-        
+        keepTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        keepCell.imageArr = self.imageArr;
+        keepCell.usersArr = self.keepUsersArr;
         Notes *notes = self.keepNotesArr[indexPath.row];
         keepCell.notes = notes;
         Note *note = notes.note;
+        keepCell.propBtn.selected = NO;
         
         for (Habits *habits in self.keepHabitsArr) {
             if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
@@ -380,11 +571,6 @@ static BOOL isHotRefresh = 0;
                 keepCell.users = users;
             }
         }
-
-//        keepCell.delegate = self;
-//        [keepCell.propListBtn addTarget:self action:@selector(keepPropsListPush:) forControlEvents:UIControlEventTouchUpInside];
-//        [keepCell.seedBtn addTarget:self action:@selector(keepTreeInfoPush:) forControlEvents:UIControlEventTouchUpInside];
-//        [keepCell.omitBtn addTarget:self action:@selector(keepAlbumPush:) forControlEvents:UIControlEventTouchUpInside];
         
         return keepCell;
     }
@@ -392,11 +578,15 @@ static BOOL isHotRefresh = 0;
     
     else if ([tableView isEqual:newestTableView]){
         
-        NewCell = [tableView dequeueReusableCellWithIdentifier:@"DiscoverNewst"];
-        
+        NewCell = [tableView dequeueReusableCellWithIdentifier:@"DiscoverNewst" forIndexPath:indexPath]; 
+        newestTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        NewCell.imageArr = self.imageArr;
+        NewCell.usersArr = self.NewUsersArr;
         Notes *notes = self.NewNotesArr[indexPath.row];
+        
         NewCell.notes = notes;
         Note *note = notes.note;
+        NewCell.propBtn.selected = NO;
         
         for (Habits *habits in self.NewHabitsArr) {
             if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
@@ -409,60 +599,51 @@ static BOOL isHotRefresh = 0;
             }
         }
         
-//        NewCell.delegate = self;
-//        [NewCell.propListBtn addTarget:self action:@selector(newPropsListPush:) forControlEvents:UIControlEventTouchUpInside];
-//        [NewCell.seedBtn addTarget:self action:@selector(newTreeInfoPush:) forControlEvents:UIControlEventTouchUpInside];
-//        [NewCell.omitBtn addTarget:self action:@selector(newAlbumPush:) forControlEvents:UIControlEventTouchUpInside];
-
         return NewCell;
     }
-    */
+    
+    // 搜索框上的tableView
+    else if ([tableView isEqual:self.searchTableView]) {
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"search"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"search"];
+        }
+        
+        if (self.searchDataList.count > 0) {
+            SearchHabit *model = self.searchDataList[indexPath.row];
+            cell.textLabel.text = [model valueForKey:@"name"];
+            NSString *str = [NSString stringWithFormat:@"%@人在坚持", [model valueForKey:@"members"]];
+            cell.detailTextLabel.text = str;
+            cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+        }
+        
+        return cell;
+    }
+    
     return nil;
 }
-// tableViewCell 响应方法 点击进入用户个人信息页面
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    UserCenterViewController *userVC = [[UserCenterViewController alloc] init];
-    
-    Notes *notes = self.notesArr[indexPath.row];
-    hotCell.notes = notes;
-    Note *note = notes.note;
-    Users *us;
-    for (Users *users in self.usersArr) {
-        if ([note valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
-            us = users;
-        }
-    }
-    // 传递当前cell的user过去
-    userVC.user = (SeedUser *)us;
-    self.hidesBottomBarWhenPushed=YES;
-    [self.navigationController pushViewController:userVC animated:YES];
-    self.hidesBottomBarWhenPushed=NO;
-    
-}
-// row number
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([tableView isEqual:hotTabelView]) {
         return self.notesArr.count;
     }
-    
     else if ([tableView isEqual:keepTableView]) {
         return self.keepNotesArr.count;
     }
     else if ([tableView isEqual:newestTableView]) {
         return self.NewNotesArr.count;
     }
+    else if ([tableView isEqual:self.searchTableView]) {
+        return self.searchDataList.count;
+    }
     else
         return 0;
 }
-// 每个row的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([tableView isEqual:hotTabelView]) {
         CGFloat height = [hotCell Height];
         return  height + 140;
-        
     }
-    
     else if ([tableView isEqual:keepTableView]) {
         CGFloat height = [keepCell Height];
         return  height + 140;
@@ -472,333 +653,95 @@ static BOOL isHotRefresh = 0;
         return  height + 140;
     }
     else
-        return 0;
+        return 50;
 }
+#pragma makr TableViewCell Row 响应方法 点击进入用户个人信息页面 || 搜索框跳转
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-#pragma mark cell.btn 代理事件
-- (void)propsListPush:(id)sender{
-    
-    // propsListBtn 下面还有一个view
-    UIView *v = [sender superview];//获取父类view
-    UIView *v1 = [v superview];
-    UIView *v2 = [v1 superview];
-    UIView *v3 = [v2 superview];
-    DiscoveTableViewCell *cell = (DiscoveTableViewCell *)[v3 superview];//获取cell
-    NSIndexPath *indexPath = [hotTabelView indexPathForCell:cell];//获取cell对应的section
-    //    NSLog(@"indexPath:--------%@",indexPathAll);
-    
-    Notes *notes = self.notesArr[indexPath.row];
-    Note *note = notes.note;
-//     push 参数
-//    self.mind_note_id = [note valueForKey:@"id"];
-//    self.user_id = [note valueForKey:@"user_id"];
-    
-    self.hidesBottomBarWhenPushed=YES;
-    PropsListViewController *propsListVC = [[PropsListViewController alloc] init];
-    
-    // 发表的用户
-    propsListVC.user_id = [self.user valueForKey:@"uId"];
-    propsListVC.mind_note_id = [note valueForKey:@"id"];
-    
-    [self.navigationController pushViewController:propsListVC animated:YES];
-    self.hidesBottomBarWhenPushed=NO;
-
-}
-- (void)treeInfoPush:(id)sender {
-
-    // 获取indexPath
-    NSIndexPath *indexPath = [self getindePathWith:sender];
-    Notes *notes = self.notesArr[indexPath.row];
-    Note *note = notes.note;
-    NSString *title;
-    for (Habits *habits in self.habitsArr) {
-        if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
-            title = habits.name;
-        }
-    }
-
-    self.hidesBottomBarWhenPushed=YES;
-    TreeInfoViewController *treeInfoVC = [[TreeInfoViewController alloc] init];
-    
-    // 发表的用户
-    treeInfoVC.user_id = [note valueForKey:@"user_id"];
-    // 发表的用户的习惯
-    treeInfoVC.habit_id = [note valueForKey:@"habit_id"];
-    // 发表的用户的坚持
-    treeInfoVC.treeTitle = title;
-    
-    [self.navigationController pushViewController:treeInfoVC animated:YES];
-    self.hidesBottomBarWhenPushed=NO;
-}
-/*
-- (void)keepTreeInfoPush:(id)sender {
-    
-    // 获取indexPath
-    NSIndexPath *indexPath = [self getindePathWith:sender];
-    Notes *notes = self.keepNotesArr[indexPath.row];
-    Note *note = notes.note;
-    NSString *title;
-    for (Habits *habits in self.keepHabitsArr) {
-        if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
-            title = habits.name;
-        }
+    if ([tableView isEqual:self.searchTableView]) {
+        NSLog(@"搜索 习惯 跳转");
+        self.searchController.active = NO;
+        [self.navigationController pushViewController:[[AlbumViewController alloc] init] animated:YES];
     }
     
-    self.hidesBottomBarWhenPushed=YES;
-    TreeInfoViewController *treeInfoVC = [[TreeInfoViewController alloc] init];
-    
-    // 发表的用户
-    treeInfoVC.user_id = [note valueForKey:@"user_id"];
-    // 发表的用户的习惯
-    treeInfoVC.habit_id = [note valueForKey:@"habit_id"];
-    // 发表的用户的坚持
-    treeInfoVC.treeTitle = title;
-    
-    [self.navigationController pushViewController:treeInfoVC animated:YES];
-    self.hidesBottomBarWhenPushed=NO;
-}
-
-- (void)newTreeInfoPush:(id)sender {
-    
-    // 获取indexPath
-    NSIndexPath *indexPath = [self getindePathWith:sender];
-    Notes *notes = self.NewNotesArr[indexPath.row];
-    Note *note = notes.note;
-    NSString *title;
-    for (Habits *habits in self.NewHabitsArr) {
-        if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
-            title = habits.name;
-        }
-    }
-    
-    self.hidesBottomBarWhenPushed=YES;
-    TreeInfoViewController *treeInfoVC = [[TreeInfoViewController alloc] init];
-    
-    // 发表的用户
-    treeInfoVC.user_id = [note valueForKey:@"user_id"];
-    // 发表的用户的习惯
-    treeInfoVC.habit_id = [note valueForKey:@"habit_id"];
-    // 发表的用户的坚持
-    treeInfoVC.treeTitle = title;
-    
-    [self.navigationController pushViewController:treeInfoVC animated:YES];
-    self.hidesBottomBarWhenPushed=NO;
-}
-*/
-- (void)albumPush:(id)sender {
-    
-    NSIndexPath *indexPath = [self getindePathWith:sender];
-    NSLog(@"%ld", (long)indexPath.row);
-    
-    Notes *notes = self.notesArr[indexPath.row];
-    Note *note = notes.note;
-    NSString *title;
-    NSString *author;
-    //     push 参数
-//    self.mind_note_id = [note valueForKey:@"id"];
-//    self.habit_id = [note valueForKey:@"habit_id"];
-//    self.user_id = [note valueForKey:@"user_id"];
-    for (Habits *habits in self.habitsArr) {
-        if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
-            title = habits.name;
-        }
-    }
-    for (Users *users in self.usersArr) {
-        if ([note valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
-            author = users.nickname;
-        }
-    }
-    
-    self.hidesBottomBarWhenPushed=YES;
-    
-    AlbumViewController *albumVC = [[AlbumViewController alloc] init];
-    
-    // 时间戳转时间
-    NSString *timeS = [NSString stringWithFormat:@"%@", [note valueForKey:@"add_time"]];
-    NSTimeInterval time = [timeS doubleValue];
-    NSDate *detail = [NSDate dateWithTimeIntervalSince1970:time];
-    NSDateFormatter *date = [[NSDateFormatter alloc] init];
-    [date setDateFormat:@"yyyy.MM.dd"];
-    NSString *curr = [date stringFromDate:detail];
-    
-    albumVC.publishText = curr;
-    albumVC.authorText = [NSString stringWithFormat:@"by %@", author];
-    albumVC.imageUrl = [note valueForKey:@"mind_pic_small"];
-    albumVC.mind_note = [note valueForKey:@"mind_note"];
-    albumVC.day = [NSString stringWithFormat:@"第%ld天", notes.check_in_times];
-    albumVC.insistText = title;
-    
-    [self.navigationController pushViewController:albumVC animated:YES];
-    
-    self.hidesBottomBarWhenPushed=NO;
-    
-}
-- (void)habitPush:(id)sender {
-
-    // propsListBtn 下面还有一个view
-    UIView *v = [sender superview];//获取父类view
-    UIView *v1 = [v superview];
-    UIView *v2 = [v1 superview];
-//    UIView *v3 = [v2 superview];
-    DiscoveTableViewCell *cell = (DiscoveTableViewCell *)[v2 superview];//获取cell
-    NSIndexPath *indexPath = [hotTabelView indexPathForCell:cell];//获取cell对应的section
-//        NSLog(@"indexPath:--------%@",indexPathAll);
-    
-    NSLog(@"%ld", (long)indexPath.row);
-    //     push 参数
-    
-    [self.navigationController pushViewController:[[AlbumViewController alloc] init] animated:YES];
-    
-}
-- (void)propBtnAction:(id)sender {
-
-    UIButton *btn = sender;
-
-    NSIndexPath *indexPath = [self getindePathWith:sender];
-    Notes *notes = self.notesArr[indexPath.row];
-    Note *note = notes.note;
-//    NSLog(@"%@", [note valueForKey:@"id"]);
-    // 未关注
-    if (btn.selected == NO) {
-        // 关注请求
-        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-        NSDictionary *parameters = @{
-                                     @"mind_note_id":[note valueForKey:@"id"],
-                                     @"user_id":self.user.uId
-                                     //      mind_note_id=18035359&user_id=1850878
-                                     };
-        [session POST:APIPropNote parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"error=%@", error);
-        }];
-        NSLog(@"点赞 成功");
-    }
     else {
-        // 取消关注请求
-        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-        NSDictionary *parameters = @{
-                                     @"mind_note_id":[notes.note valueForKey:@"id"],
-                                     @"user_id":self.user.uId
-                                     // mind_note_id=18035359&user_id=1850878
-                                     };
-        [session POST:APICancelProp parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"error=%@", error);
-        }];
-        NSLog(@"取消 点赞");
-    }
 
-    btn.selected = !btn.selected;
-    
-    /*
-     点赞
-     http://api.idothing.com/zhongzi/v2.php/MindNote/propNote
-     mind_note_id=18035359&user_id=1850878
-     
-     取消点赞
-     http://api.idothing.com/zhongzi/v2.php/MindNote/cancelProp
-     mind_note_id=18035359&user_id=1850878
-     */
-}
-- (void)commentBtnAction:(id)sender {
-
-    NSIndexPath *indexPath = [self getindePathWith:sender];
-    NSLog(@"%ld", indexPath.row);
-    
-    Notes *notes = self.notesArr[indexPath.row];
-    Note *note = notes.note;
-    self.mindNoteId = [note valueForKey:@"id"];
-    
-    hotTabelView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    [KeyboardObserved manager];
-    [self createKeyboard];
-}
-// 弹出键盘
-- (void)createKeyboard {
-
-    UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 40, 414, 40)];
-//    vi.backgroundColor = [UIColor whiteColor];
-    vi.hidden = YES;
-    
-    UITextView *text = [[UITextView alloc] initWithFrame:CGRectInset(vi.bounds, 5, 5)];
-    text.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    
-    text.inputAccessoryView = text;
-    text.backgroundColor = [UIColor whiteColor];
-    text.returnKeyType = UIKeyboardTypeDefault;
-    text.delegate = self;
-    text.font = [UIFont boldSystemFontOfSize:15];
-    [vi addSubview:text];
-    
-    [self.view.window addSubview:vi];
-    [text becomeFirstResponder];
-    
-    self.textView = text;
-}
-// 点击return回收键盘
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    
-
-    if ([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        UIView *v = [self.view viewWithTag:11];
-        v.backgroundColor = [UIColor redColor];
+        Notes *notes;
+        Note *note;
         
-        NSLog(@"发发发发送评论");
-        NSLog(@"%@", textView.text);
-        
-        if (textView.text.length > 0) {
-            self.commentText = textView.text;
-            [self loadCommentData];
+        DiscoverDetailViewController *detailVC = [[DiscoverDetailViewController alloc] init];
+    
+        if ([tableView isEqual:hotTabelView]) {
+            
+            notes = self.notesArr[indexPath.row];
+            note = notes.note;
+            for (Habits *habits in self.habitsArr) {
+                if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
+                    detailVC.habits = habits;
+                }
+            }
+            for (Users *users in self.usersArr) {
+                if ([note valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
+                    detailVC.users = users;
+                }
+            }
+
+            detailVC.imageArr = self.imageArr;
+            detailVC.usersArr = self.usersArr;
+            detailVC.notes = notes;
+            detailVC.note = notes.note;
         }
+        else if ([tableView isEqual:newestTableView]) {
+            
+            notes = self.NewNotesArr[indexPath.row];
+            note = notes.note;
+            for (Habits *habits in self.NewHabitsArr) {
+                if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
+                    detailVC.habits = habits;
+                }
+            }
+            for (Users *users in self.NewUsersArr) {
+                if ([note valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
+                    detailVC.users = users;
+                }
+            }
+            
+            detailVC.imageArr = self.imageArr;
+            detailVC.usersArr = self. NewUsersArr;
+            detailVC.notes = notes;
+            detailVC.note = notes.note;        }
+        else if ([tableView isEqual:keepTableView]) {
+            
+            notes = self.keepNotesArr[indexPath.row];
+            note = notes.note;
+            for (Habits *habits in self.keepHabitsArr) {
+                if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
+                    detailVC.habits = habits;
+                }
+            }
+            for (Users *users in self.keepUsersArr) {
+                if ([note valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
+                    detailVC.users = users;
+                }
+            }
+            
+            detailVC.imageArr = self.imageArr;
+            detailVC.usersArr = self.keepUsersArr;
+            detailVC.notes = notes;
+            detailVC.note = notes.note;
+        }
+        self.hidesBottomBarWhenPushed=YES;
+        [self.navigationController pushViewController:detailVC animated:YES];
+        self.hidesBottomBarWhenPushed=NO;
         
-        return NO;
     }
-    return YES;
     
 }
-// 发送评论请求
-- (void)loadCommentData {
-
-    // 评论
-//    http://api.idothing.com/zhongzi/v2.php/MindNote/comment
-//    comment_text_content=%E8%B5%9E&mind_note_id=18917711&user_id=1878988
-    
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    
-    NSDictionary *parameters = @{
-                                @"comment_text_content":self.commentText,
-                                @"mind_note_id":self.mindNoteId,
-                                @"user_id":self.user.uId
-                                };
-    [session POST:@"http://api.idothing.com/zhongzi/v2.php/MindNote/comment" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-//        [hotTabelView reloadData];
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", error);
-    }];
-    
-}
-
-#pragma mark 点击cell上面的控件，直接获取cell的indexPath
-- (NSIndexPath *)getindePathWith:(id)sender {
-    
-    UIView *v = [sender superview];//获取父类view
-    UIView *v1 = [v superview];
-    DiscoveTableViewCell *cell = (DiscoveTableViewCell *)[v1 superview];//获取cell
-    NSIndexPath *indexPathAll = [hotTabelView indexPathForCell:cell];//获取cell对应的section
-    //    NSLog(@"indexPath:--------%@",indexPathAll);
-    
-    return indexPathAll;
-}
-
-#pragma mark 网络加载数据
+#pragma mark =======网络加载数据=========
 - (void)hotLoadData {
     
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-
+    
     NSNumber *flag = [NSNumber numberWithBool:hotFlag];
     NSString *readStr = self.mReadStr;
     
@@ -814,17 +757,21 @@ static BOOL isHotRefresh = 0;
     [session POST:APIAllHotNotes parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"ok === %@", responseObject);
         //        ULog(@"%@", responseObject);
-  
-        [self analysisDataWithResponseObject:responseObject NotesArr:self.notesArr UsersArr:self.usersArr HabitsArr:self.habitsArr isRefresh:isHotRefresh tableView:hotTabelView];
+        if ([responseObject[@"status"] integerValue] == 0) {
+            __weak typeof (self) weakSelf = self;
+            [self analysisDataWithResponseObject:responseObject NotesArr:weakSelf.notesArr UsersArr:weakSelf.usersArr HabitsArr:weakSelf.habitsArr isRefresh:isHotRefresh tableView:hotTabelView];
+            
+            //                [self keepLoadData];
+        }
     }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", error);
-    }];
+              NSLog(@"%@", error);
+          }];
     
 }
-/*
-- (void)keepLoadData {
 
+- (void)keepLoadData {
+    
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
     NSNumber *flag = [NSNumber numberWithBool:keepFlag];
@@ -839,27 +786,28 @@ static BOOL isHotRefresh = 0;
                                  @"detail":@1,
                                  @"flag":flag,
                                  @"next_id":@(next_id),
-                                 @"user_id":@1850869,
-                                
+                                 @"user_id":self.user.uId,
                                  // 刷新数据 获取 最后一个用户id - 1 = next_id
-//                                 http://api.idothing.com/zhongzi/v2.php/MindNote/listAllNotesByFriend
-//                                 detail=1&flag=0&user_id=1850869
-//                                 detail=1&flag=1&next_id=18503725&user_id=1850869
+                                 //                                 http://api.idothing.com/zhongzi/v2.php/MindNote/listAllNotesByFriend
+                                 //                                 detail=1&flag=0&user_id=1850869
+                                 //                                 detail=1&flag=1&next_id=18503725&user_id=1850869
                                  };
     [session POST:APIAllNotesByFriend parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"ok === %@", responseObject);
         //        ULog(@"%@", responseObject);
-       
-        __weak typeof (self) weakSelf = self;
-        [self analysisDataWithResponseObject:responseObject NotesArr:weakSelf.keepNotesArr UsersArr:weakSelf.keepUsersArr HabitsArr:weakSelf.habitsArr isRefresh:isKeepRefresh tableView:keepTableView];
+        if ([responseObject[@"status"] integerValue] == 0) {
+            __weak typeof (self) weakSelf = self;
+            [self analysisDataWithResponseObject:responseObject NotesArr:weakSelf.keepNotesArr UsersArr:weakSelf.keepUsersArr HabitsArr:weakSelf.habitsArr isRefresh:isKeepRefresh tableView:keepTableView];
+        }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
     
 }
-- (void)NewestLoadData {
 
+- (void)NewestLoadData {
+    
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
     NSNumber *flag = [NSNumber numberWithBool:newestFlag];
@@ -873,27 +821,26 @@ static BOOL isHotRefresh = 0;
                                  @"detail":@1,
                                  @"flag":flag,
                                  @"next_id":@(next_id),
-                                 @"user_id":@1850869
-//                                 detail=1&flag=0&user_id=1850869
-//                                 detail=1&flag=1&next_id=18162615&user_id=1850878
+                                 @"user_id":self.user.uId
+                                 //                                 detail=1&flag=0&user_id=1850869
+                                 //                                 detail=1&flag=1&next_id=18162615&user_id=1850878
                                  };
     
     [session POST:APIAllNotesByTime parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-
-        __weak typeof (self) weakSelf = self;
-        [self analysisDataWithResponseObject:responseObject NotesArr:weakSelf.NewNotesArr UsersArr:weakSelf.NewUsersArr HabitsArr:weakSelf.NewHabitsArr isRefresh:isNewRefresh tableView:newestTableView];
-    
+        if ([responseObject[@"status"] integerValue] == 0) {
+            __weak typeof (self) weakSelf = self;
+            [self analysisDataWithResponseObject:responseObject NotesArr:weakSelf.NewNotesArr UsersArr:weakSelf.NewUsersArr HabitsArr:weakSelf.NewHabitsArr isRefresh:isNewRefresh tableView:newestTableView];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
-
+    
 }
-*/
 
 // 解析数据
 - (void)analysisDataWithResponseObject:(id)responseObject NotesArr:(NSMutableArray *)NotesArr UsersArr:(NSMutableArray *)UsersArr HabitsArr:(NSMutableArray *)HabitsArr isRefresh:(BOOL)isRefresh tableView:(UITableView *)tableView{
     // isRefresh == 0 上拉加载
-    if (isRefresh == 0) {
+    if (isRefresh == 1) {
         for (NSDictionary *dict in responseObject[@"data"][@"notes"]) {
             Notes *notes = [[Notes alloc] init];
             [notes setValuesForKeysWithDictionary:dict];
@@ -912,6 +859,7 @@ static BOOL isHotRefresh = 0;
             }
             
         }
+        
         for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
             Users *users = [[Users alloc] init];
             [users setValuesForKeysWithDictionary:dict];
@@ -923,39 +871,62 @@ static BOOL isHotRefresh = 0;
             [HabitsArr addObject:habits];
         }
     }
-    /*
+    
     else {
+        
         NSMutableArray *notesArr = [[NSMutableArray alloc] init];
         for (NSDictionary *dict in responseObject[@"data"][@"notes"]) {
             Notes *notes = [[Notes alloc] init];
             [notes setValuesForKeysWithDictionary:dict];
+            
+//            NSLog(@"%@", notes);
+            if ([[[[NotesArr firstObject] valueForKey:@"note"] valueForKey:@"check_in_id"] isEqualToString:[[notes valueForKey:@"note"] valueForKey:@"check_in_id"]]) {
+                break;
+            }
+            
             [notesArr addObject:notes];
         }
         NSArray *arr = [notesArr arrayByAddingObjectsFromArray:NotesArr];
         [NotesArr removeAllObjects];
         [NotesArr addObjectsFromArray:arr];
         
+        
+        NSMutableArray *userId = [[NSMutableArray alloc] init];
+        for (NSDictionary *dic in UsersArr) {
+            [userId addObject:[dic valueForKey:@"uId"]]; // 获取当前所有用户的id
+        }
         NSMutableArray *usersArr = [[NSMutableArray alloc] init];
         for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
             Users *users = [[Users alloc] init];
             [users setValuesForKeysWithDictionary:dict];
-            [usersArr addObject:users];
+            // 如果没有 forin 的 id 就加入 数组
+            if (![userId containsObject:[users valueForKey:@"uId"]]) {
+                [usersArr addObject:users];
+            }
         }
-        
         NSArray *arr1 = [usersArr arrayByAddingObjectsFromArray:UsersArr];
         [UsersArr removeAllObjects];
         [UsersArr addObjectsFromArray:arr1];
+        
+        
+        NSMutableArray *habitId = [[NSMutableArray alloc] init];
+        for (NSDictionary *dic in HabitsArr) {
+            [habitId addObject:[dic valueForKey:@"idx"]];
+        }
         NSMutableArray *habitsArr = [[NSMutableArray alloc] init];
         for (NSDictionary *dict in responseObject[@"data"][@"habits"]) {
             Habits *habits = [[Habits alloc] init];
             [habits setValuesForKeysWithDictionary:dict];
-            [habitsArr addObject:habits];
+            // 如果没有 forin 的 id 就加入 数组
+            if (![habitId containsObject:[habits valueForKey:@"idx"]]) {
+                [habitsArr addObject:habits];
+            }
         }
         NSArray *arr2 = [habitsArr arrayByAddingObjectsFromArray:HabitsArr];
         [HabitsArr removeAllObjects];
         [HabitsArr addObjectsFromArray:arr2];
     }
-     */
+    
     
     dispatch_async(dispatch_get_main_queue(), ^{
         // 数据加载完毕之后，结束更新
@@ -966,42 +937,5 @@ static BOOL isHotRefresh = 0;
 }
 
 
-#pragma mark 热门轮播图
-- (void)createXRCarousel {
-    
-    self.carouselView = [[XRCarouselView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3)];
-
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    
-    NSDictionary *parameters = @{
-                                 @"user_id":self.user.uId
-                                 // 列出轮播图和习惯
-                                 // http://api.idothing.com/zhongzi/v2.php/ChoiceNote/listBannersAndHabits
-                                 // user_id=1850878
-                                 };
-    [session POST:APIBannersAndHabits parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //        NSLog(@"ok === %@", responseObject);
-        //        ULog(@"%@", responseObject);
-        
-        NSArray *dataArr = responseObject[@"data"][@"banners"];
-        
-        for (NSDictionary *dict in dataArr) {
-            [self.carPicArr addObject:dict[@"banner_pic"]];
-        }
-        
-#pragma mark 广告图加载是否需要返回主线程刷新？
-        dispatch_async(dispatch_get_main_queue(), ^{
-//            NSLog(@"%@", self.carPicArr);
-            self.carouselView.contentMode = UIViewContentModeScaleAspectFit;
-#pragma mark 待修改
-            self.carouselView.imageArray = @[self.carPicArr[0], self.carPicArr[1], self.carPicArr[2], self.carPicArr[3]];
-            self.carouselView.time = 2.5;
-        });
-    }
-      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-          NSLog(@"%@", error);
-      }];
-
-}
 
 @end
