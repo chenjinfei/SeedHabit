@@ -21,7 +21,6 @@
 #import "UMSocialWechatHandler.h"
 
 #import <EMSDK.h>
-//#import "EaseUI.h"
 
 @interface AppDelegate ()
 
@@ -61,9 +60,6 @@
         [self login];
     }
     
-    // 检查是否已经登录
-    //    [self checkLogin];
-    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     //    UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true);
     
@@ -84,10 +80,6 @@
     EMOptions *options = [EMOptions optionsWithAppkey:AppKeyEM];
     options.apnsCertName = AppApnsCertName;
     [[EMClient sharedClient] initializeSDKWithOptions:options];
-    
-    
-    // 初始化EaseUI
-    //    [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions appkey:AppKeyEM apnsCertName:AppApnsCertName otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
     
     
     return YES;

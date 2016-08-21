@@ -55,6 +55,11 @@
 #define APIChangePwd                   [APIUser stringByAppendingString:@"changePsw"]
 // 获取已经关注的好友
 #define APIFriendsList                 [APIUser stringByAppendingString:@"getFriendsList"]
+// 获取粉丝列表
+#define APIFansList                    [APIUser stringByAppendingString:@"getFansList"]
+// 获取值得关注用户列表       note_num=3&num=5&userIds=
+#define APIListDeserveUsers                 [APIUser stringByAppendingString:@"listDeserveUsers"]
+
 
 
 
@@ -194,7 +199,7 @@
 // == 【发现】精选/热门 ==
 #define APIChoiceNote           [APIURL stringByAppendingString:@"ChoiceNote/"]
 
-// 精选活动
+// 获取推广活动
 #define APIChoiceNoteActivity   [APIChoiceNote stringByAppendingString:@"activity"]
 // 广告图和习惯
 #define APIBannersAndHabits     [APIChoiceNote stringByAppendingString:@"listBannersAndHabits"]

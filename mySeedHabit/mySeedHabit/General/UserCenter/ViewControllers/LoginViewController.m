@@ -119,7 +119,7 @@
 // 邮箱登录
 - (IBAction)emailLoginClick:(UIButton *)sender {
     // 提示
-    [self.alert showWarning:self title:@"我X~" subTitle:@"程序猿还在加班呢，咱再等等？" closeButtonTitle:@"好的" duration:0.0f];
+    [self.alert showWarning:self title:@"我X~" subTitle:@"程序猿还在加紧开发中呢，这功能咱再等等？" closeButtonTitle:@"好的" duration:0.0f];
 }
 
 // QQ帐号登录

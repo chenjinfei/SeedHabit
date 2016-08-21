@@ -35,7 +35,6 @@
 
 @property (nonatomic, strong) UILabel *username;
 
-@property (nonatomic, strong) UITableView *tableView;
 // 数据源
 @property (nonatomic, strong) NSMutableArray  *dataArr;
 
@@ -123,7 +122,7 @@
         // 创建导航右按钮
         self.followBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.followBtn setTitle:@"加关注" forState:UIControlStateNormal];
-        self.followBtn.frame = CGRectMake(0, 0, 70, 32);
+        self.followBtn.frame = CGRectMake(0, 0, 50, 32);
         [self.followBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
         [self.followBtn addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *followBarBtn = [[UIBarButtonItem alloc]initWithCustomView:self.followBtn];
@@ -367,9 +366,9 @@
         self.tableHeaderView.signatureView.text = user.signature;
         
         if (user.gender) {
-            self.tableHeaderView.genderImgView.image = [LOADIMAGE(@"man_orange_32_cjf", @"png") circleImage];
+            self.tableHeaderView.genderImgView.image = [LOADIMAGE(@"gent_32", @"jpg") circleImage];
         }else {
-            self.tableHeaderView.genderImgView.image = [LOADIMAGE(@"lady_orange_32_cjf", @"png") circleImage];
+            self.tableHeaderView.genderImgView.image = [LOADIMAGE(@"lady_32", @"jpg") circleImage];
             
         }
         

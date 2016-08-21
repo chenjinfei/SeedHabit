@@ -15,4 +15,6 @@
 // 用户
 @property (nonatomic, strong) SeedUser *user;
 
+@property (nonatomic, strong) UITableView *tableView;
+
 @end

@@ -9,6 +9,7 @@
 #import "NotificationsViewController.h"
 
 #import <Masonry.h>
+#import "CJFPlaySound.h"
 
 @interface NotificationsViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -23,6 +24,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (IOS7) { // ios7 一下
+        if ([[UIApplication sharedApplication] isRegisteredForRemoteNotifications]  == UIUserNotificationTypeNone) {
+            NSLog(@"yes");
+        }else {
+            NSLog(@"no");
+        }
+    }else{ //iOS8以上包含iOS8
+        if ([[UIApplication sharedApplication] currentUserNotificationSettings].types ==UIUserNotificationTypeNone) {
+            NSLog(@"yes");
+        }else {
+            NSLog(@"no");
+        }
+    }
+    
+    //    CJFPlaySound *playSound = [[CJFPlaySound alloc]initForPlayingVibrate];
+    CJFPlaySound *playSound = [[CJFPlaySound alloc] init];
+    [playSound play];
     
     [self buildView];
     
@@ -107,6 +126,7 @@
 
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
     UILabel *headerTitle = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH-30, 40)];
     headerTitle.text = @"设置是否需要接收新消息时的声音或振动提醒";
@@ -114,6 +134,7 @@
     headerTitle.textColor = [UIColor lightGrayColor];
     [headerView addSubview:headerTitle];
     return headerView;
+    
 }
 
 

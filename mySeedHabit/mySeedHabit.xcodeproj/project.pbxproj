@@ -59,10 +59,8 @@
 		3767F63B1D5F4E74004E2945 /* heart2_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F5FE1D5F4E74004E2945 /* heart2_32.png */; };
 		3767F63C1D5F4E74004E2945 /* heart_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F5FF1D5F4E74004E2945 /* heart_32.png */; };
 		3767F63D1D5F4E74004E2945 /* into_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6001D5F4E74004E2945 /* into_32.png */; };
-		3767F63E1D5F4E74004E2945 /* lady_orange_32_cjf.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6011D5F4E74004E2945 /* lady_orange_32_cjf.png */; };
 		3767F63F1D5F4E74004E2945 /* left_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6021D5F4E74004E2945 /* left_32.png */; };
 		3767F6401D5F4E74004E2945 /* lock_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6031D5F4E74004E2945 /* lock_32.png */; };
-		3767F6411D5F4E74004E2945 /* man_orange_32_cjf.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6041D5F4E74004E2945 /* man_orange_32_cjf.png */; };
 		3767F6421D5F4E74004E2945 /* message_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6051D5F4E74004E2945 /* message_32.png */; };
 		3767F6431D5F4E74004E2945 /* msg2_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6061D5F4E74004E2945 /* msg2_32.png */; };
 		3767F6441D5F4E74004E2945 /* msg3_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F6071D5F4E74004E2945 /* msg3_32.png */; };
@@ -196,6 +194,23 @@
 		3767F8B21D680BC9004E2945 /* contactus.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8B11D680BC9004E2945 /* contactus.png */; };
 		3767F8B61D683C61004E2945 /* ContactsListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8B41D683C61004E2945 /* ContactsListTableViewCell.m */; };
 		3767F8B71D683C61004E2945 /* ContactsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8B51D683C61004E2945 /* ContactsListTableViewCell.xib */; };
+		3767F8B91D68448A004E2945 /* down32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8B81D68448A004E2945 /* down32.png */; };
+		3767F8BC1D685DE7004E2945 /* gent_32.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8BA1D685DE7004E2945 /* gent_32.jpg */; };
+		3767F8BD1D685DE7004E2945 /* lady_32.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8BB1D685DE7004E2945 /* lady_32.jpg */; };
+		3767F8C11D6874E6004E2945 /* DeserveUsersListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8BF1D6874E6004E2945 /* DeserveUsersListTableViewCell.m */; };
+		3767F8C21D6874E6004E2945 /* DeserveUsersListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8C01D6874E6004E2945 /* DeserveUsersListTableViewCell.xib */; };
+		3767F8C51D68816C004E2945 /* CJFDeserveUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8C41D68816C004E2945 /* CJFDeserveUserModel.m */; };
+		3767F8CA1D695557004E2945 /* listOne_normal_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8C61D695557004E2945 /* listOne_normal_32.png */; };
+		3767F8CB1D695557004E2945 /* listOne_selected_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8C71D695557004E2945 /* listOne_selected_32.png */; };
+		3767F8CC1D695557004E2945 /* listTwo_normal_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8C81D695557004E2945 /* listTwo_normal_32.png */; };
+		3767F8CD1D695557004E2945 /* listTwo_selected_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8C91D695557004E2945 /* listTwo_selected_32.png */; };
+		3767F8D01D696023004E2945 /* CJFPlaySound.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8CF1D696023004E2945 /* CJFPlaySound.m */; };
+		3767F8D41D6980B5004E2945 /* FollowListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8D21D6980B5004E2945 /* FollowListTableViewController.m */; };
+		3767F8D51D6980B5004E2945 /* FollowListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8D31D6980B5004E2945 /* FollowListTableViewController.xib */; };
+		3767F8D81D6981C8004E2945 /* UIView+CJFUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8D71D6981C8004E2945 /* UIView+CJFUIView.m */; };
+		3767F8DC1D6983C2004E2945 /* FollowListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8DA1D6983C2004E2945 /* FollowListTableViewCell.m */; };
+		3767F8DD1D6983C2004E2945 /* FollowListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F8DB1D6983C2004E2945 /* FollowListTableViewCell.xib */; };
+		3767F8E01D6986CF004E2945 /* CJFFollowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F8DF1D6986CF004E2945 /* CJFFollowModel.m */; };
 		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
 		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
@@ -303,10 +318,8 @@
 		3767F5FE1D5F4E74004E2945 /* heart2_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart2_32.png; sourceTree = "<group>"; };
 		3767F5FF1D5F4E74004E2945 /* heart_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_32.png; sourceTree = "<group>"; };
 		3767F6001D5F4E74004E2945 /* into_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = into_32.png; sourceTree = "<group>"; };
-		3767F6011D5F4E74004E2945 /* lady_orange_32_cjf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lady_orange_32_cjf.png; sourceTree = "<group>"; };
 		3767F6021D5F4E74004E2945 /* left_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_32.png; sourceTree = "<group>"; };
 		3767F6031D5F4E74004E2945 /* lock_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_32.png; sourceTree = "<group>"; };
-		3767F6041D5F4E74004E2945 /* man_orange_32_cjf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man_orange_32_cjf.png; sourceTree = "<group>"; };
 		3767F6051D5F4E74004E2945 /* message_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message_32.png; sourceTree = "<group>"; };
 		3767F6061D5F4E74004E2945 /* msg2_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg2_32.png; sourceTree = "<group>"; };
 		3767F6071D5F4E74004E2945 /* msg3_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg3_32.png; sourceTree = "<group>"; };
@@ -401,6 +414,30 @@
 		3767F8B31D683C61004E2945 /* ContactsListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsListTableViewCell.h; sourceTree = "<group>"; };
 		3767F8B41D683C61004E2945 /* ContactsListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsListTableViewCell.m; sourceTree = "<group>"; };
 		3767F8B51D683C61004E2945 /* ContactsListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListTableViewCell.xib; sourceTree = "<group>"; };
+		3767F8B81D68448A004E2945 /* down32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down32.png; sourceTree = "<group>"; };
+		3767F8BA1D685DE7004E2945 /* gent_32.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gent_32.jpg; sourceTree = "<group>"; };
+		3767F8BB1D685DE7004E2945 /* lady_32.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lady_32.jpg; sourceTree = "<group>"; };
+		3767F8BE1D6874E6004E2945 /* DeserveUsersListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeserveUsersListTableViewCell.h; sourceTree = "<group>"; };
+		3767F8BF1D6874E6004E2945 /* DeserveUsersListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeserveUsersListTableViewCell.m; sourceTree = "<group>"; };
+		3767F8C01D6874E6004E2945 /* DeserveUsersListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeserveUsersListTableViewCell.xib; sourceTree = "<group>"; };
+		3767F8C31D68816C004E2945 /* CJFDeserveUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFDeserveUserModel.h; sourceTree = "<group>"; };
+		3767F8C41D68816C004E2945 /* CJFDeserveUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFDeserveUserModel.m; sourceTree = "<group>"; };
+		3767F8C61D695557004E2945 /* listOne_normal_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listOne_normal_32.png; sourceTree = "<group>"; };
+		3767F8C71D695557004E2945 /* listOne_selected_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listOne_selected_32.png; sourceTree = "<group>"; };
+		3767F8C81D695557004E2945 /* listTwo_normal_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listTwo_normal_32.png; sourceTree = "<group>"; };
+		3767F8C91D695557004E2945 /* listTwo_selected_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listTwo_selected_32.png; sourceTree = "<group>"; };
+		3767F8CE1D696023004E2945 /* CJFPlaySound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFPlaySound.h; sourceTree = "<group>"; };
+		3767F8CF1D696023004E2945 /* CJFPlaySound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFPlaySound.m; sourceTree = "<group>"; };
+		3767F8D11D6980B5004E2945 /* FollowListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowListTableViewController.h; sourceTree = "<group>"; };
+		3767F8D21D6980B5004E2945 /* FollowListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowListTableViewController.m; sourceTree = "<group>"; };
+		3767F8D31D6980B5004E2945 /* FollowListTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowListTableViewController.xib; sourceTree = "<group>"; };
+		3767F8D61D6981C8004E2945 /* UIView+CJFUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CJFUIView.h"; sourceTree = "<group>"; };
+		3767F8D71D6981C8004E2945 /* UIView+CJFUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CJFUIView.m"; sourceTree = "<group>"; };
+		3767F8D91D6983C2004E2945 /* FollowListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowListTableViewCell.h; sourceTree = "<group>"; };
+		3767F8DA1D6983C2004E2945 /* FollowListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowListTableViewCell.m; sourceTree = "<group>"; };
+		3767F8DB1D6983C2004E2945 /* FollowListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowListTableViewCell.xib; sourceTree = "<group>"; };
+		3767F8DE1D6986CF004E2945 /* CJFFollowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJFFollowModel.h; sourceTree = "<group>"; };
+		3767F8DF1D6986CF004E2945 /* CJFFollowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJFFollowModel.m; sourceTree = "<group>"; };
 		379B01111D54AB1500D75383 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		379B01131D54AB2200D75383 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -580,6 +617,8 @@
 				3767F5D31D5F4E4F004E2945 /* UILabel+LeftTopAlign.m */,
 				3767F8841D67251C004E2945 /* CJFUILabel.h */,
 				3767F8851D67251C004E2945 /* CJFUILabel.m */,
+				3767F8D61D6981C8004E2945 /* UIView+CJFUIView.h */,
+				3767F8D71D6981C8004E2945 /* UIView+CJFUIView.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -606,6 +645,11 @@
 		3767F5ED1D5F4E74004E2945 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3767F8C61D695557004E2945 /* listOne_normal_32.png */,
+				3767F8C71D695557004E2945 /* listOne_selected_32.png */,
+				3767F8C81D695557004E2945 /* listTwo_normal_32.png */,
+				3767F8C91D695557004E2945 /* listTwo_selected_32.png */,
+				3767F8B81D68448A004E2945 /* down32.png */,
 				3767F8B11D680BC9004E2945 /* contactus.png */,
 				3767F8A91D67F34D004E2945 /* logo_128.png */,
 				3767F8961D678732004E2945 /* bug_16.png */,
@@ -632,16 +676,16 @@
 				3767F5F81D5F4E74004E2945 /* discover_32.png */,
 				3767F5F91D5F4E74004E2945 /* follow_add_32.png */,
 				3767F5FA1D5F4E74004E2945 /* follow_cancel_32.png */,
+				3767F8BA1D685DE7004E2945 /* gent_32.jpg */,
+				3767F8BB1D685DE7004E2945 /* lady_32.jpg */,
 				3767F5FB1D5F4E74004E2945 /* goldCup.png */,
 				3767F5FC1D5F4E74004E2945 /* habit_32.png */,
 				3767F5FD1D5F4E74004E2945 /* heard_32.png */,
 				3767F5FE1D5F4E74004E2945 /* heart2_32.png */,
 				3767F5FF1D5F4E74004E2945 /* heart_32.png */,
 				3767F6001D5F4E74004E2945 /* into_32.png */,
-				3767F6011D5F4E74004E2945 /* lady_orange_32_cjf.png */,
 				3767F6021D5F4E74004E2945 /* left_32.png */,
 				3767F6031D5F4E74004E2945 /* lock_32.png */,
-				3767F6041D5F4E74004E2945 /* man_orange_32_cjf.png */,
 				3767F6051D5F4E74004E2945 /* message_32.png */,
 				3767F6061D5F4E74004E2945 /* msg2_32.png */,
 				3767F6071D5F4E74004E2945 /* msg3_32.png */,
@@ -999,6 +1043,10 @@
 				3767F5BF1D5F4E1E004E2945 /* SeedUser.m */,
 				3767F8811D66C34B004E2945 /* CJFNoteModel.h */,
 				3767F8821D66C34B004E2945 /* CJFNoteModel.m */,
+				3767F8C31D68816C004E2945 /* CJFDeserveUserModel.h */,
+				3767F8C41D68816C004E2945 /* CJFDeserveUserModel.m */,
+				3767F8DE1D6986CF004E2945 /* CJFFollowModel.h */,
+				3767F8DF1D6986CF004E2945 /* CJFFollowModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1052,6 +1100,9 @@
 				3767F8AC1D680952004E2945 /* ProtocolViewController.m */,
 				3767F8AE1D680A8A004E2945 /* ContactUsViewController.h */,
 				3767F8AF1D680A8A004E2945 /* ContactUsViewController.m */,
+				3767F8D11D6980B5004E2945 /* FollowListTableViewController.h */,
+				3767F8D21D6980B5004E2945 /* FollowListTableViewController.m */,
+				3767F8D31D6980B5004E2945 /* FollowListTableViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1074,6 +1125,12 @@
 				3F1AC4291D5ADC9C00F10709 /* UserSearchList_TBCell.h */,
 				3F1AC42A1D5ADC9C00F10709 /* UserSearchList_TBCell.m */,
 				3F1AC42B1D5ADC9C00F10709 /* UserSearchList_TBCell.xib */,
+				3767F8BE1D6874E6004E2945 /* DeserveUsersListTableViewCell.h */,
+				3767F8BF1D6874E6004E2945 /* DeserveUsersListTableViewCell.m */,
+				3767F8C01D6874E6004E2945 /* DeserveUsersListTableViewCell.xib */,
+				3767F8D91D6983C2004E2945 /* FollowListTableViewCell.h */,
+				3767F8DA1D6983C2004E2945 /* FollowListTableViewCell.m */,
+				3767F8DB1D6983C2004E2945 /* FollowListTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1083,6 +1140,8 @@
 			children = (
 				3F1AC42D1D5ADC9C00F10709 /* CJFTools.h */,
 				3F1AC42E1D5ADC9C00F10709 /* CJFTools.m */,
+				3767F8CE1D696023004E2945 /* CJFPlaySound.h */,
+				3767F8CF1D696023004E2945 /* CJFPlaySound.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1209,6 +1268,7 @@
 				3767F68F1D60BA95004E2945 /* AvatarUpdateViewController.xib in Resources */,
 				3767F68E1D60BA50004E2945 /* UserInfo_LabelImage.xib in Resources */,
 				3767F6821D60AFF5004E2945 /* MessageViewController.xib in Resources */,
+				3767F8C21D6874E6004E2945 /* DeserveUsersListTableViewCell.xib in Resources */,
 				3767F6801D5F582F004E2945 /* HabitTableViewCell.xib in Resources */,
 				3767F6741D5F4FCE004E2945 /* UserInfo_TBHeaderView.xib in Resources */,
 				3767F6731D5F4FAA004E2945 /* UserHaBitList_TBCell.xib in Resources */,
@@ -1243,6 +1303,7 @@
 				3767F8951D678593004E2945 /* HelpCenterViewController.xib in Resources */,
 				3767F6461D5F4E74004E2945 /* omit2_32.png in Resources */,
 				3767F63C1D5F4E74004E2945 /* heart_32.png in Resources */,
+				3767F8CA1D695557004E2945 /* listOne_normal_32.png in Resources */,
 				3767F64A1D5F4E74004E2945 /* portrait_default.jpg in Resources */,
 				3767F6A51D61667E004E2945 /* hoveringBtnBg_32.png in Resources */,
 				3767F5B91D5F4DDB004E2945 /* PropsListTableViewCell.xib in Resources */,
@@ -1253,8 +1314,12 @@
 				3767F6331D5F4E74004E2945 /* contacts_32.png in Resources */,
 				3767F5B71D5F4DDB004E2945 /* DiscoverHotCell.xib in Resources */,
 				3767F8621D645926004E2945 /* more_32.png in Resources */,
+				3767F8CC1D695557004E2945 /* listTwo_normal_32.png in Resources */,
 				3767F6381D5F4E74004E2945 /* goldCup.png in Resources */,
 				3767F8801D65FFA0004E2945 /* NotesCollectionViewController.xib in Resources */,
+				3767F8CD1D695557004E2945 /* listTwo_selected_32.png in Resources */,
+				3767F8B91D68448A004E2945 /* down32.png in Resources */,
+				3767F8BC1D685DE7004E2945 /* gent_32.jpg in Resources */,
 				3767F6621D5F4E74004E2945 /* weixin_32.png in Resources */,
 				3767F63D1D5F4E74004E2945 /* into_32.png in Resources */,
 				3767F63F1D5F4E74004E2945 /* left_32.png in Resources */,
@@ -1264,19 +1329,21 @@
 				3767F6501D5F4E74004E2945 /* search_white_32.png in Resources */,
 				37DB26801D4F40A600FA5198 /* Assets.xcassets in Resources */,
 				3767F5A81D5F4DC5004E2945 /* PropsListViewController.xib in Resources */,
-				3767F6411D5F4E74004E2945 /* man_orange_32_cjf.png in Resources */,
 				3767F6591D5F4E74004E2945 /* habit_selected_32.png in Resources */,
 				3767F6B01D61BAA2004E2945 /* Icon-58.png in Resources */,
 				3767F6491D5F4E74004E2945 /* placeholder2.png in Resources */,
 				3767F8991D678732004E2945 /* bug_16.png in Resources */,
 				3767F6641D5F4E74004E2945 /* 同好关注@2x.png in Resources */,
+				3767F8D51D6980B5004E2945 /* FollowListTableViewController.xib in Resources */,
 				3767F62C1D5F4E74004E2945 /* addContact_32.png in Resources */,
+				3767F8BD1D685DE7004E2945 /* lady_32.jpg in Resources */,
 				3767F65E1D5F4E74004E2945 /* time_32.png in Resources */,
 				3767F6511D5F4E74004E2945 /* seeds_32.png in Resources */,
 				3767F64E1D5F4E74004E2945 /* right_32.png in Resources */,
 				3767F6601D5F4E74004E2945 /* tools_white_32.png in Resources */,
 				3767F62E1D5F4E74004E2945 /* check_in1.png in Resources */,
 				3767F6421D5F4E74004E2945 /* message_32.png in Resources */,
+				3767F8DD1D6983C2004E2945 /* FollowListTableViewCell.xib in Resources */,
 				3767F8A81D67EDB7004E2945 /* AboutViewController.xib in Resources */,
 				3767F6611D5F4E74004E2945 /* user_32.png in Resources */,
 				3767F6AA1D61693B004E2945 /* MsgChatViewController.xib in Resources */,
@@ -1286,13 +1353,13 @@
 				3767F8581D634D6A004E2945 /* Microphone_32.png in Resources */,
 				3767F6321D5F4E74004E2945 /* comment_32.png in Resources */,
 				3767F6301D5F4E74004E2945 /* checkBox.png in Resources */,
-				3767F63E1D5F4E74004E2945 /* lady_orange_32_cjf.png in Resources */,
 				3767F5951D5F4B81004E2945 /* HabitPreviewViewNoImage.xib in Resources */,
 				3767F6371D5F4E74004E2945 /* follow_cancel_32.png in Resources */,
 				3767F6341D5F4E74004E2945 /* copperCup.png in Resources */,
 				3767F6431D5F4E74004E2945 /* msg2_32.png in Resources */,
 				3767F86C1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib in Resources */,
 				3767F8881D6748AF004E2945 /* Smiling_32.png in Resources */,
+				3767F8CB1D695557004E2945 /* listOne_selected_32.png in Resources */,
 				3767F6541D5F4E74004E2945 /* silverCup.png in Resources */,
 				3767F64F1D5F4E74004E2945 /* search_32.png in Resources */,
 				3767F62B1D5F4E74004E2945 /* add_32.png in Resources */,
@@ -1369,6 +1436,7 @@
 				3767F68B1D60B98D004E2945 /* UserHaBitList_TBCell.m in Sources */,
 				3767F68A1D60B933004E2945 /* UserInfo_TBHeaderView.m in Sources */,
 				3767F6891D60B51C004E2945 /* UserSetupViewController.m in Sources */,
+				3767F8DC1D6983C2004E2945 /* FollowListTableViewCell.m in Sources */,
 				3767F6881D60B50C004E2945 /* HabitModel.m in Sources */,
 				3767F6871D60B501004E2945 /* AddFriendsViewController.m in Sources */,
 				3767F8861D67251C004E2945 /* CJFUILabel.m in Sources */,
@@ -1383,10 +1451,13 @@
 				3767F67D1D5F56FD004E2945 /* HabitPropsModel.m in Sources */,
 				3767F67C1D5F56F4004E2945 /* HabitNotesModel.m in Sources */,
 				3767F8A31D67ED4B004E2945 /* AccountBoundViewController.m in Sources */,
+				3767F8D41D6980B5004E2945 /* FollowListTableViewController.m in Sources */,
 				3767F67B1D5F56E8004E2945 /* HabitHabitsModel.m in Sources */,
 				3767F8A71D67EDB7004E2945 /* AboutViewController.m in Sources */,
 				3767F67A1D5F56DB004E2945 /* HabitCommentsModel.m in Sources */,
+				3767F8E01D6986CF004E2945 /* CJFFollowModel.m in Sources */,
 				3767F6781D5F56BF004E2945 /* HabitDetailsViewController.m in Sources */,
+				3767F8D01D696023004E2945 /* CJFPlaySound.m in Sources */,
 				3767F6771D5F56B6004E2945 /* HabitClassifyViewController.m in Sources */,
 				3767F6761D5F569F004E2945 /* HabitViewController.m in Sources */,
 				3767F8661D645CEE004E2945 /* MsgChatTextTableViewCell.m in Sources */,
@@ -1397,6 +1468,7 @@
 				3767F6701D5F4F42004E2945 /* Users.m in Sources */,
 				3767F66F1D5F4F3B004E2945 /* TreeInfo.m in Sources */,
 				3767F66E1D5F4F33004E2945 /* Props.m in Sources */,
+				3767F8C51D68816C004E2945 /* CJFDeserveUserModel.m in Sources */,
 				3767F66D1D5F4F2B004E2945 /* Notes.m in Sources */,
 				3767F66C1D5F4F24004E2945 /* LoginViewController.m in Sources */,
 				3767F85F1D6408C8004E2945 /* MsgConversationListTableViewCell.m in Sources */,
@@ -1408,6 +1480,7 @@
 				3767F8901D67785B004E2945 /* HelpCenterDetailViewController.m in Sources */,
 				3767F6671D5F4EDE004E2945 /* AvatarUpdateViewController.m in Sources */,
 				3767F5BD1D5F4DEE004E2945 /* MindNotesReviewViewController.m in Sources */,
+				3767F8D81D6981C8004E2945 /* UIView+CJFUIView.m in Sources */,
 				3767F5E71D5F4E4F004E2945 /* CheckButton.m in Sources */,
 				3767F5EB1D5F4E4F004E2945 /* TabPageScrollView.m in Sources */,
 				3767F87A1D65FF68004E2945 /* NotesCollectionListTableViewCell.m in Sources */,
@@ -1435,6 +1508,7 @@
 				3767F5E21D5F4E4F004E2945 /* UIButton+CJFUIButton.m in Sources */,
 				3767F5B51D5F4DDB004E2945 /* AppTools.m in Sources */,
 				3767F5EC1D5F4E4F004E2945 /* UserManager.m in Sources */,
+				3767F8C11D6874E6004E2945 /* DeserveUsersListTableViewCell.m in Sources */,
 				3767F5B81D5F4DDB004E2945 /* PropsListTableViewCell.m in Sources */,
 				3767F8B61D683C61004E2945 /* ContactsListTableViewCell.m in Sources */,
 				3767F59B1D5F4D7C004E2945 /* MindNotesModel.m in Sources */,

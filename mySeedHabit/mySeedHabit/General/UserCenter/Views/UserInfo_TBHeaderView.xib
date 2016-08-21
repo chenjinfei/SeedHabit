@@ -39,7 +39,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhs-sI-qXR">
-                    <rect key="frame" x="213" y="25" width="50" height="21"/>
+                    <rect key="frame" x="225" y="25" width="50" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="rfr-QA-PSC"/>
                         <constraint firstAttribute="width" constant="50" id="xHc-FW-Ec0"/>
@@ -49,7 +49,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关注" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2M-gj-8kl">
-                    <rect key="frame" x="213" y="51" width="50" height="21"/>
+                    <rect key="frame" x="225" y="51" width="50" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="ip0-s5-vdL"/>
                         <constraint firstAttribute="width" constant="50" id="pfZ-Ey-nul"/>
@@ -59,7 +59,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7W-12-PkU">
-                    <rect key="frame" x="143" y="25" width="50" height="21"/>
+                    <rect key="frame" x="155" y="25" width="50" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="9gd-vw-eGF"/>
                         <constraint firstAttribute="height" constant="21" id="iuU-hh-klf"/>
@@ -69,7 +69,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="习惯" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFK-t5-bqK">
-                    <rect key="frame" x="143" y="51" width="50" height="21"/>
+                    <rect key="frame" x="155" y="51" width="50" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="Kij-zM-Kr5"/>
                         <constraint firstAttribute="width" constant="50" id="ave-US-1zd"/>
@@ -90,25 +90,14 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hmO-Dm-a15">
                     <rect key="frame" x="80" y="65" width="20" height="20"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vq3-z0-01U">
-                    <rect key="frame" x="340" y="118" width="25" height="25"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="25" id="EfX-Ak-f85"/>
-                        <constraint firstAttribute="width" constant="25" id="uMP-v2-iBJ"/>
-                    </constraints>
-                    <state key="normal" title="Button" image="radio.png"/>
-                    <state key="selected" image="radio_selected.png"/>
-                    <state key="highlighted" image="radio_selected.png"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUG-J1-1BC">
-                    <rect key="frame" x="308" y="118" width="25" height="25"/>
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUG-J1-1BC">
+                    <rect key="frame" x="310" y="115" width="25" height="28"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="25" id="0rC-ew-205"/>
-                        <constraint firstAttribute="height" constant="25" id="shr-gM-H7H"/>
+                        <constraint firstAttribute="height" constant="28" id="shr-gM-H7H"/>
                     </constraints>
-                    <state key="normal" title="Button" image="radio.png"/>
-                    <state key="selected" image="radio_selected.png"/>
-                    <state key="highlighted" image="radio_selected.png"/>
+                    <state key="normal" title="Button" image="listTwo_selected_32.png"/>
+                    <state key="selected" image="listTwo_normal_32.png"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGW-GP-Ewa">
                     <rect key="frame" x="295" y="25" width="50" height="47"/>
@@ -121,7 +110,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3K-P7-YJf">
-                    <rect key="frame" x="211" y="25" width="50" height="47"/>
+                    <rect key="frame" x="225" y="25" width="50" height="47"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="dpx-th-uPj"/>
                     </constraints>
@@ -130,7 +119,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4o-vf-AdJ">
-                    <rect key="frame" x="141" y="25" width="50" height="47"/>
+                    <rect key="frame" x="155" y="25" width="50" height="47"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="agt-eB-I1D"/>
                     </constraints>
@@ -138,25 +127,36 @@
                         <action selector="habitList:" destination="iN0-l3-epB" eventType="touchUpInside" id="Gfa-Yr-aTn"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vq3-z0-01U">
+                    <rect key="frame" x="342" y="118" width="23" height="23"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="23" id="EfX-Ak-f85"/>
+                        <constraint firstAttribute="width" constant="23" id="uMP-v2-iBJ"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="listOne_selected_32.png"/>
+                    <state key="selected" image="listOne_normal_32.png"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="QGW-GP-Ewa" firstAttribute="leading" secondItem="n3K-P7-YJf" secondAttribute="trailing" constant="34" id="0wa-N3-n9A"/>
+                <constraint firstItem="QGW-GP-Ewa" firstAttribute="leading" secondItem="n3K-P7-YJf" secondAttribute="trailing" constant="20" id="0wa-N3-n9A"/>
                 <constraint firstItem="pFK-t5-bqK" firstAttribute="top" secondItem="U7W-12-PkU" secondAttribute="bottom" constant="5" id="3V1-Db-bbS"/>
                 <constraint firstItem="n3K-P7-YJf" firstAttribute="width" secondItem="Vhs-sI-qXR" secondAttribute="width" id="8mK-Or-bqK"/>
                 <constraint firstAttribute="trailing" secondItem="QGW-GP-Ewa" secondAttribute="trailing" constant="30" id="8zk-Ub-Clr"/>
                 <constraint firstItem="U7W-12-PkU" firstAttribute="leading" secondItem="pFK-t5-bqK" secondAttribute="leading" id="9lq-V7-a43"/>
+                <constraint firstItem="n3K-P7-YJf" firstAttribute="trailing" secondItem="Vhs-sI-qXR" secondAttribute="trailing" id="BVl-Cb-PFV"/>
                 <constraint firstAttribute="trailing" secondItem="iU5-Vx-OTa" secondAttribute="trailing" constant="30" id="Dif-Ls-1O5"/>
                 <constraint firstItem="h4o-vf-AdJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="FWy-DT-DGS"/>
                 <constraint firstItem="QKo-eK-hee" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="Hup-gi-EVz"/>
                 <constraint firstItem="QGW-GP-Ewa" firstAttribute="width" secondItem="ybx-5k-mAB" secondAttribute="width" id="IAU-PY-Jgj"/>
                 <constraint firstItem="iU5-Vx-OTa" firstAttribute="top" secondItem="ybx-5k-mAB" secondAttribute="bottom" constant="5" id="IGt-s9-ZmK"/>
+                <constraint firstItem="h4o-vf-AdJ" firstAttribute="trailing" secondItem="U7W-12-PkU" secondAttribute="trailing" id="IKE-Rp-TXR"/>
                 <constraint firstItem="U7W-12-PkU" firstAttribute="leading" secondItem="4Rc-y3-spy" secondAttribute="trailing" constant="43" id="Ivs-oK-5eO"/>
                 <constraint firstItem="d2M-gj-8kl" firstAttribute="top" secondItem="Vhs-sI-qXR" secondAttribute="bottom" constant="5" id="J9H-Oe-Gb3"/>
                 <constraint firstItem="Vhs-sI-qXR" firstAttribute="leading" secondItem="U7W-12-PkU" secondAttribute="trailing" constant="20" id="Jkw-R8-a0j"/>
                 <constraint firstAttribute="trailing" secondItem="Vq3-z0-01U" secondAttribute="trailing" constant="10" id="KoR-GC-YqH"/>
                 <constraint firstAttribute="bottom" secondItem="CUG-J1-1BC" secondAttribute="bottom" constant="7" id="NEL-BR-xgl"/>
-                <constraint firstAttribute="bottom" secondItem="Vq3-z0-01U" secondAttribute="bottom" constant="7" id="NIV-Yc-KdN"/>
+                <constraint firstAttribute="bottom" secondItem="Vq3-z0-01U" secondAttribute="bottom" constant="9" id="NIV-Yc-KdN"/>
                 <constraint firstItem="U7W-12-PkU" firstAttribute="baseline" secondItem="Vhs-sI-qXR" secondAttribute="baseline" id="PSY-0e-dCm"/>
                 <constraint firstItem="U7W-12-PkU" firstAttribute="baseline" secondItem="ybx-5k-mAB" secondAttribute="baseline" id="QJc-WA-p41"/>
                 <constraint firstItem="d2M-gj-8kl" firstAttribute="leading" secondItem="Vhs-sI-qXR" secondAttribute="leading" id="Tuq-42-TIN"/>
@@ -165,6 +165,8 @@
                 <constraint firstItem="QKo-eK-hee" firstAttribute="top" secondItem="4Rc-y3-spy" secondAttribute="bottom" constant="10" id="bbz-au-HpW"/>
                 <constraint firstItem="n3K-P7-YJf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="c7v-c5-SSR"/>
                 <constraint firstItem="4Rc-y3-spy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="kns-nC-yf7"/>
+                <constraint firstItem="h4o-vf-AdJ" firstAttribute="trailing" secondItem="pFK-t5-bqK" secondAttribute="trailing" id="lwJ-aE-fEn"/>
+                <constraint firstItem="n3K-P7-YJf" firstAttribute="trailing" secondItem="d2M-gj-8kl" secondAttribute="trailing" id="nel-9U-qEd"/>
                 <constraint firstItem="ybx-5k-mAB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="qDW-D8-xov"/>
                 <constraint firstItem="Vq3-z0-01U" firstAttribute="leading" secondItem="CUG-J1-1BC" secondAttribute="trailing" constant="7" id="qQT-zY-d6I"/>
                 <constraint firstItem="h4o-vf-AdJ" firstAttribute="width" secondItem="U7W-12-PkU" secondAttribute="width" id="qh7-9j-rWk"/>
@@ -173,6 +175,14 @@
                 <constraint firstItem="QGW-GP-Ewa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="wU7-1e-fMa"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="9lq-V7-a43"/>
+                    <exclude reference="Ivs-oK-5eO"/>
+                    <exclude reference="Jkw-R8-a0j"/>
+                    <exclude reference="Tuq-42-TIN"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="aListBtn" destination="Vq3-z0-01U" id="qKh-A6-TuA"/>
                 <outlet property="avatarView" destination="4Rc-y3-spy" id="D4F-Fa-F6V"/>
@@ -187,7 +197,9 @@
         </view>
     </objects>
     <resources>
-        <image name="radio.png" width="32" height="32"/>
-        <image name="radio_selected.png" width="32" height="32"/>
+        <image name="listOne_normal_32.png" width="32" height="32"/>
+        <image name="listOne_selected_32.png" width="32" height="32"/>
+        <image name="listTwo_normal_32.png" width="32" height="32"/>
+        <image name="listTwo_selected_32.png" width="32" height="32"/>
     </resources>
 </document>

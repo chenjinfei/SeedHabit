@@ -17,11 +17,12 @@
 #import <UIImageView+WebCache.h>
 #import "UIImageView+CJFUIImageView.h"
 #import <EMSDK.h>
+#import "UIColor+CJFColor.h"
 
 #import "MsgChatViewController.h"
 #import "ContactsListTableViewCell.h"
 
-@interface ContactsViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating>
+@interface ContactsViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate>
 
 // 搜索框
 @property (nonatomic, strong) UISearchController *searchController;
@@ -30,6 +31,7 @@
 @property (nonatomic, strong) NSMutableArray *dataList;
 // 表格视图
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableView *searchTableView;
 
 @end
 
@@ -45,6 +47,12 @@
 -(void)viewWillAppear:(BOOL)animated {
     // 加载数据
     [self loadData];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    
+    [self.searchController.searchBar resignFirstResponder];
+    
 }
 
 // 加载数据
@@ -92,25 +100,50 @@
     self.navigationItem.title = @"我的联系人";
     
     // 创建tableView
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-40-64) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-40-64) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.separatorColor = RGBA(225, 225, 225, 1);
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ContactsListTableViewCell" bundle:nil] forCellReuseIdentifier:@"CONTACTCELL"];
     
     // 搜索框
     self.searchController = [[UISearchController alloc]initWithSearchResultsController:nil];
-    self.searchController.dimsBackgroundDuringPresentation = NO;
-    self.searchController.hidesNavigationBarDuringPresentation = NO;
-    self.searchController.searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 40);
+    
+    //设置UISearchController的显示属性，以下3个属性默认为YES
+    //搜索时，背景变暗色
+    _searchController.dimsBackgroundDuringPresentation = NO;
+    //搜索时，背景变模糊
+    _searchController.obscuresBackgroundDuringPresentation = YES;
+    //隐藏导航栏
+    _searchController.hidesNavigationBarDuringPresentation = YES;
+    
+    // 设置代理
+    self.searchController.delegate = self;
     self.searchController.searchBar.delegate = self;
     self.searchController.searchResultsUpdater = self;
-    self.searchController.searchBar.barTintColor = RGBA(240, 240, 240, 1);
-    [self.searchController.searchBar sizeToFit];
+    
+    _searchController.searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44.0);
+    _searchController.searchBar.barTintColor = RGBA(240, 240, 240, 1);
+    _searchController.searchBar.tintColor = [UIColor colorWithHexString:UIMainColor alpha:1];
+    _searchController.searchBar.searchBarStyle = UISearchBarStyleProminent;
+    
     [self.view addSubview:self.searchController.searchBar];
+    
+    
+    // 创建tableView
+    self.searchTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-40-64) style:UITableViewStyleGrouped];
+    
+    self.searchTableView.delegate = self;
+    self.searchTableView.dataSource = self;
+    
+    self.searchTableView.backgroundColor = [UIColor whiteColor];
+    self.searchTableView.separatorColor = RGBA(225, 225, 225, 1);
+    
+    [self.searchTableView registerNib:[UINib nibWithNibName:@"ContactsListTableViewCell" bundle:nil] forCellReuseIdentifier:@"SEARCHCELL"];
     
 }
 
@@ -145,15 +178,85 @@
     // 键盘高度
     CGFloat keyboardHeight = [KeyboardObserved manager].keyboardFrame.size.height;
     if ([[KeyboardObserved manager] keyboardIsVisible]) {
-        [UIView animateWithDuration:0.25 animations:^{
-            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, SCREEN_HEIGHT-40-64-keyboardHeight);
+        NSLog(@"=open");
+        [UIView animateWithDuration:0.5 animations:^{
+            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, SCREEN_HEIGHT-40-keyboardHeight);
         }];
     }else {
-        [UIView animateWithDuration:0.25 animations:^{
-            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, SCREEN_HEIGHT-40-64+keyboardHeight);
+        NSLog(@"=close");
+        [UIView animateWithDuration:0.5 animations:^{
+            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, SCREEN_HEIGHT-40+keyboardHeight);
         }];
     };
 }
+
+
+// 更新tableView的frame
+-(void)updateTableViewFrame {
+    CGFloat kbHeight = [KeyboardObserved manager].keyboardFrame.size.height;
+    if ([KeyboardObserved manager].keyboardIsVisible) {
+        NSLog(@"open");
+        self.tableView.frame = CGRectMake(0, 64, SCREEN_WIDTH , SCREEN_HEIGHT-24-kbHeight);
+    }else {
+        NSLog(@"close");
+        self.tableView.frame = CGRectMake(0, 44, SCREEN_WIDTH , SCREEN_HEIGHT-24);
+    }
+    
+}
+
+
+
+
+#pragma mark - UISearchControllerDelegate代理
+
+//测试UISearchController的执行过程
+
+- (void)willPresentSearchController:(UISearchController *)searchController
+{
+    NSLog(@"willPresentSearchController");
+}
+
+- (void)didPresentSearchController:(UISearchController *)searchController
+{
+    NSLog(@"didPresentSearchController");
+}
+
+- (void)willDismissSearchController:(UISearchController *)searchController
+{
+    NSLog(@"willDismissSearchController");
+}
+
+- (void)didDismissSearchController:(UISearchController *)searchController
+{
+    self.navigationController.navigationBar.hidden = NO;
+    
+    NSLog(@"didDismissSearchController");
+    
+    [_searchTableView removeFromSuperview];
+    
+}
+
+- (void)presentSearchController:(UISearchController *)searchController
+{
+    self.navigationController.navigationBar.hidden = YES;
+    
+    NSLog(@"presentSearchController");
+    
+    // 键盘高度
+    CGFloat keyboardHeight = [KeyboardObserved manager].keyboardFrame.size.height;
+    NSLog(@": %f", keyboardHeight);
+    
+    [_searchController.view addSubview:_searchTableView];
+    
+    _searchTableView.frame = CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT-40-64-keyboardHeight);
+    
+}
+
+
+
+
+
+
 
 
 
@@ -161,29 +264,58 @@
 
 //设置区域的行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.searchController.active) {
-        return [self.searchList count];
-    }else{
+    
+    //    if (self.searchController.active) {
+    //        return [self.searchList count];
+    //    }else{
+    //        return [self.dataList count];
+    //    }
+    
+    
+    if ([tableView isEqual:self.tableView]) {
         return [self.dataList count];
     }
-    //    return  self.dataList.count;
+    
+    if ([tableView isEqual:self.searchTableView]) {
+        return self.searchList.count;
+    }
+    
+    return 0;
+    
 }
 
 //返回单元格内容
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    ContactsListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CONTACTCELL"];
-    
-    SeedUser *user = [[SeedUser alloc]init];
-    if (self.searchController.active) {
-        user = self.searchList[indexPath.row];
-    }else {
-        user = self.dataList[indexPath.row];
+    if ([tableView isEqual:self.tableView]) {
+        
+        ContactsListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CONTACTCELL"];
+        
+        //        SeedUser *user = [[SeedUser alloc]init];
+        //        if (self.searchController.active) {
+        //            user = self.searchList[indexPath.row];
+        //        }else {
+        //            user = self.dataList[indexPath.row];
+        //        }
+        //        cell.model = user;
+        
+        cell.model = self.dataList[indexPath.row];
+        
+        return cell;
+        
     }
     
-    cell.model = user;
+    if ([tableView isEqual:self.searchTableView]) {
+        
+        ContactsListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CONTACTCELL"];
+        
+        cell.model = self.searchList[indexPath.row];
+        
+        return cell;
+        
+    }
     
-    return cell;
+    return nil;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -191,29 +323,47 @@
     // 取消选中状态
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    SeedUser *targetUser = [[SeedUser alloc]init];
-    
-    if (self.searchController.active) {
-        NSString *searchText = [self.searchController.searchBar text];
-        if ([NSString isValidateEmpty:searchText]) {
-            targetUser = self.dataList[indexPath.row];
+    if ([tableView isEqual:self.tableView]) {
+        
+        SeedUser *targetUser = [[SeedUser alloc]init];
+        
+        if (self.searchController.active) {
+            NSString *searchText = [self.searchController.searchBar text];
+            if ([NSString isValidateEmpty:searchText]) {
+                targetUser = self.dataList[indexPath.row];
+            }else {
+                targetUser = self.searchList[indexPath.row];
+            }
         }else {
-            targetUser = self.searchList[indexPath.row];
+            targetUser = self.dataList[indexPath.row];
         }
-    }else {
-        targetUser = self.dataList[indexPath.row];
+        
+        self.hidesBottomBarWhenPushed = YES;
+        MsgChatViewController *chatVc = [[MsgChatViewController alloc]init];
+        chatVc.targetUser = targetUser;
+        [self.navigationController pushViewController:chatVc animated:YES];
+        self.hidesBottomBarWhenPushed = YES;
+        
     }
     
-    self.hidesBottomBarWhenPushed = YES;
-    MsgChatViewController *chatVc = [[MsgChatViewController alloc]init];
-    chatVc.targetUser = targetUser;
-    [self.navigationController pushViewController:chatVc animated:YES];
-    self.hidesBottomBarWhenPushed = YES;
+    if ([tableView isEqual:self.searchTableView]) {
+        
+    }
+    
+    
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.001;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.001;
 }
 
 

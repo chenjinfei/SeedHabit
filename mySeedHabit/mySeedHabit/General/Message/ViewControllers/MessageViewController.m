@@ -14,6 +14,7 @@
 
 #import <EMSDK.h>
 #import "UIImage+CJFImage.h"
+#import <MJRefresh.h>
 
 // 测试
 #import "UIButton+CJFUIButton.h"
@@ -61,8 +62,27 @@
     NSLog(@"内存中所有会话：%@", conversations);
     
     for (EMConversation *cs in conversations) {
-        NSLog(@"%@", cs.latestMessage.ext)
+        NSLog(@"%@", cs.ext)
+        if (!cs.ext) {
+            AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+            NSDictionary *parameters = @{
+                                         @"user_id" : [NSNumber numberWithInteger:[cs.conversationId integerValue]]
+                                         };
+            [session POST:APIUserInfo parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"%@", responseObject);
+                if (responseObject[@"data"][@"user"]) {
+                    cs.ext = @{
+                               @"avatar": responseObject[@"data"][@"user"][@"avatar_small"],
+                               @"nickname" : responseObject[@"data"][@"user"][@"nickname"]
+                               };
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"%@", error);
+            }];
+        }
     }
+    
+    [self.tableView.mj_header endRefreshing];
     
 }
 
@@ -101,6 +121,13 @@
     self.tableView.dataSource = self;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MsgConversationListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"CVCELL"];
+    
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    // 设置header
+    self.tableView.mj_header = header;
     
 }
 

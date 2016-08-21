@@ -47,6 +47,8 @@
 // 加载数据
 -(void)loadData {
     
+    [self.dataSource removeAllObjects];
+    
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
     SeedUser *currentUser = [UserManager manager].currentUser;

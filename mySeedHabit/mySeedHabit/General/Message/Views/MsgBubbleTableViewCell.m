@@ -164,10 +164,10 @@
     
     // 设置消息文本区的约束
     [_msgText mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_bubbleView.mas_top).with.offset(5);
-        make.right.equalTo(_bubbleView.mas_right).with.offset(-5);
-        make.bottom.equalTo(_bubbleView.mas_bottom).with.offset(-5);
-        make.left.equalTo(_bubbleView.mas_left).with.offset(5);
+        make.top.equalTo(_bubbleView.mas_top).with.offset(8);
+        make.right.equalTo(_bubbleView.mas_right).with.offset(-8);
+        make.bottom.equalTo(_bubbleView.mas_bottom).with.offset(-8);
+        make.left.equalTo(_bubbleView.mas_left).with.offset(8);
     }];
     
     if (self.direction == EMMessageDirectionSend) {
@@ -204,7 +204,7 @@
         
         // 设置头像的约束
         [_avatarView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView.mas_top).with.offset(10);
+            make.top.equalTo(self.contentView.mas_top).with.offset(5);
             make.left.equalTo(self.contentView.mas_left).with.offset(10);
             make.size.mas_equalTo(CGSizeMake(40, 40));
         }];
@@ -213,7 +213,7 @@
         //        if (_conversationType != EMConversationTypeChat) {
         
         [_nicknameView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView.mas_top).with.offset(10);
+            make.top.equalTo(self.contentView.mas_top).with.offset(5);
             make.left.equalTo(self.contentView.mas_left).with.offset(60);
             make.size.mas_equalTo(CGSizeMake(self.contentView.frame.size.width*2/5, 20));
         }];
@@ -245,7 +245,7 @@
 +(CGFloat)heightWithMsgModel: (EMMessage *)message {
     EMTextMessageBody *msgBody = (EMTextMessageBody *)message.body;
     CGFloat width = SCREEN_WIDTH * 3 / 5;
-    CGFloat textHeight = [CJFTools heightWithString:msgBody.text width:width font:[UIFont systemFontOfSize:14.3]];
+    CGFloat textHeight = [CJFTools heightWithString:msgBody.text width:width font:[UIFont systemFontOfSize:14.6]];
     return textHeight + 20 + 20 + 10;
 }
 
