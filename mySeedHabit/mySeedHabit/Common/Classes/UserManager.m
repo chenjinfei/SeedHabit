@@ -12,6 +12,7 @@
 #import <MJExtension.h>
 
 #import "NSString+CJFString.h"
+#import "LoginViewController.h"
 
 // 导入环信SDK
 #import <EMSDK.h>
@@ -92,7 +93,11 @@ static UserManager *instance = nil;
  *  @param aError 错误信息
  */
 -(void)didAutoLoginWithError:(EMError *)aError {
-    NSLog(@"%@", aError);
+    if (aError) {
+        NSLog(@"%@", aError);
+    }else {
+        NSLog(@"自动登录成功");
+    }
 }
 
 
@@ -114,6 +119,9 @@ static UserManager *instance = nil;
  */
 - (void)didLoginFromOtherDevice {
     NSLog(@"当前登录账号在其它设备登录");
+    [self removeUserDefaults];
+    LoginViewController *loginVc = [[LoginViewController alloc]init];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:loginVc animated:NO completion:nil];
 }
 
 /*!
@@ -163,7 +171,8 @@ static UserManager *instance = nil;
                 self.currentUser = model;
                 self.userId = model.uId;
             }
-            NSString *username = [NSString stringWithFormat:@"%@", [info valueForKey:@"account"]];
+            
+            NSString *username = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"user"][@"id"]];
             NSString *password = nil;
             if ([info valueForKey:@"password"]) {
                 password = [info valueForKey:@"password"];
@@ -172,24 +181,29 @@ static UserManager *instance = nil;
             }
             // 当为新用户是为用户进行环信的帐号注册
             // 否则再执行用户在环信的登录
-            EMError *error = nil;
+            //            EMError *error = nil;
             if ([responseObject[@"data"][@"new_user"] intValue]) {
-                error = [[EMClient sharedClient] registerWithUsername:username password:password];
-                if (error==nil) { // 注册成功
-                    success(responseObject);
-                }
+                [[EMClient sharedClient] asyncRegisterWithUsername:username password:password success:^{
+                    NSLog(@"注册环信帐号成功");
+                } failure:^(EMError *aError) {
+                    NSLog(@"注册环信帐号失败");
+                }];
             }
             // 判断是否设置了环信的自动登录
             BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
             if (!isAutoLogin) {
-                error = [[EMClient sharedClient] loginWithUsername:username password:password];
-                if (!error) {
+                [[EMClient sharedClient] asyncLoginWithUsername:username password:password success:^{
                     NSLog(@"登录环信成功");
                     // 开启环信自动登录，默认关闭
                     [[EMClient sharedClient].options setIsAutoLogin:YES];
-                }else {
-                    NSLog(@"登录环信失败：%@", error);
-                }
+                } failure:^(EMError *aError) {
+                    NSLog(@"登录环信失败：%@, 错误码：%u", aError.errorDescription, aError.code);
+                    if (aError.code == 204) {
+                        
+                        [self registerHXAcountWithUsername:username password:password];
+                        
+                    }
+                }];
             }else {
                 NSLog(@"开启了环信自动登录");
             }
@@ -205,11 +219,52 @@ static UserManager *instance = nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         failure(error);
-//        NSLog(@"%@", error);
+        //        NSLog(@"%@", error);
         
     }];
     
 }
+
+
+/**
+ *  注册环信帐号
+ *
+ *  @param username 帐号
+ *  @param password 密码
+ */
+-(void)registerHXAcountWithUsername: (NSString *)username password: (NSString *)password {
+    [[EMClient sharedClient] asyncRegisterWithUsername:username password:password success:^{
+        NSLog(@"注册环信帐号成功");
+        [self loginHXWithUsername:username password:password];
+    } failure:^(EMError *aError) {
+        NSLog(@"注册环信帐号失败");
+    }];
+}
+
+
+/**
+ *  登录环信
+ *
+ *  @param username 帐号
+ *  @param password 密码
+ */
+-(void)loginHXWithUsername: (NSString *)username password: (NSString *)password {
+    // 判断是否设置了环信的自动登录
+    BOOL isAutoLogin = [EMClient sharedClient].options.isAutoLogin;
+    if (!isAutoLogin) {
+        [[EMClient sharedClient] asyncLoginWithUsername:username password:password success:^{
+            NSLog(@"登录环信成功");
+            // 开启环信自动登录，默认关闭
+            [[EMClient sharedClient].options setIsAutoLogin:YES];
+        } failure:^(EMError *aError) {
+            NSLog(@"登录环信失败：%@, 错误码：%u", aError.errorDescription, aError.code);
+        }];
+    }else {
+        NSLog(@"开启了环信自动登录");
+    }
+}
+
+
 
 /**
  *  登出
@@ -319,7 +374,6 @@ static UserManager *instance = nil;
     }
     
     [userDefaults synchronize];
-    
     
     NSLog(@"清除本地持久化登录数据：username:%@, password:%@", [userDefaults valueForKey:USERNAME], [userDefaults valueForKey:USERPASSWORD])
 }

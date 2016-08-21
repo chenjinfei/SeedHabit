@@ -13,6 +13,7 @@
 #import "LoginViewController.h"
 #import "UserManager.h"
 #import "NSString+CJFString.h"
+#import <SCLAlertView.h>
 
 #import "UMSocial.h"
 #import "UMSocialSinaSSOHandler.h"
@@ -25,9 +26,18 @@
 
 @property (nonatomic, strong) UIViewController *mainVc;
 
+@property (nonatomic, strong) SCLAlertView *alert;
+
 @end
 
 @implementation AppDelegate
+
+-(SCLAlertView *)alert {
+    if (!_alert) {
+        _alert = [[SCLAlertView alloc]init];
+    }
+    return _alert;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -35,10 +45,14 @@
     [self checkLogin];
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
     // 主视图控制器
     self.mainVc = [[CJFTabBarViewController alloc]init];
+    // 初始化登录控制器
+    LoginViewController *loginVc = [[LoginViewController alloc]init];
+    
     // 设置根视图
-    self.window.rootViewController = self.mainVc;
+    self.window.rootViewController = loginVc;
     // 显示
     [self.window makeKeyAndVisible];
     
@@ -46,7 +60,7 @@
     
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-//    UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true);
+    //    UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true);
     
     // 设置友盟AppKey
     [UMSocialData setAppKey:AppKeyUmeng];
@@ -58,7 +72,55 @@
     [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:WeiboAppKey
                                               secret:WeiboAppSecret
                                          RedirectURL:WeiboRedirectUrl];
+    
+    
+    //AppKey:注册的AppKey，详细见下面注释。
+    //apnsCertName:推送证书名（不需要加后缀），详细见下面注释。
+    EMOptions *options = [EMOptions optionsWithAppkey:AppKeyEM];
+    options.apnsCertName = AppApnsCertName;
+    [[EMClient sharedClient] initializeSDKWithOptions:options];
+    
+    
     return YES;
+}
+
+/**
+ *  登录
+ */
+-(void)login {
+    
+    // 获取本地有持久化登录数据
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *parameters = nil;
+    NSNumber *account_type = nil;
+    if ([defaults valueForKey:USERNAME] && [defaults valueForKey:USERPASSWORD]) {
+        account_type = [NSNumber numberWithInt:4];
+        parameters = @{
+                       @"account": [NSNumber numberWithInteger:[[defaults valueForKey:USERNAME] integerValue]],
+                       @"password": [defaults valueForKey:USERPASSWORD],
+                       @"account_type": account_type
+                       };
+    }else {
+        account_type = [NSNumber numberWithInt:1];
+        parameters = @{
+                       @"account": [defaults valueForKey:USERNAME],
+                       @"account_type": account_type
+                       };
+    }
+    
+    [[UserManager manager] loginWithInfo:parameters success:^(NSDictionary *userData) {
+        if (userData) {
+            
+            NSLog(@"登录成功");
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:self.mainVc animated:YES completion:nil];
+            
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"登录出错啦， 请重新登录：%@", error);
+        [self.alert showWaiting:@"唉哟，感觉..." subTitle:@"登录失败了" closeButtonTitle:nil duration:1.0f];
+    }];
+    
+    
 }
 
 

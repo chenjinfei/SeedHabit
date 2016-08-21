@@ -536,6 +536,35 @@
 			path = TabBarIcon;
 			sourceTree = "<group>";
 		};
+		3767F85A1D64089E004E2945 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3767F85B1D64089E004E2945 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3767F85C1D6408C8004E2945 /* MsgConversationListTableViewCell.h */,
+				3767F85D1D6408C8004E2945 /* MsgConversationListTableViewCell.m */,
+				3767F85E1D6408C8004E2945 /* MsgConversationListTableViewCell.xib */,
+				3767F8631D645CEE004E2945 /* MsgChatTextTableViewCell.h */,
+				3767F8641D645CEE004E2945 /* MsgChatTextTableViewCell.m */,
+				3767F8651D645CEE004E2945 /* MsgChatTextTableViewCell.xib */,
+				3767F8681D646743004E2945 /* MsgChatTextReceiveTableViewCell.h */,
+				3767F8691D646743004E2945 /* MsgChatTextReceiveTableViewCell.m */,
+				3767F86A1D646743004E2945 /* MsgChatTextReceiveTableViewCell.xib */,
+				3767F86D1D658CF4004E2945 /* MsgBubbleTableViewCell.h */,
+				3767F86E1D658CF4004E2945 /* MsgBubbleTableViewCell.m */,
+				3767F86F1D658CF4004E2945 /* MsgBubbleTableViewCell.xib */,
+				3767F8B31D683C61004E2945 /* ContactsListTableViewCell.h */,
+				3767F8B41D683C61004E2945 /* ContactsListTableViewCell.m */,
+				3767F8B51D683C61004E2945 /* ContactsListTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		37DB26671D4F40A600FA5198 = {
 			isa = PBXGroup;
 			children = (
@@ -1467,6 +1496,11 @@
 				INFOPLIST_FILE = mySeedHabit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1572,6 +1606,11 @@
 				INFOPLIST_FILE = mySeedHabit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

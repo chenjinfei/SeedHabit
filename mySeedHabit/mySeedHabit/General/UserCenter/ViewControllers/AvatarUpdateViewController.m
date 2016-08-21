@@ -14,6 +14,8 @@
 #import <MobileCoreServices/UTType.h>
 #import "UIImage+CJFImage.h"
 
+#import "CJFTools.h"
+
 #define POST_BOUNDS @"667AA1D3D3490DF4"
 
 @interface AvatarUpdateViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -38,7 +40,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -147,7 +149,8 @@
                                          @"id": [UserManager manager].currentUser.uId
                                          };
             // 上传更新头像
-            [[UserManager manager] avatarUpdateWithParameters:parameters];
+            //            [[UserManager manager] avatarUpdateWithParameters:parameters];
+            [[CJFTools manager] submitFormDataToUrl:APIUserUpdate withParameters:parameters exImgParameterName:@"avatar"];
             
             [self dismissViewControllerAnimated:YES completion:nil];
             

@@ -14,17 +14,29 @@
 #import "SeedUser.h"
 #import "UserSearchList_TBCell.h"
 #import "UserCenterViewController.h"
+#import "DeserveUsersListTableViewCell.h"
+#import "CJFDeserveUserModel.h"
 
 #import <UIImageView+WebCache.h>
 #import "UIImageView+CJFUIImageView.h"
+#import <MJRefresh.h>
 
 @interface AddFriendsViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate,UISearchResultsUpdating, UISearchControllerDelegate>
 
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) UITableView *tableView;
 
+// 搜索结果的数组
 @property (nonatomic, strong) NSMutableArray *dataList;
 @property (nonatomic, strong) NSMutableArray *searchList;
+
+// 推荐用户数组
+@property (nonatomic, strong) NSMutableArray *deserveDataList;
+@property (nonatomic, strong) NSMutableArray *deserveIdList;
+// 推荐用户的显示表格
+@property (nonatomic, strong) UITableView *deserveUsersTableView;
+
+
 
 @end
 
@@ -40,6 +52,14 @@
     
 }
 
+
+-(void)viewWillAppear:(BOOL)animated {
+    // 加载数据
+    [self loadData];
+}
+
+
+
 -(UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
@@ -47,15 +67,33 @@
     return _tableView;
 }
 
+-(UITableView *)deserveUsersTableView {
+    if (!_deserveUsersTableView) {
+        _deserveUsersTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, SCREEN_HEIGHT-64-44) style:UITableViewStyleGrouped];
+    }
+    return _deserveUsersTableView;
+}
+
+-(NSMutableArray *)deserveDataList {
+    if (!_deserveDataList) {
+        _deserveDataList = [[NSMutableArray alloc]init];
+    }
+    return _deserveDataList;
+}
+
 -(void)buildView {
     
     self.navigationItem.title = @"添加好友";
+    
+    
+#pragma mark ==================  搜索 start ========================
     
     _dataList = [NSMutableArray array];
     _searchList = [NSMutableArray array];
 
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH , SCREEN_HEIGHT-64-49-44)];
     _tableView.backgroundColor = CLEARCOLOR;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"UserSearchList_TBCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"USERSEARCHCELL"];
     
@@ -73,14 +111,14 @@
     //搜索时，背景变暗色
     _searchController.dimsBackgroundDuringPresentation = NO;
     //搜索时，背景变模糊
-//    _searchController.obscuresBackgroundDuringPresentation = YES;
+    _searchController.obscuresBackgroundDuringPresentation = YES;
     //隐藏导航栏
     _searchController.hidesNavigationBarDuringPresentation = YES;
     
     _searchController.searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44.0);
     _searchController.searchBar.barTintColor = RGBA(240, 240, 240, 1);
     _searchController.searchBar.tintColor = [UIColor colorWithHexString:UIMainColor alpha:1];
-    _searchController.searchBar.searchBarStyle = UISearchBarStyleDefault;
+    _searchController.searchBar.searchBarStyle = UISearchBarStyleProminent;
     _searchController.searchBar.placeholder = @"输入你要搜索的用户名";
     
     // 添加 searchbar 到 self.view
@@ -89,38 +127,28 @@
     
     [KeyboardObserved manager];
     
-}
-
-
-//设置区域的行数
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.searchList.count;
-}
-
-
-//返回单元格内容
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+#pragma mark ==================  搜索 end ========================
     
-    UserSearchList_TBCell *cell = [tableView dequeueReusableCellWithIdentifier:@"USERSEARCHCELL"];
+    [self.view addSubview:self.deserveUsersTableView];
     
-    cell.model = self.searchList[indexPath.row];
+    self.deserveUsersTableView.delegate = self;
+    self.deserveUsersTableView.dataSource = self;
     
-    return cell;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.deserveUsersTableView registerNib:[UINib nibWithNibName:@"DeserveUsersListTableViewCell" bundle:nil] forCellReuseIdentifier:@"DESERVECELL"];
     
-    self.searchController.active = NO;
+    self.deserveUsersTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    UserCenterViewController *userVc = [[UserCenterViewController alloc]init];
-    userVc.user = self.searchList[indexPath.row];
-    [self.navigationController pushViewController:userVc animated:YES];
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    // 设置footer
+    self.deserveUsersTableView.mj_footer = footer;
+    
     
 }
+
+
+
+
 
 #pragma mark - UISearchControllerDelegate代理
 
@@ -163,7 +191,7 @@
     NSLog(@"updateSearchResultsForSearchController");
     [self updateTableViewFrame];
     
-    [self loadData];
+    [self searchData];
     
 }
 
@@ -176,7 +204,7 @@
         self.tableView.frame = CGRectMake(0, 64, SCREEN_WIDTH , SCREEN_HEIGHT-64-kbHeight);
     }else {
         NSLog(@"close");
-        self.tableView.frame = CGRectMake(0, 64, SCREEN_WIDTH , SCREEN_HEIGHT-49-64);
+        self.tableView.frame = CGRectMake(0, 64, SCREEN_WIDTH , SCREEN_HEIGHT-64);
     }
     
 }
@@ -184,13 +212,13 @@
 // 点击搜索按钮的响应事件
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"search");
-    self.tableView.frame = CGRectMake(0, 64, SCREEN_WIDTH , SCREEN_HEIGHT-49-64);
-    [self loadData];
+    self.tableView.frame = CGRectMake(0, 64, SCREEN_WIDTH , SCREEN_HEIGHT-64);
+    [self searchData];
 }
 
 
-// 下载数据
--(void)loadData {
+// 搜索数据
+-(void)searchData {
     
     NSString *searchString = [self.searchController.searchBar text];
     
@@ -226,6 +254,218 @@
     }else {
         NSLog(@"搜索内容为空，请输入搜索内容！");
     }
+}
+
+
+
+
+
+
+
+#pragma mark ==================  推荐关注用户 start ========================
+
+
+/**
+ *  加载数据
+ */
+-(void)loadData {
+    
+    AFHTTPSessionManager *session = [ AFHTTPSessionManager manager];
+    
+    NSMutableString *userIds = nil;
+    for (int i = 0 ; i < self.deserveIdList.count; i++) {
+        [userIds appendString:self.deserveIdList[i]];
+        if (i != self.deserveIdList.count) {
+            [userIds appendString:@"%2C"];
+        }
+    }
+    if (userIds == nil) {
+        userIds = [[NSMutableString alloc]initWithString:@""];
+    }
+    
+    NSDictionary *parameters = @{
+                                 @"note_num" : @3,
+                                 @"num" : @5,
+                                 @"userIds" : userIds
+                                 };
+    [session POST:APIListDeserveUsers parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //        NSLog(@"%@", responseObject);
+        
+        for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
+            
+            CJFDeserveUserModel *model = [[CJFDeserveUserModel alloc]init];
+            [model setValuesForKeysWithDictionary:dict];
+            
+            CJFDeserveHabit *habitModel = [[CJFDeserveHabit alloc]init];
+            [habitModel setValuesForKeysWithDictionary:dict[@"habit"]];
+            
+            NSMutableArray *mindArr = [[NSMutableArray alloc]init];
+            for (NSDictionary *mDict in dict[@"habit"][@"mind_notes"]) {
+                
+                CJFDeserveMindNotes *mindModel = [[CJFDeserveMindNotes alloc]init];
+                [mindModel setValuesForKeysWithDictionary:mDict];
+                [mindArr addObject:mindModel];
+                
+            }
+            habitModel.mind_notes = mindArr;
+            
+            model.habit = habitModel;
+            
+            [self.deserveDataList addObject:model];
+            
+            [self.deserveIdList addObject:[NSString stringWithFormat:@"%@", model.uId]];
+            
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.deserveUsersTableView reloadData];
+            [self.deserveUsersTableView.mj_footer endRefreshing];
+        });
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
+    
+}
+
+
+#pragma mark ==================  推荐关注用户 end ========================
+
+
+
+
+
+
+#pragma mark tableView的代理方法实现
+
+//设置区域的行数
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    if ([tableView isEqual:self.tableView]) {
+        return self.searchList.count;
+    }
+    
+    if ([tableView isEqual:self.deserveUsersTableView]) {
+        return self.deserveDataList.count;
+    }
+    
+    return 0;
+    
+}
+
+
+//返回单元格内容
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([tableView isEqual:self.tableView]) {
+        
+        UserSearchList_TBCell *cell = [tableView dequeueReusableCellWithIdentifier:@"USERSEARCHCELL"];
+        
+        cell.model = self.searchList[indexPath.row];
+        
+        return cell;
+        
+    }
+    
+    if ([tableView isEqual:self.deserveUsersTableView]) {
+        
+        DeserveUsersListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DESERVECELL"];
+        
+        cell.model = self.deserveDataList[indexPath.row];
+        
+        cell.selected = NO;
+        
+        return cell;
+        
+    }
+    
+    return nil;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([tableView isEqual:self.tableView]) {
+        return 50;
+    }
+    
+    if ([tableView isEqual:self.deserveUsersTableView]) {
+        return [DeserveUsersListTableViewCell heightWithModel:self.deserveDataList[indexPath.row]];
+    }
+    
+    return  0;
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([tableView isEqual:self.tableView]) {
+        
+        self.searchController.active = NO;
+        
+        UserCenterViewController *userVc = [[UserCenterViewController alloc]init];
+        userVc.user = self.searchList[indexPath.row];
+        
+        self.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:userVc animated:YES];
+        self.hidesBottomBarWhenPushed = YES;
+        
+    }
+    
+    if ([tableView isEqual:self.deserveUsersTableView]) {
+        
+        DeserveUsersListTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        self.hidesBottomBarWhenPushed = YES;
+        UserCenterViewController *ucVc = [[UserCenterViewController alloc]init];
+        ucVc.user = self.deserveDataList[indexPath.row];
+        [self.navigationController pushViewController:ucVc animated:YES];
+        self.hidesBottomBarWhenPushed = YES;
+        
+    }
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    if ([tableView isEqual:self.deserveUsersTableView]) {
+        return 30;
+    }
+    
+    return 0;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    
+    if ([tableView isEqual:self.deserveUsersTableView]) {
+        return 0.001;
+    }
+    
+    return 0.001;
+}
+
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    if ([tableView isEqual:self.deserveUsersTableView]) {
+        
+        UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
+        headView.backgroundColor = [UIColor whiteColor];
+        
+        UILabel *headTitle = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH - 20, 30)];
+        [headView addSubview:headTitle];
+        headTitle.textColor = [UIColor darkGrayColor];
+        headTitle.font = [UIFont systemFontOfSize:14];
+        
+        if (section == 0) {
+            headTitle.text = @"值得关注的人";
+        }
+        
+        return headView;
+        
+    }
+    
+    return nil;
 }
 
 

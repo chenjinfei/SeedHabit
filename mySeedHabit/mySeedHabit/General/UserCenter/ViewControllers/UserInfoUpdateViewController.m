@@ -203,6 +203,8 @@
             }];
         }else {
             NSLog(@"%@", responseObject);
+            [self.alert showWaiting:[UIApplication sharedApplication].keyWindow.rootViewController title:@"宝宝不开心" subTitle:responseObject[@"info"] closeButtonTitle:nil duration:1.0f];
+            
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

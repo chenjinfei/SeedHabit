@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MsgChatViewController">
+            <connections>
+                <outlet property="InputAreaView" destination="50a-tk-52s" id="DDv-xU-Mmr"/>
+                <outlet property="bottomSpace" destination="49Y-MW-Cbv" id="asu-2z-jhZ"/>
+                <outlet property="expressionBtn" destination="O6Z-G2-OGc" id="r8Q-pA-t3z"/>
+                <outlet property="fileBtn" destination="QbH-Ig-0pg" id="Z2r-LF-wmo"/>
+                <outlet property="msgContent" destination="zGG-5m-nyb" id="a27-H4-aeD"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="voiceBtn" destination="ECW-zt-Cqs" id="ysj-OK-EM1"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50a-tk-52s">
+                    <rect key="frame" x="0.0" y="626" width="375" height="41"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECW-zt-Cqs">
+                            <rect key="frame" x="7" y="5" width="28" height="28"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="28" id="Qjf-KG-u6Z"/>
+                                <constraint firstAttribute="width" constant="28" id="loA-hi-0NU"/>
+                            </constraints>
+                            <state key="normal" title="Button" image="Microphone_32.png"/>
+                            <connections>
+                                <action selector="addVoice:" destination="-1" eventType="touchUpInside" id="704-8V-2XO"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QbH-Ig-0pg">
+                            <rect key="frame" x="335" y="0.0" width="40" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="41" id="0jH-mT-0OI"/>
+                                <constraint firstAttribute="width" constant="40" id="dJR-9p-osA"/>
+                                <constraint firstAttribute="height" constant="41" id="uM7-T3-gbs"/>
+                            </constraints>
+                            <state key="normal" title="Button" image="msg_add_32.png"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="uM7-T3-gbs"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="addFile:" destination="-1" eventType="touchUpInside" id="S83-ja-E1D"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6Z-G2-OGc">
+                            <rect key="frame" x="295" y="0.0" width="30" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="41" id="Dhd-Il-CY7"/>
+                                <constraint firstAttribute="height" constant="41" id="qk3-Cc-HlM"/>
+                                <constraint firstAttribute="width" constant="30" id="trU-31-gBJ"/>
+                            </constraints>
+                            <state key="normal" title="Button" image="expression_32.png"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="qk3-Cc-HlM"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="addExpression:" destination="-1" eventType="touchUpInside" id="tKf-Ff-2J8"/>
+                            </connections>
+                        </button>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入您的消息" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zGG-5m-nyb">
+                            <rect key="frame" x="52" y="0.0" width="233" height="41"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="41" id="GWE-p0-5Xv"/>
+                                <constraint firstAttribute="height" constant="41" id="N0u-yv-TDK"/>
+                            </constraints>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="N0u-yv-TDK"/>
+                                </mask>
+                            </variation>
+                        </textField>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SnK-eY-44o">
+                            <rect key="frame" x="45" y="35" width="285" height="1"/>
+                            <color key="backgroundColor" red="0.090196078431372548" green="0.69019607843137254" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="apE-9o-tc9"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUe-Hq-stI">
+                            <rect key="frame" x="329" y="30" width="1" height="6"/>
+                            <color key="backgroundColor" red="0.090196078431372548" green="0.69019607843137254" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="6" id="b1q-hq-3R9"/>
+                                <constraint firstAttribute="width" constant="1" id="ohF-wh-uuD"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H5F-M0-Dwv">
+                            <rect key="frame" x="45" y="30" width="1" height="6"/>
+                            <color key="backgroundColor" red="0.090196078431372548" green="0.69019607843137254" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="ZqL-VJ-yuO"/>
+                                <constraint firstAttribute="height" constant="6" id="f2C-h8-u6l"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="SnK-eY-44o" secondAttribute="bottom" constant="5" id="1sb-ja-25R"/>
+                        <constraint firstItem="SnK-eY-44o" firstAttribute="leading" secondItem="50a-tk-52s" secondAttribute="leading" constant="45" id="28A-UD-5eO"/>
+                        <constraint firstItem="QbH-Ig-0pg" firstAttribute="top" secondItem="50a-tk-52s" secondAttribute="top" id="2Kg-5i-d9E"/>
+                        <constraint firstItem="EUe-Hq-stI" firstAttribute="leading" secondItem="O6Z-G2-OGc" secondAttribute="trailing" constant="4" id="2bl-1e-mwm"/>
+                        <constraint firstItem="EUe-Hq-stI" firstAttribute="top" secondItem="50a-tk-52s" secondAttribute="top" constant="30" id="6T3-C3-YbE"/>
+                        <constraint firstAttribute="bottom" secondItem="EUe-Hq-stI" secondAttribute="bottom" constant="5" id="7Uo-tD-kKU"/>
+                        <constraint firstItem="H5F-M0-Dwv" firstAttribute="top" secondItem="50a-tk-52s" secondAttribute="top" constant="30" id="Apg-1f-FhT"/>
+                        <constraint firstItem="zGG-5m-nyb" firstAttribute="leading" secondItem="H5F-M0-Dwv" secondAttribute="trailing" constant="6" id="Gsy-tY-XoT"/>
+                        <constraint firstAttribute="bottom" secondItem="O6Z-G2-OGc" secondAttribute="bottom" id="HPj-Jk-iXz"/>
+                        <constraint firstItem="EUe-Hq-stI" firstAttribute="leading" secondItem="O6Z-G2-OGc" secondAttribute="trailing" constant="4" id="I8n-sw-kSA"/>
+                        <constraint firstAttribute="bottom" secondItem="H5F-M0-Dwv" secondAttribute="bottom" constant="5" id="LQr-h7-jvv"/>
+                        <constraint firstAttribute="bottom" secondItem="QbH-Ig-0pg" secondAttribute="bottom" id="LlQ-fs-eee"/>
+                        <constraint firstItem="SnK-eY-44o" firstAttribute="top" secondItem="50a-tk-52s" secondAttribute="top" constant="35" id="Omx-o9-JSq"/>
+                        <constraint firstItem="H5F-M0-Dwv" firstAttribute="leading" secondItem="50a-tk-52s" secondAttribute="leading" constant="45" id="P1h-zB-ryv"/>
+                        <constraint firstItem="O6Z-G2-OGc" firstAttribute="leading" secondItem="zGG-5m-nyb" secondAttribute="trailing" constant="10" id="b0E-g5-eQl"/>
+                        <constraint firstItem="O6Z-G2-OGc" firstAttribute="top" secondItem="50a-tk-52s" secondAttribute="top" id="bb6-uI-zAo"/>
+                        <constraint firstAttribute="bottom" secondItem="zGG-5m-nyb" secondAttribute="bottom" id="etS-3r-ybT"/>
+                        <constraint firstAttribute="height" constant="41" id="gX2-z8-WQr"/>
+                        <constraint firstItem="zGG-5m-nyb" firstAttribute="top" secondItem="50a-tk-52s" secondAttribute="top" id="kMk-S5-td0"/>
+                        <constraint firstAttribute="trailing" secondItem="QbH-Ig-0pg" secondAttribute="trailing" id="kpk-9L-ObI"/>
+                        <constraint firstAttribute="bottom" secondItem="ECW-zt-Cqs" secondAttribute="bottom" constant="8" id="oAc-hh-9d2"/>
+                        <constraint firstItem="QbH-Ig-0pg" firstAttribute="leading" secondItem="EUe-Hq-stI" secondAttribute="trailing" constant="5" id="s5s-ac-E4o"/>
+                        <constraint firstItem="ECW-zt-Cqs" firstAttribute="leading" secondItem="50a-tk-52s" secondAttribute="leading" constant="7" id="trX-oc-dGP"/>
+                        <constraint firstAttribute="trailing" secondItem="SnK-eY-44o" secondAttribute="trailing" constant="45" id="vJx-0z-U8W"/>
+                        <constraint firstItem="ECW-zt-Cqs" firstAttribute="top" secondItem="50a-tk-52s" secondAttribute="top" constant="5" id="wps-W9-P2s"/>
+                        <constraint firstItem="zGG-5m-nyb" firstAttribute="leading" secondItem="H5F-M0-Dwv" secondAttribute="trailing" constant="6" id="xPG-7e-vC2"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="oAc-hh-9d2"/>
+                            <exclude reference="etS-3r-ybT"/>
+                            <exclude reference="xPG-7e-vC2"/>
+                            <exclude reference="LQr-h7-jvv"/>
+                            <exclude reference="1sb-ja-25R"/>
+                            <exclude reference="HPj-Jk-iXz"/>
+                            <exclude reference="7Uo-tD-kKU"/>
+                            <exclude reference="I8n-sw-kSA"/>
+                            <exclude reference="LlQ-fs-eee"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.87347521327692301" green="0.87347521327692301" blue="0.87347521327692301" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="50a-tk-52s" secondAttribute="bottom" id="49Y-MW-Cbv"/>
+                <constraint firstItem="50a-tk-52s" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Bsg-b7-O33"/>
+                <constraint firstAttribute="trailing" secondItem="50a-tk-52s" secondAttribute="trailing" id="sh8-Rw-Qsv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="223.5" y="257.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Microphone_32.png" width="32" height="32"/>
+        <image name="expression_32.png" width="32" height="32"/>
+        <image name="msg_add_32.png" width="32" height="32"/>
+    </resources>
+</document>

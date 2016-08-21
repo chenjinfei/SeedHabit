@@ -9,15 +9,24 @@
 #import "MessageViewController.h"
 
 #import "ContactsViewController.h"
+#import "MsgConversationListTableViewCell.h"
+#import "MsgChatViewController.h"
 
 #import <EMSDK.h>
 #import "UIImage+CJFImage.h"
+#import <MJRefresh.h>
 
 // 测试
 #import "UIButton+CJFUIButton.h"
 #import <UIImageView+WebCache.h>
 
-@interface MessageViewController ()<EMChatManagerDelegate>
+@interface MessageViewController ()<EMChatManagerDelegate, UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *tableView;
+
+// 会话列表
+@property (nonatomic, strong) NSMutableArray *conversationsArr;
+
 
 @end
 
@@ -26,32 +35,115 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIButton *testBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    testBtn.frame = CGRectMake(100, 350, 100, 100);
     
-    NSURL *url = [NSURL URLWithString:@"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1994807006,3190709677&fm=58"];
-    [testBtn setImageWithUrl:url placeHolderImage:IMAGE(@"placeHolder.png") radius:50 forState:UIControlStateNormal];
-    NSURL *url2 = [NSURL URLWithString:@"http://avatar.csdn.net/3/1/7/1_perfect_milk.jpg"];
-    [testBtn setImageWithUrl:url2 placeHolderImage:IMAGE(@"placeHolder.png") radius:50 forState:UIControlStateHighlighted];
-    
-    
-    [self.view addSubview:testBtn];
-    
-    
-    // 测试圆角处理 == 可删除
-    UIImage *image = [[UIImage imageNamed:@"placeHolder.png"] circleImage];
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-    imageView.frame = CGRectMake(100, 100, 200, 200);
-    [self.view addSubview:imageView];
-    
+#pragma mark 接收信息
     // 注册消息回调
     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     
 }
 
+
+-(void)viewWillAppear:(BOOL)animated {
+    // 创建控制器视图
+    [self buildView];
+    
+    // 加载数据
+    [self loadData];
+}
+
+
+// 加载数据
+-(void)loadData {
+    
+    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+    [self.conversationsArr removeAllObjects];
+    [self.conversationsArr addObjectsFromArray:conversations];
+    [self.tableView reloadData];
+    NSLog(@"内存中所有会话：%@", conversations);
+    
+    for (EMConversation *cs in conversations) {
+        NSLog(@"%@", cs.ext)
+        if (!cs.ext) {
+            AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+            NSDictionary *parameters = @{
+                                         @"user_id" : [NSNumber numberWithInteger:[cs.conversationId integerValue]]
+                                         };
+            [session POST:APIUserInfo parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"%@", responseObject);
+                if (responseObject[@"data"][@"user"]) {
+                    cs.ext = @{
+                               @"avatar": responseObject[@"data"][@"user"][@"avatar_small"],
+                               @"nickname" : responseObject[@"data"][@"user"][@"nickname"]
+                               };
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"%@", error);
+            }];
+        }
+    }
+    
+    [self.tableView.mj_header endRefreshing];
+    
+}
+
+
+-(NSMutableArray *)conversationsArr {
+    if (!_conversationsArr) {
+        _conversationsArr = [[NSMutableArray alloc]init];
+    }
+    return _conversationsArr;
+}
+
+-(UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-41-72) style:UITableViewStyleGrouped];
+    }
+    return _tableView;
+}
+
+
+// 创建控制器视图
+-(void)buildView {
+    
+    // 创建导航右按钮
+    UIButton *addContactBtnView = [UIButton buttonWithType:UIButtonTypeCustom];
+    [addContactBtnView setImage:IMAGE(@"contacts_32.png") forState:UIControlStateNormal];
+    [addContactBtnView setImage:IMAGE(@"contacts_32.png") forState:UIControlStateHighlighted];
+    [addContactBtnView addTarget:self action:@selector(showContacts:) forControlEvents:UIControlEventTouchUpInside];
+    addContactBtnView.frame = CGRectMake(0, 0, 25, 25);
+    UIBarButtonItem *addContactBtn = [[UIBarButtonItem alloc]initWithCustomView:addContactBtnView];
+    self.navigationItem.rightBarButtonItems = @[addContactBtn];
+    
+    [self.view addSubview:self.tableView];
+    self.tableView.backgroundColor = RGBA(245, 245, 245, 1);
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"MsgConversationListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"CVCELL"];
+    
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    // 设置header
+    self.tableView.mj_header = header;
+    
+}
+
+// 导航右按钮响应方法
+-(void)showContacts: (UIButton *)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    ContactsViewController *conVc = [[ContactsViewController alloc]init];
+    [self.navigationController pushViewController:conVc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+
 // 收到消息的回调，带有附件类型的消息可以用 SDK 提供的下载附件方法下载（后面会讲到）
 - (void)didReceiveMessages:(NSArray *)aMessages
 {
+    NSLog(@"========= 收到新信息 ==============");
     for (EMMessage *message in aMessages) {
         EMMessageBody *msgBody = message.body;
         switch (msgBody.type) {
@@ -136,33 +228,89 @@
                 break;
         }
     }
-}
-
--(void)viewWillAppear:(BOOL)animated {
-    // 创建控制器视图
-    [self buildView];
-}
-
-
-// 创建控制器视图
--(void)buildView {
-    // 创建导航右按钮
-    UIButton *addContactBtnView = [UIButton buttonWithType:UIButtonTypeCustom];
-    [addContactBtnView setImage:IMAGE(@"contacts_32.png") forState:UIControlStateNormal];
-    [addContactBtnView setImage:IMAGE(@"contacts_32.png") forState:UIControlStateHighlighted];
-    [addContactBtnView addTarget:self action:@selector(showContacts:) forControlEvents:UIControlEventTouchUpInside];
-    addContactBtnView.frame = CGRectMake(0, 0, 25, 25);
-    UIBarButtonItem *addContactBtn = [[UIBarButtonItem alloc]initWithCustomView:addContactBtnView];
-    self.navigationItem.rightBarButtonItems = @[addContactBtn];
+    
+    
+    // 刷新数据
+    [self.tableView reloadData];
+    
     
 }
 
-// 导航右按钮响应方法
--(void)showContacts: (UIButton *)sender {
-    ContactsViewController *conVc = [[ContactsViewController alloc]init];
-    [self.navigationController pushViewController:conVc animated:YES];
+#pragma mark 消息已送达回执
+/*!
+ @method
+ @brief 接收到一条及以上已送达回执
+ 当对方收到您的消息后，您会收到以下回调
+ */
+- (void)didReceiveHasDeliveredAcks:(NSArray *)aMessages {
+    NSLog(@"消息已送达！：%@", aMessages);
 }
 
 
+
+#pragma mark tableView的代理方法实现
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.conversationsArr.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MsgConversationListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CVCELL"];
+    cell.model = self.conversationsArr[indexPath.row];
+    return cell;
+    
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.001;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"聊天会话记录";
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // 取消选中状态
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    self.hidesBottomBarWhenPushed = YES;
+    MsgChatViewController *chatVc = [[MsgChatViewController alloc]init];
+    chatVc.conversation = self.conversationsArr[indexPath.row];
+    [self.navigationController pushViewController:chatVc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"删除会话");
+    
+    EMConversation *conversation = self.conversationsArr[indexPath.row];
+    [[EMClient sharedClient].chatManager deleteConversation:conversation.conversationId deleteMessages:YES];
+    
+    [self.conversationsArr removeObject:conversation];
+    
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+}
 
 @end

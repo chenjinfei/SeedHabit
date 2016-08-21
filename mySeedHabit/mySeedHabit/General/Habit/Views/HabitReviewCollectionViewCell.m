@@ -19,7 +19,7 @@
     _model = model;
     
     MindNotesModel *mindNoteModel = model;
-    if (mindNoteModel.mind_pic_small) {
+    if (mindNoteModel.mind_pic_small && mindNoteModel.mind_pic_small.length != 0) {
         
         HabitPreviewView *habitPreview = [[[NSBundle mainBundle] loadNibNamed:@"HabitPreviewView" owner:self options:nil] lastObject];
         habitPreview.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.width+40);

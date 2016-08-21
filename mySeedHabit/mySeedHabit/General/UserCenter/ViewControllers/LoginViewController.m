@@ -10,6 +10,7 @@
 
 #import "RegisterByPhoneViewController.h"
 #import "RegisterDataViewController.h"
+#import "CJFTabBarViewController.h"
 
 #import "UserManager.h"
 #import <UMSocial.h>
@@ -44,8 +45,15 @@
     return _alert;
 }
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.phoneNumber resignFirstResponder];
+    [self.password resignFirstResponder];
+}
+
 // 登录
 - (IBAction)loginClick:(UIButton *)sender {
+    
+    [self.phoneNumber resignFirstResponder];
     
     // 判断帐号是否已经注册
     NSNumber *n = [NSNumber numberWithInteger:[self.phoneNumber.text integerValue]];
@@ -76,7 +84,7 @@
                     NSString *password = [parameters valueForKey:@"password"];
                     [[UserManager manager] setUserDefaultsWithUserName:username password:password];
                     
-                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[CJFTabBarViewController alloc]init] animated:YES completion:nil];
                     
                 }else if ([userData[@"status"] intValue] == 2003) {
                     [self.alert showWarning:self title:@"唉哟~" subTitle:@"宝宝输错密码啦！重来。。。" closeButtonTitle:@"好的" duration:0.0f];
@@ -111,7 +119,7 @@
 // 邮箱登录
 - (IBAction)emailLoginClick:(UIButton *)sender {
     // 提示
-    [self.alert showWarning:self title:@"我X~" subTitle:@"程序猿还在加班呢，咱再等等？" closeButtonTitle:@"好的" duration:0.0f];
+    [self.alert showWarning:self title:@"我X~" subTitle:@"程序猿还在加紧开发中呢，这功能咱再等等？" closeButtonTitle:@"好的" duration:0.0f];
 }
 
 // QQ帐号登录
