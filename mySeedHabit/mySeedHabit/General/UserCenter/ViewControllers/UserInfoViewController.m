@@ -49,7 +49,7 @@
 
 -(UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-49) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStyleGrouped];
     }
     return _tableView;
 }
@@ -128,10 +128,12 @@
 // 修改密码
 - (void)logoutClick:(UIButton *)sender {
     
+    self.hidesBottomBarWhenPushed = YES;
     UserInfoUpdateViewController *updateVc = [[UserInfoUpdateViewController alloc]init];
     updateVc.flag = @"0";
     updateVc.user = self.user;
     [self.navigationController pushViewController:updateVc animated:YES];
+    self.hidesBottomBarWhenPushed = YES;
     
 }
 

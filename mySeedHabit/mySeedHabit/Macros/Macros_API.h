@@ -26,9 +26,9 @@
 #define APIUser                        [APIURL stringByAppendingString:@"User/"]
 
 // 登录
-#define APILogin                   [APIUser stringByAppendingString:@"login"]
+#define APILogin                       [APIUser stringByAppendingString:@"login"]
 // 退出登录
-#define APILogout                   [APIUser stringByAppendingString:@"logout"]
+#define APILogout                      [APIUser stringByAppendingString:@"logout"]
 // 用户信息更新
 #define APIUserUpdate                  [APIUser stringByAppendingString:@"update"]
 // 我的联系人、互相关注的好友列表
@@ -52,7 +52,14 @@
 // 通过ID获取用户信息
 #define APIUserInfoById                [APIUser stringByAppendingString:@"getUserInfoById"]
 // 修改密码
-#define APIChangePwd               [APIUser stringByAppendingString:@"changePsw"]
+#define APIChangePwd                   [APIUser stringByAppendingString:@"changePsw"]
+// 获取已经关注的好友
+#define APIFriendsList                 [APIUser stringByAppendingString:@"getFriendsList"]
+// 获取粉丝列表
+#define APIFansList                    [APIUser stringByAppendingString:@"getFansList"]
+// 获取值得关注用户列表       note_num=3&num=5&userIds=
+#define APIListDeserveUsers                 [APIUser stringByAppendingString:@"listDeserveUsers"]
+
 
 
 
@@ -147,6 +154,13 @@
 #define APIPropNote          [APIMindNote stringByAppendingString:@"propNote"]
 // 种子树信息
 #define APITreeInfo          [APIMindNote stringByAppendingString:@"getTreeInfo"]
+// 添加心情记录
+#define APIAddMindNote          [APIMindNote stringByAppendingString:@"addNote"]
+// 收藏详情       id=18983384
+#define APINoteDetailById          [APIMindNote stringByAppendingString:@"getNoteDetail/id/"]
+// 评论心情    comment_text_content=%E8%B5%9E&mind_note_id=18917711&user_id=1878988
+#define APIComment          [APIMindNote stringByAppendingString:@"comment"]
+
 
 
 
@@ -161,8 +175,12 @@
 #define APIAddCollection        [APICollect stringByAppendingString:@"addCollection"]
 // 取消收藏
 #define APICancelCollection     [APICollect stringByAppendingString:@"cancelCollection"]
-// 收藏状态
+// 收藏状态   collect_type=1&unique_id=18983384&user_id=1859926
 #define APIIsCollected          [APICollect stringByAppendingString:@"isCollected"]
+// 获取收藏心情列表   page=1&user_id=1859926
+#define APICollectionByTime          [APICollect stringByAppendingString:@"listCollectionByTime"]
+
+
 
 
 
@@ -181,7 +199,7 @@
 // == 【发现】精选/热门 ==
 #define APIChoiceNote           [APIURL stringByAppendingString:@"ChoiceNote/"]
 
-// 精选活动
+// 获取推广活动
 #define APIChoiceNoteActivity   [APIChoiceNote stringByAppendingString:@"activity"]
 // 广告图和习惯
 #define APIBannersAndHabits     [APIChoiceNote stringByAppendingString:@"listBannersAndHabits"]

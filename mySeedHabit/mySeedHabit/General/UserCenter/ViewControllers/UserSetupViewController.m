@@ -18,6 +18,12 @@
 #import "UIImage+CJFImage.h"
 #import "UIImageView+CJFUIImageView.h"
 
+#import "NotesCollectionViewController.h"
+#import "HelpCenterViewController.h"
+#import "NotificationsViewController.h"
+#import "AccountBoundViewController.h"
+#import "AboutViewController.h"
+
 @interface UserSetupViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -46,7 +52,7 @@
 
 -(UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-49) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStyleGrouped];
     }
     return _tableView;
 }
@@ -65,12 +71,13 @@
     NSArray *arrThird = [NSArray arrayWithObjects:@"退出帐号", nil];
     
     NSArray *menuArr = [NSArray arrayWithObjects:arrFirst, arrSecond, arrThird, nil];
-    
+    [self.dataArr removeAllObjects];
     [self.dataArr addObjectsFromArray:menuArr];
     
     SeedUser *user = [UserManager manager].currentUser;
     [self.tableHeaderView.avatarView lhy_loadImageUrlStr:user.avatar_small placeHolderImageName:@"placeHolder.png" radius:self.tableHeaderView.avatarView.frame.size.height/2];
     
+    [self.tableView reloadData];
 }
 
 -(void)buildView {
@@ -85,7 +92,7 @@
     
     [self.view addSubview:self.tableView];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"SETUPMENU"];
+    //    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"SETUPMENU"];
     
     self.tableHeaderView = [[NSBundle mainBundle] loadNibNamed:@"UserInfo_LabelImage" owner:self options:nil][0];
     self.tableView.tableHeaderView = self.tableHeaderView;
@@ -101,8 +108,10 @@
 // 用户信息修改
 -(void)updateUserInfo: (UITapGestureRecognizer *)tap {
     
+    self.hidesBottomBarWhenPushed = YES;
     UserInfoViewController *infoVc = [[UserInfoViewController alloc]init];
     [self.navigationController pushViewController:infoVc animated:YES];
+    self.hidesBottomBarWhenPushed = YES;
     
 }
 
@@ -112,17 +121,78 @@
 - (void)logoutClick:(UIButton *)sender {
     [[UserManager manager] logoutSuccess:^(NSDictionary *responseObject) {
         
-        LoginViewController *loginVc = [[LoginViewController alloc]init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:loginVc animated:YES completion:^{
+        [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:^{
             NSLog(@"登出成功");
         }];
         
     } failure:^(NSError *error) {
         
-        ULog(@"%@", error);
+        NSLog(@"%@", error);
         
     }];
 }
+
+/**
+ *  cell操作处理方法
+ *
+ *  @param section 分区号
+ *  @param row     行号
+ */
+-(void)switchActionWithSection: (NSInteger)section row: (NSInteger)row {
+    
+    NSInteger actionFlag = [[NSString stringWithFormat:@"%ld%ld", section, row] integerValue];
+    switch (actionFlag) {
+        case 00:{// 我的收藏
+            
+            self.hidesBottomBarWhenPushed = YES;
+            NotesCollectionViewController *ncVc = [[NotesCollectionViewController alloc]init];
+            [self.navigationController pushViewController:ncVc animated:YES];
+            self.hidesBottomBarWhenPushed = YES;
+            
+            break;
+        }
+        case 01:{// 帐号绑定
+            
+            self.hidesBottomBarWhenPushed = YES;
+            AccountBoundViewController *abVc = [[AccountBoundViewController alloc]init];
+            [self.navigationController pushViewController:abVc animated:YES];
+            self.hidesBottomBarWhenPushed = YES;
+            
+            break;
+        }
+        case 02:{// 帮助中心
+            
+            self.hidesBottomBarWhenPushed = YES;
+            HelpCenterViewController *hcVc = [[HelpCenterViewController alloc]init];
+            [self.navigationController pushViewController:hcVc animated:YES];
+            self.hidesBottomBarWhenPushed = YES;
+            
+            break;
+        }
+        case 03:{// 消息提醒设置
+            
+            self.hidesBottomBarWhenPushed = YES;
+            NotificationsViewController *nfVc = [[NotificationsViewController alloc]init];
+            [self.navigationController pushViewController:nfVc animated:YES];
+            self.hidesBottomBarWhenPushed = YES;
+            
+            break;
+        }
+        case 10:{// 关于种子习惯
+            
+            self.hidesBottomBarWhenPushed = YES;
+            AboutViewController *aVc = [[AboutViewController alloc]init];
+            [self.navigationController pushViewController:aVc animated:YES];
+            self.hidesBottomBarWhenPushed = YES;
+            
+            break;
+        }
+        default:
+            break;
+    }
+    
+}
+
 
 #pragma mark tableView代理方法的实现
 
@@ -135,13 +205,18 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SETUPMENU"];
-    cell.textLabel.text = self.dataArr[indexPath.section][indexPath.row];
+    static NSString *cellIdentifier = @"SETUPMENU";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    }
     cell.textLabel.textColor = [UIColor darkGrayColor];
     if (indexPath.section == self.dataArr.count-1) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.textLabel.textColor = [UIColor redColor];
     }
+    cell.textLabel.text = self.dataArr[indexPath.section][indexPath.row];
     return cell;
 }
 
@@ -151,6 +226,8 @@
     
     if (indexPath.section == self.dataArr.count - 1) {
         [self logoutClick:nil];
+    }else {
+        [self switchActionWithSection:indexPath.section row:indexPath.row];
     }
 }
 

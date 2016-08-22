@@ -127,13 +127,13 @@
                         <action selector="registerClick:" destination="-1" eventType="touchUpInside" id="hDt-Xo-pvR"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSg-4B-mUM">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSg-4B-mUM">
                     <rect key="frame" x="22" y="40" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="m2d-05-LYz"/>
                         <constraint firstAttribute="height" constant="32" id="mym-V1-3r6"/>
                     </constraints>
-                    <state key="normal" backgroundImage="down32.png"/>
+                    <state key="normal" image="down32.png" backgroundImage="down32.png"/>
                     <connections>
                         <action selector="back:" destination="-1" eventType="touchUpInside" id="p2O-ir-Jrj"/>
                     </connections>

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class  SeedUser;
+
 @interface HabitDetailsViewController : UIViewController
 
 // 属性传值 标题
@@ -15,5 +17,15 @@
 
 // 属性传值 习惯id
 @property (nonatomic,strong)NSString *habit_idStr;
+
+// 坚持天数
+@property (nonatomic,strong)NSString *check_in_times;
+
+@property (nonatomic,strong)NSString *members;
+
+@property (nonatomic,assign)NSString *join_days;
+
+// 当前登录用户
+@property (nonatomic, strong) SeedUser *user;
 
 @end

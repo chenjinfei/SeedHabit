@@ -8,6 +8,7 @@
 
 #import "HabitTableViewCell.h"
 #import <UIImageView+WebCache.h>
+#import "CJFTools.h"
 
 @implementation HabitTableViewCell
 //
@@ -25,14 +26,7 @@
             self.timeL.text = nil;
         }else{
             // 将时间戳转换为时间
-            NSString *str = habit.check_in_time;
-            NSTimeInterval time = [str doubleValue];
-            NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
-            
-            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-            [formatter setDateFormat:@"yy/MM/dd HH:mm:ss"];
-            NSString *currentDateStr = [formatter stringFromDate:date];
-            self.timeL.text = currentDateStr;
+            self.timeL.text = [[CJFTools manager] revertTimeamp:habit.check_in_time withFormat:@"yy/MM/dd HH:mm:ss"];
         }
     }
     

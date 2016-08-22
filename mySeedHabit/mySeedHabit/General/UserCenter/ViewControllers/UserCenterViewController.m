@@ -19,6 +19,9 @@
 #import "UIImage+CJFImage.h"
 #import "UIImageView+CJFUIImageView.h"
 #import <SCLAlertView.h>
+#import "UIButton+CJFUIButton.h"
+#import "UIColor+CJFColor.h"
+#import <MJRefresh.h>
 
 #import "UserInfo_TBHeaderView.h"
 #import "UserHaBitList_TBCell.h"
@@ -26,12 +29,12 @@
 #import "AddFriendsViewController.h"
 #import "AvatarUpdateViewController.h"
 #import "MindNotesReviewViewController.h"
+#import "MsgChatViewController.h"
 
 @interface UserCenterViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UILabel *username;
 
-@property (nonatomic, strong) UITableView *tableView;
 // 数据源
 @property (nonatomic, strong) NSMutableArray  *dataArr;
 
@@ -41,6 +44,11 @@
 @property (nonatomic, strong) UIButton *followBtn;
 // 弹出窗口对象
 @property (nonatomic, strong) SCLAlertView *alert;
+
+// 悬浮按钮的uiwindow对象
+@property (nonatomic, strong) UIWindow *hoveringBtnWindow;
+// 悬浮按钮
+@property (nonatomic, strong) UIButton *hoveringBtn;
 
 @end
 
@@ -56,12 +64,15 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    // 加载数据
+    if (self.user) {
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+        // 延迟一秒创建悬浮按钮
+        [self performSelector:@selector(buildHoveringBtnWindow) withObject:nil afterDelay:1];
+    }
+    
     [self loadData];
     
 }
-
-
 
 
 -(UITableView *)tableView {
@@ -111,7 +122,7 @@
         // 创建导航右按钮
         self.followBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.followBtn setTitle:@"加关注" forState:UIControlStateNormal];
-        self.followBtn.frame = CGRectMake(0, 0, 70, 32);
+        self.followBtn.frame = CGRectMake(0, 0, 50, 32);
         [self.followBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
         [self.followBtn addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *followBarBtn = [[UIBarButtonItem alloc]initWithCustomView:self.followBtn];
@@ -135,18 +146,96 @@
     self.tableView.tableHeaderView = self.tableHeaderView;
     
     
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    // 隐藏时间
+    header.lastUpdatedTimeLabel.hidden = YES;
+    // 设置header
+    self.tableView.mj_header = header;
+    
 }
+
+
+/**
+ *  创建悬浮按钮和window对象
+ */
+-(void)buildHoveringBtnWindow {
+    
+    CGFloat btnWidth = 50;
+    CGFloat btnHeight = 50;
+    
+    if (self.hoveringBtnWindow) {
+        self.hoveringBtnWindow = nil;
+    }
+    
+    // uiwindow
+    self.hoveringBtnWindow = [[UIWindow alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-btnWidth)/2, SCREEN_HEIGHT-btnHeight-20, btnWidth, btnHeight)];
+    self.hoveringBtnWindow.windowLevel = UIWindowLevelAlert + 1;
+    self.hoveringBtnWindow.backgroundColor = [UIColor colorWithHexString:UIMainColor alpha:1];
+    self.hoveringBtnWindow.layer.cornerRadius = btnWidth / 2;
+    self.hoveringBtnWindow.layer.masksToBounds = YES;
+    
+    self.hoveringBtnWindow.layer.shadowColor = [UIColor grayColor].CGColor;
+    self.hoveringBtnWindow.layer.shadowOpacity = 0.3;
+    self.hoveringBtnWindow.layer.shadowRadius = 2.0;
+    self.hoveringBtnWindow.layer.shadowOffset = CGSizeMake(0, 0);
+    self.hoveringBtnWindow.clipsToBounds = NO;
+    
+    [self.hoveringBtnWindow makeKeyAndVisible];//关键语句,显示window
+    
+    // 悬浮按钮
+    self.hoveringBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    [self.hoveringBtn setTitle:@"悬浮按钮" forState:UIControlStateNormal];
+    [self.hoveringBtn setImage:[UIImage imageNamed:@"hoveringBtnBg_32"] forState:UIControlStateNormal];
+    self.hoveringBtn.frame = CGRectMake(0, 0, btnWidth, btnHeight);
+    [self.hoveringBtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
+    [self.hoveringBtnWindow addSubview:self.hoveringBtn];
+    
+}
+
+/**
+ *  关闭悬浮按钮window
+ */
+-(void)resignHoveringBtnWindow {
+    self.hoveringBtnWindow.hidden = YES;
+    [self.hoveringBtnWindow resignKeyWindow];
+    self.hoveringBtnWindow = nil;
+}
+
+
+/**
+ *  聊天
+ */
+-(void)chat {
+    
+    // 关闭悬浮按钮
+    [self resignHoveringBtnWindow];
+    
+    self.hidesBottomBarWhenPushed = YES;
+    MsgChatViewController *chatVc = [[MsgChatViewController alloc]init];
+    chatVc.targetUser = self.user;
+    [self.navigationController pushViewController:chatVc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
+}
+
 
 // 设置按钮响应方法
 -(void)setupAction: (UIButton *)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
     UserSetupViewController *setupVc = [[UserSetupViewController alloc]init];
     [self.navigationController pushViewController:setupVc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
 }
 
 // 搜索联系人按钮响应方法
 -(void)searchBtnAction: (UIButton *)sender {
+    self.hidesBottomBarWhenPushed = YES;
     AddFriendsViewController *addVc = [[AddFriendsViewController alloc]init];
     [self.navigationController pushViewController:addVc animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 // 加关注按钮响应方法
@@ -255,6 +344,7 @@
             self.tableHeaderView.habitCountView.text = [NSString stringWithFormat:@"%ld", self.dataArr.count];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
+                [self.tableView.mj_header endRefreshing];
             });
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"%@", error);
@@ -275,9 +365,9 @@
         self.tableHeaderView.signatureView.text = user.signature;
         
         if (user.gender) {
-            self.tableHeaderView.genderImgView.image = [LOADIMAGE(@"man_orange_32_cjf", @"png") circleImage];
+            self.tableHeaderView.genderImgView.image = [LOADIMAGE(@"gent_32", @"jpg") circleImage];
         }else {
-            self.tableHeaderView.genderImgView.image = [LOADIMAGE(@"lady_orange_32_cjf", @"png") circleImage];
+            self.tableHeaderView.genderImgView.image = [LOADIMAGE(@"lady_32", @"jpg") circleImage];
             
         }
         
@@ -329,10 +419,19 @@
     // 取消选中状态
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
+    self.hidesBottomBarWhenPushed = YES;
     MindNotesReviewViewController *reviewVc = [[MindNotesReviewViewController alloc]init];
     HabitModel *habitModel = self.dataArr[indexPath.row];
     reviewVc.habitModel = habitModel;
     [self.navigationController pushViewController:reviewVc animated:YES];
+    if (self.user != nil) {
+        self.hidesBottomBarWhenPushed = YES;
+    }else {
+        self.hidesBottomBarWhenPushed = NO;
+    }
+    
+    // 关闭悬浮按钮
+    [self resignHoveringBtnWindow];
     
 }
 

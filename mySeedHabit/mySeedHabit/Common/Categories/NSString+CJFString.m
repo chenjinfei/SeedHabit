@@ -234,4 +234,38 @@
 }
 
 
+
+
+
+//根据时间戳获取星期几
++ (NSString *)getWeekDayFordate:(long long)data
+{
+    NSArray *weekday = [NSArray arrayWithObjects: [NSNull null], @"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", nil];
+    
+    NSDate *newDate = [NSDate dateWithTimeIntervalSince1970:data];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [calendar components:NSWeekdayCalendarUnit fromDate:newDate];
+    
+    NSString *weekStr = [weekday objectAtIndex:components.weekday];
+    NSLog(@"%@, %ld", weekStr, components.weekday);
+    return weekStr;
+}
+
++ (NSInteger)getWeekDayForTimeamp:(long long)data
+{
+    
+    NSDate *newDate = [NSDate dateWithTimeIntervalSince1970:data];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [calendar components:NSWeekdayCalendarUnit fromDate:newDate];
+    
+    if (components.weekday != 1 ) {
+        return components.weekday - 1;
+    }else {
+        return 7;
+    }
+}
+
+
+
+
 @end

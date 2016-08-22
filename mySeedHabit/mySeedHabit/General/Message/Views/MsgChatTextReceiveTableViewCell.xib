@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="MsgChatTextReceiveTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolder.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wiw-cx-AcM">
+                        <rect key="frame" x="10" y="10" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="KwI-EC-vvl"/>
+                            <constraint firstAttribute="width" constant="40" id="N5O-4g-hgl"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A82-nk-zJw">
+                        <rect key="frame" x="55" y="10" width="192" height="40"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZ4-nx-0Dx">
+                                <rect key="frame" x="10" y="8" width="174" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.41960784313725491" green="0.70588235294117641" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="PZ4-nx-0Dx" firstAttribute="top" secondItem="A82-nk-zJw" secondAttribute="top" constant="8" id="8fW-aQ-P1o"/>
+                            <constraint firstAttribute="bottom" secondItem="PZ4-nx-0Dx" secondAttribute="bottom" constant="8" id="IeA-h9-fkj"/>
+                            <constraint firstItem="PZ4-nx-0Dx" firstAttribute="leading" secondItem="A82-nk-zJw" secondAttribute="leading" constant="10" id="TBV-PO-6uv"/>
+                            <constraint firstAttribute="trailing" secondItem="PZ4-nx-0Dx" secondAttribute="trailing" constant="8" id="ndM-wt-YWP"/>
+                            <constraint firstAttribute="height" constant="40" id="uOl-47-BOm"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="A82-nk-zJw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="4yA-fi-4lm"/>
+                    <constraint firstItem="Wiw-cx-AcM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Yty-0o-Gov"/>
+                    <constraint firstItem="Wiw-cx-AcM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ZNV-k7-rXs"/>
+                    <constraint firstItem="A82-nk-zJw" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="3:5" id="aL6-oX-0Gi"/>
+                    <constraint firstItem="A82-nk-zJw" firstAttribute="leading" secondItem="Wiw-cx-AcM" secondAttribute="trailing" constant="5" id="qkT-WR-mfu"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatar" destination="Wiw-cx-AcM" id="64Z-IR-MqL"/>
+                <outlet property="bubble" destination="A82-nk-zJw" id="6m5-Am-8cV"/>
+                <outlet property="msgText" destination="PZ4-nx-0Dx" id="1FG-od-bwS"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="placeHolder.png" width="800" height="800"/>
+    </resources>
+</document>

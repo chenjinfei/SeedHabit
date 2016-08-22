@@ -34,6 +34,6 @@
 /**
  *  设置键盘的可见值为隐藏
  */
--(void)keyboardWillHide;
+-(void)keyboardWillHide: (NSNotification *)notification;
 
 @end

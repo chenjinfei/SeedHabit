@@ -10,7 +10,7 @@
 
 @interface HabitUsersModel : NSObject
 
-@property (nonatomic, copy) NSString *idx;
+@property (nonatomic, copy) NSString *uId;
 
 @property (nonatomic, assign) NSInteger expose_diary;
 
@@ -47,5 +47,7 @@
 @property (nonatomic, assign) NSInteger gender;
 
 @property (nonatomic, copy) NSString *avatar_small;
+
+@property (nonatomic, copy) NSString *check_in_times;
 
 @end
