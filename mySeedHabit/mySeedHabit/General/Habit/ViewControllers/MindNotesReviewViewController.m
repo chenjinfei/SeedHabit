@@ -19,10 +19,11 @@
 
 @interface MindNotesReviewViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, PinterestLayoutDelegate>
 
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong)UICollectionView *collectionView;
 
 // 数据源
-@property (nonatomic, strong) NSMutableArray *dataArr;
+@property (nonatomic, strong)
+NSMutableArray *dataArr;
 
 @end
 
@@ -30,10 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self buildView];
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {

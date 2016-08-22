@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HabitGrowStatisticsView : UIView
-@property (strong, nonatomic) IBOutlet UILabel *holdTimeView;
 
+@property (strong, nonatomic) IBOutlet UILabel *holdTimeView;
 
 @end

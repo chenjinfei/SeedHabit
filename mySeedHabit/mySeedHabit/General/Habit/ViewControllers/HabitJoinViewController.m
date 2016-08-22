@@ -53,7 +53,7 @@
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     NSDictionary *parameters = @{
                                  @"habit_id":@(self.newHabit_id),
-                                 @"user_id":@1878988,
+                                 @"user_id":[NSString stringWithFormat:@"%@", self.user.uId],
                                  @"private":@2
                                  };
     [session POST:APISetPrivateHabit parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

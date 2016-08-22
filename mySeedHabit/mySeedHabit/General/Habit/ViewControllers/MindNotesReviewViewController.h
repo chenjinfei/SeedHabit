@@ -14,6 +14,6 @@
 @interface MindNotesReviewViewController : UIViewController
 
 // 习惯记录数组
-@property (nonatomic, strong) HabitModel *habitModel;
+@property (nonatomic, strong)HabitModel *habitModel;
 
 @end

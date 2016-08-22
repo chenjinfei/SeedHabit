@@ -10,7 +10,7 @@
 
 @interface AddNoteViewController : UIViewController
 
-@property (nonatomic,strong) NSNumber *check_in_id;
+@property (nonatomic,strong)NSNumber *check_in_id;
 
 @property (nonatomic,strong)NSString *habit_idStr;
 
