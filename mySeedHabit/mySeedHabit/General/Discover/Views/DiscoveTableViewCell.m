@@ -620,123 +620,123 @@
     self.mindNoteId = [note valueForKey:@"id"];
     
     [KeyboardObserved manager];
-//    [self createKeyboard];
+    [self createKeyboard];
     
 }
-//// 弹出键盘
-//- (void)createKeyboard {
-//    
-//    UIViewController *currVC = [self getCurrentViewController];
-//    
-//    // 弹出键盘加一层 view 遮盖下面的视图的点击响应
-//    CGFloat kbHeight = [KeyboardObserved manager].keyboardFrame.size.height;
-//    UIView *vi1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-40-kbHeight)];
-//    [currVC.view addSubview:vi1];
-//    vi1.tag = 11;
-//    
-//    UIView *vi2 = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 0, SCREEN_WIDTH, 0)];
-//    
-//    // 输入框
-//    //    UITextView *text = [[UITextView alloc] initWithFrame:CGRectInset(vi2.bounds, 0, 0)];
-//    UITextView *text =[[UITextView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-//    text.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//    text.inputAccessoryView = text;
-//    text.backgroundColor = [UIColor whiteColor];
-//    text.returnKeyType = UIKeyboardTypeTwitter;
-//    text.delegate = self;
-//    text.font = [UIFont boldSystemFontOfSize:15];
-//    [vi2 addSubview:text];
-//    [currVC.view.window addSubview:vi2];
-//    // 输入框成为第一响应者
-//    [text becomeFirstResponder];
-//    
+// 弹出键盘
+- (void)createKeyboard {
+    
+    UIViewController *currVC = [self getCurrentViewController];
+    
+    // 弹出键盘加一层 view 遮盖下面的视图的点击响应
+    CGFloat kbHeight = [KeyboardObserved manager].keyboardFrame.size.height;
+    UIView *vi1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-40-kbHeight)];
+    [currVC.view addSubview:vi1];
+    vi1.tag = 11;
+    
+    UIView *vi2 = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 0, SCREEN_WIDTH, 0)];
+    
+    // 输入框
+    //    UITextView *text = [[UITextView alloc] initWithFrame:CGRectInset(vi2.bounds, 0, 0)];
+    UITextView *text =[[UITextView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    text.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    text.inputAccessoryView = text;
+    text.backgroundColor = [UIColor whiteColor];
+    text.returnKeyType = UIKeyboardTypeTwitter;
+    text.delegate = self;
+    text.font = [UIFont boldSystemFontOfSize:15];
+    [vi2 addSubview:text];
+    [currVC.view.window addSubview:vi2];
+    // 输入框成为第一响应者
+    [text becomeFirstResponder];
+    
 //    self.textView = text;
-//    
-//    // 输入框的表情和发送按钮
-//    UIButton *sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [text addSubview:sendBtn];
-//    sendBtn.frame = CGRectMake(SCREEN_WIDTH-60, 5, 50, 30);
-//    sendBtn.backgroundColor = [UIColor lightGrayColor];
-//    [sendBtn setTintColor:[UIColor whiteColor]];
-//    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
-//    [sendBtn addTarget:self action:@selector(sendAction) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    UIButton *smilingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [text addSubview:smilingBtn];
-//    smilingBtn.frame = CGRectMake(SCREEN_WIDTH-100, 5, 30, 30);
-//    [smilingBtn setImage:[UIImage imageNamed:@"Smiling_32.png"] forState:UIControlStateNormal];
-//    
-//}
-//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    
-//    UIViewController *currVC = [self getCurrentViewController];
-//    
-//    UIView *v = [currVC.view viewWithTag:11];
-//    
-//    if (v) {
-//        [self.textView resignFirstResponder];
-//        [v removeFromSuperview];
-//    }
-//    
-//}
-//// 监听textView文字输入
-//- (void)textViewDidChange:(UITextView *)textView {
-//    
-//    self.commentText = textView.text;
-//    
-//}
-//// 点击return回收键盘
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-//    
-//    UIViewController *currVC = [self getCurrentViewController];
-//    
-//    if ([text isEqualToString:@"\n"]) {
-//        [textView resignFirstResponder];
-//        
-//        UIView *v = [currVC.view viewWithTag:11];
-//        [v removeFromSuperview];
-//        
-//        if (textView.text.length > 0) {
-//            [self loadCommentData];
-//        }
-//        return NO;
-//    }
-//    return YES;
-//}
-//// send按钮响应
-//- (void)sendAction {
-//    
-//    if (self.commentText.length > 0) {
-//        [self loadCommentData];
-//    }
-//    
-//}
-//// 发送评论请求
-//- (void)loadCommentData {
-//    
-//    // 取消输入框的第一响应者
-//    [self.textView resignFirstResponder];
-//    
-//    // 评论
-//    //    http://api.idothing.com/zhongzi/v2.php/MindNote/comment
-//    //    comment_text_content=%E8%B5%9E&mind_note_id=18917711&user_id=1878988
-//    
-//    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-//    
-//    NSDictionary *parameters = @{
-//                                 @"comment_text_content":self.commentText,
-//                                 @"mind_note_id":self.mindNoteId,
-//                                 @"user_id":self.seedUser.uId
-//                                 };
-//    [session POST:@"http://api.idothing.com/zhongzi/v2.php/MindNote/comment" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        
-//        //        [hotTabelView reloadData];
-//        
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        NSLog(@"%@", error);
-//    }];
-//    
-//}
+    
+    // 输入框的表情和发送按钮
+    UIButton *sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [text addSubview:sendBtn];
+    sendBtn.frame = CGRectMake(SCREEN_WIDTH-60, 5, 50, 30);
+    sendBtn.backgroundColor = [UIColor lightGrayColor];
+    [sendBtn setTintColor:[UIColor whiteColor]];
+    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    [sendBtn addTarget:self action:@selector(sendAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *smilingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [text addSubview:smilingBtn];
+    smilingBtn.frame = CGRectMake(SCREEN_WIDTH-100, 5, 30, 30);
+    [smilingBtn setImage:[UIImage imageNamed:@"Smiling_32.png"] forState:UIControlStateNormal];
+    
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    UIViewController *currVC = [self getCurrentViewController];
+    
+    UIView *v = [currVC.view viewWithTag:11];
+    
+    if (v) {
+        [self.textView resignFirstResponder];
+        [v removeFromSuperview];
+    }
+    
+}
+// 监听textView文字输入
+- (void)textViewDidChange:(UITextView *)textView {
+    
+    self.commentText = textView.text;
+    
+}
+// 点击return回收键盘
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    UIViewController *currVC = [self getCurrentViewController];
+    
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        
+        UIView *v = [currVC.view viewWithTag:11];
+        [v removeFromSuperview];
+        
+        if (textView.text.length > 0) {
+            [self loadCommentData];
+        }
+        return NO;
+    }
+    return YES;
+}
+// send按钮响应
+- (void)sendAction {
+    
+    if (self.commentText.length > 0) {
+        [self loadCommentData];
+    }
+    
+}
+// 发送评论请求
+- (void)loadCommentData {
+    
+    // 取消输入框的第一响应者
+    [self.textView resignFirstResponder];
+    
+    // 评论
+    //    http://api.idothing.com/zhongzi/v2.php/MindNote/comment
+    //    comment_text_content=%E8%B5%9E&mind_note_id=18917711&user_id=1878988
+    
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    
+    NSDictionary *parameters = @{
+                                 @"comment_text_content":self.commentText,
+                                 @"mind_note_id":self.mindNoteId,
+                                 @"user_id":self.seedUser.uId
+                                 };
+    [session POST:@"http://api.idothing.com/zhongzi/v2.php/MindNote/comment" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        //        [hotTabelView reloadData];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
+    
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
