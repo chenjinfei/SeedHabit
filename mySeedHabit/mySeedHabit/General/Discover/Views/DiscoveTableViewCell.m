@@ -171,7 +171,7 @@
       
         if (self.usersArr) {
             // 坚持的天数
-            self.check_in_time.text = [NSString stringWithFormat:@"%ld", notes.check_in_times];
+            self.check_in_time.text = [NSString stringWithFormat:@"%ld", (long)notes.check_in_times];
             self.check_in_time.text = [self.check_in_time.text stringByAppendingFormat:@"天"];
             
             // Note

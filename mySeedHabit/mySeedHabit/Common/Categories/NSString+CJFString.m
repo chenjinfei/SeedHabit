@@ -243,8 +243,8 @@
     NSArray *weekday = [NSArray arrayWithObjects: [NSNull null], @"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", nil];
     
     NSDate *newDate = [NSDate dateWithTimeIntervalSince1970:data];
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [calendar components:NSWeekdayCalendarUnit fromDate:newDate];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:newDate];
     
     NSString *weekStr = [weekday objectAtIndex:components.weekday];
     NSLog(@"%@, %ld", weekStr, components.weekday);
@@ -255,8 +255,8 @@
 {
     
     NSDate *newDate = [NSDate dateWithTimeIntervalSince1970:data];
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [calendar components:NSWeekdayCalendarUnit fromDate:newDate];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:newDate];
     
     if (components.weekday != 1 ) {
         return components.weekday - 1;

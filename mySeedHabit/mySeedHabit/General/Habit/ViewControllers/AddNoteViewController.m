@@ -12,8 +12,6 @@
 #import "UserManager.h"
 #import "SeedUser.h"
 
-#define APIAddMindNote @"http://api.idothing.com/zhongzi/v2.php/MindNote/addNote"
-
 @interface AddNoteViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic,strong)UITextView *textView;
