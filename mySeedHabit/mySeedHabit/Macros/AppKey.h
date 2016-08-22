@@ -9,6 +9,10 @@
 #ifndef AppKey_h
 #define AppKey_h
 
+// 短信验证
+#define SMSSDKKEY @"1460986cda89c"
+#define SMSSECRET @"b6762592ff2d8f1a916989ed82475e2d"
+
 // 友盟AppKey
 #define AppKeyUmeng  @"579eac0567e58e1fd40028f5"
 // 友盟分享url

@@ -175,6 +175,9 @@
     self.navigationController.navigationBar.hidden = NO;
     [self updateTableViewFrame];
     NSLog(@"didDismissSearchController");
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
 }
 
 - (void)presentSearchController:(UISearchController *)searchController
@@ -192,6 +195,8 @@
     [self updateTableViewFrame];
     
     [self searchData];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
 }
 

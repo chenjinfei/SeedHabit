@@ -121,9 +121,17 @@
         // 创建加关注按钮
         // 创建导航右按钮
         self.followBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.followBtn setTitle:@"加关注" forState:UIControlStateNormal];
+        
+        if (self.user.relation_with_me) {
+            [self.followBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+            [self.followBtn setSelected:YES];
+        }else {
+            [self.followBtn setTitle:@"加关注" forState:UIControlStateNormal];
+            [self.followBtn setSelected:NO];
+        }
+        
         self.followBtn.frame = CGRectMake(0, 0, 50, 32);
-        [self.followBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+        [self.followBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
         [self.followBtn addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *followBarBtn = [[UIBarButtonItem alloc]initWithCustomView:self.followBtn];
         self.navigationItem.rightBarButtonItems = @[followBarBtn];
@@ -247,8 +255,14 @@
                                  @"followed_user_id": self.user.uId,
                                  @"user_id": currentUser.uId
                                  };
+    if (sender.selected) {
+        [self cancelFollowWith: parameters];
+        sender.selected = NO;
+    }else {
+        [self addFollowWith: parameters];
+        sender.selected = YES;
+    }
     
-    [self addFollowWith: parameters];
     
 }
 

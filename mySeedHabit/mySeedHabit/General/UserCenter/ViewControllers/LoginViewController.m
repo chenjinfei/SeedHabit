@@ -31,11 +31,13 @@
 
 @implementation LoginViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 帐号：18716304714
-    // 密码：abc1234567890
     
 }
 

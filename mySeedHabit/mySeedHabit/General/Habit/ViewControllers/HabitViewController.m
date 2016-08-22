@@ -51,6 +51,7 @@
     [self createTableView];
 }
 
+
 #pragma mark 获取网络数据
 - (void)getData
 {
@@ -219,6 +220,8 @@
     // 添加习惯后要重新获取数据,不是在viewDidLoad中写
     [self getData];
     [self.tableView reloadData];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {

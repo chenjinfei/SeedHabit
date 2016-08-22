@@ -235,6 +235,21 @@
 		3767FA681D6A1A14004E2945 /* HabitGrowStatisticsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767FA671D6A1A14004E2945 /* HabitGrowStatisticsView.xib */; };
 		3767FA6A1D6A1AD9004E2945 /* tree_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767FA691D6A1AD9004E2945 /* tree_32.png */; };
 		3767FA6C1D6A1BBD004E2945 /* rightHand_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767FA6B1D6A1BBD004E2945 /* rightHand_32.png */; };
+		3767FA741D6AD62C004E2945 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA731D6AD62C004E2945 /* CFNetwork.framework */; };
+		3767FA761D6AD63D004E2945 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA751D6AD63D004E2945 /* CoreFoundation.framework */; };
+		3767FA781D6AD648004E2945 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA771D6AD648004E2945 /* CoreTelephony.framework */; };
+		3767FA7A1D6AD652004E2945 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA791D6AD652004E2945 /* SystemConfiguration.framework */; };
+		3767FA7C1D6AD65C004E2945 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA7B1D6AD65C004E2945 /* CoreGraphics.framework */; };
+		3767FA7E1D6AD67F004E2945 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA7D1D6AD67F004E2945 /* Foundation.framework */; };
+		3767FA801D6AD68D004E2945 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA7F1D6AD68D004E2945 /* UIKit.framework */; };
+		3767FA821D6AD696004E2945 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA811D6AD696004E2945 /* Security.framework */; };
+		3767FA841D6AD6AA004E2945 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA831D6AD6A9004E2945 /* libz.tbd */; };
+		3767FA881D6AD87C004E2945 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA861D6AD87C004E2945 /* MOBFoundation.framework */; };
+		3767FA891D6AD87C004E2945 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA871D6AD87C004E2945 /* SMS_SDK.framework */; };
+		3767FA8B1D6AD8A5004E2945 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA8A1D6AD8A5004E2945 /* libicucore.tbd */; };
+		3767FA8D1D6AD8AE004E2945 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA8C1D6AD8AE004E2945 /* MessageUI.framework */; };
+		3767FA8F1D6AD8B6004E2945 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA8E1D6AD8B6004E2945 /* JavaScriptCore.framework */; };
+		3767FA911D6AD8BE004E2945 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3767FA901D6AD8BE004E2945 /* libstdc++.tbd */; };
 		379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01111D54AB1500D75383 /* CoreMedia.framework */; };
 		379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01131D54AB2200D75383 /* AudioToolbox.framework */; };
 		379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B01151D54AB2900D75383 /* AVFoundation.framework */; };
@@ -454,6 +469,21 @@
 		3767FA671D6A1A14004E2945 /* HabitGrowStatisticsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitGrowStatisticsView.xib; sourceTree = "<group>"; };
 		3767FA691D6A1AD9004E2945 /* tree_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree_32.png; sourceTree = "<group>"; };
 		3767FA6B1D6A1BBD004E2945 /* rightHand_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightHand_32.png; sourceTree = "<group>"; };
+		3767FA731D6AD62C004E2945 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		3767FA751D6AD63D004E2945 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		3767FA771D6AD648004E2945 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		3767FA791D6AD652004E2945 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3767FA7B1D6AD65C004E2945 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3767FA7D1D6AD67F004E2945 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3767FA7F1D6AD68D004E2945 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3767FA811D6AD696004E2945 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3767FA831D6AD6A9004E2945 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		3767FA861D6AD87C004E2945 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
+		3767FA871D6AD87C004E2945 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
+		3767FA8A1D6AD8A5004E2945 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		3767FA8C1D6AD8AE004E2945 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		3767FA8E1D6AD8B6004E2945 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		3767FA901D6AD8BE004E2945 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		379B01111D54AB1500D75383 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		379B01131D54AB2200D75383 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		379B01151D54AB2900D75383 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -630,9 +660,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3767FA911D6AD8BE004E2945 /* libstdc++.tbd in Frameworks */,
+				3767FA8F1D6AD8B6004E2945 /* JavaScriptCore.framework in Frameworks */,
+				3767FA8D1D6AD8AE004E2945 /* MessageUI.framework in Frameworks */,
+				3767FA8B1D6AD8A5004E2945 /* libicucore.tbd in Frameworks */,
+				3767FA841D6AD6AA004E2945 /* libz.tbd in Frameworks */,
+				3767FA821D6AD696004E2945 /* Security.framework in Frameworks */,
+				3767FA801D6AD68D004E2945 /* UIKit.framework in Frameworks */,
+				3767FA7E1D6AD67F004E2945 /* Foundation.framework in Frameworks */,
+				3767FA7C1D6AD65C004E2945 /* CoreGraphics.framework in Frameworks */,
+				3767FA7A1D6AD652004E2945 /* SystemConfiguration.framework in Frameworks */,
+				3767FA781D6AD648004E2945 /* CoreTelephony.framework in Frameworks */,
+				3767FA761D6AD63D004E2945 /* CoreFoundation.framework in Frameworks */,
+				3767FA741D6AD62C004E2945 /* CFNetwork.framework in Frameworks */,
 				379B011A1D54AB5E00D75383 /* libc++.tbd in Frameworks */,
 				37DB270A1D4F85E700FA5198 /* (null) in Frameworks */,
 				379B01181D54AB3500D75383 /* MobileCoreServices.framework in Frameworks */,
+				3767FA881D6AD87C004E2945 /* MOBFoundation.framework in Frameworks */,
 				379B01161D54AB2900D75383 /* AVFoundation.framework in Frameworks */,
 				379B01141D54AB2200D75383 /* AudioToolbox.framework in Frameworks */,
 				379B01121D54AB1500D75383 /* CoreMedia.framework in Frameworks */,
@@ -647,6 +691,7 @@
 				37DB27001D4F7BFA00FA5198 /* (null) in Frameworks */,
 				37DB26FE1D4F7BEF00FA5198 /* (null) in Frameworks */,
 				37DB26FC1D4F7BE500FA5198 /* (null) in Frameworks */,
+				3767FA891D6AD87C004E2945 /* SMS_SDK.framework in Frameworks */,
 				37DB26FA1D4F7BD900FA5198 /* (null) in Frameworks */,
 				3260B13C5F52EB2EDB223F0E /* (null) in Frameworks */,
 			);
@@ -704,6 +749,15 @@
 				3767F9DA1D69E21A004E2945 /* msg_selected_32.png */,
 			);
 			path = TabBarIcon;
+			sourceTree = "<group>";
+		};
+		3767FA851D6AD87C004E2945 /* SMS_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				3767FA861D6AD87C004E2945 /* MOBFoundation.framework */,
+				3767FA871D6AD87C004E2945 /* SMS_SDK.framework */,
+			);
+			path = SMS_SDK;
 			sourceTree = "<group>";
 		};
 		37DB26671D4F40A600FA5198 = {
@@ -772,6 +826,7 @@
 		37DB26D61D4F46CC00FA5198 /* Ventors */ = {
 			isa = PBXGroup;
 			children = (
+				3767FA851D6AD87C004E2945 /* SMS_SDK */,
 			);
 			path = Ventors;
 			sourceTree = "<group>";
@@ -1294,6 +1349,19 @@
 		8FF4F6A08C4C12B24A3D4A3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3767FA901D6AD8BE004E2945 /* libstdc++.tbd */,
+				3767FA8E1D6AD8B6004E2945 /* JavaScriptCore.framework */,
+				3767FA8C1D6AD8AE004E2945 /* MessageUI.framework */,
+				3767FA8A1D6AD8A5004E2945 /* libicucore.tbd */,
+				3767FA831D6AD6A9004E2945 /* libz.tbd */,
+				3767FA811D6AD696004E2945 /* Security.framework */,
+				3767FA7F1D6AD68D004E2945 /* UIKit.framework */,
+				3767FA7D1D6AD67F004E2945 /* Foundation.framework */,
+				3767FA7B1D6AD65C004E2945 /* CoreGraphics.framework */,
+				3767FA791D6AD652004E2945 /* SystemConfiguration.framework */,
+				3767FA771D6AD648004E2945 /* CoreTelephony.framework */,
+				3767FA751D6AD63D004E2945 /* CoreFoundation.framework */,
+				3767FA731D6AD62C004E2945 /* CFNetwork.framework */,
 				379B01191D54AB5E00D75383 /* libc++.tbd */,
 				379B01171D54AB3500D75383 /* MobileCoreServices.framework */,
 				379B01151D54AB2900D75383 /* AVFoundation.framework */,
@@ -1761,6 +1829,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/mySeedHabit/Ventors/SMS_SDK",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/mySeedHabit/Macros/PrefixHeader.pch";
 				INFOPLIST_FILE = mySeedHabit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -1769,6 +1841,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/mySeedHabit/Ventors/JsmsSDK",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1871,6 +1944,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/mySeedHabit/Ventors/SMS_SDK",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/mySeedHabit/Macros/PrefixHeader.pch";
 				INFOPLIST_FILE = mySeedHabit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -1879,6 +1956,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/mySeedHabit/Ventors/JsmsSDK",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

@@ -21,7 +21,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7pR-tf-UOT">
                     <rect key="frame" x="20" y="122" width="335" height="120"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="18211443122" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jva-dh-Q1U">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jva-dh-Q1U">
                             <rect key="frame" x="60" y="10" width="175" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="DQU-1r-Gje"/>
@@ -72,7 +72,7 @@
                                 <constraint firstAttribute="width" constant="26" id="lwT-Tc-IEB"/>
                             </constraints>
                         </imageView>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PoD-od-Zx5">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PoD-od-Zx5">
                             <rect key="frame" x="60" y="70" width="265" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="yHf-lo-s6k"/>

@@ -149,5 +149,12 @@
     
 }
 
+// 实现点击方法
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"object");
+    
+}
+
 
 @end

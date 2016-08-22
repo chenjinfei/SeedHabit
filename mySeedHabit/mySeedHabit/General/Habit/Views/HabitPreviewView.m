@@ -14,6 +14,7 @@
 @implementation HabitPreviewView
 
 -(void)setModel:(MindNotesModel *)model {
+    
     _model = model;
     
     [_picView sd_setImageWithURL:[NSURL URLWithString:model.mind_pic_small] placeholderImage:IMAGE(@"placeHolder.png")];

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -112,7 +112,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ys2-Ku-GLx">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qq_32.png" translatesAutoresizingMaskIntoConstraints="NO" id="yhK-iQ-Zq4">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="portrait_default.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="yhK-iQ-Zq4">
                             <rect key="frame" x="125" y="51" width="71" height="71"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="yhK-iQ-Zq4" secondAttribute="height" multiplier="1:1" id="kHs-Mw-Brn"/>
@@ -161,6 +161,6 @@
         </view>
     </objects>
     <resources>
-        <image name="qq_32.png" width="32" height="32"/>
+        <image name="portrait_default.jpg" width="200" height="200"/>
     </resources>
 </document>

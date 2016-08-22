@@ -15,6 +15,7 @@
 @implementation HabitPreviewViewNoImage
 
 -(void)setModel:(MindNotesModel *)model {
+    
     _model = model;
     
     _mindNoteView.text = model.mind_note;
