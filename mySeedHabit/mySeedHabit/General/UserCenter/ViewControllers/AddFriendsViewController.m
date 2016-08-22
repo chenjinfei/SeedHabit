@@ -111,7 +111,7 @@
     //搜索时，背景变暗色
     _searchController.dimsBackgroundDuringPresentation = NO;
     //搜索时，背景变模糊
-    _searchController.obscuresBackgroundDuringPresentation = YES;
+//    _searchController.obscuresBackgroundDuringPresentation = YES;
     //隐藏导航栏
     _searchController.hidesNavigationBarDuringPresentation = YES;
     
