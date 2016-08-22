@@ -8,6 +8,8 @@
 
 #import "CalendarDateView.h"
 
+#import "UIColor+CJFColor.h"
+
 @implementation CalendarDateView
 {
     UIButton  *_selectButton;
@@ -87,7 +89,7 @@
         week.frame    = CGRectMake(itemW * i, 0, itemW, 32);
         week.textAlignment   = NSTextAlignmentCenter;
         week.backgroundColor = [UIColor clearColor];
-        week.textColor       = [UIColor blackColor];
+        week.textColor       = [UIColor darkGrayColor];
         [weekBg addSubview:week];
     }
     NSInteger daysInLastMonth = [CalendarDate totaldaysInMonth:[CalendarDate lastMonth:date]];
@@ -159,7 +161,7 @@
 - (void)setStyle_AfterToday:(UIButton *)btn
 {
     btn.enabled = NO;
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
 }
 
 //这个月 今日之前的日期style
@@ -174,7 +176,7 @@
 {
     btn.enabled = NO;
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [btn setBackgroundColor:[UIColor greenColor]];
+    [btn setBackgroundColor:[UIColor colorWithHexString:UIMainColor alpha:1]];
 }
 
 // 获取头部显示的日期

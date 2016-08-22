@@ -21,6 +21,7 @@
 #import "TreeInfo.h"
 #import <UIImageView+WebCache.h>
 #import "Masonry.h"
+#import "UIColor+CJFColor.h"
 
 @interface HabitCheckInViewController()<UITableViewDelegate,UITableViewDataSource>
 
@@ -32,7 +33,6 @@
 @property (nonatomic,strong)UITableView *calendarTableView;
 @property (nonatomic,strong)NSString *status;
 @property (nonatomic,strong)NSMutableArray *numArr;
-@property (nonatomic,strong)SeedUser *user;
 
 @property (nonatomic,strong)UILabel *note;
 @property (nonatomic,strong)UILabel *time;
@@ -89,6 +89,7 @@
 {
     // 创建日历
     self.calendarView = [[CalendarDateView alloc]init];
+    self.calendarView.backgroundColor = [UIColor whiteColor];
     self.calendarView.frame = CGRectMake(15, 74, SCREEN_WIDTH - 20, SCREEN_WIDTH*0.6);
     //********创建统计界面
     self.title = @"签到统计";
@@ -98,6 +99,7 @@
     self.calendarTableView.backgroundColor = RGB(255, 255, 255);
     self.calendarTableView.dataSource = self;
     self.calendarTableView.delegate = self;
+    self.calendarTableView.backgroundColor = RGB(245, 245, 245);
     UINib *nib = [UINib nibWithNibName:@"AllCheckInListCell" bundle:nil];
     [self.calendarTableView registerNib:nib forCellReuseIdentifier:@"allCheckInList"];
     
@@ -148,7 +150,7 @@
                            [[TabPageScrollViewPageItem alloc]initWithTabName:@"统计" andTabView:self.calendarTableView],
                            [[TabPageScrollViewPageItem alloc]initWithTabName:@"生长" andTabView:getTreeInfoView],
                            [[TabPageScrollViewPageItem alloc]initWithTabName:@"排行" andTabView:self.expertTableView]
-    ];
+                           ];
     _pageScrollView = [[TabPageScrollView alloc]initWithPageItems:pageItems];
     _pageScrollView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_pageScrollView];
@@ -181,9 +183,12 @@
     NSInteger habitId = [self.habit_idStr integerValue];
     NSDictionary *parameter = @{
                                 @"habit_id":@(habitId),
-                                @"user_id":@1878988
+                                @"user_id": [NSString stringWithFormat:@"%@", self.user.uId]
                                 };
     [session POST:@"http://api.idothing.com/zhongzi/v2.php/CheckIn/getAllCheckInList" parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSLog(@"%@", responseObject);
+        
         for (NSDictionary *dic in responseObject[@"data"][@"check_ins"]) {
             HabitCheckInModel *checkModel = [[HabitCheckInModel alloc]init];
             [checkModel setValuesForKeysWithDictionary:dic];
@@ -262,9 +267,9 @@
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     NSInteger habitId = [self.habit_idStr integerValue];
     NSDictionary *parameter = @{
-                                 @"habit_id":@(habitId),
-                                 @"user_id":@1878988
-                                 };
+                                @"habit_id":@(habitId),
+                                @"user_id":[NSString stringWithFormat:@"%@", self.user.uId]
+                                };
     [session POST:@"http://api.idothing.com/zhongzi/v2.php/mindNote/getTreeInfo" parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         self.tree = [[TreeInfo alloc] init];
@@ -272,25 +277,29 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
-           self.note.text = [self.tree valueForKey:@"note"];
-           [self.treeImage sd_setImageWithURL:[NSURL URLWithString:[self.tree valueForKey:@"tree_address"]] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-           // 时间戳转换
-           // 用户发表时间
-           NSString *timeS = [NSString stringWithFormat:@"%@", [self.tree valueForKey:@"start_time"]];
+            self.note.text = [self.tree valueForKey:@"note"];
+            self.note.font = [UIFont systemFontOfSize:14];
+            self.note.textColor = [UIColor darkGrayColor];
+            [self.treeImage sd_setImageWithURL:[NSURL URLWithString:[self.tree valueForKey:@"tree_address"]] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+            // 时间戳转换
+            // 用户发表时间
+            NSString *timeS = [NSString stringWithFormat:@"%@", [self.tree valueForKey:@"start_time"]];
+            self.time.font = [UIFont systemFontOfSize:14];
+            self.time.textColor = [UIColor lightGrayColor];
             if ([[self.tree valueForKey:@"grow_day"] integerValue] == 0) {
                 self.time.text = [NSString stringWithFormat:@"%d : %02d : %02d : %02d", 00, 00, 00, 00];
             }else{
                 [self addTimer];
             }
-           NSTimeInterval time = [timeS doubleValue];
-           NSDate *detail = [NSDate dateWithTimeIntervalSince1970:time];
-           NSDate *new = [NSDate dateWithTimeIntervalSinceNow:8*60*60];
-           NSTimeInterval interval = [new timeIntervalSinceDate:detail];
-           
-           self.second = (int)interval % 60;
-           self.minute = (int)interval / 60 %60;
-           self.hour = (int)interval / 3600 %24;
-           self.day = (int)interval / 3660/24;
+            NSTimeInterval time = [timeS doubleValue];
+            NSDate *detail = [NSDate dateWithTimeIntervalSince1970:time];
+            NSDate *new = [NSDate dateWithTimeIntervalSinceNow:8*60*60];
+            NSTimeInterval interval = [new timeIntervalSinceDate:detail];
+            
+            self.second = (int)interval % 60;
+            self.minute = (int)interval / 60 %60;
+            self.hour = (int)interval / 3600 %24;
+            self.day = (int)interval / 3660/24;
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error=%@", error);
@@ -309,7 +318,7 @@
                                 };
     [session POST:@"http://api.idothing.com/zhongzi/v2.php/Habit/getExpertList" parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         for (NSDictionary *dic in responseObject[@"data"][@"users"]) {
-            HabitUsersModel *users = [[HabitUsersModel alloc]init];
+            SeedUser *users = [[SeedUser alloc]init];
             [users setValuesForKeysWithDictionary:dic];
             [self.expertArr addObject:users];
         };
@@ -322,13 +331,22 @@
 }
 
 #pragma mark 分区头
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    header.backgroundColor = RGB(245, 245, 245);
+    UILabel *headerTitle = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH-30, 40)];
+    [header addSubview:headerTitle];
+    headerTitle.font = [UIFont systemFontOfSize:15 weight:2];
+    headerTitle.textColor = [UIColor darkGrayColor];
+    headerTitle.text = @"数据统计";
+    return header;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if ([tableView isEqual:self.calendarTableView]) {
-        NSString *str = [NSString stringWithFormat:@"%@",@"数据统计"];
-        return str;
+        return 40;
     }else{
-        return nil;
+        return 0;
     }
 }
 
@@ -340,7 +358,7 @@
         return 50;
     }
     if ([tableView isEqual:self.expertTableView]) {
-        return 80;
+        return 70;
     }
     return 0;
 }
@@ -377,32 +395,37 @@
             cell.detailLabel.text = self.members;
             cell.unitLabel.text = @"人";
         }
-        cell.detailLabel.textColor = RGB(16,255,0);
+        cell.titleLabel.textColor = [UIColor darkGrayColor];
+        cell.titleLabel.font = [UIFont systemFontOfSize:15];
+        UIColor *color = [UIColor randColorWithAlpha:1];
+        cell.detailLabel.textColor = color;
         cell.unitLabel.font = [UIFont systemFontOfSize:15];
+        cell.unitLabel.textColor = [UIColor lightGrayColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else if([tableView isEqual:self.expertTableView]){
         HabitRankingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ranking" forIndexPath:indexPath];
-        HabitUsersModel *users = self.expertArr[indexPath.row];
+        SeedUser *users = self.expertArr[indexPath.row];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         if (indexPath.row == 0) {
-            cell.users = users;
+            cell.user = users;
             cell.numberL.text = self.numArr[indexPath.row];
             cell.cupL.image = [UIImage imageNamed:@"goldCup.png"];
             return cell;
         }else if (indexPath.row == 1) {
-            cell.users = users;
+            cell.user = users;
             cell.numberL.text = self.numArr[indexPath.row];
             cell.cupL.image = [UIImage imageNamed:@"silverCup.png"];
             return cell;
         }else if (indexPath.row == 2) {
-            cell.users = users;
+            cell.user = users;
             cell.numberL.text = self.numArr[indexPath.row];
             cell.cupL.image = [UIImage imageNamed:@"copperCup.png"];
             return cell;
         }else{
             // 防止重用池重复引用问题,从第4行开始要把cupL的image置为nil
             cell.cupL.image = nil;
-            cell.users = users;
+            cell.user = users;
             cell.numberL.text = self.numArr[indexPath.row];
             return cell;
         }

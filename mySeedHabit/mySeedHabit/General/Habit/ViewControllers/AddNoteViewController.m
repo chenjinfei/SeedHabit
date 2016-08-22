@@ -98,7 +98,7 @@
                                     @"habit_id":[NSNumber numberWithInteger:newHabit_id],
                                     @"mind_note":self.textView.text,
                                     @"mind_pic":self.myNoteImageView.image,
-                                    @"user_id":@1878988
+                                    @"user_id":[NSString stringWithFormat:@"%@", self.user.uId]
                                     };
     }
     [[CJFTools manager] submitFormDataToUrl:APIAddMindNote withParameters:parameter exImgParameterName:@"mind_pic"];
