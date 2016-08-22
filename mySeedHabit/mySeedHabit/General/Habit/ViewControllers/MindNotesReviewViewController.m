@@ -13,6 +13,7 @@
 #import "HabitModel.h"
 
 #import <MJRefresh.h>
+#import "DiscoverDetailViewController.h"
 
 // 导入布局类
 #import "PinterestLayout.h"
@@ -153,6 +154,9 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     NSLog(@"object");
+    DiscoverDetailViewController *dVc = [[DiscoverDetailViewController alloc]init];
+    
+    [self.navigationController pushViewController:dVc animated:YES];
     
 }
 
