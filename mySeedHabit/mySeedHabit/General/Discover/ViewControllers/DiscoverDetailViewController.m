@@ -34,6 +34,7 @@
 
 @property (nonatomic, strong) UIScrollView *mainScrollView;
 @property (nonatomic, assign) BOOL isScroll;
+@property (nonatomic, assign) BOOL isDetail;
 
 
 @end
@@ -71,15 +72,21 @@
     
     [self createTableView];
     
+    self.isDetail = YES;
+    
+    
 }
 
 #pragma mark =========创建UITableView==========
 - (void)createTableView {
 
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height+64) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
+    
+    self.tableView.backgroundColor = RGB(245, 245, 245);
     self.tableView.delegate =self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
+    
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DiscoveTableViewCell" bundle:nil] forCellReuseIdentifier:@"detail"];
     
@@ -88,6 +95,9 @@
 
     self.cell = [tableView dequeueReusableCellWithIdentifier:@"detail" forIndexPath:indexPath];
     
+    self.cell.isDetail = self.isDetail;
+    NSLog(@"%d", self.cell.isDetail);
+   
     self.cell.imageArr = self.imageArr;
     self.cell.usersArr = self.usersArr;
     
@@ -97,9 +107,6 @@
     self.cell.users = self.users;
     
     self.cell.contentImageV.userInteractionEnabled=YES; // 开启imageView的响应方法
-    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickImage)];
-    [self.cell.contentImageV addGestureRecognizer:singleTap];
-    
     
     return self.cell;
 }
@@ -112,78 +119,6 @@
 
     CGFloat height= [self.cell Height];
     return height + 140;
-}
-
-#pragma mark TableViewCell.btn 代理事件 Push -- 点赞列表、信息树、专辑、习惯、头像跳转、图片放大
-- (void)onClickImage {
-
-    NSLog(@"onClickImage");
-    self.navigationController.navigationBarHidden = YES;
-    
-    self.mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    [self.view addSubview:self.mainScrollView];
-    self.mainScrollView.backgroundColor = [UIColor blackColor];
-    self.mainScrollView.contentSize = CGSizeMake(0, 0);
-    
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.mainScrollView.bounds];
-    [imageView lhy_loadImageUrlStr:[self.notes.note valueForKey:@"mind_pic_big"] placeHolderImageName:@"placeHolder.png" radius:0];
-    [self.mainScrollView addSubview:imageView];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    imageView.center = self.mainScrollView.center;
-    imageView.userInteractionEnabled = YES;
-    
-    self.mainScrollView.minimumZoomScale = 1;
-    self.mainScrollView.maximumZoomScale = 3;
-    self.mainScrollView.zoomScale = 1;
-    self.mainScrollView.delegate = self;
-    self.mainScrollView.bounces = NO;
-    
-    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickScroll)];
-    [self.mainScrollView addGestureRecognizer:singleTap];
-    
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longAction:)];
-    //    触发长按最小时间
-    longPress.minimumPressDuration = 1.5;
-    [imageView addGestureRecognizer:longPress];
-
-}
-- (void)onClickScroll {
-    [self.mainScrollView removeFromSuperview];
-    self.navigationController.navigationBarHidden = NO;
-}
-- (void)longAction:(id)sender {
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"保存图片到相册" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:[self.notes.note valueForKey:@"mind_pic_big"]];
-        UIImageWriteToSavedPhotosAlbum(cacheImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-    }];
-    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"不保存" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [alert addAction:action1];
-    [alert addAction:action2];// 添加按钮到警示框上面
-
-    [self presentViewController:alert animated:YES completion:nil];
-    
-}
-#pragma mark 将图片保存到本地
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
-    NSString *message = @"呵呵";
-    if (!error) {
-        message = @"成功保存到相册";
-    }else
-    {
-        message = [error description];
-    }
-    NSLog(@"message is %@",message);
-    
-}
-
-#pragma mark 告诉缩放的是哪个 View
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return [scrollView.subviews objectAtIndex:0];
 }
 
 - (void)didReceiveMemoryWarning {

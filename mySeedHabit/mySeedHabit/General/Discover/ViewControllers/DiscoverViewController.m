@@ -103,7 +103,7 @@ static BOOL keepFlag = 0;
 static BOOL newestFlag = 0;
 // 判断是否下拉刷新
 static BOOL isHotRefresh = 1;
-static BOOL isKeepRefresh = 0;
+static BOOL isKeepRefresh = 1;
 static BOOL isNewRefresh = 1;
 
 @implementation DiscoverViewController
@@ -313,8 +313,8 @@ static BOOL isNewRefresh = 1;
 #pragma mark 热门轮播图
 - (void)createXRCarousel {
     
-    self.carouselView = [[XRCarouselView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/3)];
     
+    self.carouselView = [[XRCarouselView alloc] initWithFrame:CGRectMake(10, 5, SCREEN_WIDTH-20, SCREEN_HEIGHT/3+10)];
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
     NSDictionary *parameters = @{
@@ -507,6 +507,7 @@ static BOOL isNewRefresh = 1;
     
     hotTabelView = [self createTableViewWithidentifier:@"DiscoverHot"];
     hotTabelView.tableHeaderView = self.carouselView;
+    hotTabelView.tableHeaderView.backgroundColor = RGB(245, 245, 245);
     keepTableView = [self createTableViewWithidentifier:@"DiscoverKeep"];
     newestTableView = [self createTableViewWithidentifier:@"DiscoverNewst"];
     
@@ -535,6 +536,7 @@ static BOOL isNewRefresh = 1;
         hotCell.notes = notes;
         Note *note = notes.note;
         hotCell.propBtn.selected = NO;
+        hotCell.isDetail = NO;
         
         for (Habits *habits in self.habitsArr) {
             if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
@@ -560,6 +562,7 @@ static BOOL isNewRefresh = 1;
         keepCell.notes = notes;
         Note *note = notes.note;
         keepCell.propBtn.selected = NO;
+        keepCell.isDetail = NO;
         
         for (Habits *habits in self.keepHabitsArr) {
             if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
@@ -587,6 +590,7 @@ static BOOL isNewRefresh = 1;
         NewCell.notes = notes;
         Note *note = notes.note;
         NewCell.propBtn.selected = NO;
+        NewCell.isDetail = NO;
         
         for (Habits *habits in self.NewHabitsArr) {
             if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
@@ -797,7 +801,7 @@ static BOOL isNewRefresh = 1;
         //        ULog(@"%@", responseObject);
         if ([responseObject[@"status"] integerValue] == 0) {
             __weak typeof (self) weakSelf = self;
-            [self analysisDataWithResponseObject:responseObject NotesArr:weakSelf.keepNotesArr UsersArr:weakSelf.keepUsersArr HabitsArr:weakSelf.habitsArr isRefresh:isKeepRefresh tableView:keepTableView];
+            [self analysisDataWithResponseObject:responseObject NotesArr:weakSelf.keepNotesArr UsersArr:weakSelf.keepUsersArr HabitsArr:weakSelf.keepHabitsArr isRefresh:isKeepRefresh tableView:keepTableView];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

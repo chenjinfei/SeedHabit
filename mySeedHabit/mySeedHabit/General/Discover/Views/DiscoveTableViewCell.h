@@ -18,12 +18,21 @@
 
 @interface DiscoveTableViewCell : UITableViewCell
 
+//@property (strong, nonatomic) IBOutlet UIButton *propBtn;
+//@property (strong, nonatomic) IBOutlet UILabel *propNumber;
+//@property (strong, nonatomic) IBOutlet UIButton *commentBtn;
+//@property (strong, nonatomic) IBOutlet UILabel *commentNumber;
+//@property (strong, nonatomic) IBOutlet UIButton *seedBtn;
+//@property (strong, nonatomic) IBOutlet UIButton *omitBtn;
+
 @property (strong, nonatomic) IBOutlet UIButton *propBtn;
 @property (strong, nonatomic) IBOutlet UILabel *propNumber;
 @property (strong, nonatomic) IBOutlet UIButton *commentBtn;
 @property (strong, nonatomic) IBOutlet UILabel *commentNumber;
 @property (strong, nonatomic) IBOutlet UIButton *seedBtn;
 @property (strong, nonatomic) IBOutlet UIButton *omitBtn;
+
+
 @property (nonatomic, strong) UIButton *propListBtn;
 @property (nonatomic, strong) UIButton *propInfoBtn;
 @property (nonatomic, strong) UIButton *habitNameBtn;
@@ -55,5 +64,7 @@
 
 // 内容图片
 @property (nonatomic, strong) UIImageView *contentImageV;
+
+@property (nonatomic, assign) BOOL isDetail;
 
 @end

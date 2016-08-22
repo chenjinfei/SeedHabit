@@ -17,9 +17,14 @@
 
 @interface TreeInfoViewController ()
 
-@property (strong, nonatomic) IBOutlet UILabel *note;
-@property (strong, nonatomic) IBOutlet UILabel *time;
-@property (strong, nonatomic) IBOutlet UIImageView *treeImage;
+//@property (strong, nonatomic) IBOutlet UILabel *note;
+//@property (strong, nonatomic) IBOutlet UILabel *time;
+//@property (strong, nonatomic) IBOutlet UIImageView *treeImage;
+
+@property (nonatomic, strong) UILabel *note;
+@property (nonatomic, strong) UILabel *time;
+@property (nonatomic, strong) UILabel *timeText;
+@property (nonatomic, strong) UIImageView *treeImage;
 
 @property (nonatomic, strong) NSMutableArray *dataArr;
 
@@ -54,8 +59,62 @@
     self.navigationItem.title = self.treeTitle;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"omit2_32.png"] style:UIBarButtonItemStylePlain target:self action:@selector(rightAction)];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+    
+    [self createUI];
     
 }
+
+- (void)createUI {
+    
+    self.treeImage = [[UIImageView alloc] init];
+    [self.view addSubview:self.treeImage];
+    
+    [self.treeImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(self.view);
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH*0.8, SCREEN_WIDTH*0.8));
+    }];
+    
+    self.note = [[UILabel alloc] init];
+    [self.view addSubview:self.note];
+    self.note.numberOfLines = 0;
+    self.note.textAlignment = NSTextAlignmentCenter;
+    
+    [self.note mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-20, 50));
+        make.bottom.mas_equalTo(self.treeImage.mas_top).offset(-SCREEN_HEIGHT/15);
+        make.left.mas_equalTo(self.view.mas_left).offset(10);
+    }];
+    
+    self.time = [[UILabel alloc] init];
+    [self.view addSubview:self.time];
+    self.time.textAlignment = NSTextAlignmentCenter;
+    
+    [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-20, 20));
+        make.left.mas_equalTo(self.view.mas_left).offset(10);
+        make.top.mas_equalTo(self.treeImage.mas_bottom).offset(SCREEN_WIDTH / 20);
+    }];
+
+    self.timeText = [[UILabel alloc] init];
+    [self.view addSubview:self.timeText];
+    self.timeText.textAlignment = NSTextAlignmentCenter;
+    self.timeText.text = @"天  :  时  :  分  :  秒";
+    self.timeText.textColor = [UIColor darkGrayColor];
+    
+    [self.timeText mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-20, 20));
+        make.left.mas_equalTo(self.view.mas_left).offset(10);
+        make.top.mas_equalTo(self.time.mas_bottom).offset(10);
+    }];
+    
+}
+
 
 - (void)rightAction {
 
