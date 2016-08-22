@@ -67,7 +67,7 @@
 -(void)loadData {
     
     NSArray *arrFirst = [NSArray arrayWithObjects:@"我的收藏", @"帐号绑定", @"帮助中心", @"消息提醒管理", nil];
-    NSArray *arrSecond = [NSArray arrayWithObjects:@"关于种子习惯", nil];
+    NSArray *arrSecond = [NSArray arrayWithObjects:@"关于金习惯", nil];
     NSArray *arrThird = [NSArray arrayWithObjects:@"退出帐号", nil];
     
     NSArray *menuArr = [NSArray arrayWithObjects:arrFirst, arrSecond, arrThird, nil];
@@ -178,7 +178,7 @@
             
             break;
         }
-        case 10:{// 关于种子习惯
+        case 10:{// 关于金习惯
             
             self.hidesBottomBarWhenPushed = YES;
             AboutViewController *aVc = [[AboutViewController alloc]init];

@@ -141,7 +141,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *footerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
     UILabel *footerTitle = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH-30, 100)];
-    footerTitle.text = @"如果你要关闭或开启金种子习惯的新消息通知，请在iPhone\"设置\"-\"通知\"功能中、找到应用程序\"金种子\"更改";
+    footerTitle.text = @"如果你要关闭或开启金习惯的新消息通知，请在iPhone\"设置\"-\"通知\"功能中、找到应用程序\"金种子\"更改";
     footerTitle.numberOfLines = 0;
     footerTitle.font = [UIFont systemFontOfSize:12];
     footerTitle.textColor = [UIColor lightGrayColor];

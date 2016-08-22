@@ -13,6 +13,7 @@
 #import "HabitModel.h"
 
 #import <MJRefresh.h>
+#import "DiscoverDetailViewController.h"
 
 // 导入布局类
 #import "PinterestLayout.h"
@@ -144,6 +145,16 @@ NSMutableArray *dataArr;
     CGFloat itemHeight = 0.0;
     itemHeight = itemWidth + 40;
     return itemHeight;
+    
+}
+
+// 实现点击方法
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"object");
+    DiscoverDetailViewController *dVc = [[DiscoverDetailViewController alloc]init];
+    
+    [self.navigationController pushViewController:dVc animated:YES];
     
 }
 

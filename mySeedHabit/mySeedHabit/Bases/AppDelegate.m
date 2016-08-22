@@ -21,6 +21,8 @@
 #import "UMSocialWechatHandler.h"
 
 #import <EMSDK.h>
+#import <SMS_SDK/SMSSDK.h>
+
 
 @interface AppDelegate ()
 
@@ -62,7 +64,7 @@
     
     
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     //    UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true);
     
     // 设置友盟AppKey
@@ -83,6 +85,9 @@
     options.apnsCertName = AppApnsCertName;
     [[EMClient sharedClient] initializeSDKWithOptions:options];
     
+    
+    // 注册短信验证
+    [SMSSDK registerApp:SMSSDKKEY withSecret:SMSSECRET];
     
     return YES;
 }

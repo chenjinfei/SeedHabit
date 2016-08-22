@@ -283,6 +283,8 @@ static UserManager *instance = nil;
         EMError *error = [[EMClient sharedClient] logout:YES];
         if (!error) {
             NSLog(@"退出环信成功");
+            // 开启环信自动登录，默认关闭
+            [[EMClient sharedClient].options setIsAutoLogin:NO];
         }else {
             NSLog(@"退出环信失败");
         }

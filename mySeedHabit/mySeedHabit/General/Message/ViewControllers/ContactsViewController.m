@@ -40,7 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self buildView];
 }
 
@@ -238,6 +238,8 @@
     
     [_searchTableView removeFromSuperview];
     
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
 }
 
 - (void)presentSearchController:(UISearchController *)searchController
@@ -259,7 +261,7 @@
         _searchTableView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-keyboardHeight);
     }];
     
-    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
 
