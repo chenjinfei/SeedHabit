@@ -51,6 +51,6 @@
 
 @property (nonatomic, strong) NSString *qq_account;
 
-
+@property (nonatomic, strong) NSString *check_in_times;
 
 @end

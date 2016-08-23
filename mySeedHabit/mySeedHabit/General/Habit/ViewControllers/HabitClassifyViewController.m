@@ -88,6 +88,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.user = [[UserManager manager] currentUser];
     self.allArr = [[NSMutableArray alloc] init];
     [self buildUI];
     // 获取6个tableView所需要的数据数组
@@ -97,7 +98,6 @@
     [self getData:4];
     [self getData:5];
     [self getData:6];
-    self.user = [[UserManager manager] currentUser];
 }
 
 
@@ -333,6 +333,7 @@
         JoinListVC.members = classify.members;
         JoinListVC.habit_idStr = classify.habit_id;
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     // 隐藏push到下个页面时下面的tabar
     self.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:JoinListVC animated:YES];

@@ -22,6 +22,7 @@
 #import "PropsListViewController.h"
 #import "DiscoverDetailViewController.h"
 #import "UserCenterViewController.h"
+#import "HabitJoinListViewController.h"
 
 @interface DiscoveTableViewCell () <UITextViewDelegate>
 
@@ -56,6 +57,8 @@
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) NSString *commentText;
 
+@property (nonatomic, strong) UIScrollView *mainScrollView;
+
 @end
 
 @implementation DiscoveTableViewCell
@@ -89,21 +92,23 @@
     self.contentImageV.contentMode = UIViewContentModeScaleAspectFill;
 //    self.contentImageV.clipsToBounds = YES;
     [self.contentImageV setClipsToBounds:YES];
+    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickImage)];
+    [self.contentImageV addGestureRecognizer:singleTap];
     
     // 建立mind_noteLabel
     self.mind_note = [[UILabel alloc] init];
     [self.contentV addSubview:self.mind_note];
-    self.mind_note.backgroundColor = [UIColor blueColor];
+//    self.mind_note.backgroundColor = [UIColor blueColor];
     
     // 建立 PropV
     self.propV = [[UIView alloc] init];
     [self.contentV addSubview:self.propV];
-    self.propV.backgroundColor = [UIColor lightGrayColor];
+//    self.propV.backgroundColor = [UIColor lightGrayColor];
     
     // 建立 commentV
     self.comment = [[UILabel alloc] init];
     [self.contentV addSubview:self.comment];
-    self.comment.backgroundColor = [UIColor redColor];
+//    self.comment.backgroundColor = [UIColor redColor];
     
     // 创建 数组 储存 Btn
     self.btnArr = [[NSMutableArray alloc] init];
@@ -126,7 +131,7 @@
     for (int i = 0; i < self.count; i++) {
         self.propPortraitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.propV addSubview:self.propPortraitBtn];
-        self.propPortraitBtn.backgroundColor = [UIColor yellowColor];
+//        self.propPortraitBtn.backgroundColor = [UIColor yellowColor];
         self.propPortraitBtn.layer.cornerRadius = 16;
         self.propPortraitBtn.layer.masksToBounds = YES;
         
@@ -153,6 +158,7 @@
 //    static int i = 0;
 //    NSLog(@"输出多少次%d", i);
 //    i ++;
+    
 }
 
 
@@ -165,11 +171,12 @@
       
         if (self.usersArr) {
             // 坚持的天数
-            self.check_in_time.text = [NSString stringWithFormat:@"%ld", notes.check_in_times];
+            self.check_in_time.text = [NSString stringWithFormat:@"%ld", (long)notes.check_in_times];
             self.check_in_time.text = [self.check_in_time.text stringByAppendingFormat:@"天"];
             
             // Note
             self.note = notes.note;
+    
             
             // 时间转换
             // 用户发表时间
@@ -180,6 +187,8 @@
             
             // 心情
             self.mind_note.text = [self.note valueForKey:@"mind_note"];
+            self.mind_note.font = [UIFont systemFontOfSize:14];
+            self.mind_note.textColor = [UIColor darkGrayColor];
             self.mind_note.adjustsFontSizeToFitWidth= YES; // 完全展示文字
             
             // 内容图片 -- 如果存在则执行
@@ -198,8 +207,10 @@
             NSArray *commentArr = notes.comments;
             Note *note = notes.note;
             NSMutableString *text = [[NSMutableString alloc] init];
+//            NSMutableAttributedString *textA = [[NSMutableAttributedString alloc] init];
             NSMutableArray *comId = [[NSMutableArray alloc] init];
             int count = 0;
+            int textCount = 0;
             if (commentArr != nil && commentArr.count > 0) {
                 for (Comments *com in commentArr) {
                     
@@ -211,6 +222,10 @@
                         NSString *comStr;
                         NSString *textTest;
                         NSString *replyStr;
+//                        NSAttributedString *userStrA;
+//                        NSAttributedString *textTestA;
+//                        NSAttributedString *replyStrA;
+//                        NSAttributedString *nickNameA;
                         for (Users *users in self.usersArr) {
                             if ([com valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
                                 if ([comId containsObject:[com valueForKey:@"be_commented_id"]] && [com valueForKey:@"be_commented_id"] != NULL) {
@@ -220,6 +235,7 @@
                                             for (Users *model in self.usersArr) {
                                                 if ([comR valueForKey:@"user_id"] == [model valueForKey:@"uId"]) {
                                                     replyStr = [NSString stringWithFormat:@"%@", model.nickname];
+//                                                    replyStrA = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", model.nickname]];
                                                 }
                                             }
                                         }
@@ -227,29 +243,51 @@
                                     userStr = [NSString stringWithFormat:@"%@ 回复 %@ ", users.nickname, replyStr];
                                     comStr = [NSString stringWithFormat:@"%@", [com valueForKey:@"comment_text_content"]];
                                     textTest = [NSString stringWithFormat:@"%@:%@", userStr, comStr];
+//                                    userStrA = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ 回复 %@ ", nickNameA, replyStrA]];
+//                                    textTestA = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@:%@", userStrA, comStr]];
                                 }
                                 else {
                                     NSLog(@"没有回复");
                                     userStr = [NSString stringWithFormat:@"%@", users.nickname];
                                     comStr = [NSString stringWithFormat:@"%@", [com valueForKey:@"comment_text_content"]];
                                     textTest = [NSString stringWithFormat:@"%@:%@", userStr, comStr];
+//                                    userStrA = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", nickNameA]];
+//                                    textTestA = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@:%@", userStrA, comStr]];
                                 }
-                                
                                 // 完全一模一样就就不添加到 text 当中
                                 if([text rangeOfString:textTest].location == NSNotFound)//_roaldSearchText
                                 {
                                     if (count>0) {
                                         [text appendFormat:@"\n"];
                                     }
+                                    
                                     [text appendFormat:@"%@", textTest];
+//                                    [textA appendAttributedString:textTestA];
                                 }
                                 count++;
+                                textCount++;
                             }
+                        }
+                        NSLog(@"%d", self.isDetail);
+                        if (!self.isDetail && textCount > 2) {
+                            [text appendFormat:@"\n查看更多消息"];
+                            break;
                         }
                     }
                 }
             }
             
+//            self.comment.attributedText = textA;
+//            if (SCREEN_WIDTH == 320) {
+                self.comment.font = [UIFont systemFontOfSize:14];
+//            }
+//            else if (SCREEN_WIDTH == 375) {
+//                self.comment.font = [UIFont systemFontOfSize:16];
+//            }
+//            else {
+//                self.comment.font = [UIFont systemFontOfSize:17];
+//            }
+            self.comment.textColor = [UIColor darkGrayColor];
             self.comment.text = text;
             self.comment.adjustsFontSizeToFitWidth = YES; // 完全展示评论
             self.commentNumber.text = [NSString stringWithFormat:@"%ld", commentArr.count];
@@ -322,7 +360,7 @@
             
         if (self.mind_note.text.length > 0) {
             self.mind_note.hidden = NO;
-            self.mind_note.numberOfLines = 0;
+            self.mind_note.numberOfLines = 8;
             self.noteHeight = [AppTools heightWithString:self.mind_note.text width:SCREEN_WIDTH-60 font:[UIFont boldSystemFontOfSize:17]];
             
             [self.mind_note mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -465,7 +503,7 @@
     if (_users != users) {
         _users = users;
         self.userId.text = users.nickname;
-        [self.imageV lhy_loadImageUrlStr:users.avatar_small placeHolderImageName:@"placeHolder.png" radius:30];
+        [self.imageV lhy_loadImageUrlStr:users.avatar_small placeHolderImageName:@"placeHolder.png" radius:20];
     }
     
 }
@@ -482,6 +520,8 @@
 
 #pragma mark tableViewCell 响应方法
 - (IBAction)albumPush:(id)sender {
+    
+    NSLog(@"%d", self.isDetail);
     
     UIViewController *currVC = [self.contentView getCurrentViewController];
     // 参数
@@ -504,7 +544,10 @@
     
     currVC.hidesBottomBarWhenPushed = YES;
     [currVC.navigationController pushViewController:albumVC animated:YES];
-    currVC.hidesBottomBarWhenPushed=NO;
+    if (!self.isDetail) {
+         currVC.hidesBottomBarWhenPushed=NO;
+    }
+   
 }
 - (IBAction)treeInfoPush:(id)sender {
     
@@ -523,7 +566,10 @@
     // 发表的用户的坚持
     treeInfoVC.treeTitle = title;
     [currVC.navigationController pushViewController:treeInfoVC animated:YES];
-    currVC.hidesBottomBarWhenPushed=NO;
+//    currVC.hidesBottomBarWhenPushed=NO;
+    if (!self.isDetail) {
+        currVC.hidesBottomBarWhenPushed=NO;
+    }
 }
 - (void)propsListPush:(id)sender {
     
@@ -540,7 +586,10 @@
     propsListVC.mind_note_id = [note valueForKey:@"id"];
     
     [currVC.navigationController pushViewController:propsListVC animated:YES];
-    currVC.hidesBottomBarWhenPushed=NO;
+//    currVC.hidesBottomBarWhenPushed=NO;
+    if (!self.isDetail) {
+        currVC.hidesBottomBarWhenPushed=NO;
+    }
 }
 - (void)avatarBtnAction:(id)sender {
     
@@ -552,17 +601,27 @@
     userVC.user = (SeedUser *)self.users;
     currVC.hidesBottomBarWhenPushed=YES;
     [currVC.navigationController pushViewController:userVC animated:YES];
-    currVC.hidesBottomBarWhenPushed=NO;
+//    currVC.hidesBottomBarWhenPushed=NO;
+    if (!self.isDetail) {
+        currVC.hidesBottomBarWhenPushed=NO;
+    }
 }
 - (void)habitPush:(id)sender {
     
     UIViewController *currVC = [self.contentView getCurrentViewController];
     
     // 参数
-    
+     Note *note = self.notes.note;
     currVC.hidesBottomBarWhenPushed = YES;
-    [currVC.navigationController pushViewController:[[AlbumViewController alloc] init] animated:YES];
-    currVC.hidesBottomBarWhenPushed = NO;
+    HabitJoinListViewController *joinVC = [[HabitJoinListViewController alloc] init];
+//    joinVC.habit_idStr = [NSString stringWithFormat:@"%@", note habit_id];
+    joinVC.habit_idStr = [note valueForKey:@"habit_id"];
+    
+    [currVC.navigationController pushViewController:joinVC animated:YES];
+//    currVC.hidesBottomBarWhenPushed = NO;
+    if (!self.isDetail) {
+        currVC.hidesBottomBarWhenPushed=NO;
+    }
 }
 #pragma mark 点赞 评论
 - (IBAction)propBtnAction:(id)sender {
@@ -620,53 +679,53 @@
     self.mindNoteId = [note valueForKey:@"id"];
     
     [KeyboardObserved manager];
-//    [self createKeyboard];
+    [self createKeyboard];
     
 }
-//// 弹出键盘
-//- (void)createKeyboard {
-//    
-//    UIViewController *currVC = [self getCurrentViewController];
-//    
-//    // 弹出键盘加一层 view 遮盖下面的视图的点击响应
-//    CGFloat kbHeight = [KeyboardObserved manager].keyboardFrame.size.height;
-//    UIView *vi1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-40-kbHeight)];
-//    [currVC.view addSubview:vi1];
-//    vi1.tag = 11;
-//    
-//    UIView *vi2 = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 0, SCREEN_WIDTH, 0)];
-//    
-//    // 输入框
-//    //    UITextView *text = [[UITextView alloc] initWithFrame:CGRectInset(vi2.bounds, 0, 0)];
-//    UITextView *text =[[UITextView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-//    text.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//    text.inputAccessoryView = text;
-//    text.backgroundColor = [UIColor whiteColor];
-//    text.returnKeyType = UIKeyboardTypeTwitter;
-//    text.delegate = self;
-//    text.font = [UIFont boldSystemFontOfSize:15];
-//    [vi2 addSubview:text];
-//    [currVC.view.window addSubview:vi2];
-//    // 输入框成为第一响应者
-//    [text becomeFirstResponder];
-//    
-//    self.textView = text;
-//    
-//    // 输入框的表情和发送按钮
-//    UIButton *sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [text addSubview:sendBtn];
-//    sendBtn.frame = CGRectMake(SCREEN_WIDTH-60, 5, 50, 30);
-//    sendBtn.backgroundColor = [UIColor lightGrayColor];
-//    [sendBtn setTintColor:[UIColor whiteColor]];
-//    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
-//    [sendBtn addTarget:self action:@selector(sendAction) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    UIButton *smilingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [text addSubview:smilingBtn];
-//    smilingBtn.frame = CGRectMake(SCREEN_WIDTH-100, 5, 30, 30);
-//    [smilingBtn setImage:[UIImage imageNamed:@"Smiling_32.png"] forState:UIControlStateNormal];
-//    
-//}
+// 弹出键盘
+- (void)createKeyboard {
+    
+    UIViewController *currVC = [self getCurrentViewController];
+    
+    // 弹出键盘加一层 view 遮盖下面的视图的点击响应
+    CGFloat kbHeight = [KeyboardObserved manager].keyboardFrame.size.height;
+    UIView *vi1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-40-kbHeight)];
+    [currVC.view addSubview:vi1];
+    vi1.tag = 11;
+    
+    UIView *vi2 = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 0, SCREEN_WIDTH, 0)];
+    
+    // 输入框
+    //    UITextView *text = [[UITextView alloc] initWithFrame:CGRectInset(vi2.bounds, 0, 0)];
+    UITextView *text =[[UITextView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    text.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    text.inputAccessoryView = text;
+    text.backgroundColor = [UIColor whiteColor];
+    text.returnKeyType = UIKeyboardTypeTwitter;
+    text.delegate = self;
+    text.font = [UIFont boldSystemFontOfSize:15];
+    [vi2 addSubview:text];
+    [currVC.view.window addSubview:vi2];
+    // 输入框成为第一响应者
+    [text becomeFirstResponder];
+    
+    self.textView = text;
+    
+    // 输入框的表情和发送按钮
+    UIButton *sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [text addSubview:sendBtn];
+    sendBtn.frame = CGRectMake(SCREEN_WIDTH-60, 5, 50, 30);
+    sendBtn.backgroundColor = [UIColor lightGrayColor];
+    [sendBtn setTintColor:[UIColor whiteColor]];
+    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    [sendBtn addTarget:self action:@selector(sendAction) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *smilingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [text addSubview:smilingBtn];
+    smilingBtn.frame = CGRectMake(SCREEN_WIDTH-100, 5, 30, 30);
+    [smilingBtn setImage:[UIImage imageNamed:@"Smiling_32.png"] forState:UIControlStateNormal];
+    
+}
 //- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 //    
 //    UIViewController *currVC = [self getCurrentViewController];
@@ -679,64 +738,145 @@
 //    }
 //    
 //}
-//// 监听textView文字输入
-//- (void)textViewDidChange:(UITextView *)textView {
-//    
-//    self.commentText = textView.text;
-//    
-//}
-//// 点击return回收键盘
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-//    
-//    UIViewController *currVC = [self getCurrentViewController];
-//    
-//    if ([text isEqualToString:@"\n"]) {
-//        [textView resignFirstResponder];
-//        
-//        UIView *v = [currVC.view viewWithTag:11];
-//        [v removeFromSuperview];
-//        
-//        if (textView.text.length > 0) {
-//            [self loadCommentData];
-//        }
-//        return NO;
-//    }
-//    return YES;
-//}
-//// send按钮响应
-//- (void)sendAction {
-//    
-//    if (self.commentText.length > 0) {
-//        [self loadCommentData];
-//    }
-//    
-//}
-//// 发送评论请求
-//- (void)loadCommentData {
-//    
-//    // 取消输入框的第一响应者
-//    [self.textView resignFirstResponder];
-//    
-//    // 评论
-//    //    http://api.idothing.com/zhongzi/v2.php/MindNote/comment
-//    //    comment_text_content=%E8%B5%9E&mind_note_id=18917711&user_id=1878988
-//    
-//    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-//    
-//    NSDictionary *parameters = @{
-//                                 @"comment_text_content":self.commentText,
-//                                 @"mind_note_id":self.mindNoteId,
-//                                 @"user_id":self.seedUser.uId
-//                                 };
-//    [session POST:@"http://api.idothing.com/zhongzi/v2.php/MindNote/comment" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        
-//        //        [hotTabelView reloadData];
-//        
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        NSLog(@"%@", error);
-//    }];
-//    
-//}
+// 监听textView文字输入
+- (void)textViewDidChange:(UITextView *)textView {
+    
+    self.commentText = textView.text;
+    
+}
+// 点击return回收键盘
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    UIViewController *currVC = [self getCurrentViewController];
+    
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        
+        UIView *v = [currVC.view viewWithTag:11];
+        [v removeFromSuperview];
+        
+        if (textView.text.length > 0) {
+            [self loadCommentData];
+        }
+        return NO;
+    }
+    return YES;
+}
+// send按钮响应
+- (void)sendAction {
+    
+    if (self.commentText.length > 0) {
+        [self loadCommentData];
+    }
+    
+}
+// 发送评论请求
+- (void)loadCommentData {
+    
+    // 取消输入框的第一响应者
+    [self.textView resignFirstResponder];
+    
+    // 评论
+    //    http://api.idothing.com/zhongzi/v2.php/MindNote/comment
+    //    comment_text_content=%E8%B5%9E&mind_note_id=18917711&user_id=1878988
+    
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    
+    NSDictionary *parameters = @{
+                                 @"comment_text_content":self.commentText,
+                                 @"mind_note_id":self.mindNoteId,
+                                 @"user_id":self.seedUser.uId
+                                 };
+    [session POST:@"http://api.idothing.com/zhongzi/v2.php/MindNote/comment" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        //        [hotTabelView reloadData];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
+    
+}
+
+#pragma mark 详情图片 放大保存
+- (void)onClickImage {
+    
+    UIViewController *currVC = [self getCurrentViewController];
+    
+    NSLog(@"onClickImage");
+    currVC.navigationController.navigationBarHidden = YES;
+    
+    self.mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [currVC.view addSubview:self.mainScrollView];
+    self.mainScrollView.backgroundColor = [UIColor blackColor];
+    self.mainScrollView.contentSize = CGSizeMake(0, 0);
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.mainScrollView.bounds];
+    
+    [imageView lhy_loadImageUrlStr:[self.notes.note valueForKey:@"mind_pic_big"] placeHolderImageName:@"placeHolder.png" radius:0];
+    
+    [self.mainScrollView addSubview:imageView];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.center = self.mainScrollView.center;
+    imageView.userInteractionEnabled = YES;
+    
+    self.mainScrollView.minimumZoomScale = 1;
+    self.mainScrollView.maximumZoomScale = 3;
+    self.mainScrollView.zoomScale = 1;
+    self.mainScrollView.delegate = self;
+    self.mainScrollView.bounces = NO;
+    
+    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onClickScroll)];
+    [self.mainScrollView addGestureRecognizer:singleTap];
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longAction:)];
+    //    触发长按最小时间
+    longPress.minimumPressDuration = 0.8;
+    [imageView addGestureRecognizer:longPress];
+    
+}
+- (void)onClickScroll {
+    UIViewController *currVC = [self getCurrentViewController];
+    
+    [self.mainScrollView removeFromSuperview];
+    currVC.navigationController.navigationBarHidden = NO;
+}
+- (void)longAction:(id)sender {
+    
+    UIViewController *currVC = [self getCurrentViewController];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"保存图片到相册" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:[self.notes.note valueForKey:@"mind_pic_big"]];
+        UIImageWriteToSavedPhotosAlbum(cacheImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    }];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"不保存" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:action1];
+    [alert addAction:action2];// 添加按钮到警示框上面
+    
+    [currVC presentViewController:alert animated:YES completion:nil];
+    
+}
+#pragma mark 将图片保存到本地
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    NSString *message = @"呵呵";
+    if (!error) {
+        message = @"成功保存到相册";
+    }else
+    {
+        message = [error description];
+    }
+    NSLog(@"message is %@",message);
+    
+}
+
+#pragma mark 告诉缩放的是哪个 View
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return [scrollView.subviews objectAtIndex:0];
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HabitUsersModel.h"
+#import "SeedUser.h"
 
 @interface HabitRankingCell : UITableViewCell
 
@@ -21,6 +21,6 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *cupL;
 
-@property (nonatomic,strong)HabitUsersModel *users;
+@property (nonatomic,strong)SeedUser *user;
 
 @end

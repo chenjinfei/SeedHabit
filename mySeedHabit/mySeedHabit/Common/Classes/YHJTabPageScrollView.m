@@ -134,7 +134,7 @@
         
         [button setTitle:item.tabName forState:UIControlStateNormal];
         // 没有选中的颜色
-        [button setTitleColor:[UIColor colorWithRed:214/255.0 green:210/255.0 blue:215/255.0 alpha:1] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor colorWithRed:234/255.0 green:230/255.0 blue:235/255.0 alpha:1] forState:UIControlStateNormal];
         // 选中的颜色
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         button.titleLabel.font = [UIFont systemFontOfSize:18];

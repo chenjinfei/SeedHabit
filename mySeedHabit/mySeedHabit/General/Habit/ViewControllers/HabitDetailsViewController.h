@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class  SeedUser;
+@class UserManager;
 
 @interface HabitDetailsViewController : UIViewController
 
@@ -26,6 +27,6 @@
 @property (nonatomic,assign)NSString *join_days;
 
 // 当前登录用户
-@property (nonatomic, strong) SeedUser *user;
+@property (nonatomic, strong)SeedUser *user;
 
 @end

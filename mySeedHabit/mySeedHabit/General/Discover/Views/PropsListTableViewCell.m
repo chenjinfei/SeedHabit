@@ -31,7 +31,7 @@
         
         [self.avatar_small lhy_loadImageUrlStr:[NSString stringWithFormat:@"%@", [NSURL URLWithString:users.avatar_small]] placeHolderImageName:nil radius:20];
     }
-    
+
 }
 
 
