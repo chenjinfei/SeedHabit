@@ -12,14 +12,11 @@
 #import <UIImageView+WebCache.h>
 #import "UIColor+CJFColor.h"
 #import "NSString+CJFString.h"
+#import <SCLAlertView.h>
 
 #import<Masonry.h>
 
 @interface TreeInfoViewController ()
-
-//@property (strong, nonatomic) IBOutlet UILabel *note;
-//@property (strong, nonatomic) IBOutlet UILabel *time;
-//@property (strong, nonatomic) IBOutlet UIImageView *treeImage;
 
 @property (nonatomic, strong) UILabel *note;
 @property (nonatomic, strong) UILabel *time;
@@ -72,58 +69,67 @@
 
 - (void)createUI {
     
-    self.treeImage = [[UIImageView alloc] init];
-    [self.view addSubview:self.treeImage];
-    
-    [self.treeImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(self.view);
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH*0.8, SCREEN_WIDTH*0.8));
-    }];
-    
-    self.note = [[UILabel alloc] init];
-    [self.view addSubview:self.note];
-    self.note.numberOfLines = 0;
-    self.note.textAlignment = NSTextAlignmentCenter;
-    
-    [self.note mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-20, 50));
-        make.bottom.mas_equalTo(self.treeImage.mas_top).offset(-SCREEN_HEIGHT/15);
-        make.left.mas_equalTo(self.view.mas_left).offset(10);
-    }];
-    
-    self.time = [[UILabel alloc] init];
-    [self.view addSubview:self.time];
-    self.time.textAlignment = NSTextAlignmentCenter;
-    
-    [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-20, 20));
-        make.left.mas_equalTo(self.view.mas_left).offset(10);
-        make.top.mas_equalTo(self.treeImage.mas_bottom).offset(SCREEN_WIDTH / 20);
-    }];
+    if (!self.treeImage) {
+        self.treeImage = [[UIImageView alloc] init];
+        [self.view addSubview:self.treeImage];
+        
+        [self.treeImage mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH*0.8, SCREEN_WIDTH*0.8));
+        }];
+    }
+    if (!self.note) {
+        self.note = [[UILabel alloc] init];
+        [self.view addSubview:self.note];
+        self.note.font = [UIFont systemFontOfSize:13];
+        self.note.numberOfLines = 0;
+        self.note.textAlignment = NSTextAlignmentCenter;
+        
+        [self.note mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-20, 50));
+            make.bottom.mas_equalTo(self.treeImage.mas_top).offset(-SCREEN_HEIGHT/15);
+            make.left.mas_equalTo(self.view.mas_left).offset(10);
+        }];
+    }
+    if (!self.time) {
+        self.time = [[UILabel alloc] init];
+        [self.view addSubview:self.time];
+        self.time.textAlignment = NSTextAlignmentCenter;
+        
+        [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-20, 20));
+            make.left.mas_equalTo(self.view.mas_left).offset(10);
+            make.top.mas_equalTo(self.treeImage.mas_bottom).offset(SCREEN_WIDTH / 20);
+        }];
+    }
+    if (!self.timeText) {
+        self.timeText = [[UILabel alloc] init];
+        [self.view addSubview:self.timeText];
+        self.timeText.font = [UIFont systemFontOfSize:13];
+        self.timeText.textAlignment = NSTextAlignmentCenter;
+        self.timeText.text = @"天        时        分        秒";
+        self.timeText.textColor = [UIColor darkGrayColor];
+        
+        [self.timeText mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-20, 20));
+            make.left.mas_equalTo(self.view.mas_left).offset(10);
+            make.top.mas_equalTo(self.time.mas_bottom).offset(10);
+        }];
 
-    self.timeText = [[UILabel alloc] init];
-    [self.view addSubview:self.timeText];
-    self.timeText.textAlignment = NSTextAlignmentCenter;
-    self.timeText.text = @"天  :  时  :  分  :  秒";
-    self.timeText.textColor = [UIColor darkGrayColor];
-    
-    [self.timeText mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-20, 20));
-        make.left.mas_equalTo(self.view.mas_left).offset(10);
-        make.top.mas_equalTo(self.time.mas_bottom).offset(10);
-    }];
+    }
     
 }
 
 
 - (void)rightAction {
-
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"签到可以帮助种子成长，连续7天不签到，你的种子将会死亡" preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }]];
     
-    [self presentViewController:alert animated:YES completion:nil];
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    
+    // Alternative alert types
+//    [alert showError:self title:@"Hello Error" subTitle:@"This is a more descriptive error text." closeButtonTitle:@"OK" duration:0.0f]; // Error
+    [alert showNotice:self title:@"温馨提示" subTitle:@"签到可以帮助种子成长，连续7天不签到，你的种子将会死亡" closeButtonTitle:@"我知道了" duration:0.0f]; // Notice
+
+    
 }
 
 - (void)loadData {
@@ -192,6 +198,7 @@
         }
     }
     self.time.text = [NSString stringWithFormat:@"%d  :  %0.2d  :  %0.2d  :  %0.2d", self.day, self.hour, self.minute, self.second];
+    NSLog(@"%@", self.time.text);
     
 }
 - (void)didReceiveMemoryWarning {

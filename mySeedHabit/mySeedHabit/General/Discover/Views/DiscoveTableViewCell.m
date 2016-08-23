@@ -222,10 +222,6 @@
                         NSString *comStr;
                         NSString *textTest;
                         NSString *replyStr;
-//                        NSAttributedString *userStrA;
-//                        NSAttributedString *textTestA;
-//                        NSAttributedString *replyStrA;
-//                        NSAttributedString *nickNameA;
                         for (Users *users in self.usersArr) {
                             if ([com valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
                                 if ([comId containsObject:[com valueForKey:@"be_commented_id"]] && [com valueForKey:@"be_commented_id"] != NULL) {
@@ -235,7 +231,6 @@
                                             for (Users *model in self.usersArr) {
                                                 if ([comR valueForKey:@"user_id"] == [model valueForKey:@"uId"]) {
                                                     replyStr = [NSString stringWithFormat:@"%@", model.nickname];
-//                                                    replyStrA = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", model.nickname]];
                                                 }
                                             }
                                         }
@@ -243,16 +238,12 @@
                                     userStr = [NSString stringWithFormat:@"%@ 回复 %@ ", users.nickname, replyStr];
                                     comStr = [NSString stringWithFormat:@"%@", [com valueForKey:@"comment_text_content"]];
                                     textTest = [NSString stringWithFormat:@"%@:%@", userStr, comStr];
-//                                    userStrA = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ 回复 %@ ", nickNameA, replyStrA]];
-//                                    textTestA = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@:%@", userStrA, comStr]];
                                 }
                                 else {
                                     NSLog(@"没有回复");
                                     userStr = [NSString stringWithFormat:@"%@", users.nickname];
                                     comStr = [NSString stringWithFormat:@"%@", [com valueForKey:@"comment_text_content"]];
                                     textTest = [NSString stringWithFormat:@"%@:%@", userStr, comStr];
-//                                    userStrA = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@", nickNameA]];
-//                                    textTestA = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@:%@", userStrA, comStr]];
                                 }
                                 // 完全一模一样就就不添加到 text 当中
                                 if([text rangeOfString:textTest].location == NSNotFound)//_roaldSearchText
@@ -260,9 +251,7 @@
                                     if (count>0) {
                                         [text appendFormat:@"\n"];
                                     }
-                                    
                                     [text appendFormat:@"%@", textTest];
-//                                    [textA appendAttributedString:textTestA];
                                 }
                                 count++;
                                 textCount++;
@@ -276,17 +265,7 @@
                     }
                 }
             }
-            
-//            self.comment.attributedText = textA;
-//            if (SCREEN_WIDTH == 320) {
-                self.comment.font = [UIFont systemFontOfSize:14];
-//            }
-//            else if (SCREEN_WIDTH == 375) {
-//                self.comment.font = [UIFont systemFontOfSize:16];
-//            }
-//            else {
-//                self.comment.font = [UIFont systemFontOfSize:17];
-//            }
+            self.comment.font = [UIFont systemFontOfSize:14];
             self.comment.textColor = [UIColor darkGrayColor];
             self.comment.text = text;
             self.comment.adjustsFontSizeToFitWidth = YES; // 完全展示评论
@@ -344,11 +323,11 @@
             self.imageHeight = SCREEN_WIDTH - 20;
                 [self.contentImageV mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.size.mas_equalTo(CGSizeMake(self.imageHeight, self.imageHeight));
-                    make.top.mas_equalTo(self.contentV.mas_top).with.offset(20);
+                    make.top.mas_equalTo(self.contentV.mas_top).with.offset(10);
                     make.left.mas_equalTo(self.contentV.mas_left).with.offset(0);
                     // 如果心情点赞评论都没有，则图片直接约束 contentV 底部
                     if (self.mind_note.text.length == 0 && self.isProp == 0 && self.comment.text.length == 0) {
-                        make.bottom.mas_equalTo(self.contentV.mas_bottom).with.offset(-20);
+                        make.bottom.mas_equalTo(self.contentV.mas_bottom).with.offset(-10);
                     }
                     
                 }];
@@ -365,16 +344,16 @@
             
             [self.mind_note mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-60, self.noteHeight));
-                make.left.mas_equalTo(self.contentV.mas_left).with.offset(20);
+                make.left.mas_equalTo(self.contentV.mas_left).with.offset(10);
                 if (self.isImage) {
                     make.top.mas_equalTo(self.contentImageV.mas_bottom).with.offset(10);
                 }
                 else
-                    make.top.mas_equalTo(self.contentV.mas_top).with.offset(20);
+                    make.top.mas_equalTo(self.contentV.mas_top).with.offset(10);
 
                 // 如果点赞评论都没有，则心情直接约束 contentV 底部
                 if (self.isProp == 0 && self.comment.text.length == 0) {
-                    make.bottom.mas_equalTo(self.contentV.mas_bottom).with.offset(-20);
+                    make.bottom.mas_equalTo(self.contentV.mas_bottom).with.offset(-10);
                 }
                 
             }];
@@ -400,7 +379,7 @@
                 
                 // 如果没有评论，直接约束contentV底部
                 if (self.comment.text.length == 0) {
-                    make.bottom.mas_equalTo(self.contentV.mas_bottom).with.offset(-20);
+                    make.bottom.mas_equalTo(self.contentV.mas_bottom).with.offset(-10);
                 }
             }];
         }
@@ -417,8 +396,8 @@
             
             [self.comment mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-60, self.commentHeight));
-                make.left.mas_equalTo(self.contentV.mas_left).with.offset(20);
-                make.bottom.mas_equalTo(self.contentV.mas_bottom).with.offset(-20);
+                make.left.mas_equalTo(self.contentV.mas_left).with.offset(10);
+                make.bottom.mas_equalTo(self.contentV.mas_bottom).with.offset(-10);
                 if (self.isProp) {
                     make.top.mas_equalTo(self.propV.mas_bottom).with.offset(15);
                 }
@@ -444,54 +423,106 @@
 //    NSLog(@"%f, %f, %f, %f", self.imageHeight, self.noteHeight, self.propHeight, self.commentHeight);
 //    NSLog(@"%f", self.noteHeight+self.commentHeight+self.propHeight+self.imageHeight);
     
+//    if (self.isImage) {
+//        if (self.mind_note.text.length > 0) {
+//            if (self.isProp && self.comment.text.length > 0) {
+//                return self.imageHeight+self.noteHeight+self.propHeight+40+self.commentHeight;
+//            }
+//            else if (self.isProp > 0) {
+//                return self.imageHeight+self.noteHeight+self.propHeight+40;
+//            }
+//            else if (self.comment.text.length > 0) {
+//                return self.imageHeight+self.noteHeight+self.commentHeight+40;
+//            }
+//            else
+//                return self.imageHeight+self.noteHeight+40;
+//        }
+//        else {
+//            if (self.isProp && self.comment.text.length > 0) {
+//                return self.imageHeight+self.propHeight+40+self.commentHeight;
+//            }
+//            else if (self.isProp > 0) {
+//                return self.imageHeight+self.propHeight+40;
+//            }
+//            else if (self.comment.text.length > 0) {
+//                return self.imageHeight+self.commentHeight+40;
+//            }
+//            else
+//                return self.imageHeight+40;
+//        }
+//            
+//    }
+//    else if (self.mind_note.text.length > 0) {
+//        if (self.isProp && self.comment.text.length > 0) {
+//            return self.propHeight+40+self.commentHeight+self.noteHeight;
+//        }
+//        else if (self.isProp > 0) {
+//            return self.noteHeight+self.propHeight+40;
+//        }
+//        else if (self.comment.text.length > 0) {
+//            return self.noteHeight+self.commentHeight+40;
+//        }
+//        else
+//            return self.noteHeight+40;
+//    }
+//    else if (self.isProp) {
+//        return self.propHeight + 40;
+//    }
+//    else if (self.comment.text.length > 0) {
+//        return self.commentHeight+20;
+//    }
+//    else {
+//        return self.noteHeight+self.commentHeight+self.propHeight+self.imageHeight;
+//    }
+    
     if (self.isImage) {
         if (self.mind_note.text.length > 0) {
             if (self.isProp && self.comment.text.length > 0) {
-                return self.imageHeight+self.noteHeight+self.propHeight+40+self.commentHeight;
+                return self.imageHeight+self.noteHeight+self.propHeight+self.commentHeight;
             }
             else if (self.isProp > 0) {
-                return self.imageHeight+self.noteHeight+self.propHeight+40;
+                return self.imageHeight+self.noteHeight+self.propHeight;
             }
             else if (self.comment.text.length > 0) {
-                return self.imageHeight+self.noteHeight+self.commentHeight+40;
+                return self.imageHeight+self.noteHeight+self.commentHeight;
             }
             else
-                return self.imageHeight+self.noteHeight+40;
+                return self.imageHeight+self.noteHeight;
         }
         else {
             if (self.isProp && self.comment.text.length > 0) {
-                return self.imageHeight+self.propHeight+40+self.commentHeight;
+                return self.imageHeight+self.propHeight+self.commentHeight;
             }
             else if (self.isProp > 0) {
-                return self.imageHeight+self.propHeight+40;
+                return self.imageHeight+self.propHeight;
             }
             else if (self.comment.text.length > 0) {
-                return self.imageHeight+self.commentHeight+40;
+                return self.imageHeight+self.commentHeight;
             }
             else
-                return self.imageHeight+40;
+                return self.imageHeight;
         }
-            
+        
     }
     else if (self.mind_note.text.length > 0) {
         if (self.isProp && self.comment.text.length > 0) {
-            return self.propHeight+40+self.commentHeight+self.noteHeight;
+            return self.propHeight+self.commentHeight+self.noteHeight;
         }
         else if (self.isProp > 0) {
-            return self.noteHeight+self.propHeight+40;
+            return self.noteHeight+self.propHeight;
         }
         else if (self.comment.text.length > 0) {
-            return self.noteHeight+self.commentHeight+40;
+            return self.noteHeight+self.commentHeight;
         }
         else
-            return self.noteHeight+40;
+            return self.noteHeight;
     }
-    else if (self.isProp) {
-        return self.propHeight + 40;
-    }
-    else if (self.comment.text.length > 0) {
-        return self.commentHeight+20;
-    }
+    //    else if (self.isProp) {
+    //        return self.propHeight + 40;
+    //    }
+    //    else if (self.comment.text.length > 0) {
+    //        return self.commentHeight+20;
+    //    }
     else {
         return self.noteHeight+self.commentHeight+self.propHeight+self.imageHeight;
     }
@@ -611,11 +642,13 @@
     UIViewController *currVC = [self.contentView getCurrentViewController];
     
     // 参数
-     Note *note = self.notes.note;
     currVC.hidesBottomBarWhenPushed = YES;
     HabitJoinListViewController *joinVC = [[HabitJoinListViewController alloc] init];
-//    joinVC.habit_idStr = [NSString stringWithFormat:@"%@", note habit_id];
-    joinVC.habit_idStr = [note valueForKey:@"habit_id"];
+    
+    joinVC.titleStr = [self.habits valueForKey:@"name"];
+    joinVC.members = [[self.habits valueForKey:@"members"] integerValue];
+    joinVC.habit_idStr = [self.habits valueForKey:@"idx"];
+    
     
     [currVC.navigationController pushViewController:joinVC animated:YES];
 //    currVC.hidesBottomBarWhenPushed = NO;
