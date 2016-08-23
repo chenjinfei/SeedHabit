@@ -279,8 +279,8 @@ static BOOL isNewRefresh = 1;
     keepTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         // 加载完第一次之后，flag == 1
         NSLog(@"上拉刷新");
-        isKeepRefresh = 0;
-        keepFlag = 0;
+        isKeepRefresh = 1;
+        keepFlag = 1;
         [weakSelf keepLoadData];
     }];
     
