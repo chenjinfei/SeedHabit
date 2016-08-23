@@ -15,6 +15,7 @@
 #import "HabitJoinListViewController.h"
 #import "UserManager.h"
 #import "SeedUser.h"
+#import "UserCenterViewController.h"
 
 @interface HabitClassifyViewController ()<UITableViewDataSource,UITableViewDelegate,TabPageScrollViewDelegate>
 
@@ -48,6 +49,7 @@
     }
     return _hotArr;
 }
+
 - (NSMutableArray *)sportArr
 {
     if (_sportArr == nil) {
@@ -55,6 +57,7 @@
     }
     return _sportArr;
 }
+
 - (NSMutableArray *)studyArr
 {
     if (_studyArr == nil) {
@@ -62,6 +65,7 @@
     }
     return _studyArr;
 }
+
 - (NSMutableArray *)efficiencyArr
 {
     if (_efficiencyArr == nil) {
@@ -69,6 +73,7 @@
     }
     return _efficiencyArr;
 }
+
 - (NSMutableArray *)thindArr
 {
     if (_thindArr == nil) {
@@ -76,6 +81,7 @@
     }
     return _thindArr;
 }
+
 - (NSMutableArray *)healthArr
 {
     if (_healthArr == nil) {
@@ -172,7 +178,6 @@
                                  @"classify_id":@(num),
                                  };
     [session POST:APIHabitClassify parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //        NSLog(@"%@",responseObject);
         // 获取每个tableView的数据,把数据放在一个临时数组
         NSMutableArray *tempArr = [[NSMutableArray alloc]init];
         for (NSDictionary *dic in responseObject[@"data"][@"habits"]) {

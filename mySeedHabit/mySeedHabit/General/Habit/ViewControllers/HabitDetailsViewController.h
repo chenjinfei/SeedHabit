@@ -22,8 +22,10 @@
 // 坚持天数
 @property (nonatomic,strong)NSString *check_in_times;
 
+// 坚持人数
 @property (nonatomic,strong)NSString *members;
 
+// 加入习惯天数
 @property (nonatomic,assign)NSString *join_days;
 
 // 当前登录用户

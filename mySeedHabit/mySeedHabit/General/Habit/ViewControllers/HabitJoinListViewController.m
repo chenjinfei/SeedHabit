@@ -18,10 +18,17 @@
 #import "HabitCommentsModel.h"
 #import "HabitUsersModel.h"
 #import "HabitHabitsModel.h"
+
+#import "Notes.h"
+#import "Note.h"
+#import "Habits.h"
+#import "Users.h"
+
 #import "UserManager.h"
 #import "SeedUser.h"
 #import "UIColor+CJFColor.h"
 #import "DiscoveTableViewCell.h"
+#import "DiscoverDetailViewController.h"
 
 @interface HabitJoinListViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -81,6 +88,12 @@ static BOOL isRefresh = 1;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // 掩盖导航
+    UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, -64, 414, 64)];
+    [self.view addSubview:vi];
+    vi.backgroundColor = [UIColor colorWithHexString:UIMainColor alpha:1.0];
+    
     self.user = [[UserManager manager] currentUser];
     // 如果用户对该习惯没有添加,则显示headerView,否则则隐藏headerView
     self.headerViewHeight = 60;
@@ -101,12 +114,12 @@ static BOOL isRefresh = 1;
 {
     // 弱引用,可以在里面更改self
     __weak typeof(self) weakSelf = self;
-    // 默认block方法:设置下拉刷新
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        isRefresh = 0;
-        isFlag = 0;
-        [weakSelf getData];
-    }];
+    // 下拉刷新
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(getData)];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    self.tableView.mj_header = header;
+    isFlag = 0;
+    isRefresh = 0;
     // 默认block方法:设置上拉加载
     self.tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
         isFlag = 1;
@@ -213,6 +226,31 @@ static BOOL isRefresh = 1;
     }
     self.cell = cell;
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    DiscoverDetailViewController *detailVC = [[DiscoverDetailViewController alloc] init];
+    
+    Notes *notes = self.notesArr[indexPath.row];
+    Note *note = notes.note;
+    
+    for (Habits *habits in self.habitsArr) {
+        if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
+            detailVC.habits = habits;
+        }
+    }
+    
+    for (Users *users in self.usersArr) {
+        if ([note valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
+            detailVC.users = users;
+        }
+    }
+    detailVC.notes = notes;
+    
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailVC animated:YES];
+
+    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 

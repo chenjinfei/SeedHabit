@@ -22,6 +22,10 @@
 #import "AddNoteViewController.h"
 #import "DiscoveTableViewCell.h"
 
+#import "Notes.h"
+#import "Note.h"
+#import "Habits.h"
+#import "Users.h"
 
 // SDWebImage可以设置为button加背景照片
 #import <UIImageView+WebCache.h>
@@ -31,8 +35,7 @@
 #import "CJFTools.h"
 #import "SeedUser.h"
 #import "UserManager.h"
-
-
+#import "DiscoverDetailViewController.h"
 #import "HabitGrowStatisticsView.h"
 #import "NSString+CJFString.h"
 
@@ -51,17 +54,16 @@
 @property (nonatomic,assign)BOOL isRefresh;
 // 是否上拉加载
 @property (nonatomic,assign)BOOL isFlag;
+// 数据请求需要的一个参数
 @property (nonatomic,strong)NSString *nextId;
-
 // 存储评论数据
 @property (nonatomic,strong)NSMutableString *commentStr;
+// 签到按钮
 @property (nonatomic,strong)UIButton *checkBtn;
-
 // 生长统计视图
 @property (nonatomic, strong) UIView *growStatisticsView;
 
 @end
-
 
 // 上拉加载需要另外的一个数据
 static NSString *nextStr = nil;
@@ -75,12 +77,11 @@ static BOOL Flag = 0;
     self.user = [[UserManager manager] currentUser];
     // 创建视图
     [self createTableView];
-    
-//     配置下拉刷新控件
+    // 配置下拉刷新控件
     [self TableViewRefresh];
+    // 初始值
     self.isFlag = 0;
     self.isRefresh = 1;
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -89,21 +90,19 @@ static BOOL Flag = 0;
     [self getLastWeekCheck];
     
     [self LoadData];
-    
 }
-
 
 #pragma mark 刷新加载控件
 - (void)TableViewRefresh
 {
     // 弱引用,可以在里面更改self
     __weak typeof(self) weakSelf = self;
-    // 默认block方法:设置下拉刷新
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        self.isRefresh = 0;
-        self.isFlag = 0;
-        [weakSelf LoadData];
-    }];
+    // 下拉刷新
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(LoadData)];
+    header.lastUpdatedTimeLabel.hidden = YES;
+    self.tableView.mj_header = header;
+    self.isFlag = 0;
+    self.isRefresh = 0;
     // 默认block方法:设置上拉加载
     self.tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
         self.isFlag = 1;
@@ -116,16 +115,13 @@ static BOOL Flag = 0;
 - (void)createTableView
 {
     self.title = self.titleStr;
-    
+    self.view.backgroundColor = RGB(239, 239, 239);
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStylePlain];
     self.tableView.separatorStyle = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = RGB(239, 239, 239);
     [self.view addSubview:self.tableView];
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"DiscoveTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    
     
     // 自定义工具按钮
     UIButton *toolBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -174,8 +170,6 @@ static BOOL Flag = 0;
     growView.userInteractionEnabled = YES;
     self.tableView.tableHeaderView.userInteractionEnabled = YES;
     [growView addGestureRecognizer:Tap];
-    
-    
 }
 
 #pragma mark 添加手势方法
@@ -192,14 +186,7 @@ static BOOL Flag = 0;
     self.hidesBottomBarWhenPushed = YES;
 }
 
-#pragma mark 获取心情列表数据
-- (void)getNotesByTimeData
-{
-    
-}
-
-
-// 工具响应方法
+#pragma mark 工具响应方法
 - (void)toolAction:(id)sender
 {
     NSLog(@"工具响应方法");
@@ -271,10 +258,8 @@ static BOOL Flag = 0;
                                 @"user_id": [NSString stringWithFormat:@"%@", self.user.uId]
                                 };
     [session POST:@"http://api.idothing.com/zhongzi/v2.php/CheckIn/checkIn" parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
         // 判断签到相应的情况,当没签到且没有错误信息时才能签到
         if ([responseObject[@"status"] integerValue] == 0 && responseObject[@"data"] != nil) {
-            NSLog(@"666666666");
             // 选中状态切换背景图片
             self.checkBtn.selected = YES;
             Flag = 1;
@@ -285,7 +270,6 @@ static BOOL Flag = 0;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
-            
         });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
@@ -326,7 +310,7 @@ static BOOL Flag = 0;
                 HabitCheckModel *check = [[HabitCheckModel alloc]init];
                 [check setValuesForKeysWithDictionary:dic];
                 [self.checkArr addObject:check];
-                
+        
                 // 遍历本周签到数据，判断当天是否已经签到
                 NSString *dayStr = [[CJFTools manager] revertTimeamp:check.check_in_time withFormat:@"yy/MM/dd"];
                 if (check.is_check_in) {
@@ -358,10 +342,7 @@ static BOOL Flag = 0;
                 check_in_timeL.text = check_in_times;
                 
             });
-            
         }
-        
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
     }];
@@ -372,8 +353,25 @@ static BOOL Flag = 0;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DiscoverDetailViewController *detailVC = [[DiscoverDetailViewController alloc] init];
+    Notes *notes = self.notesArr[indexPath.row];
+    Note *note = notes.note;
     
+    for (Habits *habits in self.habitsArr) {
+        if ([note valueForKey:@"habit_id"] == [habits valueForKey:@"idx"]) {
+            detailVC.habits = habits;
+        }
+    }
     
+    for (Users *users in self.usersArr) {
+        if ([note valueForKey:@"user_id"] == [users valueForKey:@"uId"]) {
+            detailVC.users = users;
+        }
+    }
+    detailVC.notes = notes;
+    
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma mark 获取动态网络
@@ -397,8 +395,7 @@ static BOOL Flag = 0;
     
     [session POST:APIHabitNotesByTime parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if ([responseObject[@"status"] integerValue] == 0) {
-        
-             NSLog(@"%@", responseObject);
+            
             __weak typeof (self) weakSelf = self;
             [self analysisDataWithResponseObject:responseObject NotesArr:weakSelf.notesArr UsersArr:weakSelf.usersArr HabitsArr:weakSelf.habitsArr isRefresh:self.isRefresh tableView:self.tableView];
         }
@@ -410,30 +407,15 @@ static BOOL Flag = 0;
 
 // 解析数据
 - (void)analysisDataWithResponseObject:(id)responseObject NotesArr:(NSMutableArray *)NotesArr UsersArr:(NSMutableArray *)UsersArr HabitsArr:(NSMutableArray *)HabitsArr isRefresh:(BOOL)isRefresh tableView:(UITableView *)tableView{
-    
-//    __strong typeof(NotesArr) sNoteArr = NotesArr;
-    
-    
-    
+
     // isRefresh == 0 上拉加载
     if (isRefresh == 1) {
         for (NSDictionary *dict in responseObject[@"data"][@"notes"]) {
             Notes *notes = [[Notes alloc] init];
             [notes setValuesForKeysWithDictionary:dict];
             [NotesArr addObject:notes];
-            
             Note *note = dict[@"note"];
-            // 上拉，加载
-//            if ([tableView isEqual:hotTabelView]) {
-//                [self.mReadStr appendFormat:@"%@|", [note valueForKey:@"id"]];
-//            }
-//            else if ([tableView isEqual:newestTableView]) {
-//                self.NewNextId = [note valueForKey:@"id"];
-//            }
-//            else if ([tableView isEqual:keepTableView]){
-                self.nextId = [note valueForKey:@"id"];
-//            }
-            
+            self.nextId = [note valueForKey:@"id"];
         }
         
         for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
@@ -454,18 +436,14 @@ static BOOL Flag = 0;
         for (NSDictionary *dict in responseObject[@"data"][@"notes"]) {
             Notes *notes = [[Notes alloc] init];
             [notes setValuesForKeysWithDictionary:dict];
-            
-            //            NSLog(@"%@", notes);
             if ([[[[NotesArr firstObject] valueForKey:@"note"] valueForKey:@"check_in_id"] isEqualToString:[[notes valueForKey:@"note"] valueForKey:@"check_in_id"]]) {
                 break;
             }
-            
             [notesArr addObject:notes];
         }
         NSArray *arr = [notesArr arrayByAddingObjectsFromArray:NotesArr];
         [NotesArr removeAllObjects];
         [NotesArr addObjectsFromArray:arr];
-        
         
         NSMutableArray *userId = [[NSMutableArray alloc] init];
         for (NSDictionary *dic in UsersArr) {
@@ -502,20 +480,14 @@ static BOOL Flag = 0;
         [HabitsArr removeAllObjects];
         [HabitsArr addObjectsFromArray:arr2];
     }
-    
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [tableView reloadData];
         // 数据加载完毕之后，结束更新
         [tableView.mj_header endRefreshing];
         [tableView.mj_footer endRefreshing];
-        
     });
 }
-
-
-
-
 
 #pragma mark 懒加载
 

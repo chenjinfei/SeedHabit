@@ -22,6 +22,7 @@
 #import <UIImageView+WebCache.h>
 #import "Masonry.h"
 #import "UIColor+CJFColor.h"
+#import "UserCenterViewController.h"
 
 @interface HabitCheckInViewController()<UITableViewDelegate,UITableViewDataSource>
 
@@ -36,6 +37,7 @@
 
 @property (nonatomic,strong)UILabel *note;
 @property (nonatomic,strong)UILabel *time;
+@property (nonatomic,strong)UILabel *timeText;
 @property (nonatomic,strong)UIImageView *treeImage;
 @property (nonatomic,strong)NSTimer *timer;
 @property (nonatomic,assign)int day;
@@ -110,7 +112,7 @@
     getTreeInfoView.backgroundColor = [UIColor whiteColor];
     self.note = [[UILabel alloc]init];
     self.note.textAlignment = NSTextAlignmentCenter;
-    self.note.font = [UIFont systemFontOfSize:15];
+    self.note.font = [UIFont systemFontOfSize:13];
     [getTreeInfoView addSubview:self.note];
     [self.note mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(getTreeInfoView.mas_top).offset(30);
@@ -135,6 +137,18 @@
         make.top.equalTo(self.treeImage.mas_bottom).offset(20);
         make.height.equalTo(@30);
     }];
+    self.timeText = [[UILabel alloc]init];
+    self.timeText.text = @"天    时    分    秒";
+    self.timeText.font = [UIFont systemFontOfSize:13];
+    self.timeText.textAlignment = NSTextAlignmentCenter;
+    self.timeText.textColor = [UIColor darkGrayColor];
+    [getTreeInfoView addSubview:self.timeText];
+    [self.timeText mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.time.mas_bottom).offset(10);
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH-20, 20));
+        make.left.equalTo(getTreeInfoView.mas_left).offset(10);
+    }];
+    
     
     
     //*******创建排行榜
@@ -186,9 +200,6 @@
                                 @"user_id": [NSString stringWithFormat:@"%@", self.user.uId]
                                 };
     [session POST:@"http://api.idothing.com/zhongzi/v2.php/CheckIn/getAllCheckInList" parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSLog(@"%@", responseObject);
-        
         for (NSDictionary *dic in responseObject[@"data"][@"check_ins"]) {
             HabitCheckInModel *checkModel = [[HabitCheckInModel alloc]init];
             [checkModel setValuesForKeysWithDictionary:dic];
@@ -250,14 +261,17 @@
             }
         }
     }
+    // 计时器移除问题
     NSLog(@"+++++++%@",self.time.text);
-    self.time.text = [NSString stringWithFormat:@"%d : %02d : %02d : %02d", self.day, self.hour, self.minute, self.second];
+    self.time.text = [NSString stringWithFormat:@"%d  :  %02d  :  %02d  :  %02d", self.day, self.hour, self.minute, self.second];
 }
 
 #pragma mark 离开时停止计时器
 - (void)viewDidDisappear:(BOOL)animated
 {
+    // 在没有完全返回上一页时,会使定时器不知道页面跳出而没关闭定时器,造成内存泄露
     [self.timer invalidate];
+    // 停止定时器,一定要将timer赋空,否则还是没有释放
     self.timer = nil;
 }
 
@@ -270,13 +284,13 @@
                                 @"habit_id":@(habitId),
                                 @"user_id":[NSString stringWithFormat:@"%@", self.user.uId]
                                 };
-    [session POST:@"http://api.idothing.com/zhongzi/v2.php/mindNote/getTreeInfo" parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [session POST:APITreeInfo parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         self.tree = [[TreeInfo alloc] init];
         self.tree = responseObject[@"data"];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
+        
             self.note.text = [self.tree valueForKey:@"note"];
             self.note.font = [UIFont systemFontOfSize:14];
             self.note.textColor = [UIColor darkGrayColor];
@@ -293,7 +307,7 @@
             }
             NSTimeInterval time = [timeS doubleValue];
             NSDate *detail = [NSDate dateWithTimeIntervalSince1970:time];
-            NSDate *new = [NSDate dateWithTimeIntervalSinceNow:8*60*60];
+            NSDate *new = [NSDate date];
             NSTimeInterval interval = [new timeIntervalSinceDate:detail];
             
             self.second = (int)interval % 60;
@@ -406,7 +420,7 @@
     }else if([tableView isEqual:self.expertTableView]){
         HabitRankingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ranking" forIndexPath:indexPath];
         SeedUser *users = self.expertArr[indexPath.row];
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         if (indexPath.row == 0) {
             cell.user = users;
             cell.numberL.text = self.numArr[indexPath.row];
@@ -430,8 +444,21 @@
             return cell;
         }
         return nil;
+        
     }else{
         return nil;
+    }
+}
+
+#pragma mark  点击cell实现的方法
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([tableView isEqual:self.expertTableView]) {
+        self.hidesBottomBarWhenPushed = YES;
+        UserCenterViewController *uVc = [[UserCenterViewController alloc]init];
+        SeedUser *tUser = (SeedUser *)self.expertArr[indexPath.row];
+        uVc.user = tUser;
+        [self.navigationController pushViewController:uVc animated:YES];
     }
 }
 

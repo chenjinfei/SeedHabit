@@ -65,7 +65,6 @@
                                  };
     [session POST:@"http://api.idothing.com/zhongzi/v2.php/Habit/getExpertList" parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         for (NSDictionary *dic in responseObject[@"data"][@"users"]) {
-//            HabitUsersModel *users = [[HabitUsersModel alloc]init];
             SeedUser *users = [[SeedUser alloc]init];
             [users setValuesForKeysWithDictionary:dic];
             [self.usersArr addObject:users];

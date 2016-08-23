@@ -51,7 +51,6 @@
     [self createTableView];
 }
 
-
 #pragma mark 获取网络数据
 - (void)getData
 {
@@ -60,8 +59,6 @@
                                  @"user_id": self.user.uId
                                  };
     [session POST:APIHabitList parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //        NSLog(@"%@", responseObject);
-        
         // 添加习惯后要清楚原有的习惯再重新从习惯接口获取数据
         [self.habiesArray removeAllObjects];
         [self.habitNameArr removeAllObjects];
@@ -134,22 +131,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     HabitDetailsViewController *habitDetailsVC = [[HabitDetailsViewController alloc]init];
-    
     habitDetailsVC.user = [UserManager manager].currentUser;
-    
     HabitListModel *habits = self.habiesArray[indexPath.row];
-    
     habitDetailsVC.titleStr = habits.name;
-    
     // 不能用点语法  把习惯id跟标题一起传过去
     habitDetailsVC.habit_idStr = [habits valueForKey:@"idx"];
-    
     NSString *membersStr = [NSString stringWithFormat:@"%@",[habits valueForKey:@"members"]];
     habitDetailsVC.members = membersStr;
-    
     NSString *join_daysStr = [NSString stringWithFormat:@"%@",[habits valueForKey:@"join_days"]];
     habitDetailsVC.join_days = join_daysStr;
-    
     NSString *check_in_timesStr = [NSString stringWithFormat:@"%@",[habits valueForKey:@"check_in_times"]];
     habitDetailsVC.check_in_times = check_in_timesStr;
     
@@ -220,7 +210,7 @@
     // 添加习惯后要重新获取数据,不是在viewDidLoad中写
     [self getData];
     [self.tableView reloadData];
-    
+    // 控制状态栏颜色
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
