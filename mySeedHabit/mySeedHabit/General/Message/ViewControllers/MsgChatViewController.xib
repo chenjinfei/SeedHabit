@@ -25,12 +25,13 @@
                     <rect key="frame" x="0.0" y="626" width="375" height="41"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECW-zt-Cqs">
-                            <rect key="frame" x="7" y="5" width="28" height="28"/>
+                            <rect key="frame" x="8" y="8" width="26" height="26"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="28" id="Qjf-KG-u6Z"/>
-                                <constraint firstAttribute="width" constant="28" id="loA-hi-0NU"/>
+                                <constraint firstAttribute="height" constant="26" id="Qjf-KG-u6Z"/>
+                                <constraint firstAttribute="width" constant="26" id="loA-hi-0NU"/>
                             </constraints>
                             <state key="normal" title="Button" image="Microphone_32.png"/>
+                            <state key="selected" image="keyboard_32.png"/>
                             <connections>
                                 <action selector="addVoice:" destination="-1" eventType="touchUpInside" id="704-8V-2XO"/>
                             </connections>
@@ -132,9 +133,9 @@
                         <constraint firstAttribute="trailing" secondItem="QbH-Ig-0pg" secondAttribute="trailing" id="kpk-9L-ObI"/>
                         <constraint firstAttribute="bottom" secondItem="ECW-zt-Cqs" secondAttribute="bottom" constant="8" id="oAc-hh-9d2"/>
                         <constraint firstItem="QbH-Ig-0pg" firstAttribute="leading" secondItem="EUe-Hq-stI" secondAttribute="trailing" constant="5" id="s5s-ac-E4o"/>
-                        <constraint firstItem="ECW-zt-Cqs" firstAttribute="leading" secondItem="50a-tk-52s" secondAttribute="leading" constant="7" id="trX-oc-dGP"/>
+                        <constraint firstItem="ECW-zt-Cqs" firstAttribute="leading" secondItem="50a-tk-52s" secondAttribute="leading" constant="8" id="trX-oc-dGP"/>
                         <constraint firstAttribute="trailing" secondItem="SnK-eY-44o" secondAttribute="trailing" constant="45" id="vJx-0z-U8W"/>
-                        <constraint firstItem="ECW-zt-Cqs" firstAttribute="top" secondItem="50a-tk-52s" secondAttribute="top" constant="5" id="wps-W9-P2s"/>
+                        <constraint firstItem="ECW-zt-Cqs" firstAttribute="top" secondItem="50a-tk-52s" secondAttribute="top" constant="8" id="wps-W9-P2s"/>
                         <constraint firstItem="zGG-5m-nyb" firstAttribute="leading" secondItem="H5F-M0-Dwv" secondAttribute="trailing" constant="6" id="xPG-7e-vC2"/>
                     </constraints>
                     <variation key="default">
@@ -165,6 +166,7 @@
     <resources>
         <image name="Microphone_32.png" width="32" height="32"/>
         <image name="expression_32.png" width="32" height="32"/>
+        <image name="keyboard_32.png" width="32" height="32"/>
         <image name="msg_add_32.png" width="32" height="32"/>
     </resources>
 </document>

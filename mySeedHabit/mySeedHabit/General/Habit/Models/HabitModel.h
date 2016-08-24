@@ -59,6 +59,8 @@
 
 @property (nonatomic, strong) NSArray<MindNotesModel *> *mind_notes;
 
+@property (nonatomic, assign) NSInteger has_joined;
+
 
 @end
 

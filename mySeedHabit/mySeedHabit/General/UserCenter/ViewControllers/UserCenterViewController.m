@@ -123,15 +123,16 @@
         self.followBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         
         if (self.user.relation_with_me) {
+            self.followBtn.frame = CGRectMake(0, 0, 55, 32);
             [self.followBtn setTitle:@"取消关注" forState:UIControlStateNormal];
             [self.followBtn setSelected:YES];
         }else {
-            [self.followBtn setTitle:@"加关注" forState:UIControlStateNormal];
+            self.followBtn.frame = CGRectMake(0, 0, 45, 32);
+            [self.followBtn setTitle:@" 加关注" forState:UIControlStateNormal];
             [self.followBtn setSelected:NO];
         }
         
-        self.followBtn.frame = CGRectMake(0, 0, 50, 32);
-        [self.followBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+        [self.followBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:13]];
         [self.followBtn addTarget:self action:@selector(followAction:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *followBarBtn = [[UIBarButtonItem alloc]initWithCustomView:self.followBtn];
         self.navigationItem.rightBarButtonItems = @[followBarBtn];
@@ -152,7 +153,6 @@
     
     self.tableHeaderView = [[NSBundle mainBundle] loadNibNamed:@"UserInfo_TBHeaderView" owner:self options:nil][0];
     self.tableView.tableHeaderView = self.tableHeaderView;
-    
     
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
     MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
@@ -258,9 +258,11 @@
     if (sender.selected) {
         [self cancelFollowWith: parameters];
         sender.selected = NO;
+        self.followBtn.frame = CGRectMake(0, 0, 45, 32);
     }else {
         [self addFollowWith: parameters];
         sender.selected = YES;
+        self.followBtn.frame = CGRectMake(0, 0, 55, 32);
     }
     
     
@@ -336,7 +338,7 @@
                                      @"user_id": user.uId
                                      };
         [session POST:APIHabitListPreview parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            //            NSLog(@"%@", responseObject);
+            NSLog(@"%@", responseObject);
             if (self.dataArr != nil) {
                 [self.dataArr removeAllObjects];
             }
@@ -437,6 +439,7 @@
     MindNotesReviewViewController *reviewVc = [[MindNotesReviewViewController alloc]init];
     HabitModel *habitModel = self.dataArr[indexPath.row];
     reviewVc.habitModel = habitModel;
+    reviewVc.user = self.user;
     [self.navigationController pushViewController:reviewVc animated:YES];
     if (self.user != nil) {
         self.hidesBottomBarWhenPushed = YES;
@@ -450,5 +453,35 @@
 }
 
 
+// 判断tableview 的滚动方向, 设置悬浮按钮的动画
+float lastContentOffset;
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if(self.user) {
+        lastContentOffset = scrollView.contentOffset.y;
+    }
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    if (self.user) {
+        
+        if (lastContentOffset < scrollView.contentOffset.y) {
+            NSLog(@"向上滚动");
+            [UIView animateWithDuration:0.5 animations:^{
+                if (scrollView.contentOffset.y != 0) {
+                    
+                    self.hoveringBtnWindow.frame = CGRectMake((SCREEN_WIDTH-50)/2, SCREEN_HEIGHT + 10, 50, 50);
+                    
+                }
+            }];
+            
+        }else{
+            NSLog(@"向下滚动");
+            [UIView animateWithDuration:0.5 animations:^{
+                self.hoveringBtnWindow.frame = CGRectMake((SCREEN_WIDTH-50)/2, SCREEN_HEIGHT - 50 - 20, 50, 50);
+            }];
+        }
+        
+    }
+}
 
 @end
