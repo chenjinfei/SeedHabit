@@ -55,11 +55,12 @@
 // 加载数据
 -(void)loadData {
     
-    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+    //    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+    NSArray *conversations = [[EMClient sharedClient].chatManager loadAllConversationsFromDB];
     [self.conversationsArr removeAllObjects];
     [self.conversationsArr addObjectsFromArray:conversations];
     [self.tableView reloadData];
-    NSLog(@"内存中所有会话：%@", conversations);
+    NSLog(@"所有会话：%@", conversations);
     
     for (EMConversation *cs in conversations) {
         NSLog(@"%@", cs.ext)

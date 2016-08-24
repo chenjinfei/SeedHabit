@@ -50,6 +50,9 @@
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, assign) NSInteger limit;
 
+// 发送语音按钮
+@property (nonatomic, strong) UIButton *sendVoiceBtn;
+
 @end
 
 @implementation MsgChatViewController
@@ -122,31 +125,9 @@
     // 加载会话记录
     NSArray *tmpArr = [self.conversation loadMoreMessagesFromId:nil limit:500 direction:EMMessageSearchDirectionUp];
     
-    //    [largeArray subarrayWithRange:NSMakeRange(0, 10)];
-    
-    
     [self.chatRecordArr removeAllObjects];
     
-    
-    //    NSLog(@"page: %ld, limit: %ld, totalCount: %ld", self.page * self.limit, self.limit, tmpArr.count);
-    //    
-    //    if (self.page * self.limit + 10 < tmpArr.count) {
-    //        self.limit = 10;
-    //    }else {
-    //        self.limit = tmpArr.count - self.page * self.limit;
-    //    }
-    //    
-    //    NSRange range = NSMakeRange(self.page * self.limit, self.limit);
-    //    
-    //    NSLog(@"%@", [tmpArr subarrayWithRange: range]);
-    //    
     [self.chatRecordArr addObjectsFromArray:tmpArr];
-    //
-    //    if (self.limit < 10) {
-    //        self.page = 0;
-    //    }else {
-    //        self.page ++;
-    //    }
     
     [self.tableView.mj_header endRefreshing];
     
@@ -386,6 +367,38 @@
 
 // 监听录音按钮
 - (IBAction)addVoice:(UIButton *)sender {
+    NSLog(@"voice");
+    
+    if (sender.selected) {
+        
+        [sender setSelected:NO];
+        [self.sendVoiceBtn removeFromSuperview];
+        
+    }else {
+        
+        [sender setSelected:YES];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            // 创建发送语音按钮
+            self.sendVoiceBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [self.InputAreaView addSubview:self.sendVoiceBtn];
+            [self.sendVoiceBtn setTintColor:[UIColor darkGrayColor]];
+            [self.sendVoiceBtn setBackgroundColor:RGB(225, 225, 225)];
+            [self.sendVoiceBtn setTitle:@"按住说话" forState:UIControlStateNormal];
+            
+            // 添加约束
+            [self.sendVoiceBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.InputAreaView.mas_top).with.mas_offset(5);
+                make.right.equalTo(self.fileBtn.mas_right).with.mas_offset(-45);
+                make.left.equalTo(self.voiceBtn.mas_left).with.mas_offset(37);
+                make.bottom.equalTo(self.InputAreaView.mas_bottom).with.mas_offset(-5);
+            }];
+            
+        }];
+        
+        
+    }
     
 }
 
@@ -540,26 +553,6 @@
     
     EMMessage *message = self.chatRecordArr[indexPath.row];
     
-    //    NSString *cellIdentifier = nil;
-    //    if ((int)message.direction == 0) {
-    //        cellIdentifier = @"MyBubbleCell";
-    //        MsgChatTextTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    //        cell.model = self.chatRecordArr[indexPath.row];
-    //        
-    //        cell.backgroundColor = CLEARCOLOR;
-    //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //        return cell;
-    //    }else {
-    //        cellIdentifier = @"MyReceiveBubbleCell";
-    //        MsgChatTextReceiveTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    //        cell.model = self.chatRecordArr[indexPath.row];
-    //        
-    //        cell.backgroundColor = CLEARCOLOR;
-    //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //        
-    //        return cell;
-    //    }
-    
     MsgBubbleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BubbleCell"];
     if (!cell) {
         cell = [[MsgBubbleTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BubbleCell"];
@@ -583,6 +576,9 @@
     // 收起键盘
     [self.msgContent resignFirstResponder];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSLog(@"click msg");
+    
 }
 
 

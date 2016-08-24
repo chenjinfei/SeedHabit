@@ -21,9 +21,26 @@
 
 @implementation CJFTabBarViewController
 
-
+// 自定义了TabBarController 之后必须实现以下
 -(void)viewWillAppear:(BOOL)animated {
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
+    [self.selectedViewController beginAppearanceTransition: YES animated: animated];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [self.selectedViewController endAppearanceTransition];
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [self.selectedViewController beginAppearanceTransition: NO animated: animated];
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    [self.selectedViewController endAppearanceTransition];
 }
 
 - (void)viewDidLoad {

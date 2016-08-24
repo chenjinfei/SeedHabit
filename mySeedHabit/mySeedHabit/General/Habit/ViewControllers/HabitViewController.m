@@ -46,6 +46,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.user = [UserManager manager].currentUser;
     [self getData];
     [self createTableView];

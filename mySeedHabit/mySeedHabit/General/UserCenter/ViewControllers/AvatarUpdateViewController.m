@@ -39,12 +39,8 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-}
-
--(UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleDefault;
+-(void)viewDidAppear:(BOOL)animated {
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
 /**

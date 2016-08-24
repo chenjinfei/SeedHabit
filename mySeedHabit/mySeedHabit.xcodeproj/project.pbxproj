@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3260B13C5F52EB2EDB223F0E /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		371F7DCE1D6C4B5F000769E1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 371F7DCB1D6C4B5F000769E1 /* icon.png */; };
+		371F7DCF1D6C4B5F000769E1 /* keyboard_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 371F7DCC1D6C4B5F000769E1 /* keyboard_32.png */; };
+		371F7DD01D6C4B5F000769E1 /* Microphone_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 371F7DCD1D6C4B5F000769E1 /* Microphone_32.png */; };
 		3767F5931D5F4B81004E2945 /* HabitPreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F58C1D5F4B81004E2945 /* HabitPreviewView.xib */; };
 		3767F5941D5F4B81004E2945 /* HabitPreviewViewNoImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3767F58E1D5F4B81004E2945 /* HabitPreviewViewNoImage.m */; };
 		3767F5951D5F4B81004E2945 /* HabitPreviewViewNoImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3767F58F1D5F4B81004E2945 /* HabitPreviewViewNoImage.xib */; };
@@ -115,7 +118,6 @@
 		3767F9E91D69E21A004E2945 /* listTwo_normal_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F9C81D69E21A004E2945 /* listTwo_normal_32.png */; };
 		3767F9EA1D69E21A004E2945 /* listTwo_selected_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F9C91D69E21A004E2945 /* listTwo_selected_32.png */; };
 		3767F9EB1D69E21A004E2945 /* logo_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F9CA1D69E21A004E2945 /* logo_128.png */; };
-		3767F9EC1D69E21A004E2945 /* Microphone_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F9CB1D69E21A004E2945 /* Microphone_32.png */; };
 		3767F9ED1D69E21A004E2945 /* more_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F9CC1D69E21A004E2945 /* more_32.png */; };
 		3767F9EE1D69E21A004E2945 /* msg_16.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F9CD1D69E21A004E2945 /* msg_16.png */; };
 		3767F9EF1D69E21A004E2945 /* msg_add_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 3767F9CE1D69E21A004E2945 /* msg_add_32.png */; };
@@ -276,6 +278,9 @@
 
 /* Begin PBXFileReference section */
 		1270E623761A443362E1C916 /* Pods-mySeedHabit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mySeedHabit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mySeedHabit/Pods-mySeedHabit.debug.xcconfig"; sourceTree = "<group>"; };
+		371F7DCB1D6C4B5F000769E1 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		371F7DCC1D6C4B5F000769E1 /* keyboard_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyboard_32.png; sourceTree = "<group>"; };
+		371F7DCD1D6C4B5F000769E1 /* Microphone_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_32.png; sourceTree = "<group>"; };
 		3767F58A1D5F4B81004E2945 /* HabitPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitPreviewView.h; sourceTree = "<group>"; };
 		3767F58C1D5F4B81004E2945 /* HabitPreviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitPreviewView.xib; sourceTree = "<group>"; };
 		3767F58D1D5F4B81004E2945 /* HabitPreviewViewNoImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitPreviewViewNoImage.h; sourceTree = "<group>"; };
@@ -445,7 +450,6 @@
 		3767F9C81D69E21A004E2945 /* listTwo_normal_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listTwo_normal_32.png; sourceTree = "<group>"; };
 		3767F9C91D69E21A004E2945 /* listTwo_selected_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listTwo_selected_32.png; sourceTree = "<group>"; };
 		3767F9CA1D69E21A004E2945 /* logo_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_128.png; sourceTree = "<group>"; };
-		3767F9CB1D69E21A004E2945 /* Microphone_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Microphone_32.png; sourceTree = "<group>"; };
 		3767F9CC1D69E21A004E2945 /* more_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_32.png; sourceTree = "<group>"; };
 		3767F9CD1D69E21A004E2945 /* msg_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_16.png; sourceTree = "<group>"; };
 		3767F9CE1D69E21A004E2945 /* msg_add_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = msg_add_32.png; sourceTree = "<group>"; };
@@ -1244,6 +1248,9 @@
 		3FB404941D61EF180076A446 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				371F7DCB1D6C4B5F000769E1 /* icon.png */,
+				371F7DCC1D6C4B5F000769E1 /* keyboard_32.png */,
+				371F7DCD1D6C4B5F000769E1 /* Microphone_32.png */,
 				3767FA6B1D6A1BBD004E2945 /* rightHand_32.png */,
 				3767FA691D6A1AD9004E2945 /* tree_32.png */,
 				3767F9BA1D69E21A004E2945 /* background.jpg */,
@@ -1263,7 +1270,6 @@
 				3767F9C81D69E21A004E2945 /* listTwo_normal_32.png */,
 				3767F9C91D69E21A004E2945 /* listTwo_selected_32.png */,
 				3767F9CA1D69E21A004E2945 /* logo_128.png */,
-				3767F9CB1D69E21A004E2945 /* Microphone_32.png */,
 				3767F9CC1D69E21A004E2945 /* more_32.png */,
 				3767F9CD1D69E21A004E2945 /* msg_16.png */,
 				3767F9CE1D69E21A004E2945 /* msg_add_32.png */,
@@ -1402,7 +1408,7 @@
 				TargetAttributes = {
 					37DB266F1D4F40A600FA5198 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 9GL7T79KV7;
+						DevelopmentTeam = D3CT3NTD53;
 					};
 				};
 			};
@@ -1446,6 +1452,7 @@
 				3767FA451D69EAAA004E2945 /* heart2_32.png in Resources */,
 				3767FA461D69EAAA004E2945 /* heart_32.png in Resources */,
 				3767FA471D69EAAA004E2945 /* into_32.png in Resources */,
+				371F7DCE1D6C4B5F000769E1 /* icon.png in Resources */,
 				3767FA491D69EAAA004E2945 /* left_32.png in Resources */,
 				3767FA4A1D69EAAA004E2945 /* lock_32.png in Resources */,
 				3767FA4C1D69EAAA004E2945 /* message_32.png in Resources */,
@@ -1467,12 +1474,14 @@
 				3767FA5C1D69EAAA004E2945 /* setup_white_32_cjf.png in Resources */,
 				3767FA5D1D69EAAA004E2945 /* silverCup.png in Resources */,
 				3767FA5E1D69EAAA004E2945 /* sina_32.png in Resources */,
+				371F7DD01D6C4B5F000769E1 /* Microphone_32.png in Resources */,
 				3767FA6A1D6A1AD9004E2945 /* tree_32.png in Resources */,
 				3767F9F31D69E21A004E2945 /* discover_normal_32.png in Resources */,
 				3767F9F41D69E21A004E2945 /* discover_selected_32.png in Resources */,
 				3767F9F51D69E21A004E2945 /* habit_normal_32.png in Resources */,
 				3767F9F61D69E21A004E2945 /* habit_selected_32.png in Resources */,
 				3767F9F71D69E21A004E2945 /* mine_normal_32.png in Resources */,
+				371F7DCF1D6C4B5F000769E1 /* keyboard_32.png in Resources */,
 				3767F9F81D69E21A004E2945 /* mine_selected_32.png in Resources */,
 				3767F9F91D69E21A004E2945 /* msg_normal_32.png in Resources */,
 				3767F9FA1D69E21A004E2945 /* msg_selected_32.png in Resources */,
@@ -1496,7 +1505,6 @@
 				3767FA341D69E8FF004E2945 /* UserSetupViewController.xib in Resources */,
 				3767F87B1D65FF68004E2945 /* NotesCollectionListTableViewCell.xib in Resources */,
 				3767F9931D69E1B1004E2945 /* HabitClassifyCell.xib in Resources */,
-				3767F9EC1D69E21A004E2945 /* Microphone_32.png in Resources */,
 				3767F9901D69E1B1004E2945 /* AllCheckInListCell.xib in Resources */,
 				3767F9EA1D69E21A004E2945 /* listTwo_selected_32.png in Resources */,
 				3767F8671D645CEE004E2945 /* MsgChatTextTableViewCell.xib in Resources */,
@@ -1833,12 +1841,7 @@
 				INFOPLIST_FILE = mySeedHabit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
-					"$(PROJECT_DIR)/mySeedHabit/General/Message/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
-					"$(PROJECT_DIR)/mySeedHabit/Ventors/JsmsSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

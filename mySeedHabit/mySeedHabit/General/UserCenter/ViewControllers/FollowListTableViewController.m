@@ -22,6 +22,9 @@
 // 分页标识
 @property (nonatomic, strong) NSNumber *page;
 
+// 提示
+@property (nonatomic, strong) UILabel *notice;
+
 @end
 
 @implementation FollowListTableViewController
@@ -60,6 +63,20 @@
     // 设置footer
     self.tableView.mj_footer = footer;
     
+    [self buildNotice];
+    
+}
+
+// 创建提示
+-(void)buildNotice {
+    
+    self.notice = [[UILabel alloc]initWithFrame:CGRectMake(15, 150, SCREEN_WIDTH-30, 20)];
+    [self.view addSubview:self.notice];
+    self.notice.text = @"暂无任何粉丝";
+    self.notice.font = [UIFont systemFontOfSize:14];
+    self.notice.textColor = [UIColor darkGrayColor];
+    self.notice.textAlignment = NSTextAlignmentCenter;
+    
 }
 
 
@@ -89,20 +106,28 @@
     
     [session POST:post parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@", responseObject);
-        
-        for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
+        if (responseObject[@"data"] && [responseObject[@"status"] integerValue] == 0) {
             
-            CJFFollowModel *model = [[CJFFollowModel alloc]init];
-            [model setValuesForKeysWithDictionary:dict];
+            for (NSDictionary *dict in responseObject[@"data"][@"users"]) {
+                
+                CJFFollowModel *model = [[CJFFollowModel alloc]init];
+                [model setValuesForKeysWithDictionary:dict];
+                
+                [self.dataSource addObject:model];
+                
+            }
             
-            [self.dataSource addObject:model];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.notice removeFromSuperview];
+                [self.tableView reloadData];
+                [self.tableView.mj_footer endRefreshing];
+            });
+            
+        }else {
+            
+            [self buildNotice];
             
         }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-            [self.tableView.mj_footer endRefreshing];
-        });
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);

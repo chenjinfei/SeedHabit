@@ -14,6 +14,7 @@
 
 #import <MJRefresh.h>
 #import "DiscoverDetailViewController.h"
+#import "SeedUser.h"
 
 // 导入布局类
 #import "PinterestLayout.h"
@@ -153,6 +154,16 @@ NSMutableArray *dataArr;
     
     NSLog(@"object");
     DiscoverDetailViewController *dVc = [[DiscoverDetailViewController alloc]init];
+    
+    //    dVc.habitId = self.habitModel.hId;
+    //    
+    //    MindNotesModel *model = self.dataArr[indexPath.row];
+    //    dVc.noteId = model.mId;
+    //    
+    //    SeedUser *targetUser = self.user;
+    //    dVc.userId = targetUser.uId;
+    //    
+    //    dVc.flag = YES;
     
     [self.navigationController pushViewController:dVc animated:YES];
     

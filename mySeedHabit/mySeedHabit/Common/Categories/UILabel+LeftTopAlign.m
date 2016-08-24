@@ -24,8 +24,9 @@
     CGSize labelSize = [self.text boundingRectWithSize:CGSizeMake(self.frame.size.width, self.frame.size.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
     
     //    CGRect dateFrame =CGRectMake(5, 5, CGRectGetWidth(self.frame)-10, labelSize.height);
-    CGRect dateFrame =CGRectMake(5, 0, CGRectGetWidth(self.frame), CGRectGetWidth(self.frame)*200/230);
+    CGRect dateFrame =CGRectMake(5, 5, CGRectGetWidth(self.frame)-10, labelSize.height);
     self.frame = dateFrame;
+    
 }
 
 

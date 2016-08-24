@@ -10,10 +10,13 @@
 #import <UIKit/UIKit.h>
 
 @class HabitModel;
+@class SeedUser;
 
 @interface MindNotesReviewViewController : UIViewController
 
 // 习惯记录数组
 @property (nonatomic, strong)HabitModel *habitModel;
+// 用户
+@property (nonatomic, strong) SeedUser *user;
 
 @end
