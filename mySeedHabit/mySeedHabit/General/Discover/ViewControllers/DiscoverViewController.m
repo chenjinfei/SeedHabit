@@ -244,13 +244,17 @@ static BOOL isNewRefresh = 1;
     
     __weak typeof (self) weakSelf = self;
     
-    // hotTableView上拉下拉
+//    // hotTableView上拉下拉
     hotTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         NSLog(@"下拉刷新？");
         isHotRefresh = 0;
         hotFlag = 0;
         [weakSelf hotLoadData];
     }];
+//    MJRefreshGifHeader *header1 = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(hotLoadData)];
+//    header1.lastUpdatedTimeLabel.hidden = YES;
+//    hotTabelView.mj_header = header1;
+    
     hotTabelView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         // 加载完第一次之后，flag == 1
         NSLog(@"上拉加载");
@@ -258,16 +262,24 @@ static BOOL isNewRefresh = 1;
         hotFlag = 1;
         [weakSelf hotLoadData];
     }];
+
+
     
     
     // keepTableView上拉下拉
     keepTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         NSLog(@"下拉加载， 自动加载？");
+        isKeepRefresh = 0;
+        keepFlag = 0;
         [weakSelf keepLoadData];
     }];
+//    MJRefreshGifHeader *header2 = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(keepLoadData)];
+//    header2.lastUpdatedTimeLabel.hidden = YES;
+//    keepTableView.mj_header = header2;
     keepTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         // 加载完第一次之后，flag == 1
         NSLog(@"上拉刷新");
+        isKeepRefresh = 1;
         keepFlag = 1;
         [weakSelf keepLoadData];
     }];
@@ -279,6 +291,9 @@ static BOOL isNewRefresh = 1;
         newestFlag = 0;
         [weakSelf NewestLoadData];
     }];
+//    MJRefreshGifHeader *header3 = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(NewestLoadData)];
+//    header3.lastUpdatedTimeLabel.hidden = YES;
+//    newestTableView.mj_header = header3;
     newestTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         // 加载完第一次之后，flag == 1
         NSLog(@"上拉刷新");
@@ -689,7 +704,7 @@ static BOOL isNewRefresh = 1;
                     detailVC.users = users;
                 }
             }
-
+            detailVC.noteId = [[note valueForKey:@"id"] integerValue];
             detailVC.imageArr = self.imageArr;
             detailVC.usersArr = self.usersArr;
             detailVC.notes = notes;

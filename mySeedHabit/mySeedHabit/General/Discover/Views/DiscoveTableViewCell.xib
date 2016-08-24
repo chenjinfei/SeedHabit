@@ -149,10 +149,10 @@
                                 <rect key="frame" x="99" y="0.0" width="99" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ZD-Xg-U6g">
-                                        <rect key="frame" x="37" y="8" width="25" height="25"/>
+                                        <rect key="frame" x="38" y="11" width="23" height="23"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="Z80-UK-BQg"/>
-                                            <constraint firstAttribute="width" constant="25" id="vvc-LJ-YuR"/>
+                                            <constraint firstAttribute="height" constant="23" id="Z80-UK-BQg"/>
+                                            <constraint firstAttribute="width" constant="23" id="vvc-LJ-YuR"/>
                                         </constraints>
                                         <state key="normal" image="comment_32.png"/>
                                         <connections>
@@ -170,14 +170,14 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="BcI-Dl-sLn"/>
                                     <constraint firstItem="0ZD-Xg-U6g" firstAttribute="centerX" secondItem="1xd-5U-r3i" secondAttribute="centerX" id="h0z-35-3Wy"/>
-                                    <constraint firstItem="0ZD-Xg-U6g" firstAttribute="top" secondItem="1xd-5U-r3i" secondAttribute="top" constant="8" id="pSa-9f-vDf"/>
+                                    <constraint firstItem="0ZD-Xg-U6g" firstAttribute="top" secondItem="1xd-5U-r3i" secondAttribute="top" constant="11" id="pSa-9f-vDf"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxN-V9-k5C">
                                 <rect key="frame" x="198" y="0.0" width="99" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87E-iQ-kaF">
-                                        <rect key="frame" x="37" y="8" width="25" height="25"/>
+                                        <rect key="frame" x="37" y="7" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="ZnU-Xs-EHh"/>
                                             <constraint firstAttribute="height" constant="25" id="znV-ZO-jRb"/>
@@ -192,7 +192,7 @@
                                 <constraints>
                                     <constraint firstItem="87E-iQ-kaF" firstAttribute="centerX" secondItem="oxN-V9-k5C" secondAttribute="centerX" id="1uX-Qe-hon"/>
                                     <constraint firstAttribute="height" constant="40" id="hmY-30-SqG"/>
-                                    <constraint firstItem="87E-iQ-kaF" firstAttribute="top" secondItem="oxN-V9-k5C" secondAttribute="top" constant="8" id="qF0-rM-F1D"/>
+                                    <constraint firstItem="87E-iQ-kaF" firstAttribute="top" secondItem="oxN-V9-k5C" secondAttribute="top" constant="7" id="qF0-rM-F1D"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4D-qq-Zfu">

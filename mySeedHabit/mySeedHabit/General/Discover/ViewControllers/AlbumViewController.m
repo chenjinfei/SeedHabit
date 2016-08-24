@@ -11,6 +11,7 @@
 #import <UIImageView+WebCache.h>
 #import <Masonry.h>
 #import "UIColor+CJFColor.h"
+#import <SCLAlertView.h>
 
 @interface AlbumViewController ()
 
@@ -76,9 +77,9 @@
 
 
 - (void)rightAction {
-
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"保存" message:@"您是否保存这张图片" preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"是的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    [alert addButton:@"是否保存这张站片" actionBlock:^{
         
         /**
          *  将图片保存到 本地相册
@@ -116,12 +117,13 @@
         self.scrollView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
         // 截图之后偏移位置为未截图之前的位置
         self.scrollView.contentOffset = p;
+
         
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"不" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-    }]];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+    }];
+    [alert addButton:@"不保存" actionBlock:^{
+        
+    }];
+    [alert showSuccess:self title:@"Save" subTitle:nil closeButtonTitle:nil duration:0.0f];
 }
 
 #pragma mark 将图片保存到本地
