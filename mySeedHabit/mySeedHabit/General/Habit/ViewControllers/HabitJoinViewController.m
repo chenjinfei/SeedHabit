@@ -10,6 +10,7 @@
 #import "JoinHabitCell.h"
 #import "UserManager.h"
 #import "SeedUser.h"
+#import "UIColor+CJFColor.h"
 
 @interface HabitJoinViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -22,6 +23,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // 掩盖导航
+    UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, -64, 414, 64)];
+    [self.view addSubview:vi];
+    vi.backgroundColor = [UIColor colorWithHexString:UIMainColor alpha:1.0];
+    
     [self buildUI];
     self.user = [[UserManager manager] currentUser];
 }
